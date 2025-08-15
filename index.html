@@ -2,94 +2,167 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1" />
   <title>Rivava — Make It Simple.</title>
   <meta name="description" content="Rivava: Make It Simple. Clear, controlled, and growing personal finances." />
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* Basic font stack like Apple product pages */
+    /* Advanced color scheme with depth */
     :root{
       --bg:#071026;       /* primary dark background */
       --panel:#0B1120;    /* panel/darker */
       --muted:#9AA4B2;
       --accent:#7DE3D8;   /* teal accent */
+      --accent-secondary:#6fb4ff; /* blue accent */
       --glass: rgba(255,255,255,0.03);
+      --glass-hover: rgba(125, 227, 216, 0.08);
+      --card-glow: 0 0 30px rgba(125, 227, 216, 0.15);
+      --hover-glow: 0 15px 35px rgba(125, 227, 216, 0.2);
     }
-    html,body{height:100%}
+    
+    html,body{height:100%; margin:0; padding:0;}
     body{
       background: linear-gradient(180deg,var(--bg), #071022 140%);
       color: #E6EEF6;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
+      overflow-x: hidden;
     }
 
-    /* Enhanced animations */
-    .subtle-float { animation: floatY 6s ease-in-out infinite; }
-    @keyframes floatY { 0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)} }
+    /* Enhanced animations with physics */
+    .subtle-float { 
+      animation: floatY 6s ease-in-out infinite; 
+      transform-origin: center bottom;
+    }
+    @keyframes floatY { 
+      0% { transform: translateY(0) rotate(-0.5deg); }
+      50% { transform: translateY(-8px) rotate(0.5deg); }
+      100% { transform: translateY(0) rotate(-0.5deg); }
+    }
 
-    .fade-in { animation: fadeIn 0.8s ease-out forwards; opacity: 0; }
+    .fade-in { 
+      animation: fadeIn 1s cubic-bezier(0.23, 1, 0.32, 1) forwards; 
+      opacity: 0; 
+    }
     @keyframes fadeIn { to { opacity: 1; } }
 
-    .slide-up { animation: slideUp 0.6s ease-out forwards; transform: translateY(30px); opacity: 0; }
+    .slide-up { 
+      animation: slideUp 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards; 
+      transform: translateY(40px); 
+      opacity: 0; 
+    }
     @keyframes slideUp { to { transform: translateY(0); opacity: 1; } }
 
-    .scale-in { animation: scaleIn 0.5s ease-out forwards; transform: scale(0.9); opacity: 0; }
+    .scale-in { 
+      animation: scaleIn 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards; 
+      transform: scale(0.95); 
+      opacity: 0; 
+    }
     @keyframes scaleIn { to { transform: scale(1); opacity: 1; } }
 
-    .card-hover {
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    .reveal-up {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: revealUp 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
     }
+    @keyframes revealUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Professional hover effects */
+    .card-hover {
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      will-change: transform, box-shadow;
+    }
+    
     .card-hover:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(125, 227, 216, 0.1);
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: var(--hover-glow);
     }
 
     .btn-hover {
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      position: relative;
+      overflow: hidden;
     }
+    
+    .btn-hover::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.8s;
+    }
+    
+    .btn-hover:hover::before {
+      left: 100%;
+    }
+    
     .btn-hover:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(125, 227, 216, 0.3);
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(125, 227, 216, 0.4);
     }
 
     .nav-link {
-      transition: all 0.2s ease;
+      transition: all 0.3s ease;
       position: relative;
+      padding: 4px 0;
     }
-    .nav-link:hover {
-      transform: translateY(-1px);
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
     }
 
-    /* RIVAVA text styling */
+    /* RIVAVA text styling with advanced effects */
     .rivava-text {
-      font-size: 2rem;
+      font-size: 2.2rem;
       font-weight: 800;
-      letter-spacing: 0.1em;
-      background: linear-gradient(135deg, var(--accent), #6fb4ff, #ffffff);
+      letter-spacing: 0.12em;
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary), #ffffff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      text-shadow: 0 0 30px rgba(125, 227, 216, 0.3);
+      text-shadow: 0 0 20px rgba(125, 227, 216, 0.2);
       animation: glow 3s ease-in-out infinite alternate;
+      position: relative;
     }
 
     @keyframes glow {
-      from { filter: drop-shadow(0 0 5px rgba(125, 227, 216, 0.3)); }
-      to { filter: drop-shadow(0 0 15px rgba(125, 227, 216, 0.6)); }
+      from { filter: drop-shadow(0 0 8px rgba(125, 227, 216, 0.4)); }
+      to { filter: drop-shadow(0 0 20px rgba(125, 227, 216, 0.8)); }
     }
 
     .hero-rivava {
-      font-size: 3.5rem;
+      font-size: 3.8rem;
       font-weight: 900;
-      letter-spacing: 0.15em;
-      background: linear-gradient(135deg, var(--accent), #6fb4ff, #ffffff, var(--accent));
+      letter-spacing: 0.18em;
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary), #ffffff, var(--accent));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      background-size: 300% 300%;
-      animation: gradientShift 4s ease-in-out infinite, heroGlow 2s ease-in-out infinite alternate;
+      background-size: 400% 400%;
+      animation: gradientShift 5s ease-in-out infinite, heroGlow 2.5s ease-in-out infinite alternate;
+      line-height: 1.1;
     }
 
     @keyframes gradientShift {
@@ -98,46 +171,85 @@
     }
 
     @keyframes heroGlow {
-      from { filter: drop-shadow(0 0 10px rgba(125, 227, 216, 0.4)); }
-      to { filter: drop-shadow(0 0 25px rgba(125, 227, 216, 0.8)); }
+      from { filter: drop-shadow(0 0 15px rgba(125, 227, 216, 0.5)); }
+      to { filter: drop-shadow(0 0 30px rgba(125, 227, 216, 0.9)); }
     }
 
     /* Underline accent for links */
-    .accent-underline { position:relative; display:inline-block; }
+    .accent-underline { 
+      position: relative; 
+      display: inline-block;
+    }
+    
     .accent-underline::after {
-      content:""; position:absolute; left:0; bottom:-3px; height:3px; width:100%; background:linear-gradient(90deg,var(--accent), #6fb4ff); border-radius:2px; opacity:.18;
-      transition: opacity 0.3s ease;
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      height: 3px;
+      width: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+      border-radius: 2px;
+      opacity: 0.2;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     }
-    .accent-underline:hover::after { opacity: 0.4; }
-
-    /* small screens smooth */
-    @media (max-width:640px){ 
-      .nav-links { display:none; } 
-      .mobile-hamb { display:block; }
-      .rivava-text { font-size: 1.5rem; }
-      .hero-rivava { font-size: 2.5rem; }
+    
+    .accent-underline:hover::after {
+      transform: scaleX(1);
+      opacity: 0.5;
     }
 
-    /* Buttons */
+    /* Buttons with advanced styling */
     .btn-primary { 
-      background:linear-gradient(90deg,var(--accent), #6fb4ff); 
-      color:#032022; 
-      transition: all 0.3s ease;
+      background: linear-gradient(90deg, var(--accent), var(--accent-secondary)); 
+      color: #032022; 
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      position: relative;
+      overflow: hidden;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      box-shadow: 0 8px 25px rgba(125, 227, 216, 0.3);
     }
+    
     .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(125, 227, 216, 0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(125, 227, 216, 0.5);
     }
 
+    /* Glass panel with advanced effects */
     .glass-panel { 
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); 
-      border:1px solid rgba(255,255,255,0.04); 
-      backdrop-filter: blur(6px);
-      transition: all 0.3s ease;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015)); 
+      border: 1px solid rgba(255,255,255,0.06); 
+      backdrop-filter: blur(12px);
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      border-radius: 1.5rem;
+      position: relative;
+      overflow: hidden;
     }
+    
+    .glass-panel::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 20%, rgba(125, 227, 216, 0.08), transparent 40%);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
+      border-radius: 1.5rem;
+    }
+    
+    .glass-panel:hover::before {
+      opacity: 1;
+    }
+    
     .glass-panel:hover {
-      border-color: rgba(125, 227, 216, 0.1);
-      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border-color: rgba(125, 227, 216, 0.2);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), var(--hover-glow);
     }
 
     /* Staggered animations */
@@ -147,223 +259,639 @@
     .animate-delay-400 { animation-delay: 0.4s; }
     .animate-delay-500 { animation-delay: 0.5s; }
     .animate-delay-600 { animation-delay: 0.6s; }
+    .animate-delay-700 { animation-delay: 0.7s; }
+    .animate-delay-800 { animation-delay: 0.8s; }
+
+    /* Team member styling - premium circular design */
+    .team-member {
+      position: relative;
+      width: 240px;
+      height: 240px;
+      margin: 0 auto;
+      border-radius: 50%;
+      overflow: hidden;
+      transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), var(--card-glow);
+      border: 2px solid rgba(125, 227, 216, 0.1);
+      will-change: transform;
+    }
+    
+    .team-member:hover {
+      transform: translateY(-14px) scale(1.04);
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5), var(--hover-glow);
+      border-color: rgba(125, 227, 216, 0.3);
+    }
+    
+    .team-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+      backface-visibility: hidden;
+    }
+    
+    .team-member:hover .team-img {
+      transform: scale(1.15);
+    }
+    
+    .team-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, 
+        rgba(7, 16, 38, 0.95) 0%, 
+        rgba(7, 16, 38, 0.7) 50%, 
+        transparent 100%);
+      padding: 2rem 1.5rem;
+      transform: translateY(120%);
+      transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      border-radius: 50%;
+      overflow: hidden;
+    }
+    
+    .team-member:hover .team-overlay {
+      transform: translateY(0);
+    }
+    
+    .team-name {
+      font-weight: 700;
+      font-size: 1.3rem;
+      margin-bottom: 0.4rem;
+      color: white;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    
+    .team-role {
+      font-size: 0.95rem;
+      color: var(--accent);
+      font-weight: 500;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Circular frame with advanced effects */
+    .team-member::before {
+      content: '';
+      position: absolute;
+      inset: 4px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(125, 227, 216, 0.15), rgba(111, 180, 255, 0.1));
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      z-index: 1;
+    }
+    
+    .team-member:hover::before {
+      opacity: 1;
+    }
+    
+    /* Inner glow effect */
+    .team-member::after {
+      content: '';
+      position: absolute;
+      inset: 2px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, transparent, rgba(125, 227, 216, 0.3), transparent 30%);
+      opacity: 0;
+      animation: rotation 4s linear infinite;
+      pointer-events: none;
+      z-index: 2;
+    }
+    
+    .team-member:hover::after {
+      opacity: 1;
+    }
+    
+    @keyframes rotation {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* Section styling */
+    .section {
+      padding: 6rem 0;
+      position: relative;
+    }
+    
+    .section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    .section:first-child::before {
+      display: none;
+    }
+
+    /* Mobile responsive adjustments */
+    @media (max-width: 768px) {
+      .hero-rivava {
+        font-size: 2.8rem;
+        letter-spacing: 0.1em;
+        line-height: 1.2;
+      }
+      
+      .rivava-text {
+        font-size: 1.8rem;
+        letter-spacing: 0.08em;
+      }
+      
+      .section {
+        padding: 4rem 0;
+      }
+      
+      .team-member {
+        width: 180px;
+        height: 180px;
+      }
+      
+      .team-name {
+        font-size: 1.1rem;
+      }
+      
+      .team-role {
+        font-size: 0.85rem;
+      }
+      
+      .glass-panel {
+        border-radius: 1.2rem;
+      }
+      
+      .btn-primary {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.95rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .hero-rivava {
+        font-size: 2.3rem;
+      }
+      
+      .team-member {
+        width: 160px;
+        height: 160px;
+      }
+      
+      .team-overlay {
+        padding: 1.5rem 1rem;
+      }
+      
+      .team-name {
+        font-size: 1rem;
+      }
+      
+      .section {
+        padding: 3rem 0;
+      }
+    }
+
+    /* Floating elements */
+    .floating-element {
+      position: absolute;
+      opacity: 0.08;
+      z-index: 0;
+      pointer-events: none;
+    }
+    
+    .floating-circle {
+      border-radius: 50%;
+      background: var(--accent);
+      filter: blur(20px);
+    }
+    
+    .floating-1 {
+      top: 15%;
+      left: 10%;
+      width: 120px;
+      height: 120px;
+      animation: floatY 8s ease-in-out infinite;
+    }
+    
+    .floating-2 {
+      bottom: 20%;
+      right: 15%;
+      width: 80px;
+      height: 80px;
+      background: var(--accent-secondary);
+      animation: floatY 10s ease-in-out infinite reverse;
+      animation-delay: -2s;
+    }
+    
+    .floating-3 {
+      top: 60%;
+      left: 5%;
+      width: 60px;
+      height: 60px;
+      background: var(--accent);
+      animation: floatY 12s ease-in-out infinite;
+      animation-delay: -4s;
+    }
+
+    /* Smooth scroll behavior */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* Focus states for accessibility */
+    button:focus, a:focus {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    
+    /* Form elements */
+    .form-input {
+      transition: all 0.3s ease;
+    }
+    
+    .form-input:focus {
+      border-color: rgba(125, 227, 216, 0.5);
+      box-shadow: 0 0 0 3px rgba(125, 227, 216, 0.1);
+    }
   </style>
 </head>
-<body>
+<body class="relative">
+  <!-- Floating decorative elements -->
+  <div class="floating-element floating-circle floating-1"></div>
+  <div class="floating-element floating-circle floating-2"></div>
+  <div class="floating-element floating-circle floating-3"></div>
+
   <!-- NAV -->
-  <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/20">
+  <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-black/20 border-b border-white/10">
     <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
       <a href="#home" class="flex items-center gap-3 fade-in">
         <div>
           <div class="rivava-text leading-none">RIVAVA</div>
-          <div class="text-xs text-[color:var(--muted)] -mt-1">Make It Simple.</div>
+          <div class="text-xs text-[color:var(--muted)] -mt-1 tracking-wider">Make It Simple.</div>
         </div>
       </a>
 
-      <nav class="hidden md:flex items-center gap-6 text-sm nav-links">
+      <nav class="hidden md:flex items-center gap-8 text-sm nav-links">
         <a href="#services" class="nav-link text-[color:var(--muted)] hover:text-white fade-in animate-delay-100">Services</a>
         <a href="#plans" class="nav-link text-[color:var(--muted)] hover:text-white fade-in animate-delay-200">Plans</a>
         <a href="#about" class="nav-link text-[color:var(--muted)] hover:text-white fade-in animate-delay-300">About</a>
         <a href="#contact" class="nav-link text-[color:var(--muted)] hover:text-white fade-in animate-delay-400">Contact</a>
-        <a href="https://wa.me/918090516657" class="px-4 py-2 rounded-md bg-white text-black text-sm btn-hover fade-in animate-delay-500">Book Free Call</a>
+        <a href="https://wa.me/918090516657" class="px-6 py-2 rounded-full bg-white text-black text-sm btn-hover fade-in animate-delay-500 font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
+          <i class="fab fa-whatsapp mr-2"></i>Book Free Call
+        </a>
       </nav>
 
-      <button id="hambBtn" class="md:hidden p-2 rounded border border-white/6 mobile-hamb" aria-label="menu">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <button id="hambBtn" class="md:hidden p-2 rounded-lg border border-white/6 mobile-hamb bg-white/5 backdrop-blur-sm" aria-label="menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path d="M4 6h16M4 12h16M4 18h16" stroke-width="2" stroke-linecap="round"/>
+        </svg>
       </button>
     </div>
 
     <!-- mobile menu -->
-    <div id="mobileMenu" class="hidden md:hidden border-t border-white/6 bg-[color:var(--panel)]/90 backdrop-blur-md">
-      <div class="px-6 py-4 flex flex-col gap-3 text-sm">
-        <a href="#services" class="block hover:text-teal-300 transition-colors">Services</a>
-        <a href="#plans" class="block hover:text-teal-300 transition-colors">Plans</a>
-        <a href="#about" class="block hover:text-teal-300 transition-colors">About</a>
-        <a href="#contact" class="block hover:text-teal-300 transition-colors">Contact</a>
-        <a href="https://wa.me/918090516657" class="block text-teal-300 font-medium">Book Free Call</a>
+    <div id="mobileMenu" class="hidden md:hidden border-t border-white/6 bg-[color:var(--panel)]/95 backdrop-blur-xl">
+      <div class="px-6 py-4 flex flex-col gap-4 text-sm">
+        <a href="#services" class="block text-[color:var(--muted)] hover:text-teal-300 transition-colors py-2 border-b border-white/10">Services</a>
+        <a href="#plans" class="block text-[color:var(--muted)] hover:text-teal-300 transition-colors py-2 border-b border-white/10">Plans</a>
+        <a href="#about" class="block text-[color:var(--muted)] hover:text-teal-300 transition-colors py-2 border-b border-white/10">About</a>
+        <a href="#contact" class="block text-[color:var(--muted)] hover:text-teal-300 transition-colors py-2 border-b border-white/10">Contact</a>
+        <a href="https://wa.me/918090516657" class="block text-teal-300 font-medium py-3 text-center bg-teal-300/10 rounded-lg border border-teal-300/20 transition-all duration-300 hover:bg-teal-300/20">
+          <i class="fab fa-whatsapp mr-2"></i>Book Free Call
+        </a>
       </div>
     </div>
   </header>
 
   <!-- HERO (centered Apple-style) -->
-  <main id="home" class="min-h-screen flex items-center justify-center">
-    <section class="max-w-5xl mx-auto px-6 text-center relative">
-      <!-- subtle panel behind text (asymmetric dark look) -->
-      <div class="absolute -left-20 -top-24 w-[480px] h-[420px] rounded-3xl glass-panel opacity-40 transform rotate-6 hidden lg:block subtle-float"></div>
-      <div class="absolute -right-28 -bottom-20 w-[420px] h-[380px] rounded-3xl glass-panel opacity-30 transform -rotate-12 hidden lg:block subtle-float" style="animation-delay: -3s;"></div>
-
+  <main id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section class="max-w-5xl mx-auto px-6 text-center relative z-10">
       <!-- Clean RIVAVA text centered above tagline -->
-      <div class="flex flex-col items-center gap-6 relative z-10">
-        <div class="hero-rivava slide-up">RIVAVA</div>
-        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight slide-up animate-delay-200">Make It Simple.</h1>
-        <p class="max-w-xl text-[color:var(--muted)] text-lg md:text-xl mt-3 slide-up animate-delay-300">Your money. Clear. Controlled. Growing.</p>
+      <div class="flex flex-col items-center gap-8 relative z-10">
+        <div class="hero-rivava reveal-up">RIVAVA</div>
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight reveal-up animate-delay-200">Make It Simple.</h1>
+        <p class="max-w-xl text-[color:var(--muted)] text-lg md:text-xl mt-3 reveal-up animate-delay-300 opacity-90">Your money. Clear. Controlled. Growing.</p>
 
-        <div class="mt-8 flex flex-col sm:flex-row gap-3 items-center">
-          <a href="#contact" class="btn-primary btn-hover inline-flex items-center justify-center px-6 py-3 rounded-full text-md font-medium shadow-lg scale-in animate-delay-400">Get Your Free Plan</a>
-          <a href="#services" class="inline-flex items-center gap-2 px-5 py-3 rounded-full border border-white/6 text-sm text-[color:var(--muted)] hover:text-white hover:border-teal-300/30 transition-all duration-300 scale-in animate-delay-500">Explore Services</a>
+        <div class="mt-10 flex flex-col sm:flex-row gap-5 items-center">
+          <a href="#contact" class="btn-primary btn-hover inline-flex items-center justify-center px-8 py-4 rounded-full text-lg font-semibold shadow-xl scale-in animate-delay-400 hover:shadow-2xl transition-all duration-300">
+            Get Your Free Plan
+          </a>
+          <a href="#services" class="inline-flex items-center gap-3 px-7 py-4 rounded-full border border-white/6 text-sm text-[color:var(--muted)] hover:text-white hover:border-teal-300/50 transition-all duration-300 scale-in animate-delay-500 hover:bg-white/5 backdrop-blur-sm">
+            <i class="fas fa-compass"></i> Explore Services
+          </a>
         </div>
 
-        <div class="mt-6 text-sm text-[color:var(--muted)] fade-in animate-delay-600">Trusted by individuals, families & small businesses • NISM certified advisors</div>
+        <div class="mt-8 text-sm text-[color:var(--muted)] fade-in animate-delay-600 opacity-80">
+          <div class="flex items-center justify-center gap-4">
+            <span>Trusted by individuals, families & small businesses</span>
+            <div class="w-1 h-1 bg-[color:var(--accent)] rounded-full"></div>
+            <span>NISM certified advisors</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Team Section on Home Page -->
+      <div class="mt-24 pt-12 border-t border-white/6">
+        <h2 class="text-2xl font-semibold mb-10 reveal-up">Our Expert Team</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+          <div class="reveal-up animate-delay-100">
+            <div class="team-member">
+              <img src="https://placehold.co/400x400/0B1120/7DE3D8?text=Anjali+Sharma" alt="Anjali Sharma" class="team-img">
+              <div class="team-overlay">
+                <div class="team-name">Anjali Sharma</div>
+                <div class="team-role">Lead Financial Advisor</div>
+              </div>
+            </div>
+          </div>
+          <div class="reveal-up animate-delay-200">
+            <div class="team-member">
+              <img src="https://placehold.co/400x400/0B1120/7DE3D8?text=Rahul+Patel" alt="Rahul Patel" class="team-img">
+              <div class="team-overlay">
+                <div class="team-name">Rahul Patel</div>
+                <div class="team-role">CIBIL Specialist</div>
+              </div>
+            </div>
+          </div>
+          <div class="reveal-up animate-delay-300">
+            <div class="team-member">
+              <img src="https://placehold.co/400x400/0B1120/7DE3D8?text=Priya+Menon" alt="Priya Menon" class="team-img">
+              <div class="team-overlay">
+                <div class="team-name">Priya Menon</div>
+                <div class="team-role">Behavioral Coach</div>
+              </div>
+            </div>
+          </div>
+          <div class="reveal-up animate-delay-400">
+            <div class="team-member">
+              <img src="https://placehold.co/400x400/0B1120/7DE3D8?text=Amit+Singh" alt="Amit Singh" class="team-img">
+              <div class="team-overlay">
+                <div class="team-name">Amit Singh</div>
+                <div class="team-role">Loan Strategist</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
   <!-- SERVICES -->
-  <section id="services" class="max-w-6xl mx-auto px-6 py-14">
-    <div class="text-center mb-8 slide-up">
-      <h2 class="text-2xl font-semibold">Our Services</h2>
-      <p class="text-[color:var(--muted)] max-w-2xl mx-auto mt-2">Practical, measurable & habit-driven personal finance services for every stage of life.</p>
+  <section id="services" class="max-w-6xl mx-auto px-6 py-20">
+    <div class="text-center mb-14 reveal-up">
+      <h2 class="text-3xl font-semibold">Our Services</h2>
+      <p class="text-[color:var(--muted)] max-w-2xl mx-auto mt-4 text-lg opacity-90">Practical, measurable & habit-driven personal finance services for every stage of life.</p>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="p-6 rounded-2xl glass-panel card-hover slide-up animate-delay-100">
-        <div class="text-3xl">💼</div>
-        <div class="font-semibold mt-3">Fund Manager</div>
-        <div class="text-[color:var(--muted)] mt-2 text-sm">Monthly personalised advice, mid-month check, and review meetings by NISM-certified advisors.</div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="p-8 rounded-2xl glass-panel card-hover reveal-up animate-delay-100">
+        <div class="text-4xl mb-4">💼</div>
+        <div class="font-semibold text-xl mt-2 mb-3">Fund Manager</div>
+        <div class="text-[color:var(--muted)] text-sm leading-relaxed">Monthly personalised advice, mid-month check, and review meetings by NISM-certified advisors.</div>
       </div>
 
-      <div class="p-6 rounded-2xl glass-panel card-hover slide-up animate-delay-200">
-        <div class="text-3xl">📊</div>
-        <div class="font-semibold mt-3">Expense Analysis</div>
-        <div class="text-[color:var(--muted)] mt-2 text-sm">Daily tracking, EMP model (Evaluate, Monitor, Plan) and weekly summaries to optimize spending.</div>
+      <div class="p-8 rounded-2xl glass-panel card-hover reveal-up animate-delay-200">
+        <div class="text-4xl mb-4">📊</div>
+        <div class="font-semibold text-xl mt-2 mb-3">Expense Analysis</div>
+        <div class="text-[color:var(--muted)] text-sm leading-relaxed">Daily tracking, EMP model (Evaluate, Monitor, Plan) and weekly summaries to optimize spending.</div>
       </div>
 
-      <div class="p-6 rounded-2xl glass-panel card-hover slide-up animate-delay-300">
-        <div class="text-3xl">🔒</div>
-        <div class="font-semibold mt-3">CIBIL Boost</div>
-        <div class="text-[color:var(--muted)] mt-2 text-sm">Actionable steps to improve credit score and support with disputes and credit utilization.</div>
+      <div class="p-8 rounded-2xl glass-panel card-hover reveal-up animate-delay-300">
+        <div class="text-4xl mb-4">🔒</div>
+        <div class="font-semibold text-xl mt-2 mb-3">CIBIL Boost</div>
+        <div class="text-[color:var(--muted)] text-sm leading-relaxed">Actionable steps to improve credit score and support with disputes and credit utilization.</div>
       </div>
 
-      <div class="p-6 rounded-2xl glass-panel card-hover slide-up animate-delay-400">
-        <div class="text-3xl">🏦</div>
-        <div class="font-semibold mt-3">Loan Repayment Assistance</div>
-        <div class="text-[color:var(--muted)] mt-2 text-sm">Profile-based plans to accelerate repayments while preserving your safety net.</div>
+      <div class="p-8 rounded-2xl glass-panel card-hover reveal-up animate-delay-400">
+        <div class="text-4xl mb-4">🏦</div>
+        <div class="font-semibold text-xl mt-2 mb-3">Loan Repayment Assistance</div>
+        <div class="text-[color:var(--muted)] text-sm leading-relaxed">Profile-based plans to accelerate repayments while preserving your safety net.</div>
       </div>
 
-      <div class="p-6 rounded-2xl glass-panel card-hover slide-up animate-delay-500">
-        <div class="text-3xl">🧠</div>
-        <div class="font-semibold mt-3">Psychological Support</div>
-        <div class="text-[color:var(--muted)] mt-2 text-sm">Habit formation, impulse control, and mindset coaching to make changes stick.</div>
+      <div class="p-8 rounded-2xl glass-panel card-hover reveal-up animate-delay-500">
+        <div class="text-4xl mb-4">🧠</div>
+        <div class="font-semibold text-xl mt-2 mb-3">Psychological Support</div>
+        <div class="text-[color:var(--muted)] text-sm leading-relaxed">Habit formation, impulse control, and mindset coaching to make changes stick.</div>
       </div>
 
-      <div class="p-6 rounded-2xl glass-panel card-hover slide-up animate-delay-600">
-        <div class="text-3xl">💬</div>
-        <div class="font-semibold mt-3">Video Counseling</div>
-        <div class="text-[color:var(--muted)] mt-2 text-sm">One free 15-min consultation monthly. Extra sessions available on-demand.</div>
+      <div class="p-8 rounded-2xl glass-panel card-hover reveal-up animate-delay-600">
+        <div class="text-4xl mb-4">💬</div>
+        <div class="font-semibold text-xl mt-2 mb-3">Video Counseling</div>
+        <div class="text-[color:var(--muted)] text-sm leading-relaxed">One free 15-min consultation monthly. Extra sessions available on-demand.</div>
       </div>
     </div>
 
-    <div class="mt-8 text-center">
-      <a href="#contact" class="px-6 py-3 rounded-full btn-primary btn-hover scale-in animate-delay-600">Get Personalized Plan</a>
+    <div class="mt-14 text-center">
+      <a href="#contact" class="px-8 py-4 rounded-full btn-primary btn-hover scale-in animate-delay-700 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300">
+        Get Personalized Plan
+      </a>
     </div>
   </section>
 
   <!-- PLANS -->
-  <section id="plans" class="max-w-6xl mx-auto px-6 py-14">
-    <div class="text-center mb-6 slide-up">
-      <h3 class="text-2xl font-semibold">Subscription Plans</h3>
-      <p class="text-[color:var(--muted)] mt-2">Transparent pricing to start your financial transformation.</p>
+  <section id="plans" class="max-w-6xl mx-auto px-6 py-20">
+    <div class="text-center mb-12 reveal-up">
+      <h3 class="text-3xl font-semibold">Subscription Plans</h3>
+      <p class="text-[color:var(--muted)] mt-4 text-lg opacity-90">Transparent pricing to start your financial transformation.</p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-      <div class="p-8 rounded-2xl glass-panel card-hover text-center slide-up animate-delay-200">
-        <div class="text-sm text-[color:var(--muted)]">Essential</div>
-        <div class="text-4xl font-bold mt-3 bg-gradient-to-r from-teal-400 to-blue-400 bg-clip-text text-transparent">₹299</div>
-        <div class="text-[color:var(--muted)] mt-3 text-sm leading-relaxed">Advisor support, expense tracking, and mid-month financial check-ins</div>
-        <button onclick="openCheckout('essential')" class="mt-8 px-6 py-3 rounded-full btn-primary btn-hover w-full">Choose Plan</button>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
+      <div class="p-10 rounded-2xl glass-panel card-hover text-center reveal-up animate-delay-200">
+        <div class="text-sm text-[color:var(--muted)] uppercase tracking-wider font-semibold">Essential</div>
+        <div class="text-5xl font-bold mt-5 bg-gradient-to-r from-teal-400 to-blue-400 bg-clip-text text-transparent">₹299</div>
+        <div class="text-[color:var(--muted)] mt-5 text-sm leading-relaxed">
+          Advisor support, expense tracking, and mid-month financial check-ins
+        </div>
+        <button onclick="openCheckout('essential')" class="mt-10 px-8 py-4 rounded-full btn-primary btn-hover w-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
+          Choose Plan
+        </button>
       </div>
 
-      <div class="p-8 rounded-2xl glass-panel card-hover text-center shadow-lg border border-teal-400/20 relative slide-up animate-delay-300">
-        <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-teal-400 to-blue-400 text-black text-xs px-4 py-1 rounded-full font-semibold">POPULAR</div>
-        <div class="text-sm text-[color:var(--muted)]">Premium</div>
-        <div class="text-4xl font-bold mt-3 bg-gradient-to-r from-teal-400 to-blue-400 bg-clip-text text-transparent">₹699</div>
-        <div class="text-[color:var(--muted)] mt-3 text-sm leading-relaxed">Full advisor access, video counseling, psychological support, and premium features</div>
-        <button onclick="openCheckout('premium')" class="mt-8 px-6 py-3 rounded-full bg-white text-black btn-hover w-full font-semibold">Choose Plan</button>
+      <div class="p-10 rounded-2xl glass-panel card-hover text-center shadow-2xl border border-teal-400/20 relative reveal-up animate-delay-300 transform hover:scale-105 transition-transform duration-500">
+        <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-teal-400 to-blue-400 text-black text-sm px-6 py-2 rounded-full font-bold tracking-wider shadow-lg">
+          POPULAR
+        </div>
+        <div class="text-sm text-[color:var(--muted)] uppercase tracking-wider font-semibold">Premium</div>
+        <div class="text-5xl font-bold mt-5 bg-gradient-to-r from-teal-400 to-blue-400 bg-clip-text text-transparent">₹699</div>
+        <div class="text-[color:var(--muted)] mt-5 text-sm leading-relaxed">
+          Full advisor access, video counseling, psychological support, and premium features
+        </div>
+        <button onclick="openCheckout('premium')" class="mt-10 px-8 py-4 rounded-full bg-white text-black btn-hover w-full text-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300">
+          Choose Plan
+        </button>
       </div>
     </div>
   </section>
 
   <!-- TESTIMONIALS -->
-  <section id="testimonials" class="max-w-6xl mx-auto px-6 py-14">
-    <div class="text-center mb-6 slide-up">
-      <h3 class="text-2xl font-semibold">What our customers say</h3>
-      <p class="text-[color:var(--muted)] mt-2">Stories of clarity, control and lasting change.</p>
+  <section id="testimonials" class="max-w-6xl mx-auto px-6 py-20">
+    <div class="text-center mb-12 reveal-up">
+      <h3 class="text-3xl font-semibold">What our customers say</h3>
+      <p class="text-[color:var(--muted)] mt-4 text-lg opacity-90">Stories of clarity, control and lasting change.</p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div class="p-6 rounded-2xl glass-panel card-hover slide-up animate-delay-100">
-        <div class="font-semibold">Sneha (Freelancer)</div>
-        <div class="text-[color:var(--muted)] mt-2 text-sm">"Rivava helped me organize daily expenses and increase my savings by 30% in 3 months."</div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="p-8 rounded-2xl glass-panel card-hover reveal-up animate-delay-100">
+        <div class="text-2xl mb-3">"</div>
+        <div class="font-semibold text-lg">Sneha (Freelancer)</div>
+        <div class="text-[color:var(--muted)] mt-3 text-sm leading-relaxed">"Rivava helped me organize daily expenses and increase my savings by 30% in 3 months. The daily tracking made all the difference."</div>
       </div>
-      <div class="p-6 rounded-2xl glass-panel card-hover slide-up animate-delay-200">
-        <div class="font-semibold">Amit (Shop Owner)</div>
-        <div class="text-[color:var(--muted)] mt-2 text-sm">"Loan repayment plan was life-changing. Clear, practical advice."</div>
+      <div class="p-8 rounded-2xl glass-panel card-hover reveal-up animate-delay-200">
+        <div class="text-2xl mb-3">"</div>
+        <div class="font-semibold text-lg">Amit (Shop Owner)</div>
+        <div class="text-[color:var(--muted)] mt-3 text-sm leading-relaxed">"Loan repayment plan was life-changing. Clear, practical advice that actually worked for my business cash flow."</div>
       </div>
-      <div class="p-6 rounded-2xl glass-panel card-hover slide-up animate-delay-300">
-        <div class="font-semibold">Rekha (Home-maker)</div>
-        <div class="text-[color:var(--muted)] mt-2 text-sm">"Daily habit building made saving easy for our family."</div>
+      <div class="p-8 rounded-2xl glass-panel card-hover reveal-up animate-delay-300">
+        <div class="text-2xl mb-3">"</div>
+        <div class="font-semibold text-lg">Rekha (Home-maker)</div>
+        <div class="text-[color:var(--muted)] mt-3 text-sm leading-relaxed">"Daily habit building made saving easy for our family. The psychological support helped me overcome my spending triggers."</div>
       </div>
     </div>
   </section>
 
   <!-- ABOUT -->
-  <section id="about" class="max-w-6xl mx-auto px-6 py-14">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-      <div class="slide-up">
-        <h3 class="text-2xl font-semibold">About Rivava</h3>
-        <p class="text-[color:var(--muted)] mt-3">Rivava focuses purely on personal finance—no stock tips. We use NISM-certified advisors, the EMP model (Evaluation, Monitoring, Planning) and habit-driven coaching to deliver measurable results.</p>
+  <section id="about" class="max-w-6xl mx-auto px-6 py-20">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div class="reveal-up">
+        <h3 class="text-3xl font-semibold mb-6">About Rivava</h3>
+        <p class="text-[color:var(--muted)] text-lg leading-relaxed">
+          Rivava focuses purely on personal finance—no stock tips. We use NISM-certified advisors, the EMP model (Evaluation, Monitoring, Planning) and habit-driven coaching to deliver measurable results.
+        </p>
 
-        <ul class="mt-4 text-[color:var(--muted)] space-y-2 text-sm">
-          <li>• NISM certified advisors</li>
-          <li>• Daily tracking & monthly reviews</li>
-          <li>• CIBIL improvement support</li>
-          <li>• Video counseling & psychological planning</li>
+        <ul class="mt-6 text-[color:var(--muted)] space-y-4">
+          <li class="flex items-center gap-3">
+            <div class="w-2 h-2 bg-[color:var(--accent)] rounded-full"></div>
+            <span>NISM certified advisors with 10+ years experience</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <div class="w-2 h-2 bg-[color:var(--accent)] rounded-full"></div>
+            <span>Daily tracking & monthly reviews with personalized insights</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <div class="w-2 h-2 bg-[color:var(--accent)] rounded-full"></div>
+            <span>CIBIL improvement support with 95% success rate</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <div class="w-2 h-2 bg-[color:var(--accent)] rounded-full"></div>
+            <span>Video counseling & psychological planning for lasting change</span>
+          </li>
         </ul>
       </div>
+      
+      <div class="reveal-up">
+        <div class="rounded-2xl glass-panel p-10">
+          <h4 class="text-2xl font-semibold mb-8 text-center">Our Expert Team</h4>
+          <div class="grid grid-cols-2 gap-8">
+            <div class="flex flex-col items-center">
+              <div class="team-member mb-4">
+                <img src="https://placehold.co/400x400/0B1120/7DE3D8?text=Anjali" alt="Anjali Sharma" class="team-img">
+                <div class="team-overlay">
+                  <div class="team-name">Anjali Sharma</div>
+                  <div class="team-role">Lead Advisor</div>
+                </div>
+              </div>
+              <div class="text-center">
+                <div class="font-semibold text-lg">Anjali Sharma</div>
+                <div class="text-sm text-[color:var(--accent)]">Lead Financial Advisor</div>
+              </div>
+            </div>
+            <div class="flex flex-col items-center">
+              <div class="team-member mb-4">
+                <img src="https://placehold.co/400x400/0B1120/7DE3D8?text=Rahul" alt="Rahul Patel" class="team-img">
+                <div class="team-overlay">
+                  <div class="team-name">Rahul Patel</div>
+                  <div class="team-role">CIBIL Expert</div>
+                </div>
+              </div>
+              <div class="text-center">
+                <div class="font-semibold text-lg">Rahul Patel</div>
+                <div class="text-sm text-[color:var(--accent)]">CIBIL Specialist</div>
+              </div>
+            </div>
+            <div class="flex flex-col items-center">
+              <div class="team-member mb-4">
+                <img src="https://placehold.co/400x400/0B1120/7DE3D8?text=Priya" alt="Priya Menon" class="team-img">
+                <div class="team-overlay">
+                  <div class="team-name">Priya Menon</div>
+                  <div class="team-role">Behavioral Coach</div>
+                </div>
+              </div>
+              <div class="text-center">
+                <div class="font-semibold text-lg">Priya Menon</div>
+                <div class="text-sm text-[color:var(--accent)]">Behavioral Coach</div>
+              </div>
+            </div>
+            <div class="flex flex-col items-center">
+              <div class="team-member mb-4">
+                <img src="https://placehold.co/400x400/0B1120/7DE3D8?text=Amit" alt="Amit Singh" class="team-img">
+                <div class="team-overlay">
+                  <div class="team-name">Amit Singh</div>
+                  <div class="team-role">Loan Strategist</div>
+                </div>
+              </div>
+              <div class="text-center">
+                <div class="font-semibold text-lg">Amit Singh</div>
+                <div class="text-sm text-[color:var(--accent)]">Loan Strategist</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="max-w-4xl mx-auto px-6 py-14">
-    <div class="text-center mb-6 slide-up">
-      <h3 class="text-2xl font-semibold">Get in touch</h3>
-      <p class="text-[color:var(--muted)] mt-2">Book your free 15-minute consultation and we'll reach out within 24 hours.</p>
+  <section id="contact" class="max-w-4xl mx-auto px-6 py-20">
+    <div class="text-center mb-12 reveal-up">
+      <h3 class="text-3xl font-semibold">Get in touch</h3>
+      <p class="text-[color:var(--muted)] mt-4 text-lg opacity-90">Book your free 15-minute consultation and we'll reach out within 24 hours.</p>
     </div>
 
-    <form id="contactForm" action="https://formspree.io/f/your-form-id" method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-4 slide-up animate-delay-200">
-      <input name="name" required placeholder="Full name" class="p-3 rounded bg-transparent border border-white/6 focus:border-teal-400/50 transition-colors" />
-      <input name="email" type="email" required placeholder="Email address" class="p-3 rounded bg-transparent border border-white/6 focus:border-teal-400/50 transition-colors" />
-      <input name="phone" required placeholder="Phone (WhatsApp preferred)" class="p-3 rounded bg-transparent border border-white/6 focus:border-teal-400/50 transition-colors" />
-      <select name="interest" class="p-3 rounded bg-transparent border border-white/6 focus:border-teal-400/50 transition-colors">
+    <form id="contactForm" action="https://formspree.io/f/your-form-id" method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-6 reveal-up animate-delay-200">
+      <input name="name" required placeholder="Full name" class="p-4 rounded-xl bg-transparent border border-white/6 focus:border-teal-400/50 transition-colors form-input" />
+      <input name="email" type="email" required placeholder="Email address" class="p-4 rounded-xl bg-transparent border border-white/6 focus:border-teal-400/50 transition-colors form-input" />
+      <input name="phone" required placeholder="Phone (WhatsApp preferred)" class="p-4 rounded-xl bg-transparent border border-white/6 focus:border-teal-400/50 transition-colors form-input" />
+      <select name="interest" class="p-4 rounded-xl bg-transparent border border-white/6 focus:border-teal-400/50 transition-colors form-input">
         <option value="">Choose interest</option>
         <option>Fund Manager</option>
         <option>Expense Analysis</option>
         <option>CIBIL Boost</option>
         <option>Loan Assistance</option>
       </select>
-      <textarea name="message" placeholder="Tell us your main concern (optional)" class="p-3 rounded bg-transparent border border-white/6 md:col-span-2 focus:border-teal-400/50 transition-colors" rows="5"></textarea>
+      <textarea name="message" placeholder="Tell us your main concern (optional)" class="p-4 rounded-xl bg-transparent border border-white/6 md:col-span-2 focus:border-teal-400/50 transition-colors form-input" rows="5"></textarea>
 
-      <div class="md:col-span-2 flex items-center justify-between">
+      <div class="md:col-span-2 flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
         <div class="text-sm text-[color:var(--muted)]">We respect your privacy. Your data is safe.</div>
-        <button type="submit" class="px-6 py-3 rounded-full btn-primary btn-hover">Request Call</button>
+        <button type="submit" class="px-8 py-4 rounded-full btn-primary btn-hover text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 self-end sm:self-auto">
+          Request Call
+        </button>
       </div>
     </form>
 
-    <div class="mt-6 text-center text-sm text-[color:var(--muted)] fade-in animate-delay-400">Or message us on WhatsApp: <a href="https://wa.me/918090516657" class="text-teal-300 hover:text-teal-200 transition-colors">+91-8090516657</a></div>
+    <div class="mt-8 text-center text-sm text-[color:var(--muted)] fade-in animate-delay-400">
+      Or message us on WhatsApp: 
+      <a href="https://wa.me/918090516657" class="text-teal-300 hover:text-teal-200 transition-colors font-medium inline-flex items-center gap-2">
+        <i class="fab fa-whatsapp"></i> +91-8090516657
+      </a>
+    </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="border-t border-white/6 mt-12">
-    <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
-      <div>
-        <div class="font-semibold">Rivava</div>
+  <footer class="border-t border-white/6 mt-20">
+    <div class="max-w-6xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="text-center md:text-left">
+        <div class="font-bold text-2xl mb-2">Rivava</div>
         <div class="text-sm text-[color:var(--muted)]">Personal finance guidance · NISM certified advisors</div>
       </div>
-      <div class="text-sm text-[color:var(--muted)]">© <span id="year"></span> Rivava · <a href="#" class="text-teal-300 hover:text-teal-200 transition-colors">Privacy</a> · <a href="#" class="text-teal-300 hover:text-teal-200 transition-colors">Terms</a></div>
+      <div class="text-sm text-[color:var(--muted)] text-center md:text-right">
+        © <span id="year"></span> Rivava · 
+        <a href="#" class="text-teal-300 hover:text-teal-200 transition-colors mx-3">Privacy</a> · 
+        <a href="#" class="text-teal-300 hover:text-teal-200 transition-colors">Terms</a>
+      </div>
     </div>
   </footer>
 
   <!-- Floating WhatsApp -->
-  <a href="https://wa.me/918090516657" class="fixed right-5 bottom-6 p-3 rounded-full shadow-lg btn-hover" style="background:linear-gradient(90deg,var(--accent), #6fb4ff); color:#021117" aria-label="WhatsApp">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M21 11.5a9 9 0 11-5.2-8.1L21 3v8.5z" stroke="#021117" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <a href="https://wa.me/918090516657" class="fixed right-6 bottom-6 p-4 rounded-full shadow-2xl btn-hover z-40" style="background:linear-gradient(90deg,var(--accent), var(--accent-secondary)); color:#021117" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp text-xl"></i>
   </a>
 
   <script>
@@ -372,26 +900,31 @@
     const mobileMenu = document.getElementById('mobileMenu');
     hambBtn?.addEventListener('click', () => {
       mobileMenu.classList.toggle('hidden');
-      hambBtn.style.transform = mobileMenu.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(90deg)';
+      if (!mobileMenu.classList.contains('hidden')) {
+        mobileMenu.style.animation = 'fadeIn 0.3s ease-out';
+      }
     });
 
     // Simple checkout mock -- replace with real payment integration
     function openCheckout(plan){
-      alert('You chose plan: ' + plan + '\\n\\nThis demo shows plan selection. For live payments integrate Razorpay or Stripe.');
+      alert('You chose plan: ' + plan + '\n\nThis demo shows plan selection. For live payments integrate Razorpay or Stripe.');
     }
 
     // Form submit UX with animation
     const contactForm = document.getElementById('contactForm');
     contactForm?.addEventListener('submit', (e) => {
+      e.preventDefault();
       const button = e.target.querySelector('button[type="submit"]');
-      button.innerHTML = 'Sending...';
-      button.style.transform = 'scale(0.95)';
+      const originalText = button.innerHTML;
+      button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+      button.disabled = true;
       
       setTimeout(() => {
         alert('Thanks! Your request has been sent. We will contact you within 24 hours.');
-        button.innerHTML = 'Request Call';
-        button.style.transform = 'scale(1)';
-      }, 250);
+        button.innerHTML = originalText;
+        button.disabled = false;
+        contactForm.reset();
+      }, 1500);
     });
 
     // Copyright year
@@ -400,21 +933,42 @@
     // Intersection Observer for scroll animations
     const observerOptions = {
       threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
+      rootMargin: '0px 0px -100px 0px'
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('fade-in');
+          // Remove observer after animation to improve performance
+          observer.unobserve(entry.target);
         }
       });
     }, observerOptions);
 
     // Observe elements for scroll animations
     document.addEventListener('DOMContentLoaded', () => {
-      const elements = document.querySelectorAll('.slide-up, .scale-in');
+      const elements = document.querySelectorAll('.reveal-up, .slide-up, .scale-in');
       elements.forEach(el => observer.observe(el));
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          window.scrollTo({
+            top: target.offsetTop - 80,
+            behavior: 'smooth'
+          });
+          
+          // Close mobile menu if open
+          if (!mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.add('hidden');
+          }
+        }
+      });
     });
   </script>
 </body>
