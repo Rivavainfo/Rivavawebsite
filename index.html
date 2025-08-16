@@ -720,7 +720,7 @@
             }
         }
 
-        /* Floating elements */
+        /* Floating decorative elements */
         .floating-element {
             position: absolute;
             opacity: 0.08;
@@ -1022,8 +1022,8 @@
         .stagger-delay-600 { animation-delay: 0.6s; }
         .stagger-delay-700 { animation-delay: 0.7s; }
         .stagger-delay-800 { animation-delay: 0.8s; }
-        
-        /* Enhanced hover effects for better user experience */
+
+        /* More interactive elements */
         .interactive-element {
             transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
             cursor: pointer;
@@ -1136,6 +1136,38 @@
             font-display: swap;
             src: url(https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfMZs.woff2) format('woff2');
         }
+
+        .web-app-card {
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+            border-radius: 1.5rem;
+            background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            will-change: transform, box-shadow;
+        }
+        
+        .web-app-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.5), 0 0 25px rgba(125, 227, 216, 0.4);
+            border-color: rgba(125, 227, 216, 0.3);
+        }
+        
+        .web-app-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 70% 30%, rgba(125, 227, 216, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+        }
+
+        .web-app-card:hover::before {
+            opacity: 1;
+        }
     </style>
 </head>
 <body class="relative">
@@ -1157,7 +1189,7 @@
                     <a href="#services" class="nav-link text-[color:var(--muted)] hover:text-white animate-fade-in stagger-delay-100 touch-target">Services</a>
                     <a href="#plans" class="nav-link text-[color:var(--muted)] hover:text-white animate-fade-in stagger-delay-200 touch-target">Plans</a>
                     <a href="#about" class="nav-link text-[color:var(--muted)] hover:text-white animate-fade-in stagger-delay-300 touch-target">About</a>
-                    <a href="#webapp" class="nav-link text-[color:var(--muted)] hover:text-white animate-fade-in stagger-delay-400 touch-target">Web App</a>
+                    <a href="#" class="nav-link text-[color:var(--muted)] hover:text-white animate-fade-in stagger-delay-400 touch-target" onclick="openAppModal()">Web App</a>
                     <a href="#contact" class="nav-link text-[color:var(--muted)] hover:text-white animate-fade-in stagger-delay-500 touch-target">Contact</a>
                     <a href="https://wa.me/918090516657" class="px-6 py-2 rounded-full bg-white text-black text-sm btn-hover animate-fade-in stagger-delay-600 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 touch-target">
                         <i class="fab fa-whatsapp"></i>Book Free Call
@@ -1177,7 +1209,7 @@
                 <a href="#services" class="block text-[color:var(--muted)] hover:text-teal-300 transition-colors py-3 border-b border-white/10 touch-target">Services</a>
                 <a href="#plans" class="block text-[color:var(--muted)] hover:text-teal-300 transition-colors py-3 border-b border-white/10 touch-target">Plans</a>
                 <a href="#about" class="block text-[color:var(--muted)] hover:text-teal-300 transition-colors py-3 border-b border-white/10 touch-target">About</a>
-                <a href="#webapp" class="block text-[color:var(--muted)] hover:text-teal-300 transition-colors py-3 border-b border-white/10 touch-target">Web App</a>
+                <a href="#" onclick="openAppModal()" class="block text-[color:var(--muted)] hover:text-teal-300 transition-colors py-3 border-b border-white/10 touch-target">Web App</a>
                 <a href="#contact" class="block text-[color:var(--muted)] hover:text-teal-300 transition-colors py-3 border-b border-white/10 touch-target">Contact</a>
                 <a href="https://wa.me/918090516657" class="block text-teal-300 font-medium py-3 text-center bg-teal-300/10 rounded-lg border border-teal-300/20 transition-all duration-300 hover:bg-teal-300/20 flex items-center justify-center gap-2 touch-target">
                     <i class="fab fa-whatsapp"></i>Book Free Call
@@ -1375,9 +1407,9 @@
             </div>
     
             <div class="mt-12 text-center">
-                <a href="https://wa.me/918090516657" class="inline-flex items-center gap-3 px-8 py-4 rounded-full border border-white/6 text-sm text-[color:var(--muted)] hover:text-white hover:border-teal-300/50 transition-all duration-300 scale-in stagger-delay-500 hover:bg-white/5 backdrop-blur-sm btn-responsive touch-target">
-                    <i class="fas fa-laptop-code"></i> Request Demo
-                </a>
+                <button onclick="openAppModal()" class="inline-flex items-center gap-3 px-8 py-4 rounded-full border border-white/6 text-sm text-[color:var(--muted)] hover:text-white hover:border-teal-300/50 transition-all duration-300 scale-in stagger-delay-500 hover:bg-white/5 backdrop-blur-sm btn-responsive touch-target">
+                    <i class="fas fa-laptop-code"></i> Use Apps
+                </button>
             </div>
         </section>
     
@@ -1559,7 +1591,7 @@
     
         <div id="planModal" class="modal">
             <div class="modal-content">
-                <button class="modal-close" onclick="closeModal()">
+                <button class="modal-close" onclick="closeModal('planModal')">
                     <i class="fas fa-times"></i>
                 </button>
                 <h3 class="modal-title">Complete Your Plan Selection</h3>
@@ -1594,6 +1626,43 @@
                 </form>
             </div>
         </div>
+
+        <div id="appModal" class="modal">
+            <div class="modal-content max-w-xl">
+                <button class="modal-close" onclick="closeModal('appModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+                <h3 class="modal-title">Select an App</h3>
+                <p class="modal-subtitle">Explore our free financial tools to start your journey.</p>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-6 text-center">
+                    <a href="#" class="web-app-card p-6 flex flex-col items-center justify-center interactive-element">
+                        <div class="text-4xl text-[color:var(--accent)] mb-3">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        <div class="font-bold text-lg text-white">FD Calculator</div>
+                        <div class="text-xs text-[color:var(--muted)] mt-1">Fixed Deposit</div>
+                    </a>
+                    <a href="#" class="web-app-card p-6 flex flex-col items-center justify-center interactive-element">
+                        <div class="text-4xl text-[color:var(--accent)] mb-3">
+                            <i class="fas fa-piggy-bank"></i>
+                        </div>
+                        <div class="font-bold text-lg text-white">RD Calculator</div>
+                        <div class="text-xs text-[color:var(--muted)] mt-1">Recurring Deposit</div>
+                    </a>
+                    <a href="#" class="web-app-card p-6 flex flex-col items-center justify-center interactive-element">
+                        <div class="text-4xl text-[color:var(--accent)] mb-3">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <div class="font-bold text-lg text-white">Loan Calculator</div>
+                        <div class="text-xs text-[color:var(--muted)] mt-1">EMI and Interest</div>
+                    </a>
+                </div>
+                <div class="text-center text-sm text-[color:var(--muted)] mt-8">
+                    *Links are placeholders. We will add your live app links here in the future.
+                </div>
+            </div>
+        </div>
     </main>
 
     <script>
@@ -1611,34 +1680,50 @@
             }
         });
 
-        // Plan modal functionality
-        const planModal = document.getElementById('planModal');
+        // Modal functionality
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            }
+        }
         
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('show');
+                setTimeout(() => {
+                    document.body.style.overflow = 'auto';
+                }, 400);
+            }
+        }
+
         function openPlanModal(plan) {
             document.getElementById('selectedPlan').value = plan;
-            document.querySelector('.modal-title').textContent = `Selecting ${plan.charAt(0).toUpperCase() + plan.slice(1)} Plan`;
-            planModal.classList.add('show');
-            document.body.style.overflow = 'hidden';
+            document.querySelector('#planModal .modal-title').textContent = `Selecting ${plan.charAt(0).toUpperCase() + plan.slice(1)} Plan`;
+            openModal('planModal');
+        }
+
+        function openAppModal() {
+            openModal('appModal');
         }
         
-        function closeModal() {
-            planModal.classList.remove('show');
-            setTimeout(() => {
-                document.body.style.overflow = 'auto';
-            }, 400);
-        }
-        
-        // Close modal when clicking outside
-        planModal?.addEventListener('click', (e) => {
-            if (e.target === planModal) {
-                closeModal();
-            }
+        // Close modals when clicking outside
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal(modal.id);
+                }
+            });
         });
         
-        // Close modal with escape key
+        // Close modals with escape key
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && planModal.classList.contains('show')) {
-                closeModal();
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal.show').forEach(modal => {
+                    closeModal(modal.id);
+                });
             }
         });
 
@@ -1675,7 +1760,7 @@
                 button.innerHTML = originalHTML;
                 button.disabled = false;
                 planForm.reset();
-                closeModal();
+                closeModal('planModal');
             }, 1500);
         });
 
