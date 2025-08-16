@@ -1,1749 +1,1740 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-  <title>Rivava — Make It Simple.</title>
-  <meta name="description" content="Rivava: Make It Simple. Clear, controlled, and growing personal finances." />
-  <!-- Favicon -->
-  <link rel="icon" href="favicon.png" type="image/png">
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Font Awesome for premium icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <style>
-    /* Advanced color scheme with depth */
-    :root {
-      --bg: #071026;
-      --panel: #0B1120;
-      --muted: #9AA4B2;
-      --accent: #7DE3D8;
-      --accent-secondary: #6fb4ff;
-      --glass: rgba(255, 255, 255, 0.03);
-      --glass-hover: rgba(125, 227, 216, 0.08);
-      --card-glow: 0 0 30px rgba(125, 227, 216, 0.15);
-      --hover-glow: 0 15px 35px rgba(125, 227, 216, 0.2);
-      --transition-standard: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-      --transition-button: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-      --transition-card: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-      --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-      --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-      --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-    }
-    
-    * {
-      box-sizing: border-box;
-    }
-    
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(180deg, var(--bg), #071022 140%);
-      color: #E6EEF6;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      overflow-x: hidden;
-    }
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>Rivava — Make It Simple.</title>
+    <meta name="description" content="Rivava: Make It Simple. Clear, controlled, and growing personal finances." />
+    <link rel="icon" href="favicon.png" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* Advanced color scheme with depth */
+        :root {
+            --bg: #071026;
+            --panel: #0B1120;
+            --muted: #9AA4B2;
+            --accent: #7DE3D8;
+            --accent-secondary: #6fb4ff;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-hover: rgba(125, 227, 216, 0.08);
+            --card-glow: 0 0 30px rgba(125, 227, 216, 0.15);
+            --hover-glow: 0 15px 35px rgba(125, 227, 216, 0.2);
+            --transition-standard: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            --transition-button: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            --transition-card: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
 
-    /* Professional typography with refined fonts */
-    h1, h2, h3, h4, h5, h6 {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      font-weight: 700;
-      line-height: 1.2;
-      letter-spacing: -0.025em;
-    }
-    
-    p, li, span, a {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      font-weight: 400;
-      line-height: 1.6;
-    }
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(180deg, var(--bg), #071022 140%);
+            color: #E6EEF6;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+            cursor: default;
+        }
 
-    /* Enhanced animations with physics */
-    .subtle-float { 
-      animation: floatY 6s ease-in-out infinite; 
-      transform-origin: center bottom;
-    }
-    
-    @keyframes floatY { 
-      0% { transform: translateY(0) rotate(-0.5deg); }
-      50% { transform: translateY(-8px) rotate(0.5deg); }
-      100% { transform: translateY(0) rotate(-0.5deg); }
-    }
+        /* Professional typography with refined fonts */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.025em;
+        }
+        
+        p, li, span, a {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-weight: 400;
+            line-height: 1.6;
+        }
 
-    .fade-in { 
-      animation: fadeIn 1.1s cubic-bezier(0.23, 1, 0.32, 1) forwards; 
-      opacity: 0; 
-    }
-    
-    @keyframes fadeIn { 
-      to { opacity: 1; } 
-    }
+        /* --- Enhanced animations with physics --- */
+        .fade-in {
+            animation: fadeIn 1.1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+            opacity: 0;
+            will-change: opacity;
+        }
+        
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
 
-    .slide-up { 
-      animation: slideUp 0.9s cubic-bezier(0.23, 1, 0.32, 1) forwards; 
-      transform: translateY(40px); 
-      opacity: 0; 
-    }
-    
-    @keyframes slideUp { 
-      to { transform: translateY(0); opacity: 1; } 
-    }
+        .slide-up {
+            animation: slideUp 0.9s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+            transform: translateY(40px);
+            opacity: 0;
+            will-change: transform, opacity;
+        }
+        
+        @keyframes slideUp {
+            to { transform: translateY(0); opacity: 1; }
+        }
 
-    .scale-in { 
-      animation: scaleIn 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards; 
-      transform: scale(0.95); 
-      opacity: 0; 
-    }
-    
-    @keyframes scaleIn { 
-      to { transform: scale(1); opacity: 1; } 
-    }
+        .scale-in {
+            animation: scaleIn 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+            transform: scale(0.95);
+            opacity: 0;
+            will-change: transform, opacity;
+        }
+        
+        @keyframes scaleIn {
+            to { transform: scale(1); opacity: 1; }
+        }
 
-    .reveal-up {
-      opacity: 0;
-      transform: translateY(30px);
-      animation: revealUp 0.9s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-    }
-    
-    @keyframes revealUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: revealUp 0.9s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+            will-change: transform, opacity;
+        }
+        
+        @keyframes revealUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* --- End of animations --- */
 
-    /* Professional hover effects */
-    .card-hover {
-      transition: var(--transition-card);
-      will-change: transform, box-shadow;
-    }
-    
-    .card-hover:hover {
-      transform: translateY(-12px) scale(1.02);
-      box-shadow: var(--hover-glow);
-    }
+        /* Professional hover effects */
+        .card-hover {
+            transition: var(--transition-card);
+            will-change: transform, box-shadow;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: var(--hover-glow);
+        }
 
-    .btn-hover {
-      transition: var(--transition-button);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .btn-hover::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: left 0.8s;
-    }
-    
-    .btn-hover:hover::before {
-      left: 100%;
-    }
-    
-    .btn-hover:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 35px rgba(125, 227, 216, 0.4);
-    }
+        .btn-hover {
+            transition: var(--transition-button);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .btn-hover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.8s;
+        }
+        
+        .btn-hover:hover::before {
+            left: 100%;
+        }
+        
+        .btn-hover:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(125, 227, 216, 0.4);
+        }
 
-    .nav-link {
-      transition: all 0.3s ease;
-      position: relative;
-      padding: 4px 0;
-    }
-    
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
-      transition: width 0.3s ease;
-    }
-    
-    .nav-link:hover::after {
-      width: 100%;
-    }
+        .nav-link {
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 4px 0;
+            cursor: pointer;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
 
-    /* RIVAVA text styling with advanced effects */
-    .rivava-text {
-      font-size: 2.2rem;
-      font-weight: 800;
-      letter-spacing: 0.12em;
-      background: linear-gradient(135deg, var(--accent), var(--accent-secondary), #ffffff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-shadow: 0 0 20px rgba(125, 227, 216, 0.2);
-      animation: glow 3s ease-in-out infinite alternate;
-      position: relative;
-    }
+        /* RIVAVA text styling with advanced effects */
+        .rivava-text {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary), #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 20px rgba(125, 227, 216, 0.2);
+            animation: glow 3s ease-in-out infinite alternate;
+            position: relative;
+        }
 
-    @keyframes glow {
-      from { filter: drop-shadow(0 0 8px rgba(125, 227, 216, 0.4)); }
-      to { filter: drop-shadow(0 0 20px rgba(125, 227, 216, 0.8)); }
-    }
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 8px rgba(125, 227, 216, 0.4)); }
+            to { filter: drop-shadow(0 0 20px rgba(125, 227, 216, 0.8)); }
+        }
 
-    .hero-rivava {
-      font-size: 3.8rem;
-      font-weight: 900;
-      letter-spacing: 0.18em;
-      background: linear-gradient(135deg, var(--accent), var(--accent-secondary), #ffffff, var(--accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      background-size: 400% 400%;
-      animation: gradientShift 5s ease-in-out infinite, heroGlow 2.5s ease-in-out infinite alternate;
-      line-height: 1.1;
-    }
+        .hero-rivava {
+            font-size: 3.8rem;
+            font-weight: 900;
+            letter-spacing: 0.18em;
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary), #ffffff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 400% 400%;
+            animation: gradientShift 5s ease-in-out infinite, heroGlow 2.5s ease-in-out infinite alternate;
+            line-height: 1.1;
+        }
 
-    @keyframes gradientShift {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-    }
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
 
-    @keyframes heroGlow {
-      from { filter: drop-shadow(0 0 15px rgba(125, 227, 216, 0.5)); }
-      to { filter: drop-shadow(0 0 30px rgba(125, 227, 216, 0.9)); }
-    }
+        @keyframes heroGlow {
+            from { filter: drop-shadow(0 0 15px rgba(125, 227, 216, 0.5)); }
+            to { filter: drop-shadow(0 0 30px rgba(125, 227, 216, 0.9)); }
+        }
 
-    /* Underline accent for links */
-    .accent-underline { 
-      position: relative; 
-      display: inline-block;
-    }
-    
-    .accent-underline::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -4px;
-      height: 3px;
-      width: 100%;
-      background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
-      border-radius: 2px;
-      opacity: 0.2;
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-    
-    .accent-underline:hover::after {
-      transform: scaleX(1);
-      opacity: 0.5;
-    }
+        /* Underline accent for links */
+        .accent-underline {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .accent-underline::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            height: 3px;
+            width: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+            border-radius: 2px;
+            opacity: 0.2;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        .accent-underline:hover::after {
+            transform: scaleX(1);
+            opacity: 0.5;
+        }
 
-    /* Buttons with advanced styling */
-    .btn-primary { 
-      background: linear-gradient(90deg, var(--accent), var(--accent-secondary)); 
-      color: #032022; 
-      transition: var(--transition-button);
-      position: relative;
-      overflow: hidden;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      box-shadow: 0 8px 25px rgba(125, 227, 216, 0.3);
-      border: none;
-      border-radius: 0.75rem;
-    }
-    
-    .btn-primary:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 50px rgba(125, 227, 216, 0.5);
-    }
+        /* Buttons with advanced styling */
+        .btn-primary {
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+            color: #032022;
+            transition: var(--transition-button);
+            position: relative;
+            overflow: hidden;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            box-shadow: 0 8px 25px rgba(125, 227, 216, 0.3);
+            border: none;
+            border-radius: 0.75rem;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 50px rgba(125, 227, 216, 0.5);
+        }
 
-    /* Glass panel with advanced effects */
-    .glass-panel { 
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015)); 
-      border: 1px solid rgba(255,255,255,0.06); 
-      backdrop-filter: blur(12px);
-      transition: var(--transition-card);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-      border-radius: 1.5rem;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .glass-panel::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 20% 20%, rgba(125, 227, 216, 0.08), transparent 40%);
-      opacity: 0;
-      transition: opacity 0.5s ease;
-      pointer-events: none;
-      border-radius: 1.5rem;
-    }
-    
-    .glass-panel:hover::before {
-      opacity: 1;
-    }
-    
-    .glass-panel:hover {
-      border-color: rgba(125, 227, 216, 0.2);
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
-      transform: translateY(-6px);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), var(--hover-glow);
-    }
+        /* Glass panel with advanced effects */
+        .glass-panel {
+            background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+            border: 1px solid rgba(255,255,255,0.06);
+            backdrop-filter: blur(12px);
+            transition: var(--transition-card);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border-radius: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .glass-panel::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 20% 20%, rgba(125, 227, 216, 0.08), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+            border-radius: 1.5rem;
+        }
+        
+        .glass-panel:hover::before {
+            opacity: 1;
+        }
+        
+        .glass-panel:hover {
+            border-color: rgba(125, 227, 216, 0.2);
+            background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+            transform: translateY(-6px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), var(--hover-glow);
+        }
 
-    /* Staggered animations */
-    .animate-delay-100 { animation-delay: 0.1s; }
-    .animate-delay-200 { animation-delay: 0.2s; }
-    .animate-delay-300 { animation-delay: 0.3s; }
-    .animate-delay-400 { animation-delay: 0.4s; }
-    .animate-delay-500 { animation-delay: 0.5s; }
-    .animate-delay-600 { animation-delay: 0.6s; }
-    .animate-delay-700 { animation-delay: 0.7s; }
-    .animate-delay-800 { animation-delay: 0.8s; }
+        /* Staggered animations */
+        .stagger-delay-100 { animation-delay: 0.1s; }
+        .stagger-delay-200 { animation-delay: 0.2s; }
+        .stagger-delay-300 { animation-delay: 0.3s; }
+        .stagger-delay-400 { animation-delay: 0.4s; }
+        .stagger-delay-500 { animation-delay: 0.5s; }
+        .stagger-delay-600 { animation-delay: 0.6s; }
+        .stagger-delay-700 { animation-delay: 0.7s; }
+        .stagger-delay-800 { animation-delay: 0.8s; }
 
-    /* Team member styling - premium circular design */
-    .team-member {
-      position: relative;
-      width: 240px;
-      height: 240px;
-      margin: 0 auto;
-      border-radius: 50%;
-      overflow: hidden;
-      transition: var(--transition-card);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), var(--card-glow);
-      border: 2px solid rgba(125, 227, 216, 0.1);
-      will-change: transform;
-    }
-    
-    .team-member:hover {
-      transform: translateY(-14px) scale(1.04);
-      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5), var(--hover-glow);
-      border-color: rgba(125, 227, 216, 0.3);
-    }
-    
-    .team-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-      backface-visibility: hidden;
-    }
-    
-    .team-member:hover .team-img {
-      transform: scale(1.15);
-    }
-    
-    .team-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(to top, 
-        rgba(7, 16, 38, 0.95) 0%, 
-        rgba(7, 16, 38, 0.7) 50%, 
-        transparent 100%);
-      padding: 2rem 1.5rem;
-      transform: translateY(120%);
-      transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-      border-radius: 50%;
-      overflow: hidden;
-    }
-    
-    .team-member:hover .team-overlay {
-      transform: translateY(0);
-    }
-    
-    .team-name {
-      font-weight: 700;
-      font-size: 1.3rem;
-      margin-bottom: 0.4rem;
-      color: white;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    }
-    
-    .team-role {
-      font-size: 0.95rem;
-      color: var(--accent);
-      font-weight: 500;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-    }
-    
-    /* Circular frame with advanced effects */
-    .team-member::before {
-      content: '';
-      position: absolute;
-      inset: 4px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, rgba(125, 227, 216, 0.15), rgba(111, 180, 255, 0.1));
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-      z-index: 1;
-    }
-    
-    .team-member:hover::before {
-      opacity: 1;
-    }
-    
-    /* Inner glow effect */
-    .team-member::after {
-      content: '';
-      position: absolute;
-      inset: 2px;
-      border-radius: 50%;
-      background: conic-gradient(from 0deg, transparent, rgba(125, 227, 216, 0.3), transparent 30%);
-      opacity: 0;
-      animation: rotation 4s linear infinite;
-      pointer-events: none;
-      z-index: 2;
-    }
-    
-    .team-member:hover::after {
-      opacity: 1;
-    }
-    
-    @keyframes rotation {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
+        /* Team member styling - premium circular design */
+        .team-member {
+            position: relative;
+            width: 240px;
+            height: 240px;
+            margin: 0 auto;
+            border-radius: 50%;
+            overflow: hidden;
+            transition: var(--transition-card);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), var(--card-glow);
+            border: 2px solid rgba(125, 227, 216, 0.1);
+            will-change: transform;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-14px) scale(1.04);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5), var(--hover-glow);
+            border-color: rgba(125, 227, 216, 0.3);
+        }
+        
+        .team-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+            backface-visibility: hidden;
+        }
+        
+        .team-member:hover .team-img {
+            transform: scale(1.15);
+        }
+        
+        .team-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top,
+                rgba(7, 16, 38, 0.95) 0%,
+                rgba(7, 16, 38, 0.7) 50%,
+                transparent 100%);
+            padding: 2rem 1.5rem;
+            transform: translateY(120%);
+            transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        
+        .team-member:hover .team-overlay {
+            transform: translateY(0);
+        }
+        
+        .team-name {
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-bottom: 0.4rem;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .team-role {
+            font-size: 0.95rem;
+            color: var(--accent);
+            font-weight: 500;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Circular frame with advanced effects */
+        .team-member::before {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(125, 227, 216, 0.15), rgba(111, 180, 255, 0.1));
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 1;
+        }
+        
+        .team-member:hover::before {
+            opacity: 1;
+        }
+        
+        /* Inner glow effect */
+        .team-member::after {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, transparent, rgba(125, 227, 216, 0.3), transparent 30%);
+            opacity: 0;
+            animation: rotation 4s linear infinite;
+            pointer-events: none;
+            z-index: 2;
+        }
+        
+        .team-member:hover::after {
+            opacity: 1;
+        }
+        
+        @keyframes rotation {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
 
-    /* Section styling */
-    .section {
-      padding: 6rem 0;
-      position: relative;
-    }
-    
-    .section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: rgba(255, 255, 255, 0.1);
-    }
-    
-    .section:first-child::before {
-      display: none;
-    }
+        /* Section styling */
+        .section {
+            padding: 6rem 0;
+            position: relative;
+        }
+        
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .section:first-of-type::before {
+            display: none;
+        }
 
-    /* Modal styling for plan selection */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(8px);
-      z-index: 9999;
-      justify-content: center;
-      align-items: center;
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
-    
-    .modal.show {
-      display: flex;
-      opacity: 1;
-    }
-    
-    .modal-content {
-      background: linear-gradient(180deg, #0B1120, #071026);
-      border: 1px solid rgba(125, 227, 216, 0.2);
-      border-radius: 1.5rem;
-      padding: 2.5rem;
-      width: 90%;
-      max-width: 500px;
-      max-height: 90vh;
-      overflow-y: auto;
-      transform: translateY(20px);
-      transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 30px rgba(125, 227, 216, 0.2);
-      position: relative;
-    }
-    
-    .modal.show .modal-content {
-      transform: translateY(0);
-    }
-    
-    .modal-close {
-      position: absolute;
-      top: 1.5rem;
-      right: 1.5rem;
-      background: rgba(255, 255, 255, 0.1);
-      border: none;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      color: white;
-      font-size: 1.5rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .modal-close:hover {
-      background: rgba(125, 227, 216, 0.3);
-      transform: rotate(90deg);
-    }
-    
-    .modal-title {
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-      color: white;
-      text-align: center;
-      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    
-    .modal-subtitle {
-      text-align: center;
-      color: var(--muted);
-      margin-bottom: 2rem;
-      font-size: 0.95rem;
-    }
-    
-    .modal-form {
-      display: grid;
-      gap: 1rem;
-    }
-    
-    .modal-form label {
-      font-size: 0.9rem;
-      color: var(--muted);
-      margin-bottom: 0.5rem;
-      display: block;
-    }
-    
-    .modal-form input,
-    .modal-form select,
-    .modal-form textarea {
-      width: 100%;
-      padding: 0.8rem 1rem;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 0.75rem;
-      background: rgba(255, 255, 255, 0.05);
-      color: white;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-    }
-    
-    .modal-form input:focus,
-    .modal-form select:focus,
-    .modal-form textarea:focus {
-      outline: none;
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(125, 227, 216, 0.2);
-      background: rgba(125, 227, 216, 0.05);
-    }
-    
-    .modal-form textarea {
-      min-height: 100px;
-      resize: vertical;
-    }
-    
-    .modal-submit {
-      margin-top: 1.5rem;
-      padding: 1rem 0;
-      font-size: 1.1rem;
-      font-weight: 600;
-      border: none;
-      border-radius: 0.75rem;
-      background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
-      color: #032022;
-      cursor: pointer;
-      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .modal-submit::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: left 0.8s;
-    }
-    
-    .modal-submit:hover::before {
-      left: 100%;
-    }
-    
-    .modal-submit:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 35px rgba(125, 227, 216, 0.4);
-    }
-    
-    .modal-submit:active {
-      transform: translateY(0);
-    }
+        /* Modal styling for plan selection */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .modal.show {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .modal-content {
+            background: linear-gradient(180deg, #0B1120, #071026);
+            border: 1px solid rgba(125, 227, 216, 0.2);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: translateY(20px);
+            transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 30px rgba(125, 227, 216, 0.2);
+            position: relative;
+        }
+        
+        .modal.show .modal-content {
+            transform: translateY(0);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-close:hover {
+            background: rgba(125, 227, 216, 0.3);
+            transform: rotate(90deg);
+        }
+        
+        .modal-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: white;
+            text-align: center;
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .modal-subtitle {
+            text-align: center;
+            color: var(--muted);
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+        
+        .modal-form {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .modal-form label {
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        .modal-form input,
+        .modal-form select,
+        .modal-form textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0.75rem;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-form input:focus,
+        .modal-form select:focus,
+        .modal-form textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(125, 227, 216, 0.2);
+            background: rgba(125, 227, 216, 0.05);
+        }
+        
+        .modal-form textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .modal-submit {
+            margin-top: 1.5rem;
+            padding: 1rem 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 0.75rem;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+            color: #032022;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .modal-submit::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.8s;
+        }
+        
+        .modal-submit:hover::before {
+            left: 100%;
+        }
+        
+        .modal-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(125, 227, 216, 0.4);
+        }
+        
+        .modal-submit:active {
+            transform: translateY(0);
+        }
 
-    /* Service icon styling */
-    .service-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      display: inline-block;
-      transition: all 0.4s ease;
-    }
-    
-    .card-hover:hover .service-icon {
-      transform: scale(1.1) rotate(5deg);
-    }
+        /* Service icon styling */
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            transition: all 0.4s ease;
+        }
+        
+        .card-hover:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
 
-    /* Mobile responsive adjustments */
-    @media (max-width: 768px) {
-      .hero-rivava {
-        font-size: 2.8rem;
-        letter-spacing: 0.1em;
-        line-height: 1.2;
-      }
-      
-      .rivava-text {
-        font-size: 1.8rem;
-        letter-spacing: 0.08em;
-      }
-      
-      .section {
-        padding: 4rem 0;
-      }
-      
-      .team-member {
-        width: 180px;
-        height: 180px;
-      }
-      
-      .team-name {
-        font-size: 1.1rem;
-      }
-      
-      .team-role {
-        font-size: 0.85rem;
-      }
-      
-      .glass-panel {
-        border-radius: 1.2rem;
-      }
-      
-      .btn-primary {
-        padding: 0.8rem 1.5rem;
-        font-size: 0.95rem;
-      }
-      
-      .modal-content {
-        margin: 1rem;
-        padding: 1.5rem;
-      }
-      
-      .modal-title {
-        font-size: 1.5rem;
-      }
-      
-      .reveal-up {
-        transform: translateY(20px);
-      }
-      
-      /* Adjust hero section spacing on mobile */
-      #home {
-        min-height: 100vh;
-        padding: 8rem 0 4rem;
-      }
-      
-      .mobile-nav {
-        transform: translateY(-100%);
-        transition: transform 0.3s ease-out;
-      }
-      
-      .mobile-nav.show {
-        transform: translateY(0);
-      }
-    }
-    
-    @media (max-width: 480px) {
-      .hero-rivava {
-        font-size: 2.3rem;
-      }
-      
-      .team-member {
-        width: 160px;
-        height: 160px;
-      }
-      
-      .team-overlay {
-        padding: 1.5rem 1rem;
-      }
-      
-      .team-name {
-        font-size: 1rem;
-      }
-      
-      .section {
-        padding: 3rem 0;
-      }
-      
-      .btn-primary {
-        padding: 0.7rem 1.2rem;
-        font-size: 0.9rem;
-      }
-      
-      .nav-link {
-        padding: 3px 0;
-      }
-      
-      .modal-form input,
-      .modal-form select,
-      .modal-form textarea {
-        padding: 0.7rem 0.9rem;
-      }
-      
-      .modal-submit {
-        padding: 0.9rem 0;
-        font-size: 1rem;
-      }
-      
-      /* Further adjust hero spacing on small mobile */
-      #home {
-        min-height: 100vh;
-        padding: 6rem 0 3rem;
-      }
-    }
+        /* Mobile responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-rivava {
+                font-size: 2.8rem;
+                letter-spacing: 0.1em;
+                line-height: 1.2;
+            }
+            
+            .rivava-text {
+                font-size: 1.8rem;
+                letter-spacing: 0.08em;
+            }
+            
+            .section {
+                padding: 4rem 0;
+            }
+            
+            .team-member {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .team-name {
+                font-size: 1.1rem;
+            }
+            
+            .team-role {
+                font-size: 0.85rem;
+            }
+            
+            .glass-panel {
+                border-radius: 1.2rem;
+            }
+            
+            .btn-primary {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.95rem;
+            }
+            
+            .modal-content {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+            
+            .modal-title {
+                font-size: 1.5rem;
+            }
+            
+            .reveal-up {
+                transform: translateY(20px);
+            }
+            
+            /* Adjust hero section spacing on mobile */
+            #hero {
+                min-height: 100vh;
+                padding: 8rem 0 4rem;
+            }
+            
+            .mobile-nav {
+                transform: translateY(-100%);
+                transition: transform 0.3s ease-out;
+            }
+            
+            .mobile-nav.show {
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-rivava {
+                font-size: 2.3rem;
+            }
+            
+            .team-member {
+                width: 160px;
+                height: 160px;
+            }
+            
+            .team-overlay {
+                padding: 1.5rem 1rem;
+            }
+            
+            .team-name {
+                font-size: 1rem;
+            }
+            
+            .section {
+                padding: 3rem 0;
+            }
+            
+            .btn-primary {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.9rem;
+            }
+            
+            .nav-link {
+                padding: 3px 0;
+            }
+            
+            .modal-form input,
+            .modal-form select,
+            .modal-form textarea {
+                padding: 0.7rem 0.9rem;
+            }
+            
+            .modal-submit {
+                padding: 0.9rem 0;
+                font-size: 1rem;
+            }
+            
+            /* Further adjust hero spacing on small mobile */
+            #hero {
+                min-height: 100vh;
+                padding: 6rem 0 3rem;
+            }
+        }
 
-    /* Floating elements */
-    .floating-element {
-      position: absolute;
-      opacity: 0.08;
-      z-index: 0;
-      pointer-events: none;
-    }
-    
-    .floating-circle {
-      border-radius: 50%;
-      background: var(--accent);
-      filter: blur(20px);
-    }
-    
-    .floating-1 {
-      top: 15%;
-      left: 10%;
-      width: 120px;
-      height: 120px;
-      animation: floatY 8s ease-in-out infinite;
-    }
-    
-    .floating-2 {
-      bottom: 20%;
-      right: 15%;
-      width: 80px;
-      height: 80px;
-      background: var(--accent-secondary);
-      animation: floatY 10s ease-in-out infinite reverse;
-      animation-delay: -2s;
-    }
-    
-    .floating-3 {
-      top: 60%;
-      left: 5%;
-      width: 60px;
-      height: 60px;
-      background: var(--accent);
-      animation: floatY 12s ease-in-out infinite;
-      animation-delay: -4s;
-    }
+        /* Floating elements */
+        .floating-element {
+            position: absolute;
+            opacity: 0.08;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .floating-circle {
+            border-radius: 50%;
+            background: var(--accent);
+            filter: blur(20px);
+        }
+        
+        .floating-1 {
+            top: 15%;
+            left: 10%;
+            width: 120px;
+            height: 120px;
+        }
+        
+        .floating-2 {
+            bottom: 20%;
+            right: 15%;
+            width: 80px;
+            height: 80px;
+            background: var(--accent-secondary);
+        }
+        
+        .floating-3 {
+            top: 60%;
+            left: 5%;
+            width: 60px;
+            height: 60px;
+            background: var(--accent);
+        }
 
-    /* Smooth scroll behavior */
-    html {
-      scroll-behavior: smooth;
-    }
-    
-    /* Focus states for accessibility */
-    button:focus, a:focus {
-      outline: 2px solid var(--accent);
-      outline-offset: 2px;
-    }
-    
-    /* Form elements */
-    .form-input {
-      transition: all 0.3s ease;
-    }
-    
-    .form-input:focus {
-      border-color: rgba(125, 227, 216, 0.5);
-      box-shadow: 0 0 0 3px rgba(125, 227, 216, 0.1);
-    }
-    
-    /* Service card enhancements */
-    .service-card {
-      transition: var(--transition-card);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .service-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.5s ease;
-      border-radius: 2px 2px 0 0;
-    }
-    
-    .card-hover:hover .service-card::before {
-      transform: scaleX(1);
-    }
-    
-    /* Plan card enhancements */
-    .plan-card {
-      transition: var(--transition-card);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .plan-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 1.5rem;
-      background: linear-gradient(45deg, rgba(125, 227, 216, 0.05), transparent, rgba(111, 180, 255, 0.05));
-      opacity: 0;
-      transition: opacity 0.5s ease;
-      pointer-events: none;
-    }
-    
-    .card-hover:hover .plan-card::before {
-      opacity: 1;
-    }
-    
-    /* Testimonial styling */
-    .testimonial {
-      position: relative;
-      padding: 1.5rem;
-    }
-    
-    .testimonial::before {
-      content: '"';
-      font-size: 5rem;
-      position: absolute;
-      top: 0.5rem;
-      left: 1rem;
-      color: rgba(125, 227, 216, 0.1);
-      line-height: 1;
-      z-index: 0;
-    }
-    
-    .testimonial-content {
-      position: relative;
-      z-index: 1;
-    }
-    
-    /* Contact form styling */
-    .contact-form {
-      position: relative;
-    }
-    
-    .form-group {
-      position: relative;
-      margin-bottom: 1.5rem;
-    }
-    
-    .form-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-    
-    .form-control {
-      width: 100%;
-      padding: 0.8rem 1rem;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 0.75rem;
-      background: rgba(255, 255, 255, 0.05);
-      color: white;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-    }
-    
-    .form-control:focus {
-      outline: none;
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(125, 227, 216, 0.2);
-      background: rgba(125, 227, 216, 0.05);
-    }
-    
-    .btn-contact {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      transition: var(--transition-button);
-    }
-    
-    .btn-contact i {
-      transition: transform 0.3s ease;
-    }
-    
-    .btn-contact:hover i {
-      transform: scale(1.2);
-    }
-    
-    /* Footer styling */
-    footer {
-      margin-top: 6rem;
-    }
-    
-    /* WhatsApp button enhancement */
-    .whatsapp-btn {
-      transition: var(--transition-button);
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-      animation: pulse 2s infinite;
-    }
-    
-    .whatsapp-btn:hover {
-      transform: translateY(-4px) scale(1.05);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(125, 227, 216, 0.3);
-    }
-    
-    @keyframes pulse {
-      0% { box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 0 0 rgba(125, 227, 216, 0.4); }
-      70% { box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 0 10px rgba(125, 227, 216, 0); }
-      100% { box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 0 0 rgba(125, 227, 216, 0); }
-    }
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Focus states for accessibility */
+        button:focus, a:focus {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+        
+        /* Form elements */
+        .form-input {
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            border-color: rgba(125, 227, 216, 0.5);
+            box-shadow: 0 0 0 3px rgba(125, 227, 216, 0.1);
+        }
+        
+        /* Service card enhancements */
+        .service-card {
+            transition: var(--transition-card);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+            border-radius: 2px 2px 0 0;
+        }
+        
+        .card-hover:hover .service-card::before {
+            transform: scaleX(1);
+        }
+        
+        /* Plan card enhancements */
+        .plan-card {
+            transition: var(--transition-card);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .plan-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 1.5rem;
+            background: linear-gradient(45deg, rgba(125, 227, 216, 0.05), transparent, rgba(111, 180, 255, 0.05));
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+        }
+        
+        .card-hover:hover .plan-card::before {
+            opacity: 1;
+        }
+        
+        /* Testimonial styling */
+        .testimonial {
+            position: relative;
+            padding: 1.5rem;
+        }
+        
+        .testimonial::before {
+            content: '"';
+            font-size: 5rem;
+            position: absolute;
+            top: 0.5rem;
+            left: 1rem;
+            color: rgba(125, 227, 216, 0.1);
+            line-height: 1;
+            z-index: 0;
+        }
+        
+        .testimonial-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Contact form styling */
+        .contact-form {
+            position: relative;
+        }
+        
+        .form-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0.75rem;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(125, 227, 216, 0.2);
+            background: rgba(125, 227, 216, 0.05);
+        }
+        
+        .btn-contact {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition-button);
+        }
+        
+        .btn-contact i {
+            transition: transform 0.3s ease;
+        }
+        
+        .btn-contact:hover i {
+            transform: scale(1.2);
+        }
+        
+        /* Footer styling */
+        footer {
+            margin-top: 6rem;
+        }
+        
+        /* WhatsApp button enhancement */
+        .whatsapp-btn {
+            transition: var(--transition-button);
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            animation: pulse 2s infinite;
+        }
+        
+        .whatsapp-btn:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(125, 227, 216, 0.3);
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 0 0 rgba(125, 227, 216, 0.4); }
+            70% { box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 0 10px rgba(125, 227, 216, 0); }
+            100% { box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 0 0 rgba(125, 227, 216, 0); }
+        }
 
-    /* Plan styling */
-    .plan-card {
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    .popular-tag {
-      position: absolute;
-      top: -8px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: linear-gradient(45deg, #FF6B6B, #FF8E53);
-      color: white;
-      font-size: 0.85rem;
-      font-weight: 600;
-      padding: 0.4rem 1rem;
-      border-radius: 1rem;
-      box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
-      z-index: 10;
-      animation: pulse-popular 2s infinite;
-    }
-    
-    @keyframes pulse-popular {
-      0% { transform: translateX(-50%) scale(1); }
-      50% { transform: translateX(-50%) scale(1.05); }
-      100% { transform: translateX(-50%) scale(1); }
-    }
-    
-    .user-choice {
-      background: linear-gradient(45deg, var(--accent), var(--accent-secondary));
-      color: #032022;
-    }
-    
-    .elite-customer {
-      background: linear-gradient(45deg, #FF6B6B, #FF8E53);
-      color: white;
-    }
-    
-    .plan-title {
-      font-size: 1.1rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-    
-    .plan-price {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin: 0.5rem 0;
-    }
-    
-    .plan-features {
-      list-style: none;
-      padding: 0;
-      margin: 1.5rem 0;
-    }
-    
-    .plan-features li {
-      padding: 0.5rem 0;
-      color: var(--muted);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    
-    .plan-features li::before {
-      content: '✓';
-      color: var(--accent);
-      font-weight: bold;
-    }
-    
-    /* Hero section spacing fix */
-    .hero-content {
-      padding-top: 3rem;
-      padding-bottom: 2rem;
-    }
-    
-    /* Animation improvements */
-    .animate-slide-up {
-      animation: slideUp 0.9s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-      opacity: 0;
-    }
-    
-    .animate-fade-in {
-      animation: fadeIn 1.1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-      opacity: 0;
-    }
-    
-    .stagger-delay-100 { animation-delay: 0.1s; }
-    .stagger-delay-200 { animation-delay: 0.2s; }
-    .stagger-delay-300 { animation-delay: 0.3s; }
-    .stagger-delay-400 { animation-delay: 0.4s; }
-    .stagger-delay-500 { animation-delay: 0.5s; }
-    .stagger-delay-600 { animation-delay: 0.6s; }
-    .stagger-delay-700 { animation-delay: 0.7s; }
-    .stagger-delay-800 { animation-delay: 0.8s; }
-    
-    /* Enhanced hover effects for better user experience */
-    .interactive-element {
-      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-    
-    .interactive-element:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-    }
-    
-    /* Mobile navigation improvements */
-    .mobile-nav {
-      transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-    
-    /* Section spacing optimization */
-    .section-spacing {
-      padding: 6rem 0;
-    }
-    
-    @media (max-width: 768px) {
-      .section-spacing {
-        padding: 4rem 0;
-      }
-      
-      .hero-content {
-        padding-top: 2rem;
-        padding-bottom: 1.5rem;
-      }
-    }
-    
-    @media (max-width: 480px) {
-      .section-spacing {
-        padding: 3rem 0;
-      }
-      
-      .hero-content {
-        padding-top: 1.5rem;
-        padding-bottom: 1rem;
-      }
-    }
-    
-    /* Header scroll effects */
-    .header-scrolled {
-      background: rgba(0, 0, 0, 0.8) !important;
-      backdrop-filter: blur(10px) !important;
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3) !important;
-    }
-    
-    /* Responsive container */
-    .container {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
-    
-    /* Button responsiveness */
-    .btn-responsive {
-      min-height: 3rem;
-      min-width: 10rem;
-    }
-    
-    @media (max-width: 480px) {
-      .btn-responsive {
-        min-height: 2.5rem;
-        min-width: 8rem;
-        font-size: 0.9rem;
-        padding: 0.6rem 1rem;
-      }
-    }
-    
-    /* Form responsiveness */
-    .form-responsive {
-      width: 100%;
-    }
-    
-    /* Animation performance optimization */
-    .animate-slide-up, .animate-fade-in, .reveal-up {
-      will-change: transform, opacity;
-    }
-    
-    /* Mobile touch enhancements */
-    .touch-target {
-      min-height: 44px;
-      min-width: 44px;
-    }
-    
-    /* Font loading */
-    @font-face {
-      font-family: 'Inter';
-      font-style: normal;
-      font-weight: 400;
-      font-display: swap;
-      src: url(https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfMZs.woff2) format('woff2');
-    }
-    
-    @font-face {
-      font-family: 'Inter';
-      font-style: normal;
-      font-weight: 700;
-      font-display: swap;
-      src: url(https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfMZs.woff2) format('woff2');
-    }
-  </style>
+        /* Plan styling */
+        .plan-card {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .popular-tag {
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, #FF6B6B, #FF8E53);
+            color: white;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.4rem 1rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+            z-index: 10;
+            animation: pulse-popular 2s infinite;
+        }
+        
+        @keyframes pulse-popular {
+            0% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.05); }
+            100% { transform: translateX(-50%) scale(1); }
+        }
+        
+        .user-choice {
+            background: linear-gradient(45deg, var(--accent), var(--accent-secondary));
+            color: #032022;
+        }
+        
+        .elite-customer {
+            background: linear-gradient(45deg, #FF6B6B, #FF8E53);
+            color: white;
+        }
+        
+        .plan-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        .plan-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0.5rem 0;
+        }
+        
+        .plan-features {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+        }
+        
+        .plan-features li {
+            padding: 0.5rem 0;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .plan-features li::before {
+            content: '✓';
+            color: var(--accent);
+            font-weight: bold;
+        }
+        
+        /* Hero section spacing fix */
+        .hero-content {
+            padding-top: 3rem;
+            padding-bottom: 2rem;
+        }
+        
+        /* Animation improvements */
+        .animate-slide-up {
+            animation: slideUp 0.9s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+            opacity: 0;
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 1.1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+            opacity: 0;
+        }
+        
+        .stagger-delay-100 { animation-delay: 0.1s; }
+        .stagger-delay-200 { animation-delay: 0.2s; }
+        .stagger-delay-300 { animation-delay: 0.3s; }
+        .stagger-delay-400 { animation-delay: 0.4s; }
+        .stagger-delay-500 { animation-delay: 0.5s; }
+        .stagger-delay-600 { animation-delay: 0.6s; }
+        .stagger-delay-700 { animation-delay: 0.7s; }
+        .stagger-delay-800 { animation-delay: 0.8s; }
+        
+        /* Enhanced hover effects for better user experience */
+        .interactive-element {
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            cursor: pointer;
+        }
+        
+        .interactive-element:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Mobile navigation improvements */
+        .mobile-nav {
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        /* Section spacing optimization */
+        .section-spacing {
+            padding: 6rem 0;
+        }
+        
+        @media (max-width: 768px) {
+            .section-spacing {
+                padding: 4rem 0;
+            }
+            
+            .hero-content {
+                padding-top: 2rem;
+                padding-bottom: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .section-spacing {
+                padding: 3rem 0;
+            }
+            
+            .hero-content {
+                padding-top: 1.5rem;
+                padding-bottom: 1rem;
+            }
+        }
+        
+        /* Header scroll effects */
+        .header-scrolled {
+            background: rgba(0, 0, 0, 0.8) !important;
+            backdrop-filter: blur(10px) !important;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3) !important;
+        }
+        
+        /* Responsive container */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        /* Button responsiveness */
+        .btn-responsive {
+            min-height: 3rem;
+            min-width: 10rem;
+        }
+        
+        @media (max-width: 480px) {
+            .btn-responsive {
+                min-height: 2.5rem;
+                min-width: 8rem;
+                font-size: 0.9rem;
+                padding: 0.6rem 1rem;
+            }
+        }
+        
+        /* Form responsiveness */
+        .form-responsive {
+            width: 100%;
+        }
+        
+        /* Animation performance optimization */
+        .animate-slide-up, .animate-fade-in, .reveal-up {
+            will-change: transform, opacity;
+        }
+        
+        /* Mobile touch enhancements */
+        .touch-target {
+            min-height: 44px;
+            min-width: 44px;
+        }
+        
+        /* Font loading */
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfMZs.woff2) format('woff2');
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 600;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfMZs.woff2) format('woff2');
+        }
+
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfMZs.woff2) format('woff2');
+        }
+    </style>
 </head>
 <body class="relative">
-  <!-- Floating decorative elements -->
-  <div class="floating-element floating-circle floating-1"></div>
-  <div class="floating-element floating-circle floating-2"></div>
-  <div class="floating-element floating-circle floating-3"></div>
+    <div class="floating-element floating-circle floating-1"></div>
+    <div class="floating-element floating-circle floating-2"></div>
+    <div class="floating-element floating-circle floating-3"></div>
 
-  <!-- NAV -->
-  <header id="header" class="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-black/20 border-b border-white/10 transition-all duration-300">
-    <div class="container">
-      <div class="flex items-center justify-between py-4">
-        <a href="#home" class="flex items-center gap-3 animate-fade-in touch-target">
-          <div>
-            <div class="rivava-text leading-none">RIVAVA</div>
-            <div class="text-xs text-[color:var(--muted)] -mt-1 tracking-wider">Make It Simple.</div>
-          </div>
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-black/20 border-b border-white/10 transition-all duration-300">
+        <div class="container">
+            <div class="flex items-center justify-between py-4">
+                <a href="#hero" class="flex items-center gap-3 animate-fade-in touch-target">
+                    <div>
+                        <div class="rivava-text leading-none">RIVAVA</div>
+                        <div class="text-xs text-[color:var(--muted)] -mt-1 tracking-wider">Make It Simple.</div>
+                    </div>
+                </a>
+
+                <nav class="hidden md:flex items-center gap-8 text-sm nav-links">
+                    <a href="#services" class="nav-link text-[color:var(--muted)] hover:text-white animate-fade-in stagger-delay-100 touch-target">Services</a>
+                    <a href="#plans" class="nav-link text-[color:var(--muted)] hover:text-white animate-fade-in stagger-delay-200 touch-target">Plans</a>
+                    <a href="#about" class="nav-link text-[color:var(--muted)] hover:text-white animate-fade-in stagger-delay-300 touch-target">About</a>
+                    <a href="#webapp" class="nav-link text-[color:var(--muted)] hover:text-white animate-fade-in stagger-delay-400 touch-target">Web App</a>
+                    <a href="#contact" class="nav-link text-[color:var(--muted)] hover:text-white animate-fade-in stagger-delay-500 touch-target">Contact</a>
+                    <a href="https://wa.me/918090516657" class="px-6 py-2 rounded-full bg-white text-black text-sm btn-hover animate-fade-in stagger-delay-600 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 touch-target">
+                        <i class="fab fa-whatsapp"></i>Book Free Call
+                    </a>
+                </nav>
+
+                <button id="hambBtn" class="md:hidden p-2 rounded-lg border border-white/6 bg-white/5 backdrop-blur-sm touch-target" aria-label="menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M4 6h16M4 12h16M4 18h16" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobileMenu" class="hidden md:hidden border-t border-white/6 bg-[color:var(--panel)]/95 backdrop-blur-xl mobile-nav">
+            <div class="container py-4 flex flex-col gap-4 text-sm">
+                <a href="#services" class="block text-[color:var(--muted)] hover:text-teal-300 transition-colors py-3 border-b border-white/10 touch-target">Services</a>
+                <a href="#plans" class="block text-[color:var(--muted)] hover:text-teal-300 transition-colors py-3 border-b border-white/10 touch-target">Plans</a>
+                <a href="#about" class="block text-[color:var(--muted)] hover:text-teal-300 transition-colors py-3 border-b border-white/10 touch-target">About</a>
+                <a href="#webapp" class="block text-[color:var(--muted)] hover:text-teal-300 transition-colors py-3 border-b border-white/10 touch-target">Web App</a>
+                <a href="#contact" class="block text-[color:var(--muted)] hover:text-teal-300 transition-colors py-3 border-b border-white/10 touch-target">Contact</a>
+                <a href="https://wa.me/918090516657" class="block text-teal-300 font-medium py-3 text-center bg-teal-300/10 rounded-lg border border-teal-300/20 transition-all duration-300 hover:bg-teal-300/20 flex items-center justify-center gap-2 touch-target">
+                    <i class="fab fa-whatsapp"></i>Book Free Call
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="relative overflow-hidden">
+        <section id="hero" class="min-h-screen flex items-center justify-center relative z-10">
+            <div class="container text-center relative z-10">
+                <div class="hero-content">
+                    <div class="flex flex-col items-center gap-8 relative z-10">
+                        <div class="hero-rivava animate-slide-up">RIVAVA</div>
+                        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight animate-slide-up stagger-delay-200">Make It Simple.</h1>
+                        <p class="max-w-xl text-[color:var(--muted)] text-lg md:text-xl mt-3 animate-slide-up stagger-delay-300 opacity-90">Your money. Clear. Controlled. Growing.</p>
+    
+                        <div class="mt-10 flex flex-col sm:flex-row gap-5 items-center">
+                            <a href="#contact" class="btn-primary btn-hover btn-responsive inline-flex items-center justify-center px-8 py-4 rounded-full text-lg font-semibold shadow-xl scale-in stagger-delay-400 hover:shadow-2xl transition-all duration-300 interactive-element touch-target">
+                                Get Your Free Plan
+                            </a>
+                            <a href="#services" class="inline-flex items-center gap-3 px-7 py-4 rounded-full border border-white/6 text-sm text-[color:var(--muted)] hover:text-white hover:border-teal-300/50 transition-all duration-300 scale-in stagger-delay-500 hover:bg-white/5 backdrop-blur-sm btn-responsive interactive-element touch-target">
+                                <i class="fas fa-compass"></i> Explore Services
+                            </a>
+                        </div>
+    
+                        <div class="mt-8 text-sm text-[color:var(--muted)] fade-in stagger-delay-600 opacity-80">
+                            <div class="flex items-center justify-center gap-4">
+                                <span>Trusted by individuals, families & small businesses</span>
+                                <div class="w-1 h-1 bg-[color:var(--accent)] rounded-full"></div>
+                                <span>NISM certified advisors</span>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="mt-24 pt-12 border-t border-white/6">
+                        <h2 class="text-3xl font-semibold mb-10 animate-slide-up">Our Expert Team</h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+                            <div class="animate-slide-up stagger-delay-100">
+                                <div class="team-member">
+                                    <img src="aadya.jpeg" alt="Anjali Sharma" class="team-img">
+                                    <div class="team-overlay">
+                                        <div class="team-name">Anjali Sharma</div>
+                                        <div class="team-role">Lead Financial Advisor</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="animate-slide-up stagger-delay-200">
+                                <div class="team-member">
+                                    <img src="aditya.jpeg" alt="Aditya Singh" class="team-img">
+                                    <div class="team-overlay">
+                                        <div class="team-name">Aditya Singh</div>
+                                        <div class="team-role">Tech Lead</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="animate-slide-up stagger-delay-300">
+                                <div class="team-member">
+                                    <img src="chittresh.jpeg" alt="Chittresh Goswami" class="team-img">
+                                    <div class="team-overlay">
+                                        <div class="team-name">Chittresh Goswami</div>
+                                        <div class="team-role">Senior BDM</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="animate-slide-up stagger-delay-400">
+                                <div class="team-member">
+                                    <img src="hansreynolds.jpeg" alt="Hans Reynolds" class="team-img">
+                                    <div class="team-overlay">
+                                        <div class="team-name">Hans Reynolds</div>
+                                        <div class="team-role">Loan Strategist</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <section id="services" class="container py-20 section-spacing">
+            <div class="text-center mb-14 animate-slide-up">
+                <h2 class="text-3xl font-semibold">Our Services</h2>
+                <p class="text-[color:var(--muted)] max-w-2xl mx-auto mt-4 text-lg opacity-90">Practical, measurable & habit-driven personal finance services for every stage of life.</p>
+            </div>
+    
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="p-8 rounded-2xl glass-panel card-hover service-card animate-slide-up stagger-delay-100 interactive-element">
+                    <div class="text-4xl mb-4 service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="font-semibold text-xl mt-2 mb-3">Fund Manager</div>
+                    <div class="text-[color:var(--muted)] text-sm leading-relaxed">Monthly personalised advice, mid-month check, and review meetings by NISM-certified advisors.</div>
+                </div>
+    
+                <div class="p-8 rounded-2xl glass-panel card-hover service-card animate-slide-up stagger-delay-200 interactive-element">
+                    <div class="text-4xl mb-4 service-icon">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                    </div>
+                    <div class="font-semibold text-xl mt-2 mb-3">Expense Analysis</div>
+                    <div class="text-[color:var(--muted)] text-sm leading-relaxed">Daily tracking, EMP model (Evaluate, Monitor, Plan) and weekly summaries to optimize spending.</div>
+                </div>
+    
+                <div class="p-8 rounded-2xl glass-panel card-hover service-card animate-slide-up stagger-delay-300 interactive-element">
+                    <div class="text-4xl mb-4 service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="font-semibold text-xl mt-2 mb-3">CIBIL Boost</div>
+                    <div class="text-[color:var(--muted)] text-sm leading-relaxed">Actionable steps to improve credit score and support with disputes and credit utilization.</div>
+                </div>
+    
+                <div class="p-8 rounded-2xl glass-panel card-hover service-card animate-slide-up stagger-delay-400 interactive-element">
+                    <div class="text-4xl mb-4 service-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <div class="font-semibold text-xl mt-2 mb-3">Loan Repayment Assistance</div>
+                    <div class="text-[color:var(--muted)] text-sm leading-relaxed">Profile-based plans to accelerate repayments while preserving your safety net.</div>
+                </div>
+    
+                <div class="p-8 rounded-2xl glass-panel card-hover service-card animate-slide-up stagger-delay-500 interactive-element">
+                    <div class="text-4xl mb-4 service-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="font-semibold text-xl mt-2 mb-3">Psychological Support</div>
+                    <div class="text-[color:var(--muted)] text-sm leading-relaxed">Habit formation, impulse control, and mindset coaching to make changes stick.</div>
+                </div>
+    
+                <div class="p-8 rounded-2xl glass-panel card-hover service-card animate-slide-up stagger-delay-600 interactive-element">
+                    <div class="text-4xl mb-4 service-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <div class="font-semibold text-xl mt-2 mb-3">Video Counseling</div>
+                    <div class="text-[color:var(--muted)] text-sm leading-relaxed">One free 15-min consultation monthly. Extra sessions available on-demand.</div>
+                </div>
+            </div>
+    
+            <div class="mt-14 text-center">
+                <a href="#contact" class="px-8 py-4 rounded-full btn-primary btn-hover btn-responsive scale-in stagger-delay-700 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 interactive-element touch-target">
+                    Get Personalized Plan
+                </a>
+            </div>
+        </section>
+    
+        <section id="webapp" class="container py-20 section-spacing">
+            <div class="text-center mb-14 animate-slide-up">
+                <h2 class="text-3xl font-semibold">Our Web Application</h2>
+                <p class="text-[color:var(--muted)] max-w-2xl mx-auto mt-4 text-lg opacity-90">Cutting-edge technology platform for seamless financial management.</p>
+            </div>
+    
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="animate-slide-up">
+                    <h3 class="text-2xl font-semibold mb-6">Powerful Features</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <div class="w-6 h-6 bg-[color:var(--accent)]/20 rounded-full flex items-center justify-center mt-1 flex-shrink-0">
+                                <i class="fas fa-check text-[color:var(--accent)] text-sm"></i>
+                            </div>
+                            <span>Real-time expense tracking with AI-powered categorization</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <div class="w-6 h-6 bg-[color:var(--accent)]/20 rounded-full flex items-center justify-center mt-1 flex-shrink-0">
+                                <i class="fas fa-check text-[color:var(--accent)] text-sm"></i>
+                            </div>
+                            <span>Automated financial health assessments and recommendations</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <div class="w-6 h-6 bg-[color:var(--accent)]/20 rounded-full flex items-center justify-center mt-1 flex-shrink-0">
+                                <i class="fas fa-check text-[color:var(--accent)] text-sm"></i>
+                            </div>
+                            <span>Secure document storage and sharing with advisors</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <div class="w-6 h-6 bg-[color:var(--accent)]/20 rounded-full flex items-center justify-center mt-1 flex-shrink-0">
+                                <i class="fas fa-check text-[color:var(--accent)] text-sm"></i>
+                            </div>
+                            <span>Customizable dashboards and reporting tools</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <div class="w-6 h-6 bg-[color:var(--accent)]/20 rounded-full flex items-center justify-center mt-1 flex-shrink-0">
+                                <i class="fas fa-check text-[color:var(--accent)] text-sm"></i>
+                            </div>
+                            <span>Multi-device synchronization across all your devices</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="animate-slide-up">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-[color:var(--accent)]/20 rounded-2xl blur-xl"></div>
+                        <div class="relative glass-panel p-6 rounded-2xl">
+                            <img src="https://placehold.co/500x400/0B1120/7DE3D8?text=Web+App+Interface" alt="Web App Interface" class="w-full rounded-lg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="mt-12 text-center">
+                <a href="https://wa.me/918090516657" class="inline-flex items-center gap-3 px-8 py-4 rounded-full border border-white/6 text-sm text-[color:var(--muted)] hover:text-white hover:border-teal-300/50 transition-all duration-300 scale-in stagger-delay-500 hover:bg-white/5 backdrop-blur-sm btn-responsive touch-target">
+                    <i class="fas fa-laptop-code"></i> Request Demo
+                </a>
+            </div>
+        </section>
+    
+        <section id="plans" class="container py-20 section-spacing">
+            <div class="text-center mb-12 animate-slide-up">
+                <h3 class="text-3xl font-semibold">Subscription Plans</h3>
+                <p class="text-[color:var(--muted)] mt-4 text-lg opacity-90">Transparent pricing to start your financial transformation.</p>
+            </div>
+    
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
+                <div class="p-10 rounded-2xl glass-panel card-hover plan-card text-center animate-slide-up stagger-delay-200 interactive-element">
+                    <div class="plan-title text-[color:var(--muted)] user-choice">User's Choice</div>
+                    <div class="plan-price mt-5 bg-gradient-to-r from-teal-400 to-blue-400 bg-clip-text text-transparent">₹299</div>
+                    <div class="text-[color:var(--muted)] mt-5 text-sm leading-relaxed">
+                        Advisor support, expense tracking, and mid-month financial check-ins
+                    </div>
+                    <button onclick="openPlanModal('essential')" class="mt-10 px-8 py-4 rounded-full btn-primary btn-hover w-full text-lg font-semibold shadow-lg hover:shadow-2xl transition-all duration-300 interactive-element btn-responsive touch-target">
+                        Choose Plan
+                    </button>
+                </div>
+    
+                <div class="p-10 rounded-2xl glass-panel card-hover plan-card text-center shadow-2xl border border-teal-400/20 relative animate-slide-up stagger-delay-300 interactive-element">
+                    <div class="popular-tag">Elite Customers</div>
+                    <div class="plan-title text-[color:var(--muted)] elite-customer">Premium</div>
+                    <div class="plan-price mt-5 bg-gradient-to-r from-teal-400 to-blue-400 bg-clip-text text-transparent">₹699</div>
+                    <div class="text-[color:var(--muted)] mt-5 text-sm leading-relaxed">
+                        Full advisor access, video counseling, psychological support, and premium features
+                    </div>
+                    <button onclick="openPlanModal('premium')" class="mt-10 px-8 py-4 rounded-full bg-white text-black btn-hover w-full text-lg font-bold shadow-lg hover:shadow-2xl transition-all duration-300 interactive-element btn-responsive touch-target">
+                        Choose Plan
+                    </button>
+                </div>
+            </div>
+        </section>
+    
+        <section id="testimonials" class="container py-20 section-spacing">
+            <div class="text-center mb-12 animate-slide-up">
+                <h3 class="text-3xl font-semibold">What our customers say</h3>
+                <p class="text-[color:var(--muted)] mt-4 text-lg opacity-90">Stories of clarity, control and lasting change.</p>
+            </div>
+    
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-8 rounded-2xl glass-panel card-hover testimonial animate-slide-up stagger-delay-100 interactive-element">
+                    <div class="testimonial-content">
+                        <div class="font-semibold text-lg">Sneha (Freelancer)</div>
+                        <div class="text-[color:var(--muted)] mt-3 text-sm leading-relaxed">"Rivava helped me organize daily expenses and increase my savings by 30% in 3 months. The daily tracking made all the difference."</div>
+                    </div>
+                </div>
+                <div class="p-8 rounded-2xl glass-panel card-hover testimonial animate-slide-up stagger-delay-200 interactive-element">
+                    <div class="testimonial-content">
+                        <div class="font-semibold text-lg">Amit (Shop Owner)</div>
+                        <div class="text-[color:var(--muted)] mt-3 text-sm leading-relaxed">"Loan repayment plan was life-changing. Clear, practical advice that actually worked for my business cash flow."</div>
+                    </div>
+                </div>
+                <div class="p-8 rounded-2xl glass-panel card-hover testimonial animate-slide-up stagger-delay-300 interactive-element">
+                    <div class="testimonial-content">
+                        <div class="font-semibold text-lg">Rekha (Home-maker)</div>
+                        <div class="text-[color:var(--muted)] mt-3 text-sm leading-relaxed">"Daily habit building made saving easy for our family. The psychological support helped me overcome my spending triggers."</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <section id="about" class="container py-20 section-spacing">
+            <div class="text-center mb-12 animate-slide-up">
+                <h3 class="text-3xl font-semibold">About Rivava</h3>
+                <p class="text-[color:var(--muted)] max-w-2xl mx-auto mt-4 text-lg opacity-90">Rivava focuses purely on personal finance—no stock tips. We use NISM-certified advisors, the EMP model (Evaluation, Monitoring, Planning) and habit-driven coaching to deliver measurable results.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mt-10">
+                <div class="animate-slide-up">
+                    <ul class="text-[color:var(--muted)] space-y-6">
+                        <li class="flex items-start gap-3">
+                            <div class="w-6 h-6 bg-[color:var(--accent)]/20 rounded-full flex items-center justify-center mt-1 flex-shrink-0">
+                                <i class="fas fa-check text-[color:var(--accent)] text-sm"></i>
+                            </div>
+                            <span>NISM certified advisors with 10+ years experience in personal finance</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <div class="w-6 h-6 bg-[color:var(--accent)]/20 rounded-full flex items-center justify-center mt-1 flex-shrink-0">
+                                <i class="fas fa-check text-[color:var(--accent)] text-sm"></i>
+                            </div>
+                            <span>Daily tracking & monthly reviews with personalized insights and recommendations</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <div class="w-6 h-6 bg-[color:var(--accent)]/20 rounded-full flex items-center justify-center mt-1 flex-shrink-0">
+                                <i class="fas fa-check text-[color:var(--accent)] text-sm"></i>
+                            </div>
+                            <span>CIBIL improvement support with 95% success rate in score enhancement</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <div class="w-6 h-6 bg-[color:var(--accent)]/20 rounded-full flex items-center justify-center mt-1 flex-shrink-0">
+                                <i class="fas fa-check text-[color:var(--accent)] text-sm"></i>
+                            </div>
+                            <span>Video counseling & psychological planning for lasting behavioral change</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <div class="w-6 h-6 bg-[color:var(--accent)]/20 rounded-full flex items-center justify-center mt-1 flex-shrink-0">
+                                <i class="fas fa-check text-[color:var(--accent)] text-sm"></i>
+                            </div>
+                            <span>Transparent pricing with no hidden fees or long-term commitments</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="animate-slide-up">
+                    <img src="https://placehold.co/500x400/0B1120/7DE3D8?text=Financial+Planning" alt="Financial Planning" class="w-full rounded-2xl glass-panel p-2">
+                </div>
+            </div>
+        </section>
+    
+        <section id="contact" class="container py-20 section-spacing">
+            <div class="text-center mb-12 animate-slide-up">
+                <h3 class="text-3xl font-semibold">Get in touch</h3>
+                <p class="text-[color:var(--muted)] mt-4 text-lg opacity-90">Book your free 15-minute consultation and we'll reach out within 24 hours.</p>
+            </div>
+    
+            <form id="contactForm" action="https://formspree.io/f/your-form-id" method="POST" class="contact-form grid grid-cols-1 md:grid-cols-2 gap-6 animate-slide-up stagger-delay-200 form-responsive">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required placeholder="Enter your full name" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required placeholder="Enter your email" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="WhatsApp preferred" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="interest">Service of Interest</label>
+                    <select id="interest" name="interest" class="form-control">
+                        <option value="">Select a service</option>
+                        <option value="fund-manager">Fund Manager</option>
+                        <option value="expense-analysis">Expense Analysis</option>
+                        <option value="cibil-boost">CIBIL Boost</option>
+                        <option value="loan-assistance">Loan Assistance</option>
+                    </select>
+                </div>
+                <div class="md:col-span-2 form-group">
+                    <label for="message">Your Financial Goal</label>
+                    <textarea id="message" name="message" placeholder="Tell us about your main financial concern or goal" class="form-control" rows="4"></textarea>
+                </div>
+    
+                <div class="md:col-span-2 flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
+                    <div class="text-sm text-[color:var(--muted)]">We respect your privacy. Your data is safe.</div>
+                    <button type="submit" class="px-8 py-4 rounded-full btn-primary btn-hover text-lg font-semibold shadow-lg hover:shadow-2xl transition-all duration-300 btn-contact interactive-element btn-responsive touch-target">
+                        <i class="fas fa-paper-plane"></i> Request Call
+                    </button>
+                </div>
+            </form>
+    
+            <div class="mt-8 text-center text-sm text-[color:var(--muted)] fade-in stagger-delay-400">
+                Or message us directly on WhatsApp:
+                <a href="https://wa.me/918090516657" class="text-teal-300 hover:text-teal-200 transition-colors font-medium inline-flex items-center gap-2 touch-target">
+                    <i class="fab fa-whatsapp"></i> +91-8090516657
+                </a>
+            </div>
+        </section>
+    
+        <footer class="border-t border-white/6 mt-20">
+            <div class="container py-12 flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="text-center md:text-left">
+                    <div class="font-bold text-2xl mb-2">Rivava</div>
+                    <div class="text-sm text-[color:var(--muted)]">Personal finance guidance · NISM certified advisors</div>
+                </div>
+                <div class="text-sm text-[color:var(--muted)] text-center md:text-right">
+                    © <span id="year"></span> Rivava ·
+                    <a href="#" class="text-teal-300 hover:text-teal-200 transition-colors mx-3 touch-target">Privacy</a> ·
+                    <a href="#" class="text-teal-300 hover:text-teal-200 transition-colors touch-target">Terms</a>
+                </div>
+            </div>
+        </footer>
+    
+        <a href="https://wa.me/918090516657" class="whatsapp-btn fixed right-6 bottom-6 p-4 rounded-full shadow-2xl z-40 touch-target" style="background:linear-gradient(90deg,var(--accent), var(--accent-secondary)); color:#021117" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp text-xl"></i>
         </a>
-
-        <nav class="hidden md:flex items-center gap-8 text-sm nav-links">
-          <a href="#services" class="nav-link text-[color:var(--muted)] hover:text-white animate-fade-in stagger-delay-100 touch-target">Services</a>
-          <a href="#plans" class="nav-link text-[color:var(--muted)] hover:text-white animate-fade-in stagger-delay-200 touch-target">Plans</a>
-          <a href="#about" class="nav-link text-[color:var(--muted)] hover:text-white animate-fade-in stagger-delay-300 touch-target">About</a>
-          <a href="#webapp" class="nav-link text-[color:var(--muted)] hover:text-white animate-fade-in stagger-delay-400 touch-target">Web App</a>
-          <a href="#contact" class="nav-link text-[color:var(--muted)] hover:text-white animate-fade-in stagger-delay-500 touch-target">Contact</a>
-          <a href="https://wa.me/918090516657" class="px-6 py-2 rounded-full bg-white text-black text-sm btn-hover animate-fade-in stagger-delay-600 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 touch-target">
-            <i class="fab fa-whatsapp"></i>Book Free Call
-          </a>
-        </nav>
-
-        <button id="hambBtn" class="md:hidden p-2 rounded-lg border border-white/6 bg-white/5 backdrop-blur-sm touch-target" aria-label="menu">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path d="M4 6h16M4 12h16M4 18h16" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-        </button>
-      </div>
-    </div>
-
-    <!-- mobile menu -->
-    <div id="mobileMenu" class="hidden md:hidden border-t border-white/6 bg-[color:var(--panel)]/95 backdrop-blur-xl mobile-nav">
-      <div class="container py-4 flex flex-col gap-4 text-sm">
-        <a href="#services" class="block text-[color:var(--muted)] hover:text-teal-300 transition-colors py-3 border-b border-white/10 touch-target">Services</a>
-        <a href="#plans" class="block text-[color:var(--muted)] hover:text-teal-300 transition-colors py-3 border-b border-white/10 touch-target">Plans</a>
-        <a href="#about" class="block text-[color:var(--muted)] hover:text-teal-300 transition-colors py-3 border-b border-white/10 touch-target">About</a>
-        <a href="#webapp" class="block text-[color:var(--muted)] hover:text-teal-300 transition-colors py-3 border-b border-white/10 touch-target">Web App</a>
-        <a href="#contact" class="block text-[color:var(--muted)] hover:text-teal-300 transition-colors py-3 border-b border-white/10 touch-target">Contact</a>
-        <a href="https://wa.me/918090516657" class="block text-teal-300 font-medium py-3 text-center bg-teal-300/10 rounded-lg border border-teal-300/20 transition-all duration-300 hover:bg-teal-300/20 flex items-center justify-center gap-2 touch-target">
-          <i class="fab fa-whatsapp"></i>Book Free Call
-        </a>
-      </div>
-    </div>
-  </header>
-
-  <!-- HERO (centered Apple-style) -->
-  <main id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden">
-    <section class="container text-center relative z-10">
-      <div class="hero-content">
-        <!-- Clean RIVAVA text centered above tagline -->
-        <div class="flex flex-col items-center gap-8 relative z-10">
-          <div class="hero-rivava animate-slide-up">RIVAVA</div>
-          <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight animate-slide-up stagger-delay-200">Make It Simple.</h1>
-          <p class="max-w-xl text-[color:var(--muted)] text-lg md:text-xl mt-3 animate-slide-up stagger-delay-300 opacity-90">Your money. Clear. Controlled. Growing.</p>
-
-          <div class="mt-10 flex flex-col sm:flex-row gap-5 items-center">
-            <a href="#contact" class="btn-primary btn-hover btn-responsive inline-flex items-center justify-center px-8 py-4 rounded-full text-lg font-semibold shadow-xl scale-in stagger-delay-400 hover:shadow-2xl transition-all duration-300 interactive-element touch-target">
-              Get Your Free Plan
-            </a>
-            <a href="#services" class="inline-flex items-center gap-3 px-7 py-4 rounded-full border border-white/6 text-sm text-[color:var(--muted)] hover:text-white hover:border-teal-300/50 transition-all duration-300 scale-in stagger-delay-500 hover:bg-white/5 backdrop-blur-sm btn-responsive touch-target">
-              <i class="fas fa-compass"></i> Explore Services
-            </a>
-          </div>
-
-          <div class="mt-8 text-sm text-[color:var(--muted)] fade-in stagger-delay-600 opacity-80">
-            <div class="flex items-center justify-center gap-4">
-              <span>Trusted by individuals, families & small businesses</span>
-              <div class="w-1 h-1 bg-[color:var(--accent)] rounded-full"></div>
-              <span>NISM certified advisors</span>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Team Section on Home Page -->
-        <div class="mt-24 pt-12 border-t border-white/6">
-          <h2 class="text-3xl font-semibold mb-10 animate-slide-up">Our Expert Team</h2>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-            <div class="animate-slide-up stagger-delay-100">
-              <div class="team-member">
-                <img src="aadya.jpeg" alt="Anjali Sharma" class="team-img">
-                <div class="team-overlay">
-                  <div class="team-name">Anjali Sharma</div>
-                  <div class="team-role">Lead Financial Advisor</div>
-                </div>
-              </div>
-            </div>
-            <div class="animate-slide-up stagger-delay-200">
-              <div class="team-member">
-                <img src="aditya.jpeg" alt="Aditya Singh" class="team-img">
-                <div class="team-overlay">
-                  <div class="team-name">Aditya Singh</div>
-                  <div class="team-role">Tech Lead</div>
-                </div>
-              </div>
-            </div>
-            <div class="animate-slide-up stagger-delay-300">
-              <div class="team-member">
-                <img src="chittresh.jpeg" alt="Chittresh Goswami" class="team-img">
-                <div class="team-overlay">
-                  <div class="team-name">Chittresh Goswami</div>
-                  <div class="team-role">Sr. BDM</div>
-                </div>
-              </div>
-            </div>
-            <div class="animate-slide-up stagger-delay-400">
-              <div class="team-member">
-                <img src="hansreynolds.jpeg" alt="Hans Reynolds" class="team-img">
-                <div class="team-overlay">
-                  <div class="team-name">Hans Reynolds</div>
-                  <div class="team-role">Loan Strategist</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- SERVICES -->
-  <section id="services" class="container py-20 section-spacing">
-    <div class="text-center mb-14 animate-slide-up">
-      <h2 class="text-3xl font-semibold">Our Services</h2>
-      <p class="text-[color:var(--muted)] max-w-2xl mx-auto mt-4 text-lg opacity-90">Practical, measurable & habit-driven personal finance services for every stage of life.</p>
-    </div>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      <div class="p-8 rounded-2xl glass-panel card-hover service-card animate-slide-up stagger-delay-100 interactive-element">
-        <div class="text-4xl mb-4 service-icon">
-          <i class="fas fa-chart-line"></i>
-        </div>
-        <div class="font-semibold text-xl mt-2 mb-3">Fund Manager</div>
-        <div class="text-[color:var(--muted)] text-sm leading-relaxed">Monthly personalised advice, mid-month check, and review meetings by NISM-certified advisors.</div>
-      </div>
-
-      <div class="p-8 rounded-2xl glass-panel card-hover service-card animate-slide-up stagger-delay-200 interactive-element">
-        <div class="text-4xl mb-4 service-icon">
-          <i class="fas fa-file-invoice-dollar"></i>
-        </div>
-        <div class="font-semibold text-xl mt-2 mb-3">Expense Analysis</div>
-        <div class="text-[color:var(--muted)] text-sm leading-relaxed">Daily tracking, EMP model (Evaluate, Monitor, Plan) and weekly summaries to optimize spending.</div>
-      </div>
-
-      <div class="p-8 rounded-2xl glass-panel card-hover service-card animate-slide-up stagger-delay-300 interactive-element">
-        <div class="text-4xl mb-4 service-icon">
-          <i class="fas fa-shield-alt"></i>
-        </div>
-        <div class="font-semibold text-xl mt-2 mb-3">CIBIL Boost</div>
-        <div class="text-[color:var(--muted)] text-sm leading-relaxed">Actionable steps to improve credit score and support with disputes and credit utilization.</div>
-      </div>
-
-      <div class="p-8 rounded-2xl glass-panel card-hover service-card animate-slide-up stagger-delay-400 interactive-element">
-        <div class="text-4xl mb-4 service-icon">
-          <i class="fas fa-hand-holding-usd"></i>
-        </div>
-        <div class="font-semibold text-xl mt-2 mb-3">Loan Repayment Assistance</div>
-        <div class="text-[color:var(--muted)] text-sm leading-relaxed">Profile-based plans to accelerate repayments while preserving your safety net.</div>
-      </div>
-
-      <div class="p-8 rounded-2xl glass-panel card-hover service-card animate-slide-up stagger-delay-500 interactive-element">
-        <div class="text-4xl mb-4 service-icon">
-          <i class="fas fa-brain"></i>
-        </div>
-        <div class="font-semibold text-xl mt-2 mb-3">Psychological Support</div>
-        <div class="text-[color:var(--muted)] text-sm leading-relaxed">Habit formation, impulse control, and mindset coaching to make changes stick.</div>
-      </div>
-
-      <div class="p-8 rounded-2xl glass-panel card-hover service-card animate-slide-up stagger-delay-600 interactive-element">
-        <div class="text-4xl mb-4 service-icon">
-          <i class="fas fa-video"></i>
-        </div>
-        <div class="font-semibold text-xl mt-2 mb-3">Video Counseling</div>
-        <div class="text-[color:var(--muted)] text-sm leading-relaxed">One free 15-min consultation monthly. Extra sessions available on-demand.</div>
-      </div>
-    </div>
-
-    <div class="mt-14 text-center">
-      <a href="#contact" class="px-8 py-4 rounded-full btn-primary btn-hover btn-responsive scale-in stagger-delay-700 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 interactive-element touch-target">
-        Get Personalized Plan
-      </a>
-    </div>
-  </section>
-
-  <!-- WEB APP SECTION -->
-  <section id="webapp" class="container py-20 section-spacing">
-    <div class="text-center mb-14 animate-slide-up">
-      <h2 class="text-3xl font-semibold">Our Web Application</h2>
-      <p class="text-[color:var(--muted)] max-w-2xl mx-auto mt-4 text-lg opacity-90">Cutting-edge technology platform for seamless financial management.</p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-      <div class="animate-slide-up">
-        <h3 class="text-2xl font-semibold mb-6">Powerful Features</h3>
-        <ul class="space-y-4">
-          <li class="flex items-start gap-3">
-            <div class="w-6 h-6 bg-[color:var(--accent)]/20 rounded-full flex items-center justify-center mt-1 flex-shrink-0">
-              <i class="fas fa-check text-[color:var(--accent)] text-sm"></i>
-            </div>
-            <span>Real-time expense tracking with AI-powered categorization</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <div class="w-6 h-6 bg-[color:var(--accent)]/20 rounded-full flex items-center justify-center mt-1 flex-shrink-0">
-              <i class="fas fa-check text-[color:var(--accent)] text-sm"></i>
-            </div>
-            <span>Automated financial health assessments and recommendations</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <div class="w-6 h-6 bg-[color:var(--accent)]/20 rounded-full flex items-center justify-center mt-1 flex-shrink-0">
-              <i class="fas fa-check text-[color:var(--accent)] text-sm"></i>
-            </div>
-            <span>Secure document storage and sharing with advisors</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <div class="w-6 h-6 bg-[color:var(--accent)]/20 rounded-full flex items-center justify-center mt-1 flex-shrink-0">
-              <i class="fas fa-check text-[color:var(--accent)] text-sm"></i>
-            </div>
-            <span>Customizable dashboards and reporting tools</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <div class="w-6 h-6 bg-[color:var(--accent)]/20 rounded-full flex items-center justify-center mt-1 flex-shrink-0">
-              <i class="fas fa-check text-[color:var(--accent)] text-sm"></i>
-            </div>
-            <span>Multi-device synchronization across all your devices</span>
-          </li>
-        </ul>
-      </div>
-      
-      <div class="animate-slide-up">
-        <div class="relative">
-          <div class="absolute inset-0 bg-[color:var(--accent)]/20 rounded-2xl blur-xl"></div>
-          <div class="relative glass-panel p-6 rounded-2xl">
-            <img src="https://placehold.co/500x400/0B1120/7DE3D8?text=Web+App+Interface" alt="Web App Interface" class="w-full rounded-lg">
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="mt-12 text-center">
-      <a href="https://wa.me/918090516657" class="inline-flex items-center gap-3 px-8 py-4 rounded-full border border-white/6 text-sm text-[color:var(--muted)] hover:text-white hover:border-teal-300/50 transition-all duration-300 scale-in stagger-delay-500 hover:bg-white/5 backdrop-blur-sm btn-responsive touch-target">
-        <i class="fas fa-laptop-code"></i> Request Demo
-      </a>
-    </div>
-  </section>
-
-  <!-- PLANS -->
-  <section id="plans" class="container py-20 section-spacing">
-    <div class="text-center mb-12 animate-slide-up">
-      <h3 class="text-3xl font-semibold">Subscription Plans</h3>
-      <p class="text-[color:var(--muted)] mt-4 text-lg opacity-90">Transparent pricing to start your financial transformation.</p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
-      <div class="p-10 rounded-2xl glass-panel card-hover plan-card text-center animate-slide-up stagger-delay-200 interactive-element">
-        <div class="plan-title text-[color:var(--muted)] user-choice">User's Choice</div>
-        <div class="plan-price mt-5 bg-gradient-to-r from-teal-400 to-blue-400 bg-clip-text text-transparent">₹299</div>
-        <div class="text-[color:var(--muted)] mt-5 text-sm leading-relaxed">
-          Advisor support, expense tracking, and mid-month financial check-ins
-        </div>
-        <button onclick="openPlanModal('essential')" class="mt-10 px-8 py-4 rounded-full btn-primary btn-hover w-full text-lg font-semibold shadow-lg hover:shadow-2xl transition-all duration-300 interactive-element btn-responsive touch-target">
-          Choose Plan
-        </button>
-      </div>
-
-      <div class="p-10 rounded-2xl glass-panel card-hover plan-card text-center shadow-2xl border border-teal-400/20 relative animate-slide-up stagger-delay-300 interactive-element">
-        <div class="popular-tag">Elite Customers</div>
-        <div class="plan-title text-[color:var(--muted)] elite-customer">Premium</div>
-        <div class="plan-price mt-5 bg-gradient-to-r from-teal-400 to-blue-400 bg-clip-text text-transparent">₹699</div>
-        <div class="text-[color:var(--muted)] mt-5 text-sm leading-relaxed">
-          Full advisor access, video counseling, psychological support, and premium features
-        </div>
-        <button onclick="openPlanModal('premium')" class="mt-10 px-8 py-4 rounded-full bg-white text-black btn-hover w-full text-lg font-bold shadow-lg hover:shadow-2xl transition-all duration-300 interactive-element btn-responsive touch-target">
-          Choose Plan
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIALS -->
-  <section id="testimonials" class="container py-20 section-spacing">
-    <div class="text-center mb-12 animate-slide-up">
-      <h3 class="text-3xl font-semibold">What our customers say</h3>
-      <p class="text-[color:var(--muted)] mt-4 text-lg opacity-90">Stories of clarity, control and lasting change.</p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div class="p-8 rounded-2xl glass-panel card-hover testimonial animate-slide-up stagger-delay-100 interactive-element">
-        <div class="testimonial-content">
-          <div class="font-semibold text-lg">Sneha (Freelancer)</div>
-          <div class="text-[color:var(--muted)] mt-3 text-sm leading-relaxed">"Rivava helped me organize daily expenses and increase my savings by 30% in 3 months. The daily tracking made all the difference."</div>
-        </div>
-      </div>
-      <div class="p-8 rounded-2xl glass-panel card-hover testimonial animate-slide-up stagger-delay-200 interactive-element">
-        <div class="testimonial-content">
-          <div class="font-semibold text-lg">Amit (Shop Owner)</div>
-          <div class="text-[color:var(--muted)] mt-3 text-sm leading-relaxed">"Loan repayment plan was life-changing. Clear, practical advice that actually worked for my business cash flow."</div>
-        </div>
-      </div>
-      <div class="p-8 rounded-2xl glass-panel card-hover testimonial animate-slide-up stagger-delay-300 interactive-element">
-        <div class="testimonial-content">
-          <div class="font-semibold text-lg">Rekha (Home-maker)</div>
-          <div class="text-[color:var(--muted)] mt-3 text-sm leading-relaxed">"Daily habit building made saving easy for our family. The psychological support helped me overcome my spending triggers."</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about" class="container py-20 section-spacing">
-    <div class="text-center mb-12 animate-slide-up">
-      <h3 class="text-3xl font-semibold">About Rivava</h3>
-      <p class="text-[color:var(--muted)] max-w-2xl mx-auto mt-4 text-lg opacity-90">Rivava focuses purely on personal finance—no stock tips. We use NISM-certified advisors, the EMP model (Evaluation, Monitoring, Planning) and habit-driven coaching to deliver measurable results.</p>
-    </div>
     
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mt-10">
-      <div class="animate-slide-up">
-        <ul class="text-[color:var(--muted)] space-y-6">
-          <li class="flex items-start gap-3">
-            <div class="w-6 h-6 bg-[color:var(--accent)]/20 rounded-full flex items-center justify-center mt-1 flex-shrink-0">
-              <i class="fas fa-check text-[color:var(--accent)] text-sm"></i>
+        <div id="planModal" class="modal">
+            <div class="modal-content">
+                <button class="modal-close" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+                <h3 class="modal-title">Complete Your Plan Selection</h3>
+                <p class="modal-subtitle">Please provide your details so we can set up your personalized financial plan.</p>
+                
+                <form id="planForm" class="modal-form">
+                    <input type="hidden" id="selectedPlan" name="plan">
+                    
+                    <div class="form-group">
+                        <label for="modalName">Full Name</label>
+                        <input type="text" id="modalName" name="name" required placeholder="Enter your full name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="modalEmail">Email Address</label>
+                        <input type="email" id="modalEmail" name="email" required placeholder="Enter your email address">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="modalPhone">Phone Number</label>
+                        <input type="tel" id="modalPhone" name="phone" required placeholder="WhatsApp preferred">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="modalMessage">Financial Goals</label>
+                        <textarea id="modalMessage" name="message" placeholder="Tell us about your financial goals and concerns"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="modal-submit">
+                        <i class="fas fa-check-circle"></i> Confirm & Get Started
+                    </button>
+                </form>
             </div>
-            <span>NISM certified advisors with 10+ years experience in personal finance</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <div class="w-6 h-6 bg-[color:var(--accent)]/20 rounded-full flex items-center justify-center mt-1 flex-shrink-0">
-              <i class="fas fa-check text-[color:var(--accent)] text-sm"></i>
-            </div>
-            <span>Daily tracking & monthly reviews with personalized insights and recommendations</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <div class="w-6 h-6 bg-[color:var(--accent)]/20 rounded-full flex items-center justify-center mt-1 flex-shrink-0">
-              <i class="fas fa-check text-[color:var(--accent)] text-sm"></i>
-            </div>
-            <span>CIBIL improvement support with 95% success rate in score enhancement</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <div class="w-6 h-6 bg-[color:var(--accent)]/20 rounded-full flex items-center justify-center mt-1 flex-shrink-0">
-              <i class="fas fa-check text-[color:var(--accent)] text-sm"></i>
-            </div>
-            <span>Video counseling & psychological planning for lasting behavioral change</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <div class="w-6 h-6 bg-[color:var(--accent)]/20 rounded-full flex items-center justify-center mt-1 flex-shrink-0">
-              <i class="fas fa-check text-[color:var(--accent)] text-sm"></i>
-            </div>
-            <span>Transparent pricing with no hidden fees or long-term commitments</span>
-          </li>
-        </ul>
-      </div>
-      
-      <div class="animate-slide-up">
-        <img src="https://placehold.co/500x400/0B1120/7DE3D8?text=Financial+Planning" alt="Financial Planning" class="w-full rounded-2xl glass-panel p-2">
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" class="container py-20 section-spacing">
-    <div class="text-center mb-12 animate-slide-up">
-      <h3 class="text-3xl font-semibold">Get in touch</h3>
-      <p class="text-[color:var(--muted)] mt-4 text-lg opacity-90">Book your free 15-minute consultation and we'll reach out within 24 hours.</p>
-    </div>
-
-    <form id="contactForm" action="https://formspree.io/f/your-form-id" method="POST" class="contact-form grid grid-cols-1 md:grid-cols-2 gap-6 animate-slide-up stagger-delay-200 form-responsive">
-      <div class="form-group">
-        <label for="name">Full Name</label>
-        <input type="text" id="name" name="name" required placeholder="Enter your full name" class="form-control" />
-      </div>
-      <div class="form-group">
-        <label for="email">Email Address</label>
-        <input type="email" id="email" name="email" required placeholder="Enter your email" class="form-control" />
-      </div>
-      <div class="form-group">
-        <label for="phone">Phone Number</label>
-        <input type="tel" id="phone" name="phone" required placeholder="WhatsApp preferred" class="form-control" />
-      </div>
-      <div class="form-group">
-        <label for="interest">Service of Interest</label>
-        <select id="interest" name="interest" class="form-control">
-          <option value="">Select a service</option>
-          <option value="fund-manager">Fund Manager</option>
-          <option value="expense-analysis">Expense Analysis</option>
-          <option value="cibil-boost">CIBIL Boost</option>
-          <option value="loan-assistance">Loan Assistance</option>
-        </select>
-      </div>
-      <div class="md:col-span-2 form-group">
-        <label for="message">Your Financial Goal</label>
-        <textarea id="message" name="message" placeholder="Tell us about your main financial concern or goal" class="form-control" rows="4"></textarea>
-      </div>
-
-      <div class="md:col-span-2 flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
-        <div class="text-sm text-[color:var(--muted)]">We respect your privacy. Your data is safe.</div>
-        <button type="submit" class="px-8 py-4 rounded-full btn-primary btn-hover text-lg font-semibold shadow-lg hover:shadow-2xl transition-all duration-300 btn-contact interactive-element btn-responsive touch-target">
-          <i class="fas fa-paper-plane"></i> Request Call
-        </button>
-      </div>
-    </form>
-
-    <div class="mt-8 text-center text-sm text-[color:var(--muted)] fade-in stagger-delay-400">
-      Or message us directly on WhatsApp: 
-      <a href="https://wa.me/918090516657" class="text-teal-300 hover:text-teal-200 transition-colors font-medium inline-flex items-center gap-2 touch-target">
-        <i class="fab fa-whatsapp"></i> +91-8090516657
-      </a>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="border-t border-white/6 mt-20">
-    <div class="container py-12 flex flex-col md:flex-row items-center justify-between gap-6">
-      <div class="text-center md:text-left">
-        <div class="font-bold text-2xl mb-2">Rivava</div>
-        <div class="text-sm text-[color:var(--muted)]">Personal finance guidance · NISM certified advisors</div>
-      </div>
-      <div class="text-sm text-[color:var(--muted)] text-center md:text-right">
-        © <span id="year"></span> Rivava · 
-        <a href="#" class="text-teal-300 hover:text-teal-200 transition-colors mx-3 touch-target">Privacy</a> · 
-        <a href="#" class="text-teal-300 hover:text-teal-200 transition-colors touch-target">Terms</a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Floating WhatsApp -->
-  <a href="https://wa.me/918090516657" class="whatsapp-btn fixed right-6 bottom-6 p-4 rounded-full shadow-2xl z-40 touch-target" style="background:linear-gradient(90deg,var(--accent), var(--accent-secondary)); color:#021117" aria-label="WhatsApp">
-    <i class="fab fa-whatsapp text-xl"></i>
-  </a>
-
-  <!-- Plan Selection Modal -->
-  <div id="planModal" class="modal">
-    <div class="modal-content">
-      <button class="modal-close" onclick="closeModal()">
-        <i class="fas fa-times"></i>
-      </button>
-      <h3 class="modal-title">Complete Your Plan Selection</h3>
-      <p class="modal-subtitle">Please provide your details so we can set up your personalized financial plan.</p>
-      
-      <form id="planForm" class="modal-form">
-        <input type="hidden" id="selectedPlan" name="plan">
-        
-        <div class="form-group">
-          <label for="modalName">Full Name</label>
-          <input type="text" id="modalName" name="name" required placeholder="Enter your full name">
         </div>
+    </main>
+
+    <script>
+        // Mobile menu toggle with animation
+        const hambBtn = document.getElementById('hambBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const header = document.getElementById('header');
         
-        <div class="form-group">
-          <label for="modalEmail">Email Address</label>
-          <input type="email" id="modalEmail" name="email" required placeholder="Enter your email address">
-        </div>
+        hambBtn?.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if (!mobileMenu.classList.contains('hidden')) {
+                mobileMenu.style.transform = 'translateY(0)';
+            } else {
+                mobileMenu.style.transform = 'translateY(-100%)';
+            }
+        });
+
+        // Plan modal functionality
+        const planModal = document.getElementById('planModal');
         
-        <div class="form-group">
-          <label for="modalPhone">Phone Number</label>
-          <input type="tel" id="modalPhone" name="phone" required placeholder="WhatsApp preferred">
-        </div>
-        
-        <div class="form-group">
-          <label for="modalMessage">Financial Goals</label>
-          <textarea id="modalMessage" name="message" placeholder="Tell us about your financial goals and concerns"></textarea>
-        </div>
-        
-        <button type="submit" class="modal-submit">
-          <i class="fas fa-check-circle"></i> Confirm & Get Started
-        </button>
-      </form>
-    </div>
-  </div>
-
-  <script>
-    // Mobile menu toggle with animation
-    const hambBtn = document.getElementById('hambBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const header = document.getElementById('header');
-    
-    hambBtn?.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-      if (!mobileMenu.classList.contains('hidden')) {
-        mobileMenu.style.transform = 'translateY(0)';
-      } else {
-        mobileMenu.style.transform = 'translateY(-100%)';
-      }
-    });
-
-    // Plan modal functionality
-    const planModal = document.getElementById('planModal');
-    
-    function openPlanModal(plan) {
-      document.getElementById('selectedPlan').value = plan;
-      document.querySelector('.modal-title').textContent = `Selecting ${plan.charAt(0).toUpperCase() + plan.slice(1)} Plan`;
-      planModal.classList.add('show');
-      document.body.style.overflow = 'hidden';
-    }
-    
-    function closeModal() {
-      planModal.classList.remove('show');
-      setTimeout(() => {
-        document.body.style.overflow = 'auto';
-      }, 400);
-    }
-    
-    // Close modal when clicking outside
-    planModal?.addEventListener('click', (e) => {
-      if (e.target === planModal) {
-        closeModal();
-      }
-    });
-    
-    // Close modal with escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && planModal.classList.contains('show')) {
-        closeModal();
-      }
-    });
-
-    // Form submit UX with animation for contact form
-    const contactForm = document.getElementById('contactForm');
-    contactForm?.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const button = e.target.querySelector('button[type="submit"]');
-      const originalHTML = button.innerHTML;
-      
-      button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-      button.disabled = true;
-      
-      setTimeout(() => {
-        alert('Thanks! Your request has been sent. We will contact you within 24 hours.');
-        button.innerHTML = originalHTML;
-        button.disabled = false;
-        contactForm.reset();
-      }, 1500);
-    });
-
-    // Form submit UX with animation for plan form
-    const planForm = document.getElementById('planForm');
-    planForm?.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const button = e.target.querySelector('button[type="submit"]');
-      const originalHTML = button.innerHTML;
-      
-      button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-      button.disabled = true;
-      
-      setTimeout(() => {
-        alert('Thank you! Your plan selection has been received. We will contact you within 24 hours to complete the setup.');
-        button.innerHTML = originalHTML;
-        button.disabled = false;
-        planForm.reset();
-        closeModal();
-      }, 1500);
-    });
-
-    // Copyright year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Header scroll effect
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        header.classList.add('header-scrolled');
-      } else {
-        header.classList.remove('header-scrolled');
-      }
-    });
-
-    // Intersection Observer for scroll animations
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -100px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('fade-in');
-          // Remove observer after animation to improve performance
-          observer.unobserve(entry.target);
+        function openPlanModal(plan) {
+            document.getElementById('selectedPlan').value = plan;
+            document.querySelector('.modal-title').textContent = `Selecting ${plan.charAt(0).toUpperCase() + plan.slice(1)} Plan`;
+            planModal.classList.add('show');
+            document.body.style.overflow = 'hidden';
         }
-      });
-    }, observerOptions);
-
-    // Observe elements for scroll animations
-    document.addEventListener('DOMContentLoaded', () => {
-      const elements = document.querySelectorAll('.animate-slide-up, .animate-fade-in, .reveal-up');
-      elements.forEach(el => observer.observe(el));
-    });
-
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        if (this.getAttribute('href') === '#') return;
         
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          window.scrollTo({
-            top: target.offsetTop - 80,
-            behavior: 'smooth'
-          });
-          
-          // Close mobile menu if open
-          if (!mobileMenu.classList.contains('hidden')) {
-            mobileMenu.classList.add('hidden');
-          }
+        function closeModal() {
+            planModal.classList.remove('show');
+            setTimeout(() => {
+                document.body.style.overflow = 'auto';
+            }, 400);
         }
-      });
-    });
-  </script>
+        
+        // Close modal when clicking outside
+        planModal?.addEventListener('click', (e) => {
+            if (e.target === planModal) {
+                closeModal();
+            }
+        });
+        
+        // Close modal with escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && planModal.classList.contains('show')) {
+                closeModal();
+            }
+        });
+
+        // Form submit UX with animation for contact form
+        const contactForm = document.getElementById('contactForm');
+        contactForm?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const button = e.target.querySelector('button[type="submit"]');
+            const originalHTML = button.innerHTML;
+            
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            button.disabled = true;
+            
+            setTimeout(() => {
+                alert('Thanks! Your request has been sent. We will contact you within 24 hours.');
+                button.innerHTML = originalHTML;
+                button.disabled = false;
+                contactForm.reset();
+            }, 1500);
+        });
+
+        // Form submit UX with animation for plan form
+        const planForm = document.getElementById('planForm');
+        planForm?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const button = e.target.querySelector('button[type="submit"]');
+            const originalHTML = button.innerHTML;
+            
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            button.disabled = true;
+            
+            setTimeout(() => {
+                alert('Thank you! Your plan selection has been received. We will contact you within 24 hours to complete the setup.');
+                button.innerHTML = originalHTML;
+                button.disabled = false;
+                planForm.reset();
+                closeModal();
+            }, 1500);
+        });
+
+        // Copyright year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll('.animate-slide-up, .animate-fade-in, .reveal-up');
+            elements.forEach(el => observer.observe(el));
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('href') === '#') return;
+                
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const target = document.getElementById(targetId);
+
+                if (target) {
+                    const offset = header.offsetHeight;
+                    const topPosition = target.offsetTop - offset;
+                    
+                    window.scrollTo({
+                        top: topPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
