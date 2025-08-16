@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
   <title>Rivava — Make It Simple.</title>
   <meta name="description" content="Rivava: Make It Simple. Clear, controlled, and growing personal finances." />
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.png" type="image/png">
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Font Awesome for premium icons -->
@@ -47,7 +49,7 @@
       overflow-x: hidden;
     }
 
-    /* Professional typography */
+    /* Professional typography with refined fonts */
     h1, h2, h3, h4, h5, h6 {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       font-weight: 700;
@@ -74,7 +76,7 @@
     }
 
     .fade-in { 
-      animation: fadeIn 1s cubic-bezier(0.23, 1, 0.32, 1) forwards; 
+      animation: fadeIn 1.1s cubic-bezier(0.23, 1, 0.32, 1) forwards; 
       opacity: 0; 
     }
     
@@ -83,7 +85,7 @@
     }
 
     .slide-up { 
-      animation: slideUp 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards; 
+      animation: slideUp 0.9s cubic-bezier(0.23, 1, 0.32, 1) forwards; 
       transform: translateY(40px); 
       opacity: 0; 
     }
@@ -93,7 +95,7 @@
     }
 
     .scale-in { 
-      animation: scaleIn 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards; 
+      animation: scaleIn 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards; 
       transform: scale(0.95); 
       opacity: 0; 
     }
@@ -105,7 +107,7 @@
     .reveal-up {
       opacity: 0;
       transform: translateY(30px);
-      animation: revealUp 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+      animation: revealUp 0.9s cubic-bezier(0.23, 1, 0.32, 1) forwards;
     }
     
     @keyframes revealUp {
@@ -252,6 +254,7 @@
       letter-spacing: 0.02em;
       box-shadow: 0 8px 25px rgba(125, 227, 216, 0.3);
       border: none;
+      border-radius: 0.75rem;
     }
     
     .btn-primary:hover {
@@ -1154,8 +1157,9 @@
           <a href="#services" class="nav-link text-[color:var(--muted)] hover:text-white animate-fade-in stagger-delay-100 touch-target">Services</a>
           <a href="#plans" class="nav-link text-[color:var(--muted)] hover:text-white animate-fade-in stagger-delay-200 touch-target">Plans</a>
           <a href="#about" class="nav-link text-[color:var(--muted)] hover:text-white animate-fade-in stagger-delay-300 touch-target">About</a>
-          <a href="#contact" class="nav-link text-[color:var(--muted)] hover:text-white animate-fade-in stagger-delay-400 touch-target">Contact</a>
-          <a href="https://wa.me/918090516657" class="px-6 py-2 rounded-full bg-white text-black text-sm btn-hover animate-fade-in stagger-delay-500 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 touch-target">
+          <a href="#webapp" class="nav-link text-[color:var(--muted)] hover:text-white animate-fade-in stagger-delay-400 touch-target">Web App</a>
+          <a href="#contact" class="nav-link text-[color:var(--muted)] hover:text-white animate-fade-in stagger-delay-500 touch-target">Contact</a>
+          <a href="https://wa.me/918090516657" class="px-6 py-2 rounded-full bg-white text-black text-sm btn-hover animate-fade-in stagger-delay-600 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 touch-target">
             <i class="fab fa-whatsapp"></i>Book Free Call
           </a>
         </nav>
@@ -1174,6 +1178,7 @@
         <a href="#services" class="block text-[color:var(--muted)] hover:text-teal-300 transition-colors py-3 border-b border-white/10 touch-target">Services</a>
         <a href="#plans" class="block text-[color:var(--muted)] hover:text-teal-300 transition-colors py-3 border-b border-white/10 touch-target">Plans</a>
         <a href="#about" class="block text-[color:var(--muted)] hover:text-teal-300 transition-colors py-3 border-b border-white/10 touch-target">About</a>
+        <a href="#webapp" class="block text-[color:var(--muted)] hover:text-teal-300 transition-colors py-3 border-b border-white/10 touch-target">Web App</a>
         <a href="#contact" class="block text-[color:var(--muted)] hover:text-teal-300 transition-colors py-3 border-b border-white/10 touch-target">Contact</a>
         <a href="https://wa.me/918090516657" class="block text-teal-300 font-medium py-3 text-center bg-teal-300/10 rounded-lg border border-teal-300/20 transition-all duration-300 hover:bg-teal-300/20 flex items-center justify-center gap-2 touch-target">
           <i class="fab fa-whatsapp"></i>Book Free Call
@@ -1225,27 +1230,27 @@
             </div>
             <div class="animate-slide-up stagger-delay-200">
               <div class="team-member">
-                <img src="aditya.jpeg" alt="Rahul Patel" class="team-img">
+                <img src="aditya.jpeg" alt="Aditya Singh" class="team-img">
                 <div class="team-overlay">
-                  <div class="team-name">Rahul Patel</div>
-                  <div class="team-role">CIBIL Specialist</div>
+                  <div class="team-name">Aditya Singh</div>
+                  <div class="team-role">Tech Lead</div>
                 </div>
               </div>
             </div>
             <div class="animate-slide-up stagger-delay-300">
               <div class="team-member">
-                <img src="chittresh.jpeg" alt="Priya Menon" class="team-img">
+                <img src="chittresh.jpeg" alt="Chittresh Goswami" class="team-img">
                 <div class="team-overlay">
-                  <div class="team-name">Priya Menon</div>
-                  <div class="team-role">Behavioral Coach</div>
+                  <div class="team-name">Chittresh Goswami</div>
+                  <div class="team-role">Sr. BDM</div>
                 </div>
               </div>
             </div>
             <div class="animate-slide-up stagger-delay-400">
               <div class="team-member">
-                <img src="hansreynolds.jpeg" alt="Amit Singh" class="team-img">
+                <img src="hansreynolds.jpeg" alt="Hans Reynolds" class="team-img">
                 <div class="team-overlay">
-                  <div class="team-name">Amit Singh</div>
+                  <div class="team-name">Hans Reynolds</div>
                   <div class="team-role">Loan Strategist</div>
                 </div>
               </div>
@@ -1316,6 +1321,67 @@
     <div class="mt-14 text-center">
       <a href="#contact" class="px-8 py-4 rounded-full btn-primary btn-hover btn-responsive scale-in stagger-delay-700 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 interactive-element touch-target">
         Get Personalized Plan
+      </a>
+    </div>
+  </section>
+
+  <!-- WEB APP SECTION -->
+  <section id="webapp" class="container py-20 section-spacing">
+    <div class="text-center mb-14 animate-slide-up">
+      <h2 class="text-3xl font-semibold">Our Web Application</h2>
+      <p class="text-[color:var(--muted)] max-w-2xl mx-auto mt-4 text-lg opacity-90">Cutting-edge technology platform for seamless financial management.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div class="animate-slide-up">
+        <h3 class="text-2xl font-semibold mb-6">Powerful Features</h3>
+        <ul class="space-y-4">
+          <li class="flex items-start gap-3">
+            <div class="w-6 h-6 bg-[color:var(--accent)]/20 rounded-full flex items-center justify-center mt-1 flex-shrink-0">
+              <i class="fas fa-check text-[color:var(--accent)] text-sm"></i>
+            </div>
+            <span>Real-time expense tracking with AI-powered categorization</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="w-6 h-6 bg-[color:var(--accent)]/20 rounded-full flex items-center justify-center mt-1 flex-shrink-0">
+              <i class="fas fa-check text-[color:var(--accent)] text-sm"></i>
+            </div>
+            <span>Automated financial health assessments and recommendations</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="w-6 h-6 bg-[color:var(--accent)]/20 rounded-full flex items-center justify-center mt-1 flex-shrink-0">
+              <i class="fas fa-check text-[color:var(--accent)] text-sm"></i>
+            </div>
+            <span>Secure document storage and sharing with advisors</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="w-6 h-6 bg-[color:var(--accent)]/20 rounded-full flex items-center justify-center mt-1 flex-shrink-0">
+              <i class="fas fa-check text-[color:var(--accent)] text-sm"></i>
+            </div>
+            <span>Customizable dashboards and reporting tools</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="w-6 h-6 bg-[color:var(--accent)]/20 rounded-full flex items-center justify-center mt-1 flex-shrink-0">
+              <i class="fas fa-check text-[color:var(--accent)] text-sm"></i>
+            </div>
+            <span>Multi-device synchronization across all your devices</span>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="animate-slide-up">
+        <div class="relative">
+          <div class="absolute inset-0 bg-[color:var(--accent)]/20 rounded-2xl blur-xl"></div>
+          <div class="relative glass-panel p-6 rounded-2xl">
+            <img src="https://placehold.co/500x400/0B1120/7DE3D8?text=Web+App+Interface" alt="Web App Interface" class="w-full rounded-lg">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12 text-center">
+      <a href="https://wa.me/918090516657" class="inline-flex items-center gap-3 px-8 py-4 rounded-full border border-white/6 text-sm text-[color:var(--muted)] hover:text-white hover:border-teal-300/50 transition-all duration-300 scale-in stagger-delay-500 hover:bg-white/5 backdrop-blur-sm btn-responsive touch-target">
+        <i class="fas fa-laptop-code"></i> Request Demo
       </a>
     </div>
   </section>
