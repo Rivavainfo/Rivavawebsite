@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <title>Rivava — Make It Simple.</title>
     <meta name="description" content="Rivava: Make It Simple. Clear, controlled, and growing personal finances." />
-    <!-- Favicon -->
+    <!-- Favicon and mobile-friendly icons -->
     <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="logo.png">
+    <link rel="manifest" href="/site.webmanifest">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome for premium icons -->
@@ -31,9 +33,15 @@
             --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
             --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
         }
-        
-        * { box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             height: 100%;
             margin: 0;
@@ -48,6 +56,7 @@
             opacity: 1;
             transition: opacity 0.5s ease-in-out;
         }
+
         body.fade-out {
             opacity: 0;
         }
@@ -59,7 +68,7 @@
             line-height: 1.2;
             letter-spacing: -0.025em;
         }
-        
+
         p, li, span, a {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             font-weight: 400;
@@ -73,24 +82,52 @@
             transform: translateY(20px);
             will-change: transform, opacity;
         }
+
         @keyframes fadeInUp {
-            to { opacity: 1; transform: translateY(0); }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        .stagger-delay-100 { animation-delay: 0.1s; }
-        .stagger-delay-200 { animation-delay: 0.2s; }
-        .stagger-delay-300 { animation-delay: 0.3s; }
-        .stagger-delay-400 { animation-delay: 0.4s; }
-        .stagger-delay-500 { animation-delay: 0.5s; }
-        .stagger-delay-600 { animation-delay: 0.6s; }
-        .stagger-delay-700 { animation-delay: 0.7s; }
-        .stagger-delay-800 { animation-delay: 0.8s; }
+
+        .stagger-delay-100 {
+            animation-delay: 0.1s;
+        }
+
+        .stagger-delay-200 {
+            animation-delay: 0.2s;
+        }
+
+        .stagger-delay-300 {
+            animation-delay: 0.3s;
+        }
+
+        .stagger-delay-400 {
+            animation-delay: 0.4s;
+        }
+
+        .stagger-delay-500 {
+            animation-delay: 0.5s;
+        }
+
+        .stagger-delay-600 {
+            animation-delay: 0.6s;
+        }
+
+        .stagger-delay-700 {
+            animation-delay: 0.7s;
+        }
+
+        .stagger-delay-800 {
+            animation-delay: 0.8s;
+        }
 
         /* Professional hover effects */
         .card-hover {
             transition: var(--transition-card);
             will-change: transform, box-shadow;
         }
-        
+
         .card-hover:hover {
             transform: translateY(-12px) scale(1.02);
             box-shadow: var(--hover-glow);
@@ -102,7 +139,7 @@
             overflow: hidden;
             cursor: pointer;
         }
-        
+
         .btn-hover::before {
             content: '';
             position: absolute;
@@ -110,14 +147,14 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
             transition: left 0.8s;
         }
-        
+
         .btn-hover:hover::before {
             left: 100%;
         }
-        
+
         .btn-hover:hover {
             transform: translateY(-3px);
             box-shadow: 0 15px 35px rgba(125, 227, 216, 0.4);
@@ -129,7 +166,7 @@
             padding: 4px 0;
             cursor: pointer;
         }
-        
+
         .nav-link::after {
             content: '';
             position: absolute;
@@ -140,7 +177,7 @@
             background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
             transition: width 0.3s ease;
         }
-        
+
         .nav-link:hover::after {
             width: 100%;
         }
@@ -160,8 +197,13 @@
         }
 
         @keyframes glow {
-            from { filter: drop-shadow(0 0 8px rgba(125, 227, 216, 0.4)); }
-            to { filter: drop-shadow(0 0 20px rgba(125, 227, 216, 0.8)); }
+            from {
+                filter: drop-shadow(0 0 8px rgba(125, 227, 216, 0.4));
+            }
+
+            to {
+                filter: drop-shadow(0 0 20px rgba(125, 227, 216, 0.8));
+            }
         }
 
         .hero-rivava {
@@ -178,13 +220,23 @@
         }
 
         @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
         }
 
         @keyframes heroGlow {
-            from { filter: drop-shadow(0 0 15px rgba(125, 227, 216, 0.5)); }
-            to { filter: drop-shadow(0 0 30px rgba(125, 227, 216, 0.9)); }
+            from {
+                filter: drop-shadow(0 0 15px rgba(125, 227, 216, 0.5));
+            }
+
+            to {
+                filter: drop-shadow(0 0 30px rgba(125, 227, 216, 0.9));
+            }
         }
 
         /* Underline accent for links */
@@ -192,7 +244,7 @@
             position: relative;
             display: inline-block;
         }
-        
+
         .accent-underline::after {
             content: "";
             position: absolute;
@@ -207,7 +259,7 @@
             transform-origin: left;
             transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
         }
-        
+
         .accent-underline:hover::after {
             transform: scaleX(1);
             opacity: 0.5;
@@ -226,7 +278,7 @@
             border: none;
             border-radius: 0.75rem;
         }
-        
+
         .btn-primary:hover {
             transform: translateY(-4px);
             box-shadow: 0 20px 50px rgba(125, 227, 216, 0.5);
@@ -234,15 +286,15 @@
 
         /* Glass panel with advanced effects */
         .glass-panel {
-            background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
-            border: 1px solid rgba(255,255,255,0.06);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.015));
+            border: 1px solid rgba(255, 255, 255, 0.06);
             backdrop-filter: blur(12px);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             border-radius: 1.5rem;
             position: relative;
             overflow: hidden;
         }
-        
+
         .glass-panel::before {
             content: '';
             position: absolute;
@@ -253,27 +305,50 @@
             pointer-events: none;
             border-radius: 1.5rem;
         }
-        
+
         .glass-panel:hover::before {
             opacity: 1;
         }
-        
+
         .glass-panel:hover {
             border-color: rgba(125, 227, 216, 0.2);
-            background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
             transform: translateY(-6px);
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), var(--hover-glow);
         }
 
         /* Staggered animations */
-        .stagger-delay-100 { animation-delay: 0.1s; }
-        .stagger-delay-200 { animation-delay: 0.2s; }
-        .stagger-delay-300 { animation-delay: 0.3s; }
-        .stagger-delay-400 { animation-delay: 0.4s; }
-        .stagger-delay-500 { animation-delay: 0.5s; }
-        .stagger-delay-600 { animation-delay: 0.6s; }
-        .stagger-delay-700 { animation-delay: 0.7s; }
-        .stagger-delay-800 { animation-delay: 0.8s; }
+        .stagger-delay-100 {
+            animation-delay: 0.1s;
+        }
+
+        .stagger-delay-200 {
+            animation-delay: 0.2s;
+        }
+
+        .stagger-delay-300 {
+            animation-delay: 0.3s;
+        }
+
+        .stagger-delay-400 {
+            animation-delay: 0.4s;
+        }
+
+        .stagger-delay-500 {
+            animation-delay: 0.5s;
+        }
+
+        .stagger-delay-600 {
+            animation-delay: 0.6s;
+        }
+
+        .stagger-delay-700 {
+            animation-delay: 0.7s;
+        }
+
+        .stagger-delay-800 {
+            animation-delay: 0.8s;
+        }
 
         /* Team member styling - premium circular design */
         .team-member {
@@ -288,13 +363,13 @@
             border: 2px solid rgba(125, 227, 216, 0.1);
             will-change: transform;
         }
-        
+
         .team-member:hover {
             transform: translateY(-14px) scale(1.04);
             box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5), var(--hover-glow);
             border-color: rgba(125, 227, 216, 0.3);
         }
-        
+
         .team-img {
             width: 100%;
             height: 100%;
@@ -302,31 +377,28 @@
             transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
             backface-visibility: hidden;
         }
-        
+
         .team-member:hover .team-img {
             transform: scale(1.15);
         }
-        
+
         .team-overlay {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(to top,
-                rgba(7, 16, 38, 0.95) 0%,
-                rgba(7, 16, 38, 0.7) 50%,
-                transparent 100%);
+            background: linear-gradient(to top, rgba(7, 16, 38, 0.95) 0%, rgba(7, 16, 38, 0.7) 50%, transparent 100%);
             padding: 2rem 1.5rem;
             transform: translateY(120%);
             transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
             border-radius: 50%;
             overflow: hidden;
         }
-        
+
         .team-member:hover .team-overlay {
             transform: translateY(0);
         }
-        
+
         .team-name {
             font-weight: 700;
             font-size: 1.3rem;
@@ -334,14 +406,14 @@
             color: white;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
         }
-        
+
         .team-role {
             font-size: 0.95rem;
             color: var(--accent);
             font-weight: 500;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
         }
-        
+
         /* Circular frame with advanced effects */
         .team-member::before {
             content: '';
@@ -354,11 +426,11 @@
             transition: opacity 0.5s ease;
             z-index: 1;
         }
-        
+
         .team-member:hover::before {
             opacity: 1;
         }
-        
+
         /* Inner glow effect */
         .team-member::after {
             content: '';
@@ -371,14 +443,61 @@
             pointer-events: none;
             z-index: 2;
         }
-        
+
         .team-member:hover::after {
             opacity: 1;
         }
-        
+
         @keyframes rotation {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        /* Mobile-optimized Team section */
+        @media (max-width: 768px) {
+            #hero .team-member {
+                width: 160px;
+                height: 160px;
+            }
+        }
+        
+        .team-slider-wrapper {
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .team-slider {
+            display: flex;
+            gap: 2.5rem;
+            padding-bottom: 1rem;
+            scroll-snap-align: center;
+        }
+        
+        .team-slider .team-member-container {
+            flex-shrink: 0;
+            width: 240px;
+            scroll-snap-align: center;
+            opacity: 0.6;
+            transition: opacity 0.5s ease;
+        }
+        
+        .team-slider .team-member-container.is-active {
+            opacity: 1;
+        }
+        
+        .team-slider::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .team-slider {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
         }
 
         /* Section styling */
@@ -386,7 +505,7 @@
             padding: 6rem 0;
             position: relative;
         }
-        
+
         .section::before {
             content: '';
             position: absolute;
@@ -396,7 +515,7 @@
             height: 1px;
             background: rgba(255, 255, 255, 0.1);
         }
-        
+
         .section:first-of-type::before {
             display: none;
         }
@@ -417,12 +536,12 @@
             opacity: 0;
             transition: opacity 0.4s ease;
         }
-        
+
         .modal.show {
             display: flex;
             opacity: 1;
         }
-        
+
         .modal-content {
             background: linear-gradient(180deg, #0B1120, #071026);
             border: 1px solid rgba(125, 227, 216, 0.2);
@@ -437,11 +556,11 @@
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 30px rgba(125, 227, 216, 0.2);
             position: relative;
         }
-        
+
         .modal.show .modal-content {
             transform: translateY(0);
         }
-        
+
         .modal-close {
             position: absolute;
             top: 1.5rem;
@@ -459,12 +578,12 @@
             align-items: center;
             justify-content: center;
         }
-        
+
         .modal-close:hover {
             background: rgba(125, 227, 216, 0.3);
             transform: rotate(90deg);
         }
-        
+
         .modal-title {
             font-size: 1.8rem;
             font-weight: 700;
@@ -476,26 +595,26 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        
+
         .modal-subtitle {
             text-align: center;
             color: var(--muted);
             margin-bottom: 2rem;
             font-size: 0.95rem;
         }
-        
+
         .modal-form {
             display: grid;
             gap: 1rem;
         }
-        
+
         .modal-form label {
             font-size: 0.9rem;
             color: var(--muted);
             margin-bottom: 0.5rem;
             display: block;
         }
-        
+
         .modal-form input,
         .modal-form select,
         .modal-form textarea {
@@ -508,7 +627,7 @@
             font-size: 1rem;
             transition: all 0.3s ease;
         }
-        
+
         .modal-form input:focus,
         .modal-form select:focus,
         .modal-form textarea:focus {
@@ -517,12 +636,12 @@
             box-shadow: 0 0 0 3px rgba(125, 227, 216, 0.2);
             background: rgba(125, 227, 216, 0.05);
         }
-        
+
         .modal-form textarea {
             min-height: 100px;
             resize: vertical;
         }
-        
+
         .modal-submit {
             margin-top: 1.5rem;
             padding: 1rem 0;
@@ -537,7 +656,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .modal-submit::before {
             content: '';
             position: absolute;
@@ -545,19 +664,19 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
             transition: left 0.8s;
         }
-        
+
         .modal-submit:hover::before {
             left: 100%;
         }
-        
+
         .modal-submit:hover {
             transform: translateY(-3px);
             box-shadow: 0 15px 35px rgba(125, 227, 216, 0.4);
         }
-        
+
         .modal-submit:active {
             transform: translateY(0);
         }
@@ -569,7 +688,7 @@
             display: inline-block;
             transition: all 0.4s ease;
         }
-        
+
         .card-hover:hover .service-icon {
             transform: scale(1.1) rotate(5deg);
         }
@@ -581,109 +700,109 @@
                 letter-spacing: 0.1em;
                 line-height: 1.2;
             }
-            
+
             .rivava-text {
                 font-size: 1.8rem;
                 letter-spacing: 0.08em;
             }
-            
+
             .section {
                 padding: 4rem 0;
             }
-            
+
             .team-member {
                 width: 180px;
                 height: 180px;
             }
-            
+
             .team-name {
                 font-size: 1.1rem;
             }
-            
+
             .team-role {
                 font-size: 0.85rem;
             }
-            
+
             .glass-panel {
                 border-radius: 1.2rem;
             }
-            
+
             .btn-primary {
                 padding: 0.8rem 1.5rem;
                 font-size: 0.95rem;
             }
-            
+
             .modal-content {
                 margin: 1rem;
                 padding: 1.5rem;
             }
-            
+
             .modal-title {
                 font-size: 1.5rem;
             }
-            
+
             .reveal-up {
                 transform: translateY(20px);
             }
-            
+
             /* Adjust hero section spacing on mobile */
             #hero {
                 min-height: 100vh;
                 padding: 8rem 0 4rem;
             }
-            
+
             .mobile-nav {
                 transform: translateY(-100%);
                 transition: transform 0.3s ease-out;
             }
-            
+
             .mobile-nav.show {
                 transform: translateY(0);
             }
         }
-        
+
         @media (max-width: 480px) {
             .hero-rivava {
                 font-size: 2.3rem;
             }
-            
+
             .team-member {
                 width: 160px;
                 height: 160px;
             }
-            
+
             .team-overlay {
                 padding: 1.5rem 1rem;
             }
-            
+
             .team-name {
                 font-size: 1rem;
             }
-            
+
             .section {
                 padding: 3rem 0;
             }
-            
+
             .btn-primary {
                 padding: 0.7rem 1.2rem;
                 font-size: 0.9rem;
             }
-            
+
             .nav-link {
                 padding: 3px 0;
             }
-            
+
             .modal-form input,
             .modal-form select,
             .modal-form textarea {
                 padding: 0.7rem 0.9rem;
             }
-            
+
             .modal-submit {
                 padding: 0.9rem 0;
                 font-size: 1rem;
             }
-            
+
             /* Further adjust hero spacing on small mobile */
             #hero {
                 min-height: 100vh;
@@ -698,20 +817,20 @@
             z-index: 0;
             pointer-events: none;
         }
-        
+
         .floating-circle {
             border-radius: 50%;
             background: var(--accent);
             filter: blur(20px);
         }
-        
+
         .floating-1 {
             top: 15%;
             left: 10%;
             width: 120px;
             height: 120px;
         }
-        
+
         .floating-2 {
             bottom: 20%;
             right: 15%;
@@ -719,7 +838,7 @@
             height: 80px;
             background: var(--accent-secondary);
         }
-        
+
         .floating-3 {
             top: 60%;
             left: 5%;
@@ -732,30 +851,30 @@
         html {
             scroll-behavior: smooth;
         }
-        
+
         /* Focus states for accessibility */
         button:focus, a:focus {
             outline: 2px solid var(--accent);
             outline-offset: 2px;
         }
-        
+
         /* Form elements */
         .form-input {
             transition: all 0.3s ease;
         }
-        
+
         .form-input:focus {
             border-color: rgba(125, 227, 216, 0.5);
             box-shadow: 0 0 0 3px rgba(125, 227, 216, 0.1);
         }
-        
+
         /* Service card enhancements */
         .service-card {
             transition: var(--transition-card);
             position: relative;
             overflow: hidden;
         }
-        
+
         .service-card::before {
             content: '';
             position: absolute;
@@ -769,18 +888,18 @@
             transition: transform 0.5s ease;
             border-radius: 2px 2px 0 0;
         }
-        
+
         .card-hover:hover .service-card::before {
             transform: scaleX(1);
         }
-        
+
         /* Plan card enhancements */
         .plan-card {
             transition: var(--transition-card);
             position: relative;
             overflow: hidden;
         }
-        
+
         .plan-card::before {
             content: '';
             position: absolute;
@@ -791,17 +910,17 @@
             transition: opacity 0.5s ease;
             pointer-events: none;
         }
-        
+
         .card-hover:hover .plan-card::before {
             opacity: 1;
         }
-        
+
         /* Testimonial styling */
         .testimonial {
             position: relative;
             padding: 1.5rem;
         }
-        
+
         .testimonial::before {
             content: '"';
             font-size: 5rem;
@@ -812,29 +931,29 @@
             line-height: 1;
             z-index: 0;
         }
-        
+
         .testimonial-content {
             position: relative;
             z-index: 1;
         }
-        
+
         /* Contact form styling */
         .contact-form {
             position: relative;
         }
-        
+
         .form-group {
             position: relative;
             margin-bottom: 1.5rem;
         }
-        
+
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
             color: var(--muted);
             font-size: 0.9rem;
         }
-        
+
         .form-control {
             width: 100%;
             padding: 0.8rem 1rem;
@@ -845,34 +964,34 @@
             font-size: 1rem;
             transition: all 0.3s ease;
         }
-        
+
         .form-control:focus {
             outline: none;
             border-color: var(--accent);
             box-shadow: 0 0 0 3px rgba(125, 227, 216, 0.2);
             background: rgba(125, 227, 216, 0.05);
         }
-        
+
         .btn-contact {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
             transition: var(--transition-button);
         }
-        
+
         .btn-contact i {
             transition: transform 0.3s ease;
         }
-        
+
         .btn-contact:hover i {
             transform: scale(1.2);
         }
-        
+
         /* Footer styling */
         footer {
             margin-top: 6rem;
         }
-        
+
         /* WhatsApp button enhancement */
         .whatsapp-btn {
             transition: var(--transition-button);
@@ -884,16 +1003,24 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
             animation: pulse 2s infinite;
         }
-        
+
         .whatsapp-btn:hover {
             transform: translateY(-4px) scale(1.05);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(125, 227, 216, 0.3);
         }
-        
+
         @keyframes pulse {
-            0% { box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 0 0 rgba(125, 227, 216, 0.4); }
-            70% { box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 0 10px rgba(125, 227, 216, 0); }
-            100% { box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 0 0 rgba(125, 227, 216, 0); }
+            0% {
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 0 0 rgba(125, 227, 216, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 0 10px rgba(125, 227, 216, 0);
+            }
+
+            100% {
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 0 0 rgba(125, 227, 216, 0);
+            }
         }
 
         /* Plan styling */
@@ -902,7 +1029,7 @@
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        
+
         .popular-tag {
             position: absolute;
             top: -8px;
@@ -918,42 +1045,50 @@
             z-index: 10;
             animation: pulse-popular 2s infinite;
         }
-        
+
         @keyframes pulse-popular {
-            0% { transform: translateX(-50%) scale(1); }
-            50% { transform: translateX(-50%) scale(1.05); }
-            100% { transform: translateX(-50%) scale(1); }
+            0% {
+                transform: translateX(-50%) scale(1);
+            }
+
+            50% {
+                transform: translateX(-50%) scale(1.05);
+            }
+
+            100% {
+                transform: translateX(-50%) scale(1);
+            }
         }
-        
+
         .user-choice {
             background: linear-gradient(45deg, var(--accent), var(--accent-secondary));
             color: #032022;
         }
-        
+
         .elite-customer {
             background: linear-gradient(45deg, #FF6B6B, #FF8E53);
             color: white;
         }
-        
+
         .plan-title {
             font-size: 1.1rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.1em;
         }
-        
+
         .plan-price {
             font-size: 2.5rem;
             font-weight: 700;
             margin: 0.5rem 0;
         }
-        
+
         .plan-features {
             list-style: none;
             padding: 0;
             margin: 1.5rem 0;
         }
-        
+
         .plan-features li {
             padding: 0.5rem 0;
             color: var(--muted);
@@ -961,89 +1096,112 @@
             align-items: center;
             gap: 0.5rem;
         }
-        
+
         .plan-features li::before {
             content: '✓';
             color: var(--accent);
             font-weight: bold;
         }
-        
+
         /* Hero section spacing fix */
         .hero-content {
             padding-top: 3rem;
             padding-bottom: 2rem;
         }
-        
+
         /* Animation improvements */
         .animate-slide-up {
             animation: slideUp 0.9s cubic-bezier(0.23, 1, 0.32, 1) forwards;
             opacity: 0;
         }
-        
+
         .animate-fade-in {
             animation: fadeIn 1.1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
             opacity: 0;
         }
-        
-        .stagger-delay-100 { animation-delay: 0.1s; }
-        .stagger-delay-200 { animation-delay: 0.2s; }
-        .stagger-delay-300 { animation-delay: 0.3s; }
-        .stagger-delay-400 { animation-delay: 0.4s; }
-        .stagger-delay-500 { animation-delay: 0.5s; }
-        .stagger-delay-600 { animation-delay: 0.6s; }
-        .stagger-delay-700 { animation-delay: 0.7s; }
-        .stagger-delay-800 { animation-delay: 0.8s; }
+
+        .stagger-delay-100 {
+            animation-delay: 0.1s;
+        }
+
+        .stagger-delay-200 {
+            animation-delay: 0.2s;
+        }
+
+        .stagger-delay-300 {
+            animation-delay: 0.3s;
+        }
+
+        .stagger-delay-400 {
+            animation-delay: 0.4s;
+        }
+
+        .stagger-delay-500 {
+            animation-delay: 0.5s;
+        }
+
+        .stagger-delay-600 {
+            animation-delay: 0.6s;
+        }
+
+        .stagger-delay-700 {
+            animation-delay: 0.7s;
+        }
+
+        .stagger-delay-800 {
+            animation-delay: 0.8s;
+        }
 
         /* More interactive elements */
         .interactive-element {
             transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
             cursor: pointer;
         }
-        
+
         .interactive-element:hover {
             transform: translateY(-6px);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
         }
-        
+
         /* Mobile navigation improvements */
         .mobile-nav {
             transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
         }
-        
+
         /* Section spacing optimization */
         .section-spacing {
             padding: 6rem 0;
         }
-        
+
         @media (max-width: 768px) {
             .section-spacing {
                 padding: 4rem 0;
             }
-            
+
             .hero-content {
                 padding-top: 2rem;
                 padding-bottom: 1.5rem;
             }
         }
-        
+
         @media (max-width: 480px) {
             .section-spacing {
                 padding: 3rem 0;
             }
-            
+
             .hero-content {
                 padding-top: 1.5rem;
                 padding-bottom: 1rem;
             }
         }
-        
+
         /* Header scroll effects */
         .header-scrolled {
             background: rgba(0, 0, 0, 0.8) !important;
             backdrop-filter: blur(10px) !important;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3) !important;
         }
-        
+
         /* Responsive container */
         .container {
             width: 100%;
@@ -1051,13 +1209,13 @@
             margin: 0 auto;
             padding: 0 1.5rem;
         }
-        
+
         /* Button responsiveness */
         .btn-responsive {
             min-height: 3rem;
             min-width: 10rem;
         }
-        
+
         @media (max-width: 480px) {
             .btn-responsive {
                 min-height: 2.5rem;
@@ -1066,23 +1224,23 @@
                 padding: 0.6rem 1rem;
             }
         }
-        
+
         /* Form responsiveness */
         .form-responsive {
             width: 100%;
         }
-        
+
         /* Animation performance optimization */
         .fade-in-up {
             will-change: transform, opacity;
         }
-        
+
         /* Mobile touch enhancements */
         .touch-target {
             min-height: 44px;
             min-width: 44px;
         }
-        
+
         /* Font loading */
         @font-face {
             font-family: 'Inter';
@@ -1091,7 +1249,7 @@
             font-display: swap;
             src: url(https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfMZs.woff2) format('woff2');
         }
-        
+
         @font-face {
             font-family: 'Inter';
             font-style: normal;
@@ -1113,19 +1271,19 @@
             position: relative;
             overflow: hidden;
             border-radius: 1.5rem;
-            background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
             border: 1px solid rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             will-change: transform, box-shadow;
         }
-        
+
         .web-app-card:hover {
             transform: translateY(-8px) scale(1.03);
-            box-shadow: 0 25px 60px rgba(0,0,0,0.5), 0 0 25px rgba(125, 227, 216, 0.4);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 25px rgba(125, 227, 216, 0.4);
             border-color: rgba(125, 227, 216, 0.3);
         }
-        
+
         .web-app-card::before {
             content: '';
             position: absolute;
@@ -1138,6 +1296,43 @@
 
         .web-app-card:hover::before {
             opacity: 1;
+        }
+
+        /* Header logo specific styles */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 1;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .logo-container.scrolled-out {
+            opacity: 0;
+            transform: translateX(-10px);
+        }
+
+        .logo-image {
+            height: 32px;
+            width: 32px;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+        
+        /* Mobile team grid */
+        @media (max-width: 768px) {
+            .team-grid {
+                display: flex;
+                overflow-x: scroll;
+                scroll-snap-type: x mandatory;
+                padding-bottom: 2rem;
+                gap: 2rem;
+            }
+            .team-grid > div {
+                flex-shrink: 0;
+                scroll-snap-align: center;
+                min-width: 240px; /* Adjust to fit one team member per view */
+            }
         }
     </style>
 </head>
@@ -1152,9 +1347,12 @@
         <div class="container">
             <div class="flex items-center justify-between py-4">
                 <a href="#hero" class="flex items-center gap-3 fade-in-up touch-target">
-                    <div>
-                        <div class="rivava-text leading-none">RIVAVA</div>
-                        <div class="text-xs text-[color:var(--muted)] -mt-1 tracking-wider">Make It Simple.</div>
+                    <div id="header-logo" class="logo-container">
+                        <img src="logo.png" alt="Rivava Logo" class="logo-image" />
+                        <div>
+                            <div class="rivava-text leading-none">RIVAVA</div>
+                            <div class="text-xs text-[color:var(--muted)] -mt-1 tracking-wider">Make It Simple.</div>
+                        </div>
                     </div>
                 </a>
 
@@ -1201,7 +1399,7 @@
                         <div class="hero-rivava fade-in-up">RIVAVA</div>
                         <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight fade-in-up stagger-delay-200">Make It Simple.</h1>
                         <p class="max-w-xl text-[color:var(--muted)] text-lg md:text-xl mt-3 fade-in-up stagger-delay-300 opacity-90">Your money. Clear. Controlled. Growing.</p>
-    
+
                         <div class="mt-10 flex flex-col sm:flex-row gap-5 items-center">
                             <a href="#contact" class="btn-primary btn-hover btn-responsive inline-flex items-center justify-center px-8 py-4 rounded-full text-lg font-semibold shadow-xl fade-in-up stagger-delay-400 hover:shadow-2xl transition-all duration-300 interactive-element touch-target">
                                 Get Your Free Plan
@@ -1210,7 +1408,7 @@
                                 <i class="fas fa-compass"></i> Explore Services
                             </a>
                         </div>
-    
+
                         <div class="mt-8 text-sm text-[color:var(--muted)] fade-in-up stagger-delay-600 opacity-80">
                             <div class="flex items-center justify-center gap-4">
                                 <span>Trusted by individuals, families & small businesses</span>
@@ -1219,10 +1417,11 @@
                             </div>
                         </div>
                     </div>
-    
+
+                    <!-- Updated Team Section for better mobile UX -->
                     <div class="mt-24 pt-12 border-t border-white/6">
                         <h2 class="text-3xl font-semibold mb-10 fade-in-up">Our Expert Team</h2>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+                        <div class="team-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
                             <div class="fade-in-up stagger-delay-100">
                                 <div class="team-member">
                                     <img src="aadya.jpeg" alt="Anjali Sharma" class="team-img">
@@ -1264,14 +1463,14 @@
                 </div>
             </div>
         </section>
-    
+
         <!-- SERVICES -->
         <section id="services" class="container py-20 section-spacing">
             <div class="text-center mb-14 fade-in-up">
                 <h2 class="text-3xl font-semibold">Our Services</h2>
                 <p class="text-[color:var(--muted)] max-w-2xl mx-auto mt-4 text-lg opacity-90">Practical, measurable & habit-driven personal finance services for every stage of life.</p>
             </div>
-    
+
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="p-8 rounded-2xl glass-panel card-hover service-card fade-in-up stagger-delay-100 interactive-element">
                     <div class="text-4xl mb-4 service-icon">
@@ -1280,7 +1479,7 @@
                     <div class="font-semibold text-xl mt-2 mb-3">Fund Manager</div>
                     <div class="text-[color:var(--muted)] text-sm leading-relaxed">Monthly personalised advice, mid-month check, and review meetings by NISM-certified advisors.</div>
                 </div>
-    
+
                 <div class="p-8 rounded-2xl glass-panel card-hover service-card fade-in-up stagger-delay-200 interactive-element">
                     <div class="text-4xl mb-4 service-icon">
                         <i class="fas fa-file-invoice-dollar"></i>
@@ -1288,7 +1487,7 @@
                     <div class="font-semibold text-xl mt-2 mb-3">Expense Analysis</div>
                     <div class="text-[color:var(--muted)] text-sm leading-relaxed">Daily tracking, EMP model (Evaluate, Monitor, Plan) and weekly summaries to optimize spending.</div>
                 </div>
-    
+
                 <div class="p-8 rounded-2xl glass-panel card-hover service-card fade-in-up stagger-delay-300 interactive-element">
                     <div class="text-4xl mb-4 service-icon">
                         <i class="fas fa-shield-alt"></i>
@@ -1296,7 +1495,7 @@
                     <div class="font-semibold text-xl mt-2 mb-3">CIBIL Boost</div>
                     <div class="text-[color:var(--muted)] text-sm leading-relaxed">Actionable steps to improve credit score and support with disputes and credit utilization.</div>
                 </div>
-    
+
                 <div class="p-8 rounded-2xl glass-panel card-hover service-card fade-in-up stagger-delay-400 interactive-element">
                     <div class="text-4xl mb-4 service-icon">
                         <i class="fas fa-hand-holding-usd"></i>
@@ -1304,7 +1503,7 @@
                     <div class="font-semibold text-xl mt-2 mb-3">Loan Repayment Assistance</div>
                     <div class="text-[color:var(--muted)] text-sm leading-relaxed">Profile-based plans to accelerate repayments while preserving your safety net.</div>
                 </div>
-    
+
                 <div class="p-8 rounded-2xl glass-panel card-hover service-card fade-in-up stagger-delay-500 interactive-element">
                     <div class="text-4xl mb-4 service-icon">
                         <i class="fas fa-brain"></i>
@@ -1312,7 +1511,7 @@
                     <div class="font-semibold text-xl mt-2 mb-3">Psychological Support</div>
                     <div class="text-[color:var(--muted)] text-sm leading-relaxed">Habit formation, impulse control, and mindset coaching to make changes stick.</div>
                 </div>
-    
+
                 <div class="p-8 rounded-2xl glass-panel card-hover service-card fade-in-up stagger-delay-600 interactive-element">
                     <div class="text-4xl mb-4 service-icon">
                         <i class="fas fa-video"></i>
@@ -1321,21 +1520,21 @@
                     <div class="text-[color:var(--muted)] text-sm leading-relaxed">One free 15-min consultation monthly. Extra sessions available on-demand.</div>
                 </div>
             </div>
-    
+
             <div class="mt-14 text-center">
                 <a href="#contact" class="px-8 py-4 rounded-full btn-primary btn-hover btn-responsive fade-in-up stagger-delay-700 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 interactive-element touch-target">
                     Get Personalized Plan
                 </a>
             </div>
         </section>
-    
+
         <!-- WEB APP SECTION -->
         <section id="webapp" class="container py-20 section-spacing">
             <div class="text-center mb-14 fade-in-up">
                 <h2 class="text-3xl font-semibold">Our Web Application</h2>
                 <p class="text-[color:var(--muted)] max-w-2xl mx-auto mt-4 text-lg opacity-90">Cutting-edge technology platform for seamless financial management.</p>
             </div>
-    
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div class="fade-in-up">
                     <h3 class="text-2xl font-semibold mb-6">Powerful Features</h3>
@@ -1372,7 +1571,7 @@
                         </li>
                     </ul>
                 </div>
-                
+
                 <div class="fade-in-up">
                     <div class="relative">
                         <div class="absolute inset-0 bg-[color:var(--accent)]/20 rounded-2xl blur-xl"></div>
@@ -1382,21 +1581,21 @@
                     </div>
                 </div>
             </div>
-    
+
             <div class="mt-12 text-center">
                 <a href="#" onclick="openAppModal(); return false;" class="inline-flex items-center gap-3 px-8 py-4 rounded-full border border-white/6 text-sm text-[color:var(--muted)] hover:text-white hover:border-teal-300/50 transition-all duration-300 fade-in-up stagger-delay-500 hover:bg-white/5 backdrop-blur-sm btn-responsive touch-target">
                     <i class="fas fa-laptop-code"></i> Use Apps
                 </a>
             </div>
         </section>
-    
+
         <!-- PLANS -->
         <section id="plans" class="container py-20 section-spacing">
             <div class="text-center mb-12 fade-in-up">
                 <h3 class="text-3xl font-semibold">Subscription Plans</h3>
                 <p class="text-[color:var(--muted)] mt-4 text-lg opacity-90">Transparent pricing to start your financial transformation.</p>
             </div>
-    
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
                 <div class="p-10 rounded-2xl glass-panel card-hover plan-card text-center fade-in-up stagger-delay-200 interactive-element">
                     <div class="plan-title text-[color:var(--muted)] user-choice">User's Choice</div>
@@ -1408,7 +1607,7 @@
                         Choose Plan
                     </button>
                 </div>
-    
+
                 <div class="p-10 rounded-2xl glass-panel card-hover plan-card text-center shadow-2xl border border-teal-400/20 relative fade-in-up stagger-delay-300 interactive-element">
                     <div class="popular-tag">Elite Customers</div>
                     <div class="plan-title text-[color:var(--muted)] elite-customer">Premium</div>
@@ -1422,14 +1621,14 @@
                 </div>
             </div>
         </section>
-    
+
         <!-- TESTIMONIALS -->
         <section id="testimonials" class="container py-20 section-spacing">
             <div class="text-center mb-12 fade-in-up">
                 <h3 class="text-3xl font-semibold">What our customers say</h3>
                 <p class="text-[color:var(--muted)] mt-4 text-lg opacity-90">Stories of clarity, control and lasting change.</p>
             </div>
-    
+
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="p-8 rounded-2xl glass-panel card-hover testimonial fade-in-up stagger-delay-100 interactive-element">
                     <div class="testimonial-content">
@@ -1451,14 +1650,14 @@
                 </div>
             </div>
         </section>
-    
+
         <!-- ABOUT -->
         <section id="about" class="container py-20 section-spacing">
             <div class="text-center mb-12 fade-in-up">
                 <h3 class="text-3xl font-semibold">About Rivava</h3>
                 <p class="text-[color:var(--muted)] max-w-2xl mx-auto mt-4 text-lg opacity-90">Rivava focuses purely on personal finance—no stock tips. We use NISM-certified advisors, the EMP model (Evaluation, Monitoring, Planning) and habit-driven coaching to deliver measurable results.</p>
             </div>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mt-10">
                 <div class="fade-in-up">
                     <ul class="text-[color:var(--muted)] space-y-6">
@@ -1494,20 +1693,20 @@
                         </li>
                     </ul>
                 </div>
-                
+
                 <div class="fade-in-up">
                     <img src="https://placehold.co/500x400/0B1120/7DE3D8?text=Financial+Planning" alt="Financial Planning" class="w-full rounded-2xl glass-panel p-2">
                 </div>
             </div>
         </section>
-    
+
         <!-- CONTACT -->
         <section id="contact" class="container py-20 section-spacing">
             <div class="text-center mb-12 fade-in-up">
                 <h3 class="text-3xl font-semibold">Get in touch</h3>
                 <p class="text-[color:var(--muted)] mt-4 text-lg opacity-90">Book your free 15-minute consultation and we'll reach out within 24 hours.</p>
             </div>
-    
+
             <form id="contactForm" action="https://formspree.io/f/your-form-id" method="POST" class="contact-form grid grid-cols-1 md:grid-cols-2 gap-6 fade-in-up stagger-delay-200 form-responsive">
                 <div class="form-group">
                     <label for="name">Full Name</label>
@@ -1535,7 +1734,7 @@
                     <label for="message">Your Financial Goal</label>
                     <textarea id="message" name="message" placeholder="Tell us about your main financial concern or goal" class="form-control" rows="4"></textarea>
                 </div>
-    
+
                 <div class="md:col-span-2 flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
                     <div class="text-sm text-[color:var(--muted)]">We respect your privacy. Your data is safe.</div>
                     <button type="submit" class="px-8 py-4 rounded-full btn-primary btn-hover text-lg font-semibold shadow-lg hover:shadow-2xl transition-all duration-300 btn-contact interactive-element btn-responsive touch-target">
@@ -1543,7 +1742,7 @@
                     </button>
                 </div>
             </form>
-    
+
             <div class="mt-8 text-center text-sm text-[color:var(--muted)] fade-in-up stagger-delay-400">
                 Or message us directly on WhatsApp:
                 <a href="https://wa.me/918090516657" class="text-teal-300 hover:text-teal-200 transition-colors font-medium inline-flex items-center gap-2 touch-target">
@@ -1551,7 +1750,7 @@
                 </a>
             </div>
         </section>
-    
+
         <!-- FOOTER -->
         <footer class="border-t border-white/6 mt-20">
             <div class="container py-12 flex flex-col md:flex-row items-center justify-between gap-6">
@@ -1566,12 +1765,29 @@
                 </div>
             </div>
         </footer>
-    
+
         <!-- Floating WhatsApp -->
         <a href="https://wa.me/918090516657" class="whatsapp-btn fixed right-6 bottom-6 p-4 rounded-full shadow-2xl z-40 touch-target" style="background:linear-gradient(90deg,var(--accent), var(--accent-secondary)); color:#021117" aria-label="WhatsApp">
             <i class="fab fa-whatsapp text-xl"></i>
         </a>
-    
+        
+        <!-- Message Modal -->
+        <div id="messageModal" class="modal">
+            <div class="modal-content max-w-sm">
+                <button class="modal-close" onclick="closeModal('messageModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="text-center">
+                    <div id="messageIcon" class="text-4xl text-[color:var(--accent)] mb-4"></div>
+                    <h3 id="messageTitle" class="modal-title mb-2"></h3>
+                    <p id="messageBody" class="modal-subtitle"></p>
+                </div>
+                <div class="mt-8 text-center">
+                    <button class="btn-primary px-6 py-3 rounded-full" onclick="closeModal('messageModal')">OK</button>
+                </div>
+            </div>
+        </div>
+
         <!-- Plan Selection Modal -->
         <div id="planModal" class="modal">
             <div class="modal-content">
@@ -1580,30 +1796,30 @@
                 </button>
                 <h3 class="modal-title">Complete Your Plan Selection</h3>
                 <p class="modal-subtitle">Please provide your details so we can set up your personalized financial plan.</p>
-                
+
                 <form id="planForm" class="modal-form">
                     <input type="hidden" id="selectedPlan" name="plan">
-                    
+
                     <div class="form-group">
                         <label for="modalName">Full Name</label>
                         <input type="text" id="modalName" name="name" required placeholder="Enter your full name">
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="modalEmail">Email Address</label>
                         <input type="email" id="modalEmail" name="email" required placeholder="Enter your email address">
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="modalPhone">Phone Number</label>
                         <input type="tel" id="modalPhone" name="phone" required placeholder="WhatsApp preferred">
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="modalMessage">Financial Goals</label>
                         <textarea id="modalMessage" name="message" placeholder="Tell us about your financial goals and concerns"></textarea>
                     </div>
-                    
+
                     <button type="submit" class="modal-submit">
                         <i class="fas fa-check-circle"></i> Confirm & Get Started
                     </button>
@@ -1619,7 +1835,7 @@
                 </button>
                 <h3 class="modal-title">Select an App</h3>
                 <p class="modal-subtitle">Explore our free financial tools to start your journey.</p>
-                
+
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-6 text-center">
                     <!-- FD Calculator Card -->
                     <a href="https://rivavainfo.github.io/FD-Calculator/" class="web-app-card p-6 flex flex-col items-center justify-center interactive-element fade-in-up stagger-delay-100 external-link">
@@ -1655,7 +1871,7 @@
         const hambBtn = document.getElementById('hambBtn');
         const mobileMenu = document.getElementById('mobileMenu');
         const header = document.getElementById('header');
-        
+
         hambBtn?.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
             if (!mobileMenu.classList.contains('hidden')) {
@@ -1673,7 +1889,7 @@
                 document.body.style.overflow = 'hidden';
             }
         }
-        
+
         function closeModal(modalId) {
             const modal = document.getElementById(modalId);
             if (modal) {
@@ -1682,6 +1898,13 @@
                     document.body.style.overflow = 'auto';
                 }, 400);
             }
+        }
+
+        function showMessageModal(title, message, icon) {
+            document.getElementById('messageTitle').textContent = title;
+            document.getElementById('messageBody').textContent = message;
+            document.getElementById('messageIcon').innerHTML = `<i class="${icon}"></i>`;
+            openModal('messageModal');
         }
 
         function openPlanModal(plan) {
@@ -1693,7 +1916,7 @@
         function openAppModal() {
             openModal('appModal');
         }
-        
+
         // Close modals when clicking outside
         document.querySelectorAll('.modal').forEach(modal => {
             modal.addEventListener('click', (e) => {
@@ -1702,7 +1925,7 @@
                 }
             });
         });
-        
+
         // Close modals with escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
@@ -1718,12 +1941,12 @@
             e.preventDefault();
             const button = e.target.querySelector('button[type="submit"]');
             const originalHTML = button.innerHTML;
-            
+
             button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
             button.disabled = true;
-            
+
             setTimeout(() => {
-                alert('Thanks! Your request has been sent. We will contact you within 24 hours.');
+                showMessageModal('Request Sent!', 'Thanks! Your request has been sent. We will contact you within 24 hours.', 'fas fa-check-circle');
                 button.innerHTML = originalHTML;
                 button.disabled = false;
                 contactForm.reset();
@@ -1736,12 +1959,12 @@
             e.preventDefault();
             const button = e.target.querySelector('button[type="submit"]');
             const originalHTML = button.innerHTML;
-            
+
             button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
             button.disabled = true;
-            
+
             setTimeout(() => {
-                alert('Thank you! Your plan selection has been received. We will contact you within 24 hours to complete the setup.');
+                showMessageModal('Plan Selected!', 'Thank you! Your plan selection has been received. We will contact you within 24 hours to complete the setup.', 'fas fa-check-circle');
                 button.innerHTML = originalHTML;
                 button.disabled = false;
                 planForm.reset();
@@ -1752,12 +1975,15 @@
         // Copyright year
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Header scroll effect
+        // Header scroll effect with logo animation
         window.addEventListener('scroll', () => {
+            const headerLogo = document.getElementById('header-logo');
             if (window.scrollY > 50) {
                 header.classList.add('header-scrolled');
+                headerLogo.classList.add('scrolled-out');
             } else {
                 header.classList.remove('header-scrolled');
+                headerLogo.classList.remove('scrolled-out');
             }
         });
 
@@ -1785,7 +2011,7 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 if (this.getAttribute('href') === '#') return;
-                
+
                 e.preventDefault();
                 const targetId = this.getAttribute('href').substring(1);
                 const target = document.getElementById(targetId);
@@ -1793,12 +2019,12 @@
                 if (target) {
                     const offset = header.offsetHeight;
                     const topPosition = target.offsetTop - offset;
-                    
+
                     window.scrollTo({
                         top: topPosition,
                         behavior: 'smooth'
                     });
-                    
+
                     if (!mobileMenu.classList.contains('hidden')) {
                         mobileMenu.classList.add('hidden');
                     }
@@ -1808,13 +2034,13 @@
 
         // Function for page transition to external links
         document.querySelectorAll('.external-link').forEach(link => {
-            link.addEventListener('click', function(e) {
+            link.addEventListener('click', function (e) {
                 e.preventDefault();
                 const targetUrl = this.href;
                 document.body.classList.add('fade-out');
                 setTimeout(() => {
                     window.location.href = targetUrl;
-                }, 500); 
+                }, 500);
             });
         });
     </script>
