@@ -2,40 +2,47 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rivava — Make It Simple.</title>
     <meta name="description" content="Rivava: Make It Simple. Clear, controlled, and growing personal finances." />
-    <!-- Favicon and mobile-friendly icons for various devices -->
-    <link rel="icon" href="favicon.png" type="image/png">
-    <link rel="apple-touch-icon" href="logo.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <!-- Favicon and mobile-friendly icons -->
+    <link rel="icon" href="https://placehold.co/32x32/000000/FFFFFF?text=R" type="image/png">
+    <link rel="apple-touch-icon" href="https://placehold.co/180x180/000000/FFFFFF?text=R">
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome for premium icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <style>
-        /* Advanced color scheme with depth */
-        :root {
-            --bg: #071026;
-            --panel: #0B1120;
-            --muted: #9AA4B2;
-            --accent: #7DE3D8;
-            --accent-secondary: #6fb4ff;
-            --glass: rgba(255, 255, 255, 0.03);
-            --card-glow: 0 0 30px rgba(125, 227, 216, 0.15);
-            --hover-glow: 0 15px 35px rgba(125, 227, 216, 0.2);
-            --transition-standard: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-            --transition-button: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-            --transition-card: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-            --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-            --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-        }
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-        * {
-            box-sizing: border-box;
+    <style>
+        /* ==============================================
+        ROOT VARIABLES & BASE STYLES
+        ==============================================
+        */
+        :root {
+            --bg-dark: #000000;
+            --bg-panel: #111111;
+            --text-primary: #FFFFFF;
+            --text-muted: #A0AEC0;
+            --accent-primary: #00FF7F; /* Main bright green */
+            --accent-secondary: #2D3748; /* Dark gray for secondary buttons */
+            
+            --accent-pink: #F000B8;
+            --accent-blue: #00A3FF;
+            --accent-lime: #BEFF00;
+
+            --border-color: rgba(255, 255, 255, 0.1);
+            --shadow-glow: 0 0 40px rgba(0, 255, 127, 0.2);
+            --hover-glow: 0 15px 45px rgba(0, 255, 127, 0.25);
+            --transition-fast: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --transition-medium: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --transition-slow: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         html {
@@ -43,1444 +50,586 @@
         }
 
         body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(180deg, var(--bg), #071022 140%);
-            color: #E6EEF6;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             overflow-x: hidden;
-            cursor: default;
             opacity: 1;
             transition: opacity 0.5s ease-in-out;
         }
-
+        
         body.fade-out {
             opacity: 0;
         }
 
-        /* Professional typography with refined fonts */
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            font-weight: 800;
-            line-height: 1.2;
-            letter-spacing: -0.025em;
-        }
-
-        p, li, span, a {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            font-weight: 400;
-            line-height: 1.6;
-        }
-
-        /* --- Enhanced animations with physics --- */
-        .fade-in-up {
-            animation: fadeInUp 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-            opacity: 0;
-            transform: translateY(20px);
-            will-change: transform, opacity;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .stagger-delay-100 {
-            animation-delay: 0.1s;
-        }
-
-        .stagger-delay-200 {
-            animation-delay: 0.2s;
-        }
-
-        .stagger-delay-300 {
-            animation-delay: 0.3s;
-        }
-
-        .stagger-delay-400 {
-            animation-delay: 0.4s;
-        }
-
-        .stagger-delay-500 {
-            animation-delay: 0.5s;
-        }
-
-        .stagger-delay-600 {
-            animation-delay: 0.6s;
-        }
-
-        .stagger-delay-700 {
-            animation-delay: 0.7s;
-        }
-
-        .stagger-delay-800 {
-            animation-delay: 0.8s;
-        }
-
-        /* Professional hover effects */
-        .card-hover {
-            transition: var(--transition-card);
-            will-change: transform, box-shadow;
-        }
-
-        .card-hover:hover {
-            transform: translateY(-12px) scale(1.02);
-            box-shadow: var(--hover-glow);
-        }
-
-        .btn-hover {
-            transition: var(--transition-button);
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .btn-hover::before {
+        /* Dynamic background gradient */
+        body::before {
             content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.8s;
-        }
-
-        .btn-hover:hover::before {
-            left: 100%;
-        }
-
-        .btn-hover:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(125, 227, 216, 0.4);
-        }
-
-        .nav-link {
-            transition: all 0.3s ease;
-            position: relative;
-            padding: 4px 0;
-            cursor: pointer;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        /* RIVAVA text styling with advanced effects */
-        .rivava-text {
-            font-size: 2.2rem;
-            font-weight: 800;
-            letter-spacing: 0.12em;
-            background: linear-gradient(135deg, var(--accent), var(--accent-secondary), #ffffff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 0 20px rgba(125, 227, 216, 0.2);
-            animation: glow 3s ease-in-out infinite alternate;
-            position: relative;
-        }
-        
-        .rivava-text-small {
-            font-size: 1rem;
-            font-weight: 800;
-            letter-spacing: 0.1em;
-            background: linear-gradient(135deg, var(--accent), var(--accent-secondary), #ffffff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 0 10px rgba(125, 227, 216, 0.2);
-            position: relative;
-        }
-
-
-        @keyframes glow {
-            from {
-                filter: drop-shadow(0 0 8px rgba(125, 227, 216, 0.4));
-            }
-
-            to {
-                filter: drop-shadow(0 0 20px rgba(125, 227, 216, 0.8));
-            }
-        }
-
-        .hero-rivava {
-            font-size: 3.8rem;
-            font-weight: 900;
-            letter-spacing: 0.18em;
-            background: linear-gradient(135deg, var(--accent), var(--accent-secondary), #ffffff, var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            background-size: 400% 400%;
-            animation: gradientShift 5s ease-in-out infinite, heroGlow 2.5s ease-in-out infinite alternate;
-            line-height: 1.1;
-        }
-
-        @keyframes gradientShift {
-            0%, 100% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-        }
-
-        @keyframes heroGlow {
-            from {
-                filter: drop-shadow(0 0 15px rgba(125, 227, 216, 0.5));
-            }
-
-            to {
-                filter: drop-shadow(0 0 30px rgba(125, 227, 216, 0.9));
-            }
-        }
-
-        /* Underline accent for links */
-        .accent-underline {
-            position: relative;
-            display: inline-block;
-        }
-
-        .accent-underline::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -4px;
-            height: 3px;
-            width: 100%;
-            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
-            border-radius: 2px;
-            opacity: 0.2;
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        .accent-underline:hover::after {
-            transform: scaleX(1);
-            opacity: 0.5;
-        }
-
-        /* Buttons with advanced styling */
-        .btn-primary {
-            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
-            color: #032022;
-            transition: var(--transition-button);
-            position: relative;
-            overflow: hidden;
-            font-weight: 600;
-            letter-spacing: 0.02em;
-            box-shadow: 0 8px 25px rgba(125, 227, 216, 0.3);
-            border: none;
-            border-radius: 0.75rem;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 50px rgba(125, 227, 216, 0.5);
-        }
-
-        /* Glass panel with advanced effects */
-        .glass-panel {
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.015));
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            backdrop-filter: blur(12px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            border-radius: 1.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .glass-panel::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at 20% 20%, rgba(125, 227, 216, 0.08), transparent 40%);
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            pointer-events: none;
-            border-radius: 1.5rem;
-        }
-
-        .glass-panel:hover::before {
-            opacity: 1;
-        }
-
-        .glass-panel:hover {
-            border-color: rgba(125, 227, 216, 0.2);
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
-            transform: translateY(-6px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), var(--hover-glow);
-        }
-
-        /* Staggered animations */
-        .stagger-delay-100 {
-            animation-delay: 0.1s;
-        }
-
-        .stagger-delay-200 {
-            animation-delay: 0.2s;
-        }
-
-        .stagger-delay-300 {
-            animation-delay: 0.3s;
-        }
-
-        .stagger-delay-400 {
-            animation-delay: 0.4s;
-        }
-
-        .stagger-delay-500 {
-            animation-delay: 0.5s;
-        }
-
-        .stagger-delay-600 {
-            animation-delay: 0.6s;
-        }
-
-        .stagger-delay-700 {
-            animation-delay: 0.7s;
-        }
-
-        .stagger-delay-800 {
-            animation-delay: 0.8s;
-        }
-
-        /* Team member styling - premium circular design */
-        .team-member {
-            position: relative;
-            width: 240px;
-            height: 240px;
-            margin: 0 auto;
-            border-radius: 50%;
-            overflow: hidden;
-            transition: var(--transition-card);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), var(--card-glow);
-            border: 2px solid rgba(125, 227, 216, 0.1);
-            will-change: transform;
-        }
-
-        .team-member:hover {
-            transform: translateY(-14px) scale(1.04);
-            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5), var(--hover-glow);
-            border-color: rgba(125, 227, 216, 0.3);
-        }
-
-        .team-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-            backface-visibility: hidden;
-        }
-
-        .team-member:hover .team-img {
-            transform: scale(1.15);
-        }
-
-        .team-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(7, 16, 38, 0.95) 0%, rgba(7, 16, 38, 0.7) 50%, transparent 100%);
-            padding: 2rem 1.5rem;
-            transform: translateY(120%);
-            transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-            border-radius: 50%;
-            overflow: hidden;
-        }
-
-        .team-member:hover .team-overlay {
-            transform: translateY(0);
-        }
-
-        .team-name {
-            font-weight: 700;
-            font-size: 1.3rem;
-            margin-bottom: 0.4rem;
-            color: white;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .team-role {
-            font-size: 0.95rem;
-            color: var(--accent);
-            font-weight: 500;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Circular frame with advanced effects */
-        .team-member::before {
-            content: '';
-            position: absolute;
-            inset: 4px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, rgba(125, 227, 216, 0.15), rgba(111, 180, 255, 0.1));
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            z-index: 1;
-        }
-
-        .team-member:hover::before {
-            opacity: 1;
-        }
-
-        /* Inner glow effect */
-        .team-member::after {
-            content: '';
-            position: absolute;
-            inset: 2px;
-            border-radius: 50%;
-            background: conic-gradient(from 0deg, transparent, rgba(125, 227, 216, 0.3), transparent 30%);
-            opacity: 0;
-            animation: rotation 4s linear infinite;
-            pointer-events: none;
-            z-index: 2;
-        }
-
-        .team-member:hover::after {
-            opacity: 1;
-        }
-
-        @keyframes rotation {
-            from {
-                transform: rotate(0deg);
-            }
-
-            to {
-                transform: rotate(360deg);
-            }
-        }
-        
-        /* Mobile-optimized Team section */
-        .team-slider-wrapper {
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-        }
-        
-        .team-slider {
-            display: flex;
-            gap: 2.5rem;
-            padding-bottom: 1rem;
-            scroll-snap-align: center;
-        }
-        
-        .team-slider .team-member-container {
-            flex-shrink: 0;
-            width: 240px;
-            scroll-snap-align: center;
-            opacity: 0.6;
-            transition: opacity 0.5s ease;
-        }
-        
-        .team-slider .team-member-container.is-active {
-            opacity: 1;
-        }
-        
-        .team-slider::-webkit-scrollbar {
-            display: none;
-        }
-        
-        .team-slider {
-            -ms-overflow-style: none; /* IE and Edge */
-            scrollbar-width: none; /* Firefox */
-        }
-
-        /* Section styling */
-        .section {
-            padding: 6rem 0;
-            position: relative;
-        }
-
-        .section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .section:first-of-type::before {
-            display: none;
-        }
-
-        /* Modal styling for plan selection and custom messages */
-        .modal {
-            display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            background: radial-gradient(circle at 15% 20%, rgba(0, 163, 255, 0.08), transparent 40%),
+                        radial-gradient(circle at 85% 80%, rgba(0, 255, 127, 0.08), transparent 40%),
+                        radial-gradient(circle at 50% 50%, rgba(240, 0, 184, 0.05), transparent 50%);
+            z-index: -1;
+            pointer-events: none;
+            animation: background-pan 25s linear infinite alternate;
+        }
+
+        @keyframes background-pan {
+            from { transform: translate(0, 0) scale(1); }
+            to { transform: translate(30px, -30px) scale(1.1); }
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-weight: 800;
+            letter-spacing: -0.025em;
+        }
+
+        p {
+            line-height: 1.7;
+            color: var(--text-muted);
+        }
+        
+        /* ==============================================
+        HEADER & NAVIGATION
+        ==============================================
+        */
+        #header {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.4s ease;
+        }
+
+        #header.scrolled {
             background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(8px);
-            z-index: 9999;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logo-image {
+            transition: var(--transition-fast);
+        }
+
+        #header.scrolled .logo-image {
+            transform: scale(0.9);
+        }
+
+        .rivava-text {
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-primary), #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 25px rgba(0, 255, 127, 0.3);
+            animation: glow 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 5px rgba(0, 255, 127, 0.3)); }
+            to { filter: drop-shadow(0 0 15px rgba(0, 255, 127, 0.7)); }
+        }
+
+        .nav-link {
+            position: relative;
+            transition: var(--transition-fast);
+            color: var(--text-muted);
+        }
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent-primary);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .nav-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* ==============================================
+        HERO SECTION
+        ==============================================
+        */
+        .hero-rivava {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            letter-spacing: 0.1em;
+            background: linear-gradient(135deg, var(--accent-primary), white, var(--accent-blue), var(--accent-pink), var(--accent-primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 400% 400%;
+            animation: gradient-flow 8s ease-in-out infinite, hero-glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes hero-glow {
+            from { filter: drop-shadow(0 0 10px rgba(0, 255, 127, 0.4)); }
+            to { filter: drop-shadow(0 0 25px rgba(0, 163, 255, 0.5)); }
+        }
+
+        /* ==============================================
+        BUTTONS
+        ==============================================
+        */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem 1.8rem;
+            border-radius: 999px;
+            font-weight: 600;
+            transition: var(--transition-fast);
+            border: 1px solid transparent;
+            cursor: pointer;
+        }
+        .btn:disabled {
+            cursor: not-allowed;
+        }
+        .btn-primary {
+            background-color: var(--accent-primary);
+            color: #000000;
+            box-shadow: 0 8px 25px rgba(0, 255, 127, 0.25);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0, 255, 127, 0.4);
+        }
+        .btn-secondary {
+            background-color: var(--accent-secondary);
+            border-color: var(--border-color);
+            color: var(--text-primary);
+        }
+        .btn-secondary:hover {
+            background-color: #4A5568;
+            border-color: var(--accent-primary);
+        }
+        .btn-accent {
+            background: linear-gradient(45deg, #F000B8, #ef4444);
+            color: var(--text-primary);
+            box-shadow: 0 8px 25px rgba(240, 0, 184, 0.3);
+        }
+        .btn-accent:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(240, 0, 184, 0.5);
+        }
+
+        /* ==============================================
+        ICON STYLES
+        ==============================================
+        */
+        .gradient-icon {
+            color: var(--text-primary);
+            transition: var(--transition-fast);
+        }
+        .glass-panel:hover .gradient-icon,
+        .subtle-donate-link:hover .gradient-icon {
+            color: var(--accent-primary);
+            filter: drop-shadow(0 0 4px rgba(0, 255, 127, 0.4)) drop-shadow(0 0 12px rgba(0, 255, 127, 0.3)) brightness(1.2);
+            transform: scale(1.1);
+        }
+        
+        #privacy .gradient-icon {
+            color: var(--accent-primary);
+        }
+
+        .btn-primary:hover .icon-animate-heart,
+        .btn-accent:hover .icon-animate-heart {
+            animation: heartbeat 1s ease-in-out infinite;
+        }
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        .btn-primary:hover .icon-animate-plane {
+            animation: takeoff 0.5s ease-out forwards;
+        }
+        @keyframes takeoff {
+            from { transform: translate(0, 0) rotate(0deg); }
+            to { transform: translate(5px, -5px) rotate(15deg); }
+        }
+
+        /* ==============================================
+        CARDS & PANELS
+        ==============================================
+        */
+        .glass-panel {
+            background: linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(16px) saturate(1.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border-radius: 1.5rem;
+            transition: var(--transition-medium), border-color 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .glass-panel:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), var(--hover-glow);
+            border-color: rgba(0, 255, 127, 0.3);
+        }
+        .glass-panel::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(0, 255, 127, 0.1), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.5s;
+            pointer-events: none;
+        }
+        .glass-panel:hover::before {
+            opacity: 1;
+        }
+        
+        /* ==============================================
+        MISSION SECTION
+        ==============================================
+        */
+        #mission {
+            background: #05080D;
+            position: relative;
+            overflow: hidden;
+        }
+        #mission::before, #mission::after {
+            content: '';
+            position: absolute;
+            z-index: 0;
+            border-radius: 50%;
+            filter: blur(120px);
+            pointer-events: none;
+            animation: subtle-glow-pan 20s linear infinite alternate;
+        }
+        #mission::before {
+            width: 600px;
+            height: 600px;
+            top: -20%;
+            left: -20%;
+            background: var(--accent-blue);
+            opacity: 0.1;
+        }
+        #mission::after {
+            width: 500px;
+            height: 500px;
+            bottom: -25%;
+            right: -15%;
+            background: var(--accent-pink);
+            opacity: 0.1;
+            animation-delay: -10s;
+        }
+
+        @keyframes subtle-glow-pan {
+            from { transform: translate(0, 0); }
+            to { transform: translate(50px, 30px); }
+        }
+
+        .mission-card {
+            background: linear-gradient(160deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(24px) saturate(1.5);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            border-radius: 2rem;
+            transform: perspective(2000px) rotateX(7deg);
+            transition: var(--transition-medium);
+            position: relative;
+            z-index: 1;
+        }
+        .mission-card:hover {
+            transform: perspective(2000px) rotateX(0deg);
+            box-shadow: 0 30px 70px rgba(0,0,0,0.6), var(--hover-glow);
+        }
+        .mission-image-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+        .mission-image {
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: var(--transition-medium);
+        }
+        .mission-image:hover {
+            transform: scale(1.05) rotate(-1deg);
+        }
+        .mission-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .mission-image:nth-child(1) {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+        .mission-image:nth-child(2) {
+            grid-row: span 1;
+        }
+        .mission-image:nth-child(3) {
+            grid-row: span 1;
+        }
+
+        /* ==============================================
+        STORY CARDS
+        ==============================================
+        */
+        .story-card {
+            border-radius: 1.5rem;
+            overflow: hidden;
+            transition: var(--transition-medium);
+        }
+        .story-card:hover .story-image {
+            transform: scale(1.05);
+        }
+        .story-image-wrapper {
+            height: 200px;
+            overflow: hidden;
+        }
+        .story-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .story-card .read-more {
+            color: var(--accent-primary);
+            transition: var(--transition-fast);
+            cursor: pointer;
+        }
+        .story-card:hover .read-more {
+            letter-spacing: 0.5px;
+        }
+        .donate-circle-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: var(--accent-pink);
+            color: white;
+            opacity: 0.7;
+            transition: var(--transition-fast);
+        }
+        .story-card:hover .donate-circle-icon {
+            opacity: 1;
+            transform: scale(1.1) rotate(-15deg);
+            box-shadow: 0 0 10px var(--accent-pink);
+        }
+        .donate-circle-icon i {
+            font-size: 14px;
+        }
+
+        /* ==============================================
+        PLANS & DONATION SECTIONS
+        ==============================================
+        */
+        .progress-bar-container {
+            background-color: var(--accent-secondary);
+            border-radius: 999px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+        .progress-bar {
+            background-color: var(--accent-primary);
+            height: 1.5rem;
+            border-radius: 999px;
+            transition: width 0.8s ease-out;
+            box-shadow: 0 0 15px rgba(0, 255, 127, 0.5);
+        }
+        .plan-abandoned .plan-content {
+            opacity: 0.4;
+            filter: grayscale(90%);
+            transition: var(--transition-medium);
+        }
+        .plan-abandoned::after {
+            content: '×';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-15deg);
+            font-size: 18rem;
+            font-weight: 200;
+            color: #991b1b;
+            text-shadow: 0 0 20px rgba(153, 27, 27, 0.6);
+            opacity: 0.9;
+            z-index: 10;
+            line-height: 1;
+            pointer-events: none;
+        }
+        
+        .subtle-donate-link {
+            color: var(--text-muted);
+            transition: var(--transition-fast);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .subtle-donate-link:hover {
+            color: var(--text-primary);
+        }
+        .subtle-donate-link i {
+            transition: var(--transition-fast);
+        }
+        .progress-bar-wrapper .tooltip {
+            transition: opacity 0.3s ease;
+        }
+        .progress-bar-wrapper:hover .tooltip {
+            opacity: 1;
+        }
+        .leaderboard li:nth-child(1) {
+            background: linear-gradient(45deg, #FFDF00, #FBB034);
+            color: #212529; /* Darker text for better contrast */
+            border: 1px solid #FFDF00;
+        }
+        .leaderboard li:nth-child(1) span:last-child {
+            color: #212529;
+        }
+        .leaderboard li:nth-child(2) {
+            background: linear-gradient(45deg, #E8E8E8, #C0C0C0);
+            color: #212529;
+            border: 1px solid #E8E8E8;
+        }
+        .leaderboard li:nth-child(2) span:last-child {
+            color: #212529;
+        }
+        .leaderboard li:nth-child(3) {
+            background: linear-gradient(45deg, #D29968, #B87333);
+            color: #fff;
+            border: 1px solid #D29968;
+        }
+        .leaderboard li:nth-child(3) span:last-child {
+            color: #fff;
+        }
+        
+        /* ==============================================
+        MODAL STYLES
+        ==============================================
+        */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            z-index: 100;
             justify-content: center;
             align-items: center;
             opacity: 0;
             transition: opacity 0.4s ease;
         }
-
         .modal.show {
             display: flex;
             opacity: 1;
         }
-
         .modal-content {
-            background: linear-gradient(180deg, #0B1120, #071026);
-            border: 1px solid rgba(125, 227, 216, 0.2);
+            background: var(--bg-panel);
+            border: 1px solid var(--border-color);
             border-radius: 1.5rem;
             padding: 2.5rem;
             width: 90%;
             max-width: 500px;
-            max-height: 90vh;
-            overflow-y: auto;
-            transform: translateY(20px);
-            transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 30px rgba(125, 227, 216, 0.2);
-            position: relative;
+            transform: scale(0.95);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
         }
-
+        #storyModal .modal-content {
+            max-width: 800px;
+        }
         .modal.show .modal-content {
-            transform: translateY(0);
+            transform: scale(1);
         }
-
         .modal-close {
             position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            width: 40px;
-            height: 40px;
+            top: 1rem; right: 1rem;
+            width: 40px; height: 40px;
             border-radius: 50%;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background: rgba(255,255,255,0.1);
+            transition: var(--transition-fast);
         }
-
         .modal-close:hover {
-            background: rgba(125, 227, 216, 0.3);
+            background: var(--accent-primary);
+            color: var(--bg-dark);
             transform: rotate(90deg);
         }
-
-        .modal-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: white;
-            text-align: center;
-            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .modal-subtitle {
-            text-align: center;
-            color: var(--muted);
-            margin-bottom: 2rem;
-            font-size: 0.95rem;
-        }
-
-        .modal-form {
-            display: grid;
-            gap: 1rem;
-        }
-
-        .modal-form label {
-            font-size: 0.9rem;
-            color: var(--muted);
-            margin-bottom: 0.5rem;
-            display: block;
-        }
-
-        .modal-form input,
-        .modal-form select,
-        .modal-form textarea {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 0.75rem;
-            background: rgba(255, 255, 255, 0.05);
-            color: white;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .modal-form input:focus,
-        .modal-form select:focus,
-        .modal-form textarea:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(125, 227, 216, 0.2);
-            background: rgba(125, 227, 216, 0.05);
-        }
-
-        .modal-form textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-
-        .modal-submit {
-            margin-top: 1.5rem;
-            padding: 1rem 0;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border: none;
-            border-radius: 0.75rem;
-            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
-            color: #032022;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .modal-submit::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.8s;
-        }
-
-        .modal-submit:hover::before {
-            left: 100%;
-        }
-
-        .modal-submit:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(125, 227, 216, 0.4);
-        }
-
-        .modal-submit:active {
-            transform: translateY(0);
-        }
-
-        /* Service icon styling */
-        .service-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            display: inline-block;
-            transition: all 0.4s ease;
-        }
-
-        .card-hover:hover .service-icon {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        /* Mobile responsive adjustments */
-        @media (max-width: 768px) {
-            .hero-rivava {
-                font-size: 2.8rem;
-                letter-spacing: 0.1em;
-                line-height: 1.2;
-            }
-
-            .rivava-text {
-                font-size: 1.8rem;
-                letter-spacing: 0.08em;
-            }
-
-            .section {
-                padding: 4rem 0;
-            }
-
-            .team-member {
-                width: 180px;
-                height: 180px;
-            }
-
-            .team-name {
-                font-size: 1.1rem;
-            }
-
-            .team-role {
-                font-size: 0.85rem;
-            }
-
-            .glass-panel {
-                border-radius: 1.2rem;
-            }
-
-            .btn-primary {
-                padding: 0.8rem 1.5rem;
-                font-size: 0.95rem;
-            }
-
-            .modal-content {
-                margin: 1rem;
-                padding: 1.5rem;
-            }
-
-            .modal-title {
-                font-size: 1.5rem;
-            }
-
-            .reveal-up {
-                transform: translateY(20px);
-            }
-
-            /* Adjust hero section spacing on mobile */
-            #hero {
-                min-height: 100vh;
-                padding: 8rem 0 4rem;
-            }
-
-            .mobile-nav {
-                transform: translateY(-100%);
-                transition: transform 0.3s ease-out;
-            }
-
-            .mobile-nav.show {
-                transform: translateY(0);
-            }
-            
-            /* Team Grid for mobile scroll */
-            .team-grid {
-                display: flex;
-                overflow-x: scroll;
-                scroll-snap-type: x mandatory;
-                -webkit-overflow-scrolling: touch;
-                gap: 2.5rem;
-                padding-bottom: 1rem;
-            }
-            
-            .team-grid > div {
-                flex-shrink: 0;
-                scroll-snap-align: center;
-                min-width: 240px; /* Ensures one card is visible and centered */
-            }
-            
-            .team-grid::-webkit-scrollbar {
-                display: none;
-            }
-            
-            .team-grid {
-                -ms-overflow-style: none; /* IE and Edge */
-                scrollbar-width: none; /* Firefox */
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-rivava {
-                font-size: 2.3rem;
-            }
-
-            .team-member {
-                width: 160px;
-                height: 160px;
-            }
-
-            .team-overlay {
-                padding: 1.5rem 1rem;
-            }
-
-            .team-name {
-                font-size: 1rem;
-            }
-
-            .section {
-                padding: 3rem 0;
-            }
-
-            .btn-primary {
-                padding: 0.7rem 1.2rem;
-                font-size: 0.9rem;
-            }
-
-            .nav-link {
-                padding: 3px 0;
-            }
-
-            .modal-form input,
-            .modal-form select,
-            .modal-form textarea {
-                padding: 0.7rem 0.9rem;
-            }
-
-            .modal-submit {
-                padding: 0.9rem 0;
-                font-size: 1rem;
-            }
-
-            /* Further adjust hero spacing on small mobile */
-            #hero {
-                min-height: 100vh;
-                padding: 6rem 0 3rem;
-            }
-        }
-
-        /* Floating decorative elements */
-        .floating-element {
-            position: absolute;
-            opacity: 0.08;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .floating-circle {
-            border-radius: 50%;
-            background: var(--accent);
-            filter: blur(20px);
-        }
-
-        .floating-1 {
-            top: 15%;
-            left: 10%;
-            width: 120px;
-            height: 120px;
-        }
-
-        .floating-2 {
-            bottom: 20%;
-            right: 15%;
-            width: 80px;
-            height: 80px;
-            background: var(--accent-secondary);
-        }
-
-        .floating-3 {
-            top: 60%;
-            left: 5%;
-            width: 60px;
-            height: 60px;
-            background: var(--accent);
-        }
-
-        /* Smooth scroll behavior */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Focus states for accessibility */
-        button:focus, a:focus {
-            outline: 2px solid var(--accent);
-            outline-offset: 2px;
-        }
-
-        /* Form elements */
-        .form-input {
-            transition: all 0.3s ease;
-        }
-
-        .form-input:focus {
-            border-color: rgba(125, 227, 216, 0.5);
-            box-shadow: 0 0 0 3px rgba(125, 227, 216, 0.1);
-        }
-
-        /* Service card enhancements */
-        .service-card {
-            transition: var(--transition-card);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.5s ease;
-            border-radius: 2px 2px 0 0;
-        }
-
-        .card-hover:hover .service-card::before {
-            transform: scaleX(1);
-        }
-
-        /* Plan card enhancements */
-        .plan-card {
-            transition: var(--transition-card);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .plan-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 1.5rem;
-            background: linear-gradient(45deg, rgba(125, 227, 216, 0.05), transparent, rgba(111, 180, 255, 0.05));
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            pointer-events: none;
-        }
-
-        .card-hover:hover .plan-card::before {
-            opacity: 1;
-        }
-
-        /* Testimonial styling */
-        .testimonial {
-            position: relative;
-            padding: 1.5rem;
-        }
-
-        .testimonial::before {
-            content: '"';
-            font-size: 5rem;
-            position: absolute;
-            top: 0.5rem;
-            left: 1rem;
-            color: rgba(125, 227, 216, 0.1);
-            line-height: 1;
-            z-index: 0;
-        }
-
-        .testimonial-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Contact form styling */
-        .contact-form {
-            position: relative;
-        }
-
-        .form-group {
-            position: relative;
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--muted);
-            font-size: 0.9rem;
-        }
-
         .form-control {
             width: 100%;
             padding: 0.8rem 1rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid var(--border-color);
             border-radius: 0.75rem;
             background: rgba(255, 255, 255, 0.05);
-            color: white;
-            font-size: 1rem;
-            transition: all 0.3s ease;
+            color: var(--text-primary);
+            transition: var(--transition-fast);
         }
-
         .form-control:focus {
             outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(125, 227, 216, 0.2);
-            background: rgba(125, 227, 216, 0.05);
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(0, 255, 127, 0.2);
         }
 
-        .btn-contact {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: var(--transition-button);
-        }
-
-        .btn-contact i {
-            transition: transform 0.3s ease;
-        }
-
-        .btn-contact:hover i {
-            transform: scale(1.2);
-        }
-
-        /* Footer styling */
-        footer {
-            margin-top: 6rem;
-        }
-
-        /* WhatsApp button enhancement */
-        .whatsapp-btn {
-            transition: var(--transition-button);
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-            animation: pulse 2s infinite;
-        }
-
-        .whatsapp-btn:hover {
-            transform: translateY(-4px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(125, 227, 216, 0.3);
-        }
-
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 0 0 rgba(125, 227, 216, 0.4);
-            }
-
-            70% {
-                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 0 10px rgba(125, 227, 216, 0);
-            }
-
-            100% {
-                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 0 0 rgba(125, 227, 216, 0);
-            }
-        }
-
-        /* Plan styling */
-        .plan-card {
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .popular-tag {
-            position: absolute;
-            top: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(45deg, #FF6B6B, #FF8E53);
-            color: white;
-            font-size: 0.85rem;
-            font-weight: 600;
-            padding: 0.4rem 1rem;
-            border-radius: 1rem;
-            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
-            z-index: 10;
-            animation: pulse-popular 2s infinite;
-        }
-
-        @keyframes pulse-popular {
-            0% {
-                transform: translateX(-50%) scale(1);
-            }
-
-            50% {
-                transform: translateX(-50%) scale(1.05);
-            }
-
-            100% {
-                transform: translateX(-50%) scale(1);
-            }
-        }
-
-        .user-choice {
-            background: linear-gradient(45deg, var(--accent), var(--accent-secondary));
-            color: #032022;
-        }
-
-        .elite-customer {
-            background: linear-gradient(45deg, #FF6B6B, #FF8E53);
-            color: white;
-        }
-
-        .plan-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .plan-price {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin: 0.5rem 0;
-        }
-
-        .plan-features {
-            list-style: none;
-            padding: 0;
-            margin: 1.5rem 0;
-        }
-
-        .plan-features li {
-            padding: 0.5rem 0;
-            color: var(--muted);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .plan-features li::before {
-            content: '✓';
-            color: var(--accent);
-            font-weight: bold;
-        }
-
-        /* Hero section spacing fix */
-        .hero-content {
-            padding-top: 3rem;
-            padding-bottom: 2rem;
-        }
-
-        /* Animation improvements */
-        .animate-slide-up {
-            animation: slideUp 0.9s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-            opacity: 0;
-        }
-
-        .animate-fade-in {
-            animation: fadeIn 1.1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-            opacity: 0;
-        }
-
-        .stagger-delay-100 {
-            animation-delay: 0.1s;
-        }
-
-        .stagger-delay-200 {
-            animation-delay: 0.2s;
-        }
-
-        .stagger-delay-300 {
-            animation-delay: 0.3s;
-        }
-
-        .stagger-delay-400 {
-            animation-delay: 0.4s;
-        }
-
-        .stagger-delay-500 {
-            animation-delay: 0.5s;
-        }
-
-        .stagger-delay-600 {
-            animation-delay: 0.6s;
-        }
-
-        .stagger-delay-700 {
-            animation-delay: 0.7s;
-        }
-
-        .stagger-delay-800 {
-            animation-delay: 0.8s;
-        }
-
-        /* More interactive elements */
-        .interactive-element {
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-            cursor: pointer;
-        }
-
-        .interactive-element:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Mobile navigation improvements */
-        .mobile-nav {
-            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        /* Section spacing optimization */
-        .section-spacing {
-            padding: 6rem 0;
-        }
-
-        @media (max-width: 768px) {
-            .section-spacing {
-                padding: 4rem 0;
-            }
-
-            .hero-content {
-                padding-top: 2rem;
-                padding-bottom: 1.5rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .section-spacing {
-                padding: 3rem 0;
-            }
-
-            .hero-content {
-                padding-top: 1.5rem;
-                padding-bottom: 1rem;
-            }
-        }
-
-        /* Header scroll effects */
-        .header-scrolled {
-            background: rgba(0, 0, 0, 0.8) !important;
-            backdrop-filter: blur(10px) !important;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3) !important;
-            height: 4.5rem; /* Minimized height for the header */
-            padding-top: 0.5rem !important;
-            padding-bottom: 0.5rem !important;
-        }
-        
-        /* Animation for header elements on scroll */
-        .header-scrolled .logo-container {
-            transform: scale(0.85); /* Slightly scale down logo */
-            opacity: 0.85; /* Fade a bit */
-        }
-        
-        /* The main logo/tagline container on the left */
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-        
-        .rivava-text-full,
-        .rivava-tagline {
-            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        .header-scrolled .rivava-text-full,
-        .header-scrolled .rivava-tagline {
-            opacity: 0;
-            transform: translateY(-10px);
-        }
-
-        /* RIVAVA text with gradient effect */
-        .rivava-text {
-            font-size: 2.2rem;
-            font-weight: 800;
-            letter-spacing: 0.12em;
-            background: linear-gradient(135deg, var(--accent), var(--accent-secondary), #ffffff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 0 20px rgba(125, 227, 216, 0.2);
-            animation: glow 3s ease-in-out infinite alternate;
-            position: relative;
-        }
-
-        /* RIVAVA text with gradient effect for minimized header */
-        .rivava-text-minimized {
-            font-size: 1.8rem;
-            font-weight: 800;
-            letter-spacing: 0.12em;
-            background: linear-gradient(135deg, var(--accent), var(--accent-secondary), #ffffff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 0 20px rgba(125, 227, 216, 0.2);
-            animation: glow 3s ease-in-out infinite alternate;
-            position: relative;
-        }
-
-        /* Logo image styling */
-        .logo-image {
-            height: 32px;
-            width: 32px;
-            object-fit: contain;
-            transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-        
-        /* Mobile team grid */
-        @media (max-width: 768px) {
-            .team-grid {
-                display: flex;
-                overflow-x: scroll;
-                scroll-snap-type: x mandatory;
-                -webkit-overflow-scrolling: touch;
-                gap: 2.5rem;
-                padding-bottom: 1rem;
-            }
-            
-            .team-grid > div {
-                flex-shrink: 0;
-                scroll-snap-align: center;
-                min-width: 240px;
-            }
-            
-            .team-grid::-webkit-scrollbar {
-                display: none;
-            }
-            
-            .team-grid {
-                -ms-overflow-style: none; /* IE and Edge */
-                scrollbar-width: none; /* Firefox */
-            }
-            
-            .team-member {
-                width: 200px; /* Adjust size for mobile carousel */
-                height: 200px;
-            }
-            
-            .team-overlay {
-                transform: translateY(120%);
-                padding: 1.5rem 1rem;
-            }
-            
-            .team-member:hover .team-overlay {
-                transform: translateY(0);
-            }
-        }
-        
-        /* Responsive container */
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        /* Button responsiveness */
-        .btn-responsive {
-            min-height: 3rem;
-            min-width: 10rem;
-        }
-
-        @media (max-width: 480px) {
-            .btn-responsive {
-                min-height: 2.5rem;
-                min-width: 8rem;
-                font-size: 0.9rem;
-                padding: 0.6rem 1rem;
-            }
-        }
-
-        /* Form responsiveness */
-        .form-responsive {
-            width: 100%;
-        }
-
-        /* Animation performance optimization */
+        /* ==============================================
+        ANIMATIONS
+        ==============================================
+        */
         .fade-in-up {
-            will-change: transform, opacity;
-        }
-
-        /* Mobile touch enhancements */
-        .touch-target {
-            min-height: 44px;
-            min-width: 44px;
-        }
-
-        /* Font loading */
-        @font-face {
-            font-family: 'Inter';
-            font-style: normal;
-            font-weight: 400;
-            font-display: swap;
-            src: url(https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfMZs.woff2) format('woff2');
-        }
-
-        @font-face {
-            font-family: 'Inter';
-            font-style: normal;
-            font-weight: 600;
-            font-display: swap;
-            src: url(https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfMZs.woff2) format('woff2');
-        }
-
-        @font-face {
-            font-family: 'Inter';
-            font-style: normal;
-            font-weight: 700;
-            font-display: swap;
-            src: url(https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfMZs.woff2) format('woff2');
-        }
-
-        .web-app-card {
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-            position: relative;
-            overflow: hidden;
-            border-radius: 1.5rem;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            will-change: transform, box-shadow;
-        }
-
-        .web-app-card:hover {
-            transform: translateY(-8px) scale(1.03);
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 25px rgba(125, 227, 216, 0.4);
-            border-color: rgba(125, 227, 216, 0.3);
-        }
-
-        .web-app-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at 70% 30%, rgba(125, 227, 216, 0.1), transparent);
             opacity: 0;
-            transition: opacity 0.5s ease;
-            pointer-events: none;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
-
-        .web-app-card:hover::before {
+        .fade-in-up.visible {
             opacity: 1;
+            transform: translateY(0);
         }
-        
-        /* Dynamic background gradient animation */
-        @keyframes dynamicGradient {
-            0% { background-position: 0% 0%; }
-            50% { background-position: 100% 100%; }
-            100% { background-position: 0% 0%; }
-        }
-        
-        body.dynamic-bg {
-            background-image: linear-gradient(180deg, #071026, #091730, #0c2045, #071022);
-            background-size: 400% 400%;
-            animation: dynamicGradient 15s ease infinite;
-        }
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+        .stagger-4 { transition-delay: 0.4s; }
+        .stagger-5 { transition-delay: 0.5s; }
+        .stagger-6 { transition-delay: 0.6s; }
 
     </style>
 </head>
-<body class="relative dynamic-bg">
-    <!-- Floating decorative elements -->
-    <div class="floating-element floating-circle floating-1"></div>
-    <div class="floating-element floating-circle floating-2"></div>
-    <div class="floating-element floating-circle floating-3"></div>
-
-    <!-- NAV -->
-    <header id="header" class="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-black/20 border-b border-white/10 transition-all duration-300">
-        <div class="container">
+<body class="relative">
+    <!-- HEADER -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-50">
+        <div class="container mx-auto px-6">
             <div class="flex items-center justify-between py-4 transition-all duration-300">
-                <a href="#hero" class="flex items-center gap-3 fade-in-up touch-target">
-                    <div id="header-logo" class="logo-container">
-                        <img src="logo.png" alt="Rivava Logo" class="logo-image" />
-                        <div>
-                            <div class="rivava-text leading-none rivava-text-full">RIVAVA</div>
-                            <div class="text-xs text-[color:var(--muted)] -mt-1 tracking-wider tagline">Make It Simple.</div>
-                        </div>
+                <a href="#hero" class="flex items-center gap-3">
+                    <img src="logo.png" alt="Rivava Logo" class="logo-image h-8 w-8 md:h-10 md:w-10" />
+                    <div>
+                        <div class="rivava-text text-2xl md:text-3xl leading-none">RIVAVA</div>
+                        <div class="text-xs text-gray-400 -mt-1 tracking-wider hidden sm:block">Make It Simple.</div>
                     </div>
                 </a>
 
-                <nav class="hidden md:flex items-center gap-8 text-sm nav-links">
-                    <a href="#services" class="nav-link text-[color:var(--muted)] hover:text-white fade-in-up stagger-delay-100 touch-target">Services</a>
-                    <a href="#plans" class="nav-link text-[color:var(--muted)] hover:text-white fade-in-up stagger-delay-200 touch-target">Plans</a>
-                    <a href="#about" class="nav-link text-[color:var(--muted)] hover:text-white fade-in-up stagger-delay-300 touch-target">About</a>
-                    <a href="#" class="nav-link text-[color:var(--muted)] hover:text-white fade-in-up stagger-delay-400 touch-target" onclick="openAppModal()">Web App</a>
-                    <a href="#contact" class="nav-link text-[color:var(--muted)] hover:text-white fade-in-up stagger-delay-500 touch-target">Contact</a>
-                    <a href="https://wa.me/918090516657" class="px-6 py-2 rounded-full bg-white text-black text-sm btn-hover fade-in-up stagger-delay-600 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 touch-target">
-                        <i class="fab fa-whatsapp"></i>Book Free Call
-                    </a>
+                <nav class="hidden md:flex items-center gap-8 text-sm">
+                    <a href="#services" class="nav-link">Services</a>
+                    <a href="#mission" class="nav-link">Mission</a>
+                    <a href="#plans" class="nav-link">Our Journey</a>
+                    <a href="#privacy" class="nav-link">Privacy</a>
+                    <a href="#" class="nav-link" onclick="openAppModal()">Web App</a>
+                    <a href="#contact" class="nav-link">Contact</a>
                 </nav>
 
-                <button id="hambBtn" class="md:hidden p-2 rounded-lg border border-white/6 bg-white/5 backdrop-blur-sm touch-target" aria-label="menu">
+                <button id="hambBtn" class="md:hidden p-2 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm" aria-label="menu">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path d="M4 6h16M4 12h16M4 18h16" stroke-width="2" stroke-linecap="round"/>
                     </svg>
@@ -1488,105 +637,111 @@
             </div>
         </div>
 
-        <!-- mobile menu -->
-        <div id="mobileMenu" class="hidden md:hidden border-t border-white/6 bg-[color:var(--panel)]/95 backdrop-blur-xl mobile-nav">
-            <div class="container py-4 flex flex-col gap-4 text-sm">
-                <a href="#services" class="block text-[color:var(--muted)] hover:text-teal-300 transition-colors py-3 border-b border-white/10 touch-target">Services</a>
-                <a href="#plans" class="block text-[color:var(--muted)] hover:text-teal-300 transition-colors py-3 border-b border-white/10 touch-target">Plans</a>
-                <a href="#about" class="block text-[color:var(--muted)] hover:text-teal-300 transition-colors py-3 border-b border-white/10 touch-target">About</a>
-                <a href="#" onclick="openAppModal()" class="block text-[color:var(--muted)] hover:text-teal-300 transition-colors py-3 border-b border-white/10 touch-target">Web App</a>
-                <a href="#contact" class="block text-[color:var(--muted)] hover:text-teal-300 transition-colors py-3 border-b border-white/10 touch-target">Contact</a>
-                <a href="https://wa.me/918090516657" class="block text-teal-300 font-medium py-3 text-center bg-teal-300/10 rounded-lg border border-teal-300/20 transition-all duration-300 hover:bg-teal-300/20 flex items-center justify-center gap-2 touch-target">
-                    <i class="fab fa-whatsapp"></i>Book Free Call
-                </a>
+        <!-- MOBILE MENU -->
+        <div id="mobileMenu" class="hidden md:hidden border-t border-white/10 bg-[color:var(--bg-panel)]/95 backdrop-blur-xl">
+            <div class="container mx-auto px-6 py-4 flex flex-col gap-2 text-base">
+                <a href="#services" class="block text-gray-300 hover:text-white transition-colors py-3">Services</a>
+                <a href="#mission" class="block text-gray-300 hover:text-white transition-colors py-3">Mission</a>
+                <a href="#plans" class="block text-gray-300 hover:text-white transition-colors py-3">Our Journey</a>
+                <a href="#privacy" class="block text-gray-300 hover:text-white transition-colors py-3">Privacy</a>
+                <a href="#" onclick="openAppModal()" class="block text-gray-300 hover:text-white transition-colors py-3">Web App</a>
+                <a href="#contact" class="block text-gray-300 hover:text-white transition-colors py-3">Contact</a>
             </div>
         </div>
     </header>
 
-    <!-- HERO (centered Apple-style) -->
     <main class="relative overflow-hidden">
-        <section id="hero" class="min-h-screen flex items-center justify-center relative z-10">
-            <div class="container text-center relative z-10">
-                <div class="hero-content">
-                    <div class="flex flex-col items-center gap-8 relative z-10">
-                        <div class="hero-rivava fade-in-up">RIVAVA</div>
-                        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight fade-in-up stagger-delay-200">Make It Simple.</h1>
-                        <p class="max-w-xl text-[color:var(--muted)] text-lg md:text-xl mt-3 fade-in-up stagger-delay-300 opacity-90">Your money. Clear. Controlled. Growing.</p>
+        <!-- HERO -->
+        <section id="hero" class="min-h-screen flex items-center justify-center relative z-10 pt-24 pb-12">
+            <div class="container mx-auto px-6 text-center">
+                <div class="hero-rivava fade-in-up">RIVAVA</div>
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight mt-4 fade-in-up stagger-1">Make It Simple.</h1>
+                <p class="max-w-xl mx-auto text-lg md:text-xl mt-6 fade-in-up stagger-2">Your money. Clear. Controlled. Growing.</p>
 
-                        <div class="mt-10 flex flex-col sm:flex-row gap-5 items-center">
-                            <a href="#contact" class="btn-primary btn-hover btn-responsive inline-flex items-center justify-center px-8 py-4 rounded-full text-lg font-semibold shadow-xl fade-in-up stagger-delay-400 hover:shadow-2xl transition-all duration-300 interactive-element touch-target">
-                                Get Your Free Plan
-                            </a>
-                            <a href="#services" class="inline-flex items-center gap-3 px-7 py-4 rounded-full border border-white/6 text-sm text-[color:var(--muted)] hover:text-white hover:border-teal-300/50 transition-all duration-300 fade-in-up stagger-delay-500 hover:bg-white/5 backdrop-blur-sm btn-responsive interactive-element touch-target">
-                                <i class="fas fa-compass"></i> Explore Services
-                            </a>
+                <div class="mt-10 flex flex-col sm:flex-row gap-4 items-center justify-center">
+                    <a href="#donate" class="btn btn-primary text-lg fade-in-up stagger-3">
+                        Be a Part of This Journey
+                    </a>
+                    <a href="#services" class="btn btn-secondary text-lg fade-in-up stagger-4">
+                        Explore Services
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- OUR MISSION (MVP SECTION) -->
+        <section id="mission" class="py-20 md:py-32">
+            <div class="container mx-auto px-6">
+                <div class="mission-card p-8 md:p-12 fade-in-up">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div class="fade-in-up stagger-1">
+                            <h2 class="text-5xl md:text-6xl font-bold leading-tight">Our Mission</h2>
+                            <h3 class="text-2xl md:text-3xl font-semibold text-[color:var(--accent-primary)] mt-4">Your Ambition Deserves an Ally.</h3>
+                            <p class="mt-6 text-lg max-w-lg">
+                                We exist for those who build our cities—the delivery partners navigating monsoon traffic and the IT professionals burning the midnight oil. Your hard work deserves more than just a savings account; it deserves a dedicated financial partner to turn relentless effort into lasting wealth and security.
+                            </p>
                         </div>
-
-                        <div class="mt-8 text-sm text-[color:var(--muted)] fade-in-up stagger-delay-600 opacity-80">
-                            <div class="flex items-center justify-center gap-4">
-                                <span>Trusted by individuals, families & small businesses</span>
-                                <div class="w-1 h-1 bg-[color:var(--accent)] rounded-full"></div>
-                                <span>NISM certified advisors</span>
+                        <div class="mission-image-grid fade-in-up stagger-2">
+                            <div class="mission-image">
+                                <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=800&auto=format&fit=crop" alt="A smiling delivery rider in India">
+                            </div>
+                            <div class="mission-image">
+                                <img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?q=80&w=800&auto=format&fit=crop" alt="A young professional in a modern Indian office">
+                            </div>
+                            <div class="mission-image">
+                                <img src="https://images.unsplash.com/photo-1600857288214-462845420658?q=80&w=800&auto=format&fit=crop" alt="A bustling street scene in an Indian city at dusk">
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
 
-                    <!-- Updated Team Section for better mobile UX -->
-                    <div class="mt-24 pt-12 border-t border-white/6">
-                        <h2 class="text-3xl font-semibold mb-10 text-center fade-in-up">Our Expert Team</h2>
-                        <div class="team-grid md:grid-cols-4 gap-10">
-                            <div class="fade-in-up stagger-delay-100 flex-shrink-0 w-[240px] md:w-auto">
-                                <div class="team-member">
-                                    <img src="aadya.jpeg" alt="Anjali Sharma" class="team-img">
-                                    <div class="team-overlay">
-                                        <div class="team-name">Anjali Sharma</div>
-                                        <div class="team-role">Lead Financial Advisor</div>
-                                    </div>
-                                </div>
-                                <div class="text-center mt-4 md:hidden">
-                                    <div class="font-semibold text-lg">Anjali Sharma</div>
-                                    <div class="text-[color:var(--muted)] text-sm">Lead Financial Advisor</div>
-                                </div>
-                            </div>
-                            <div class="fade-in-up stagger-delay-200 flex-shrink-0 w-[240px] md:w-auto">
-                                <div class="team-member">
-                                    <img src="aditya.jpeg" alt="Aditya Singh" class="team-img">
-                                    <div class="team-overlay">
-                                        <div class="team-name">Aditya Singh</div>
-                                        <div class="team-role">Tech Lead</div>
-                                    </div>
-                                </div>
-                                <div class="text-center mt-4 md:hidden">
-                                    <div class="font-semibold text-lg">Aditya Singh</div>
-                                    <div class="text-[color:var(--muted)] text-sm">Tech Lead</div>
-                                </div>
-                            </div>
-                            <div class="fade-in-up stagger-delay-300 flex-shrink-0 w-[240px] md:w-auto">
-                                <div class="team-member">
-                                    <img src="chittresh.jpeg" alt="Chittresh Goswami" class="team-img">
-                                    <div class="team-overlay">
-                                        <div class="team-name">Chittresh Goswami</div>
-                                        <div class="team-role">Senior BDM</div>
-                                    </div>
-                                </div>
-                                <div class="text-center mt-4 md:hidden">
-                                    <div class="font-semibold text-lg">Chittresh Goswami</div>
-                                    <div class="text-[color:var(--muted)] text-sm">Senior BDM</div>
-                                </div>
-                            </div>
-                            <div class="fade-in-up stagger-delay-400 flex-shrink-0 w-[240px] md:w-auto">
-                                <div class="team-member">
-                                    <img src="hansreynolds.jpeg" alt="Hans Reynolds" class="team-img">
-                                    <div class="team-overlay">
-                                        <div class="team-name">Hans Reynolds</div>
-                                        <div class="team-role">Loan Strategist</div>
-                                    </div>
-                                </div>
-                                <div class="text-center mt-4 md:hidden">
-                                    <div class="font-semibold text-lg">Hans Reynolds</div>
-                                    <div class="text-[color:var(--muted)] text-sm">Loan Strategist</div>
-                                </div>
-                            </div>
+        <!-- STORIES -->
+        <section id="stories" class="container mx-auto px-6 pb-20">
+            <div class="text-center mb-14">
+                <h2 class="text-3xl md:text-4xl font-semibold fade-in-up">Stories of Transformation</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Story 1 -->
+                <div class="glass-panel story-card fade-in-up stagger-1">
+                    <div class="story-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1624625729155-a06fb551235a?q=80&w=600&auto=format&fit=crop" alt="A young man looking proudly at his new apartment keys">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Rohan's Journey: From Gigs to a Home</h3>
+                        <p class="text-sm mb-4">A delivery partner in Mumbai, Rohan juggled orders day and night. With a dedicated fund manager, he channelled his unpredictable income into a systematic investment plan (SIP), turning his dream of buying a flat into a reality.</p>
+                        <div class="flex items-center justify-between mt-4">
+                            <a onclick="openStoryModal('Rohan\'s Journey: From Gigs to a Home', 'https://images.unsplash.com/photo-1624625729155-a06fb551235a?q=80&w=600&auto=format&fit=crop', 'Rohan, a delivery partner in Mumbai, used to find it challenging to save money due to his fluctuating income. Every day was a hustle, navigating through traffic to make ends meet. He dreamed of owning a small flat for his family but felt it was out of reach. Through Rivava, he was connected with a dedicated fund manager who helped him set up a systematic investment plan (SIP). By consistently investing a small portion of his earnings, Rohan started building a corpus. Within a few years, his disciplined approach paid off, and he was able to make a down payment on his dream home.')" class="font-semibold text-sm read-more">Read more →</a>
+                            <a href="#donate" class="donate-circle-icon"><i class="far fa-heart"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Story 2 -->
+                <div class="glass-panel story-card fade-in-up stagger-2">
+                    <div class="story-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1593720219276-0b1eacd0aef4?q=80&w=600&auto=format&fit=crop" alt="A young woman working on her laptop in a modern co-working space">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Priya's Plan: From Tech Park to Freedom</h3>
+                        <p class="text-sm mb-4">As a software developer in Bangalore, Priya felt overwhelmed by financial jargon. Our premium service gave her a clear, personalized roadmap to clear her education loan and confidently start investing for her future.</p>
+                        <div class="flex items-center justify-between mt-4">
+                            <a onclick="openStoryModal('Priya\'s Plan: From Tech Park to Freedom', 'https://images.unsplash.com/photo-1593720219276-0b1eacd0aef4?q=80&w=600&auto=format&fit=crop', 'Priya, a talented software developer in Bangalore, was earning well but felt lost in the world of finance. The burden of an education loan and the pressure to invest wisely were constant sources of stress. Our premium service provided her with a financial advisor who demystified complex concepts and created a clear, actionable plan. Priya is now debt-free and confidently growing her wealth, on track to achieve financial independence years ahead of schedule.')" class="font-semibold text-sm read-more">Read more →</a>
+                            <a href="#donate" class="donate-circle-icon"><i class="far fa-heart"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Story 3 -->
+                <div class="glass-panel story-card fade-in-up stagger-3">
+                    <div class="story-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1610983947152-2b71933973c2?q=80&w=600&auto=format&fit=crop" alt="An Indian family smiling together">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">The Sharmas' Legacy: For Their Daughter</h3>
+                        <p class="text-sm mb-4">For the Sharma family, saving for their daughter's higher education felt like a mountain to climb. Through tailored guidance, they built a substantial fund, ensuring her dreams would never be limited by finances.</p>
+                        <div class="flex items-center justify-between mt-4">
+                            <a onclick="openStoryModal('The Sharmas\' Legacy: For Their Daughter', 'https://images.unsplash.com/photo-1610983947152-2b71933973c2?q=80&w=600&auto=format&fit=crop', 'The Sharma family had a simple but profound goal: to provide their daughter with the best possible education. However, the rising costs of higher education seemed daunting. Our team worked with them to create a long-term investment strategy tailored to their goals. Through a combination of mutual funds and other instruments, they have built a significant educational corpus, ensuring their daughter\'s dreams have the financial backing they deserve.')" class="font-semibold text-sm read-more">Read more →</a>
+                            <a href="#donate" class="donate-circle-icon"><i class="far fa-heart"></i></a>
                         </div>
                     </div>
                 </div>
@@ -1594,424 +749,496 @@
         </section>
 
         <!-- SERVICES -->
-        <section id="services" class="container py-20 section-spacing">
-            <div class="text-center mb-14 fade-in-up">
-                <h2 class="text-3xl font-semibold">Our Services</h2>
-                <p class="text-[color:var(--muted)] max-w-2xl mx-auto mt-4 text-lg opacity-90">Practical, measurable & habit-driven personal finance services for every stage of life.</p>
+        <section id="services" class="container mx-auto px-6 py-20">
+            <div class="text-center mb-14">
+                <h2 class="text-3xl md:text-4xl font-semibold fade-in-up">Our Services</h2>
+                <p class="max-w-2xl mx-auto mt-4 text-lg fade-in-up stagger-1">Practical, measurable & habit-driven personal finance services for every stage of life.</p>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="p-8 rounded-2xl glass-panel card-hover service-card fade-in-up stagger-delay-100 interactive-element">
-                    <div class="text-4xl mb-4 service-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <div class="font-semibold text-xl mt-2 mb-3">Fund Manager</div>
-                    <div class="text-[color:var(--muted)] text-sm leading-relaxed">Monthly personalised advice, mid-month check, and review meetings by NISM-certified advisors.</div>
+                <!-- Service Card 1 -->
+                <div class="p-8 glass-panel fade-in-up stagger-1">
+                    <div class="text-4xl mb-4"><i class="fas fa-chart-line gradient-icon"></i></div>
+                    <h3 class="font-semibold text-xl mt-2 mb-3">Fund Manager</h3>
+                    <p class="text-sm">Monthly personalised advice, mid-month check, and review meetings by NISM-certified advisors.</p>
                 </div>
-
-                <div class="p-8 rounded-2xl glass-panel card-hover service-card fade-in-up stagger-delay-200 interactive-element">
-                    <div class="text-4xl mb-4 service-icon">
-                        <i class="fas fa-file-invoice-dollar"></i>
-                    </div>
-                    <div class="font-semibold text-xl mt-2 mb-3">Expense Analysis</div>
-                    <div class="text-[color:var(--muted)] text-sm leading-relaxed">Daily tracking, EMP model (Evaluate, Monitor, Plan) and weekly summaries to optimize spending.</div>
+                <!-- Service Card 2 -->
+                <div class="p-8 glass-panel fade-in-up stagger-2">
+                    <div class="text-4xl mb-4"><i class="fas fa-file-invoice-dollar gradient-icon"></i></div>
+                    <h3 class="font-semibold text-xl mt-2 mb-3">Expense Analysis</h3>
+                    <p class="text-sm">Daily tracking, EMP model (Evaluate, Monitor, Plan) and weekly summaries to optimize spending.</p>
                 </div>
-
-                <div class="p-8 rounded-2xl glass-panel card-hover service-card fade-in-up stagger-delay-300 interactive-element">
-                    <div class="text-4xl mb-4 service-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <div class="font-semibold text-xl mt-2 mb-3">CIBIL Boost</div>
-                    <div class="text-[color:var(--muted)] text-sm leading-relaxed">Actionable steps to improve credit score and support with disputes and credit utilization.</div>
+                <!-- Service Card 3 -->
+                <div class="p-8 glass-panel fade-in-up stagger-3">
+                    <div class="text-4xl mb-4"><i class="fas fa-shield-alt gradient-icon"></i></div>
+                    <h3 class="font-semibold text-xl mt-2 mb-3">CIBIL Boost</h3>
+                    <p class="text-sm">Actionable steps to improve credit score and support with disputes and credit utilization.</p>
                 </div>
-
-                <div class="p-8 rounded-2xl glass-panel card-hover service-card fade-in-up stagger-delay-400 interactive-element">
-                    <div class="text-4xl mb-4 service-icon">
-                        <i class="fas fa-hand-holding-usd"></i>
-                    </div>
-                    <div class="font-semibold text-xl mt-2 mb-3">Loan Repayment Assistance</div>
-                    <div class="text-[color:var(--muted)] text-sm leading-relaxed">Profile-based plans to accelerate repayments while preserving your safety net.</div>
+                <!-- Service Card 4 -->
+                <div class="p-8 glass-panel fade-in-up stagger-4">
+                    <div class="text-4xl mb-4"><i class="fas fa-hand-holding-usd gradient-icon"></i></div>
+                    <h3 class="font-semibold text-xl mt-2 mb-3">Loan Repayment Assistance</h3>
+                    <p class="text-sm">Profile-based plans to accelerate repayments while preserving your safety net.</p>
                 </div>
-
-                <div class="p-8 rounded-2xl glass-panel card-hover service-card fade-in-up stagger-delay-500 interactive-element">
-                    <div class="text-4xl mb-4 service-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <div class="font-semibold text-xl mt-2 mb-3">Psychological Support</div>
-                    <div class="text-[color:var(--muted)] text-sm leading-relaxed">Habit formation, impulse control, and mindset coaching to make changes stick.</div>
+                <!-- Service Card 5 -->
+                <div class="p-8 glass-panel fade-in-up stagger-5">
+                    <div class="text-4xl mb-4"><i class="fas fa-brain gradient-icon"></i></div>
+                    <h3 class="font-semibold text-xl mt-2 mb-3">Psychological Support</h3>
+                    <p class="text-sm">Habit formation, impulse control, and mindset coaching to make changes stick.</p>
                 </div>
-
-                <div class="p-8 rounded-2xl glass-panel card-hover service-card fade-in-up stagger-delay-600 interactive-element">
-                    <div class="text-4xl mb-4 service-icon">
-                        <i class="fas fa-video"></i>
-                    </div>
-                    <div class="font-semibold text-xl mt-2 mb-3">Video Counseling</div>
-                    <div class="text-[color:var(--muted)] text-sm leading-relaxed">One free 15-min consultation monthly. Extra sessions available on-demand.</div>
+                <!-- Service Card 6 -->
+                <div class="p-8 glass-panel fade-in-up stagger-6">
+                    <div class="text-4xl mb-4"><i class="fas fa-video gradient-icon"></i></div>
+                    <h3 class="font-semibold text-xl mt-2 mb-3">Video Counseling</h3>
+                    <p class="text-sm">One free 15-min consultation monthly. Extra sessions available on-demand.</p>
                 </div>
             </div>
+        </section>
+        
+        <!-- TEAM SECTION -->
+        <section id="team" class="container mx-auto px-6 py-20">
+            <div class="text-center mb-14">
+                <h2 class="text-3xl md:text-4xl font-semibold fade-in-up">Our Expert Team</h2>
+                <p class="max-w-2xl mx-auto mt-4 text-lg fade-in-up stagger-1">Meet the professionals dedicated to your financial success.</p>
+            </div>
 
-            <div class="mt-14 text-center">
-                <a href="#contact" class="px-8 py-4 rounded-full btn-primary btn-hover btn-responsive fade-in-up stagger-delay-700 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 interactive-element touch-target">
-                    Get Personalized Plan
-                </a>
+            <!-- Desktop Grid -->
+            <div class="hidden md:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+                <div class="text-center fade-in-up stagger-1">
+                    <div class="team-member">
+                        <img src="aadya.jpeg" alt="Anjali Sharma" class="team-img">
+                        <div class="team-overlay"><div class="team-name">Anjali Sharma</div><div class="team-role">Lead Advisor</div></div>
+                    </div>
+                    <div class="mt-4"><div class="font-semibold text-lg">Anjali Sharma</div><div class="text-[color:var(--text-muted)]">Lead Financial Advisor</div></div>
+                </div>
+                <div class="text-center fade-in-up stagger-2">
+                    <div class="team-member">
+                        <img src="aditya.jpeg" alt="Aditya Singh" class="team-img">
+                        <div class="team-overlay"><div class="team-name">Aditya Singh</div><div class="team-role">Tech Lead</div></div>
+                    </div>
+                    <div class="mt-4"><div class="font-semibold text-lg">Aditya Singh</div><div class="text-[color:var(--text-muted)]">Tech Lead</div></div>
+                </div>
+                <div class="text-center fade-in-up stagger-3">
+                    <div class="team-member">
+                        <img src="chittresh.jpeg" alt="Chittresh Goswami" class="team-img">
+                        <div class="team-overlay"><div class="team-name">Chittresh Goswami</div><div class="team-role">Senior BDM</div></div>
+                    </div>
+                    <div class="mt-4"><div class="font-semibold text-lg">Chittresh Goswami</div><div class="text-[color:var(--text-muted)]">Senior BDM</div></div>
+                </div>
+                <div class="text-center fade-in-up stagger-4">
+                    <div class="team-member">
+                        <img src="hansreynolds.jpeg" alt="Hans Reynolds" class="team-img">
+                        <div class="team-overlay"><div class="team-name">Hans Reynolds</div><div class="team-role">Loan Strategist</div></div>
+                    </div>
+                    <div class="mt-4"><div class="font-semibold text-lg">Hans Reynolds</div><div class="text-[color:var(--text-muted)]">Loan Strategist</div></div>
+                </div>
+            </div>
+            
+            <!-- Mobile Scroll Grid -->
+            <div class="md:hidden team-grid-mobile fade-in-up">
+                 <div class="text-center">
+                    <div class="team-member">
+                        <img src="aadya.jpeg" alt="Anjali Sharma" class="team-img">
+                    </div>
+                    <div class="mt-4"><div class="font-semibold text-lg">Anjali Sharma</div><div class="text-[color:var(--text-muted)]">Lead Financial Advisor</div></div>
+                </div>
+                <div class="text-center">
+                    <div class="team-member">
+                        <img src="aditya.jpeg" alt="Aditya Singh" class="team-img">
+                    </div>
+                    <div class="mt-4"><div class="font-semibold text-lg">Aditya Singh</div><div class="text-[color:var(--text-muted)]">Tech Lead</div></div>
+                </div>
+                <div class="text-center">
+                    <div class="team-member">
+                        <img src="chittresh.jpeg" alt="Chittresh Goswami" class="team-img">
+                    </div>
+                    <div class="mt-4"><div class="font-semibold text-lg">Chittresh Goswami</div><div class="text-[color:var(--text-muted)]">Senior BDM</div></div>
+                </div>
+                <div class="text-center">
+                    <div class="team-member">
+                        <img src="hansreynolds.jpeg" alt="Hans Reynolds" class="team-img">
+                    </div>
+                    <div class="mt-4"><div class="font-semibold text-lg">Hans Reynolds</div><div class="text-[color:var(--text-muted)]">Loan Strategist</div></div>
+                </div>
+            </div>
+            
+            <div class="text-center max-w-3xl mx-auto mt-16">
+                <p class="text-lg fade-in-up stagger-1">
+                    To bring our mission to life, your finances are managed by a professional fund manager under strict risk controls. We believe in total transparency and accountability, providing you with periodic reports and user-first controls, ensuring you are always in command of your financial journey. Our team is committed to growing your wealth responsibly.
+                </p>
             </div>
         </section>
 
-        <!-- WEB APP SECTION -->
-        <section id="webapp" class="container py-20 section-spacing">
-            <div class="text-center mb-14 fade-in-up">
-                <h2 class="text-3xl font-semibold">Our Web Application</h2>
-                <p class="text-[color:var(--muted)] max-w-2xl mx-auto mt-4 text-lg opacity-90">Cutting-edge technology platform for seamless financial management.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <div class="fade-in-up">
-                    <h3 class="text-2xl font-semibold mb-6">Powerful Features</h3>
-                    <ul class="space-y-4">
-                        <li class="flex items-start gap-3">
-                            <div class="w-6 h-6 bg-[color:var(--accent)]/20 rounded-full flex items-center justify-center mt-1 flex-shrink-0">
-                                <i class="fas fa-check text-[color:var(--accent)] text-sm"></i>
-                            </div>
-                            <span>Real-time expense tracking with AI-powered categorization</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <div class="w-6 h-6 bg-[color:var(--accent)]/20 rounded-full flex items-center justify-center mt-1 flex-shrink-0">
-                                <i class="fas fa-check text-[color:var(--accent)] text-sm"></i>
-                            </div>
-                            <span>Automated financial health assessments and recommendations</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <div class="w-6 h-6 bg-[color:var(--accent)]/20 rounded-full flex items-center justify-center mt-1 flex-shrink-0">
-                                <i class="fas fa-check text-[color:var(--accent)] text-sm"></i>
-                            </div>
-                            <span>Secure document storage and sharing with advisors</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <div class="w-6 h-6 bg-[color:var(--accent)]/20 rounded-full flex items-center justify-center mt-1 flex-shrink-0">
-                                <i class="fas fa-check text-[color:var(--accent)] text-sm"></i>
-                            </div>
-                            <span>Customizable dashboards and reporting tools</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <div class="w-6 h-6 bg-[color:var(--accent)]/20 rounded-full flex items-center justify-center mt-1 flex-shrink-0">
-                                <i class="fas fa-check text-[color:var(--accent)] text-sm"></i>
-                            </div>
-                            <span>Multi-device synchronization across all your devices</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="fade-in-up">
-                    <div class="relative">
-                        <div class="absolute inset-0 bg-[color:var(--accent)]/20 rounded-2xl blur-xl"></div>
-                        <div class="relative glass-panel p-6 rounded-2xl">
-                            <img src="https://placehold.co/500x400/0B1120/7DE3D8?text=Web+App+Interface" alt="Web App Interface" class="w-full rounded-lg">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mt-12 text-center">
-                <a href="#" onclick="openAppModal(); return false;" class="inline-flex items-center gap-3 px-8 py-4 rounded-full border border-white/6 text-sm text-[color:var(--muted)] hover:text-white hover:border-teal-300/50 transition-all duration-300 fade-in-up stagger-delay-500 hover:bg-white/5 backdrop-blur-sm btn-responsive touch-target">
-                    <i class="fas fa-laptop-code"></i> Use Apps
-                </a>
-            </div>
-        </section>
-
-        <!-- PLANS -->
-        <section id="plans" class="container py-20 section-spacing">
-            <div class="text-center mb-12 fade-in-up">
-                <h3 class="text-3xl font-semibold">Subscription Plans</h3>
-                <p class="text-[color:var(--muted)] mt-4 text-lg opacity-90">Transparent pricing to start your financial transformation.</p>
+        <!-- PLANS (ABANDONED) -->
+        <section id="plans" class="container mx-auto px-6 py-20">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl md:text-4xl font-semibold fade-in-up">Our Journey to a Community Model</h3>
+                <p class="mt-4 text-lg max-w-3xl mx-auto fade-in-up stagger-1">We started with subscriptions, but quickly realized a community-funded model better serves our mission. Your support now powers everything we do, keeping our services accessible for all.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
-                <div class="p-10 rounded-2xl glass-panel card-hover plan-card text-center fade-in-up stagger-delay-200 interactive-element">
-                    <div class="plan-title text-[color:var(--muted)] user-choice">User's Choice</div>
-                    <div class="plan-price mt-5 bg-gradient-to-r from-teal-400 to-blue-400 bg-clip-text text-transparent">₹299</div>
-                    <div class="text-[color:var(--muted)] mt-5 text-sm leading-relaxed">
-                        Advisor support, expense tracking, and mid-month financial check-ins
+                <div class="p-10 glass-panel text-center fade-in-up stagger-2 relative plan-abandoned">
+                    <div class="relative z-0 plan-content">
+                        <div class="text-sm font-bold uppercase tracking-widest text-[color:var(--accent-blue)]">User's Choice</div>
+                        <div class="text-5xl font-bold my-4">₹299</div>
+                        <p class="text-sm leading-relaxed h-20">Advisor support, expense tracking, and mid-month financial check-ins.</p>
+                        <button class="mt-8 btn btn-secondary w-full" disabled>Choose Plan</button>
                     </div>
-                    <button onclick="openPlanModal('essential')" class="mt-10 px-8 py-4 rounded-full btn-primary btn-hover w-full text-lg font-semibold shadow-lg hover:shadow-2xl transition-all duration-300 interactive-element btn-responsive touch-target">
-                        Choose Plan
-                    </button>
                 </div>
 
-                <div class="p-10 rounded-2xl glass-panel card-hover plan-card text-center shadow-2xl border border-teal-400/20 relative fade-in-up stagger-delay-300 interactive-element">
-                    <div class="popular-tag">Elite Customers</div>
-                    <div class="plan-title text-[color:var(--muted)] elite-customer">Premium</div>
-                    <div class="plan-price mt-5 bg-gradient-to-r from-teal-400 to-blue-400 bg-clip-text text-transparent">₹699</div>
-                    <div class="text-[color:var(--muted)] mt-5 text-sm leading-relaxed">
-                        Full advisor access, video counseling, psychological support, and premium features
-                    </div>
-                    <button onclick="openPlanModal('premium')" class="mt-10 px-8 py-4 rounded-full bg-white text-black btn-hover w-full text-lg font-bold shadow-lg hover:shadow-2xl transition-all duration-300 interactive-element btn-responsive touch-target">
-                        Choose Plan
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- TESTIMONIALS -->
-        <section id="testimonials" class="container py-20 section-spacing">
-            <div class="text-center mb-12 fade-in-up">
-                <h3 class="text-3xl font-semibold">What our customers say</h3>
-                <p class="text-[color:var(--muted)] mt-4 text-lg opacity-90">Stories of clarity, control and lasting change.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="p-8 rounded-2xl glass-panel card-hover testimonial fade-in-up stagger-delay-100 interactive-element">
-                    <div class="testimonial-content">
-                        <div class="font-semibold text-lg">Sneha (Freelancer)</div>
-                        <div class="text-[color:var(--muted)] mt-3 text-sm leading-relaxed">"Rivava helped me organize daily expenses and increase my savings by 30% in 3 months. The daily tracking made all the difference."</div>
-                    </div>
-                </div>
-                <div class="p-8 rounded-2xl glass-panel card-hover testimonial fade-in-up stagger-delay-200 interactive-element">
-                    <div class="testimonial-content">
-                        <div class="font-semibold text-lg">Amit (Shop Owner)</div>
-                        <div class="text-[color:var(--muted)] mt-3 text-sm leading-relaxed">"Loan repayment plan was life-changing. Clear, practical advice that actually worked for my business cash flow."</div>
-                    </div>
-                </div>
-                <div class="p-8 rounded-2xl glass-panel card-hover testimonial fade-in-up stagger-delay-300 interactive-element">
-                    <div class="testimonial-content">
-                        <div class="font-semibold text-lg">Rekha (Home-maker)</div>
-                        <div class="text-[color:var(--muted)] mt-3 text-sm leading-relaxed">"Daily habit building made saving easy for our family. The psychological support helped me overcome my spending triggers."</div>
+                <div class="p-10 glass-panel text-center relative fade-in-up stagger-3 plan-abandoned">
+                     <div class="relative z-0 plan-content">
+                        <div class="text-sm font-bold uppercase tracking-widest text-[color:var(--accent-pink)]">Premium</div>
+                        <div class="text-5xl font-bold my-4">₹699</div>
+                        <p class="text-sm leading-relaxed h-20">Full advisor access, video counseling, psychological support, and premium features.</p>
+                        <button class="mt-8 btn btn-primary w-full" disabled>Choose Plan</button>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- ABOUT -->
-        <section id="about" class="container py-20 section-spacing">
-            <div class="text-center mb-12 fade-in-up">
-                <h3 class="text-3xl font-semibold">About Rivava</h3>
-                <p class="text-[color:var(--muted)] max-w-2xl mx-auto mt-4 text-lg opacity-90">Rivava focuses purely on personal finance—no stock tips. We use NISM-certified advisors, the EMP model (Evaluation, Monitoring, Planning) and habit-driven coaching to deliver measurable results.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mt-10">
-                <div class="fade-in-up">
-                    <ul class="text-[color:var(--muted)] space-y-6">
-                        <li class="flex items-start gap-3">
-                            <div class="w-6 h-6 bg-[color:var(--accent)]/20 rounded-full flex items-center justify-center mt-1 flex-shrink-0">
-                                <i class="fas fa-check text-[color:var(--accent)] text-sm"></i>
-                            </div>
-                            <span>NISM certified advisors with 10+ years experience in personal finance</span>
+            
+            <div class="mt-16 max-w-xl mx-auto fade-in-up stagger-4">
+                <h4 class="text-2xl font-bold text-center mb-4">Top Supporters</h4>
+                <div class="glass-panel p-6">
+                    <ul class="space-y-3 leaderboard">
+                        <li class="flex items-center justify-between text-lg font-semibold p-3 rounded-lg">
+                            <span><i class="fas fa-crown text-yellow-900 mr-3"></i>Rohan S.</span>
+                            <span>₹5,000</span>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <div class="w-6 h-6 bg-[color:var(--accent)]/20 rounded-full flex items-center justify-center mt-1 flex-shrink-0">
-                                <i class="fas fa-check text-[color:var(--accent)] text-sm"></i>
-                            </div>
-                            <span>Daily tracking & monthly reviews with personalized insights and recommendations</span>
+                        <li class="flex items-center justify-between text-base p-2 rounded-lg">
+                            <span>2. Priya K.</span>
+                            <span class="text-gray-400">₹2,500</span>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <div class="w-6 h-6 bg-[color:var(--accent)]/20 rounded-full flex items-center justify-center mt-1 flex-shrink-0">
-                                <i class="fas fa-check text-[color:var(--accent)] text-sm"></i>
-                            </div>
-                            <span>CIBIL improvement support with 95% success rate in score enhancement</span>
+                        <li class="flex items-center justify-between text-base p-2 rounded-lg">
+                            <span>3. Amit V.</span>
+                            <span class="text-gray-400">₹1,500</span>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <div class="w-6 h-6 bg-[color:var(--accent)]/20 rounded-full flex items-center justify-center mt-1 flex-shrink-0">
-                                <i class="fas fa-check text-[color:var(--accent)] text-sm"></i>
-                            </div>
-                            <span>Video counseling & psychological planning for lasting behavioral change</span>
+                        <li class="flex items-center justify-between text-base p-2 rounded-lg">
+                            <span>4. Anonymous</span>
+                            <span class="text-gray-400">₹1,000</span>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <div class="w-6 h-6 bg-[color:var(--accent)]/20 rounded-full flex items-center justify-center mt-1 flex-shrink-0">
-                                <i class="fas fa-check text-[color:var(--accent)] text-sm"></i>
-                            </div>
-                            <span>Transparent pricing with no hidden fees or long-term commitments</span>
+                        <li class="flex items-center justify-between text-base p-2 rounded-lg">
+                            <span>5. Sunita M.</span>
+                            <span class="text-gray-400">₹750</span>
                         </li>
                     </ul>
                 </div>
+            </div>
 
-                <div class="fade-in-up">
-                    <img src="https://placehold.co/500x400/0B1120/7DE3D8?text=Financial+Planning" alt="Financial Planning" class="w-full rounded-2xl glass-panel p-2">
+            <div class="mt-12 max-w-xl mx-auto fade-in-up stagger-5">
+                <h4 class="text-2xl font-bold text-center mb-4 text-[color:var(--accent-primary)]">Our New Path: Community Powered</h4>
+                <div class="flex justify-between items-center text-sm mb-2 text-gray-400">
+                    <span id="journey-start-date"></span>
+                    <span id="journey-partners-supported" class="font-semibold text-white"></span>
+                </div>
+                <div class="relative progress-bar-wrapper">
+                    <div class="flex justify-between items-center text-sm font-semibold mb-2">
+                        <span>Raised: <span id="journey-amount-raised">₹0</span></span>
+                        <span>Goal: <span id="journey-goal-amount">₹75,000</span></span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div id="journey-progress-bar" class="progress-bar" style="width: 0%;"></div>
+                    </div>
+                    <!-- Tooltip -->
+                    <div class="tooltip absolute bottom-full mb-2 w-max left-1/2 -translate-x-1/2 bg-gray-900 text-white text-xs rounded py-1 px-2 opacity-0 pointer-events-none">
+                        <span id="journey-tooltip-text">Supports 0 delivery partners</span>
+                        <svg class="absolute text-gray-900 h-2 w-full left-0 top-full" x="0px" y="0px" viewBox="0 0 255 255" xml:space="preserve"><polygon class="fill-current" points="0,0 127.5,127.5 255,0"/></svg>
+                    </div>
+                </div>
+                <p class="text-center text-xs text-gray-500 mt-2">Progress is updated weekly.</p>
+            </div>
+        </section>
+        
+        <!-- DONATION SECTION -->
+        <section id="donate" class="container mx-auto px-6 py-20">
+            <div class="glass-panel p-8 md:p-12 rounded-2xl text-center max-w-4xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold fade-in-up">How can you be part of this revolution?</h2>
+                <p class="mt-4 max-w-2xl mx-auto fade-in-up stagger-1">Your support fuels our ability to provide this premium fund manager service and helps us reach more hardworking individuals.</p>
+                
+                 <div class="flex flex-col sm:flex-row items-center justify-center gap-8 mt-10 text-center">
+                    <a href="#" onclick="openModal('messageModal')" class="subtle-donate-link fade-in-up stagger-1">
+                        <i class="fas fa-hand-holding-heart text-2xl gradient-icon"></i>
+                        <span class="font-semibold mt-2">Donate Once</span>
+                    </a>
+                    <a href="#" onclick="openModal('messageModal')" class="subtle-donate-link fade-in-up stagger-2">
+                        <i class="fas fa-calendar-alt text-2xl gradient-icon"></i>
+                        <span class="font-semibold mt-2">Support Monthly</span>
+                    </a>
+                    <a href="#" onclick="openModal('messageModal')" class="subtle-donate-link fade-in-up stagger-3">
+                        <i class="fas fa-bullhorn text-2xl gradient-icon"></i>
+                        <span class="font-semibold mt-2">Spread the Word</span>
+                    </a>
+                </div>
+
+                <div class="mt-10 fade-in-up stagger-4">
+                    <a href="#" onclick="openModal('messageModal')" class="btn btn-accent text-lg" aria-label="Donate to support our mission">
+                        <i class="fas fa-heart mr-2 icon-animate-heart"></i> Donate Now
+                    </a>
+                </div>
+                <p class="text-xs mt-6 text-gray-500 fade-in-up stagger-5">All contributions are tracked and reported quarterly for full transparency.</p>
+            </div>
+        </section>
+
+        <!-- PRIVACY & CARE SECTION -->
+        <section id="privacy" class="container mx-auto px-6 py-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-semibold fade-in-up">Your Privacy and Care</h2>
+            </div>
+            <div class="max-w-3xl mx-auto fade-in-up stagger-1">
+                <ul class="space-y-4 text-lg text-left">
+                    <li class="flex items-start gap-4">
+                        <i class="fas fa-shield-alt gradient-icon text-xl mt-1.5"></i>
+                        <span><strong>Minimal Data Collection:</strong> We only collect the essential data required to provide and improve our service.</span>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <i class="fas fa-lock gradient-icon text-xl mt-1.5"></i>
+                        <span><strong>End-to-End Encryption:</strong> All your personal and financial data is secured with bank-level encryption, both in transit and at rest.</span>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <i class="fas fa-user-secret gradient-icon text-xl mt-1.5"></i>
+                        <span><strong>Anonymized Reporting:</strong> Your progress contributes to anonymized reports, ensuring your personal identity is always protected.</span>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <i class="fas fa-toggle-on gradient-icon text-xl mt-1.5"></i>
+                        <span><strong>Full User Control:</strong> You have full control to manage, review, or opt-out of data collection at any time.</span>
+                    </li>
+                </ul>
+                <p class="mt-8 text-center">
+                    Our donation and fund management processes are designed with privacy at their core, offering options for anonymized participation to protect your identity.
+                </p>
+                <div class="mt-6 text-center">
+                    <a href="/privacy-policy" class="font-semibold text-[color:var(--accent-primary)] hover:underline">Read our full Privacy Policy →</a>
                 </div>
             </div>
         </section>
 
         <!-- CONTACT -->
-        <section id="contact" class="container py-20 section-spacing">
-            <div class="text-center mb-12 fade-in-up">
-                <h3 class="text-3xl font-semibold">Get in touch</h3>
-                <p class="text-[color:var(--muted)] mt-4 text-lg opacity-90">Book your free 15-minute consultation and we'll reach out within 24 hours.</p>
+        <section id="contact" class="container mx-auto px-6 py-20">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl md:text-4xl font-semibold fade-in-up">Get In Touch</h3>
+                <p class="mt-4 text-lg fade-in-up stagger-1">Book your free 15-minute consultation. We'll reach out within 24 hours.</p>
             </div>
 
-            <form id="contactForm" action="https://formspree.io/f/your-form-id" method="POST" class="contact-form grid grid-cols-1 md:grid-cols-2 gap-6 fade-in-up stagger-delay-200 form-responsive">
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" name="name" required placeholder="Enter your full name" class="form-control" />
+            <form id="contactForm" class="max-w-2xl mx-auto fade-in-up stagger-2">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="name" class="text-sm text-gray-400 mb-2 block">Full Name</label>
+                        <input type="text" id="name" name="name" required class="form-control" />
+                    </div>
+                    <div>
+                        <label for="email" class="text-sm text-gray-400 mb-2 block">Email Address</label>
+                        <input type="email" id="email" name="email" required class="form-control" />
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" required placeholder="Enter your email" class="form-control" />
+                <div class="mt-6">
+                    <label for="message" class="text-sm text-gray-400 mb-2 block">Your Financial Goal</label>
+                    <textarea id="message" name="message" class="form-control" rows="4"></textarea>
                 </div>
-                <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" required placeholder="WhatsApp preferred" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <label for="interest">Service of Interest</label>
-                    <select id="interest" name="interest" class="form-control">
-                        <option value="">Select a service</option>
-                        <option value="fund-manager">Fund Manager</option>
-                        <option value="expense-analysis">Expense Analysis</option>
-                        <option value="cibil-boost">CIBIL Boost</option>
-                        <option value="loan-assistance">Loan Assistance</option>
-                    </select>
-                </div>
-                <div class="md:col-span-2 form-group">
-                    <label for="message">Your Financial Goal</label>
-                    <textarea id="message" name="message" placeholder="Tell us about your main financial concern or goal" class="form-control" rows="4"></textarea>
-                </div>
-
-                <div class="md:col-span-2 flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
-                    <div class="text-sm text-[color:var(--muted)]">We respect your privacy. Your data is safe.</div>
-                    <button type="submit" class="px-8 py-4 rounded-full btn-primary btn-hover text-lg font-semibold shadow-lg hover:shadow-2xl transition-all duration-300 btn-contact interactive-element btn-responsive touch-target">
-                        <i class="fas fa-paper-plane"></i> Request Call
+                <div class="mt-8 text-center">
+                    <button type="submit" class="btn btn-primary btn-lg text-lg">
+                        <i class="fas fa-paper-plane mr-2 icon-animate-plane"></i> Request Call
                     </button>
                 </div>
             </form>
-
-            <div class="mt-8 text-center text-sm text-[color:var(--muted)] fade-in-up stagger-delay-400">
-                Or message us directly on WhatsApp:
-                <a href="https://wa.me/918090516657" class="text-teal-300 hover:text-teal-200 transition-colors font-medium inline-flex items-center gap-2 touch-target">
-                    <i class="fab fa-whatsapp"></i> +91-8090516657
-                </a>
-            </div>
         </section>
 
         <!-- FOOTER -->
-        <footer class="border-t border-white/6 mt-20">
-            <div class="container py-12 flex flex-col md:flex-row items-center justify-between gap-6">
-                <div class="text-center md:text-left">
-                    <div class="font-bold text-2xl mb-2">Rivava</div>
-                    <div class="text-sm text-[color:var(--muted)]">Personal finance guidance · NISM certified advisors</div>
-                </div>
-                <div class="text-sm text-[color:var(--muted)] text-center md:text-right">
-                    © <span id="year"></span> Rivava ·
-                    <a href="#" class="text-teal-300 hover:text-teal-200 transition-colors mx-3 touch-target">Privacy</a> ·
-                    <a href="#" class="text-teal-300 hover:text-teal-200 transition-colors touch-target">Terms</a>
-                </div>
+        <footer class="border-t border-white/10 mt-20">
+            <div class="container mx-auto px-6 py-8 text-center text-sm text-gray-400">
+                <p>&copy; <span id="year"></span> Rivava. All Rights Reserved.</p>
+                <p class="mt-2">
+                    <a href="/privacy-policy" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <span class="mx-2">|</span>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                </p>
             </div>
         </footer>
-
-        <!-- Floating WhatsApp -->
-        <a href="https://wa.me/918090516657" class="whatsapp-btn fixed right-6 bottom-6 p-4 rounded-full shadow-2xl z-40 touch-target" style="background:linear-gradient(90deg,var(--accent), var(--accent-secondary)); color:#021117" aria-label="WhatsApp">
-            <i class="fab fa-whatsapp text-xl"></i>
-        </a>
-        
-        <!-- Message Modal -->
-        <div id="messageModal" class="modal">
-            <div class="modal-content max-w-sm">
-                <button class="modal-close" onclick="closeModal('messageModal')">
-                    <i class="fas fa-times"></i>
-                </button>
-                <div class="text-center">
-                    <div id="messageIcon" class="text-4xl text-[color:var(--accent)] mb-4"></div>
-                    <h3 id="messageTitle" class="modal-title mb-2"></h3>
-                    <p id="messageBody" class="modal-subtitle"></p>
-                </div>
-                <div class="mt-8 text-center">
-                    <button class="btn-primary px-6 py-3 rounded-full" onclick="closeModal('messageModal')">OK</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Plan Selection Modal -->
-        <div id="planModal" class="modal">
-            <div class="modal-content">
-                <button class="modal-close" onclick="closeModal('planModal')">
-                    <i class="fas fa-times"></i>
-                </button>
-                <h3 class="modal-title">Complete Your Plan Selection</h3>
-                <p class="modal-subtitle">Please provide your details so we can set up your personalized financial plan.</p>
-
-                <form id="planForm" class="modal-form">
-                    <input type="hidden" id="selectedPlan" name="plan">
-
-                    <div class="form-group">
-                        <label for="modalName">Full Name</label>
-                        <input type="text" id="modalName" name="name" required placeholder="Enter your full name">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="modalEmail">Email Address</label>
-                        <input type="email" id="modalEmail" name="email" required placeholder="Enter your email address">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="modalPhone">Phone Number</label>
-                        <input type="tel" id="modalPhone" name="phone" required placeholder="WhatsApp preferred">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="modalMessage">Financial Goals</label>
-                        <textarea id="modalMessage" name="message" placeholder="Tell us about your financial goals and concerns"></textarea>
-                    </div>
-
-                    <button type="submit" class="modal-submit">
-                        <i class="fas fa-check-circle"></i> Confirm & Get Started
-                    </button>
-                </form>
-            </div>
-        </div>
-
-        <!-- Web App Selection Modal -->
-        <div id="appModal" class="modal">
-            <div class="modal-content max-w-xl">
-                <button class="modal-close" onclick="closeModal('appModal')">
-                    <i class="fas fa-times"></i>
-                </button>
-                <h3 class="modal-title">Select an App</h3>
-                <p class="modal-subtitle">Explore our free financial tools to start your journey.</p>
-
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-6 text-center">
-                    <!-- FD Calculator Card -->
-                    <a href="https://rivavainfo.github.io/FD-Calculator/" class="web-app-card p-6 flex flex-col items-center justify-center interactive-element fade-in-up stagger-delay-100 external-link">
-                        <div class="text-4xl text-[color:var(--accent)] mb-3">
-                            <i class="fas fa-wallet"></i>
-                        </div>
-                        <div class="font-bold text-lg text-white">FD Calculator</div>
-                        <div class="text-xs text-[color:var(--muted)] mt-1">Fixed Deposit</div>
-                    </a>
-                    <!-- RD Calculator Card -->
-                    <a href="https://rivavainfo.github.io/RD-Calculator/" class="web-app-card p-6 flex flex-col items-center justify-center interactive-element fade-in-up stagger-delay-200 external-link">
-                        <div class="text-4xl text-[color:var(--accent)] mb-3">
-                            <i class="fas fa-piggy-bank"></i>
-                        </div>
-                        <div class="font-bold text-lg text-white">RD Calculator</div>
-                        <div class="text-xs text-[color:var(--muted)] mt-1">Recurring Deposit</div>
-                    </a>
-                    <!-- Loan Calculator Card -->
-                    <a href="https://rivavainfo.github.io/Loan-Calculator/" class="web-app-card p-6 flex flex-col items-center justify-center interactive-element fade-in-up stagger-delay-300 external-link">
-                        <div class="text-4xl text-[color:var(--accent)] mb-3">
-                            <i class="fas fa-calculator"></i>
-                        </div>
-                        <div class="font-bold text-lg text-white">Loan Calculator</div>
-                        <div class="text-xs text-[color:var(--muted)] mt-1">EMI and Interest</div>
-                    </a>
-                </div>
-            </div>
-        </div>
     </main>
 
-    <script>
-        // Mobile menu toggle with animation
-        const hambBtn = document.getElementById('hambBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const header = document.getElementById('header');
-        let lastScrollY = window.scrollY;
+    <!-- MODALS -->
+    <!-- Message Modal -->
+    <div id="messageModal" class="modal">
+        <div class="modal-content text-center">
+            <button class="modal-close" onclick="closeModal('messageModal')"><i class="fas fa-times"></i></button>
+            <div id="messageIcon" class="text-5xl text-[color:var(--accent-primary)] mb-4"></div>
+            <h3 id="messageTitle" class="text-2xl font-bold mb-2"></h3>
+            <p id="messageBody"></p>
+            <button class="btn btn-primary mt-8" onclick="closeModal('messageModal')">OK</button>
+        </div>
+    </div>
 
-        hambBtn?.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            if (!mobileMenu.classList.contains('hidden')) {
-                mobileMenu.style.transform = 'translateY(0)';
-            } else {
-                mobileMenu.style.transform = 'translateY(-100%)';
+    <!-- Story Modal -->
+    <div id="storyModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('storyModal')"><i class="fas fa-times"></i></button>
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <img id="storyModalImage" src="" alt="Story image" class="rounded-lg w-full h-64 object-cover">
+                <div>
+                    <h3 id="storyModalTitle" class="text-2xl font-bold mb-4"></h3>
+                    <p id="storyModalBody" class="text-base"></p>
+                    <a href="#donate" onclick="closeModal('storyModal')" class="btn btn-accent mt-6">Donate Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Web App Selection Modal -->
+    <div id="appModal" class="modal">
+        <div class="modal-content max-w-2xl">
+            <button class="modal-close" onclick="closeModal('appModal')"><i class="fas fa-times"></i></button>
+            <h3 class="text-2xl font-bold mb-2 text-center">Select a Financial Tool</h3>
+            <p class="text-center mb-8">Explore our free calculators to start your journey.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+                <a href="https://rivavainfo.github.io/FD-Calculator/" target="_blank" class="glass-panel p-6 external-link">
+                    <div class="text-4xl text-[color:var(--accent-primary)] mb-3"><i class="fas fa-wallet"></i></div>
+                    <div class="font-bold text-lg">FD Calculator</div>
+                </a>
+                <a href="https://rivavainfo.github.io/RD-Calculator/" target="_blank" class="glass-panel p-6 external-link">
+                    <div class="text-4xl text-[color:var(--accent-primary)] mb-3"><i class="fas fa-piggy-bank"></i></div>
+                    <div class="font-bold text-lg">RD Calculator</div>
+                </a>
+                <a href="https://rivavainfo.github.io/Loan-Calculator/" target="_blank" class="glass-panel p-6 external-link">
+                    <div class="text-4xl text-[color:var(--accent-primary)] mb-3"><i class="fas fa-calculator"></i></div>
+                    <div class="font-bold text-lg">Loan Calculator</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Mobile Menu Toggle ---
+            const hambBtn = document.getElementById('hambBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            hambBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+            });
+
+            // --- Header Scroll Effect ---
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // --- Intersection Observer for Animations ---
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in-up').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // --- Glass Panel Mouse Effect ---
+            const panels = document.querySelectorAll('.glass-panel');
+            panels.forEach(panel => {
+                panel.addEventListener('mousemove', (e) => {
+                    const rect = panel.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    panel.style.setProperty('--mouse-x', `${x}px`);
+                    panel.style.setProperty('--mouse-y', `${y}px`);
+                });
+            });
+
+            // --- Form Submissions ---
+            const contactForm = document.getElementById('contactForm');
+            contactForm.addEventListener('submit', handleFormSubmit);
+
+            // --- Copyright Year ---
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // --- Page Transition for External Links ---
+            document.querySelectorAll('.external-link').forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetUrl = this.href;
+                    document.body.classList.add('fade-out');
+                    setTimeout(() => {
+                        window.open(targetUrl, '_blank');
+                        setTimeout(() => document.body.classList.remove('fade-out'), 200);
+                    }, 500);
+                });
+            });
+
+            const formatter = new Intl.NumberFormat('en-IN', {
+                style: 'currency',
+                currency: 'INR',
+                minimumFractionDigits: 0,
+            });
+
+            // --- Journey Progress Bar ---
+            // EDIT THESE VALUES TO UPDATE THE PROGRESS BAR
+            const journeyConfig = {
+                goal: 75000,
+                current: 0, 
+                startDate: "August 25, 2025"
+            };
+
+            const journeyAmountEl = document.getElementById('journey-amount-raised');
+            const journeyGoalEl = document.getElementById('journey-goal-amount');
+            const journeyProgressBarEl = document.getElementById('journey-progress-bar');
+            const journeyStartDateEl = document.getElementById('journey-start-date');
+            const journeyPartnersEl = document.getElementById('journey-partners-supported');
+            const journeyTooltipTextEl = document.getElementById('journey-tooltip-text');
+
+            // Set initial text values
+            journeyAmountEl.textContent = formatter.format(0); // Start at 0
+            journeyGoalEl.textContent = formatter.format(journeyConfig.goal);
+            journeyStartDateEl.textContent = `Campaign started: ${journeyConfig.startDate}`;
+            const initialPartners = Math.floor(journeyConfig.current / 699);
+            journeyPartnersEl.textContent = `Supports ${initialPartners} partners!`;
+            journeyTooltipTextEl.textContent = `This supports ${initialPartners} delivery partners this month!`;
+
+
+            // Animate the bar and numbers on scroll into view
+            const journeyObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const percentage = (journeyConfig.current / journeyConfig.goal) * 100;
+                        setTimeout(() => {
+                             journeyProgressBarEl.style.width = `${percentage}%`;
+                             // Animate number count up
+                             let start = 0;
+                             const end = journeyConfig.current;
+                             const duration = 800; // ms
+                             if (end > 0) {
+                                const range = end - start;
+                                let current = start;
+                                const increment = end > start ? 1 : -1;
+                                const stepTime = Math.abs(Math.floor(duration / range));
+                                const timer = setInterval(() => {
+                                    current += increment * Math.ceil(range / (duration/stepTime));
+                                    if ((increment > 0 && current >= end) || (increment < 0 && current <= end)) {
+                                        current = end;
+                                        clearInterval(timer);
+                                    }
+                                    journeyAmountEl.textContent = formatter.format(current);
+                                }, stepTime);
+                             }
+                        }, 300);
+                        journeyObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            if (journeyProgressBarEl) {
+                journeyObserver.observe(journeyProgressBarEl.parentElement.parentElement); // Observe the wrapper
             }
         });
 
-        // Modal functionality
+        // --- Modal Functions ---
         function openModal(modalId) {
             const modal = document.getElementById(modalId);
             if (modal) {
@@ -2024,12 +1251,10 @@
             const modal = document.getElementById(modalId);
             if (modal) {
                 modal.classList.remove('show');
-                setTimeout(() => {
-                    document.body.style.overflow = 'auto';
-                }, 400);
+                document.body.style.overflow = 'auto';
             }
         }
-
+        
         function showMessageModal(title, message, icon) {
             document.getElementById('messageTitle').textContent = title;
             document.getElementById('messageBody').textContent = message;
@@ -2037,147 +1262,43 @@
             openModal('messageModal');
         }
 
-        function openPlanModal(plan) {
-            document.getElementById('selectedPlan').value = plan;
-            document.querySelector('#planModal .modal-title').textContent = `Selecting ${plan.charAt(0).toUpperCase() + plan.slice(1)} Plan`;
-            openModal('planModal');
-        }
-
         function openAppModal() {
             openModal('appModal');
         }
 
-        // Close modals when clicking outside
-        document.querySelectorAll('.modal').forEach(modal => {
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    closeModal(modal.id);
-                }
-            });
-        });
+        function openStoryModal(title, imageUrl, body) {
+            document.getElementById('storyModalTitle').textContent = title;
+            document.getElementById('storyModalImage').src = imageUrl;
+            document.getElementById('storyModalBody').textContent = body;
+            openModal('storyModal');
+        }
 
-        // Close modals with escape key
+        // Close modals on escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
-                document.querySelectorAll('.modal.show').forEach(modal => {
-                    closeModal(modal.id);
-                });
+                document.querySelectorAll('.modal.show').forEach(modal => closeModal(modal.id));
             }
         });
 
-        // Form submit UX with animation for contact form
-        const contactForm = document.getElementById('contactForm');
-        contactForm?.addEventListener('submit', (e) => {
+        // --- Generic Form Handler ---
+        function handleFormSubmit(e) {
             e.preventDefault();
-            const button = e.target.querySelector('button[type="submit"]');
+            const form = e.target;
+            const button = form.querySelector('button[type="submit"]');
             const originalHTML = button.innerHTML;
 
             button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
             button.disabled = true;
 
+            // Simulate API call
             setTimeout(() => {
-                showMessageModal('Request Sent!', 'Thanks! Your request has been sent. We will contact you within 24 hours.', 'fas fa-check-circle');
+                showMessageModal('Request Sent!', 'Thanks! We will contact you within 24 hours.', 'fas fa-check-circle');
+                
                 button.innerHTML = originalHTML;
                 button.disabled = false;
-                contactForm.reset();
+                form.reset();
             }, 1500);
-        });
-
-        // Form submit UX with animation for plan form
-        const planForm = document.getElementById('planForm');
-        planForm?.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const button = e.target.querySelector('button[type="submit"]');
-            const originalHTML = button.innerHTML;
-
-            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-            button.disabled = true;
-
-            setTimeout(() => {
-                showMessageModal('Plan Selected!', 'Thank you! Your plan selection has been received. We will contact you within 24 hours to complete the setup.', 'fas fa-check-circle');
-                button.innerHTML = originalHTML;
-                button.disabled = false;
-                planForm.reset();
-                closeModal('planModal');
-            }, 1500);
-        });
-
-        // Copyright year
-        document.getElementById('year').textContent = new Date().getFullYear();
-
-        // Header fade-out animation on scroll down, reappear on scroll up
-        window.addEventListener('scroll', () => {
-            const header = document.getElementById('header');
-            const currentScrollY = window.scrollY;
-            const headerHeight = header.offsetHeight;
-            
-            if (currentScrollY > headerHeight && currentScrollY > lastScrollY) {
-                // Scrolling down, fade out header
-                header.style.transform = 'translateY(-100%)';
-            } else {
-                // Scrolling up or at the top, show header
-                header.style.transform = 'translateY(0)';
-            }
-            
-            lastScrollY = currentScrollY;
-        });
-
-        // Intersection Observer for scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in-up');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const elements = document.querySelectorAll('.fade-in-up');
-            elements.forEach(el => observer.observe(el));
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                if (this.getAttribute('href') === '#') return;
-
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const target = document.getElementById(targetId);
-
-                if (target) {
-                    const offset = header.offsetHeight;
-                    const topPosition = target.offsetTop - offset;
-
-                    window.scrollTo({
-                        top: topPosition,
-                        behavior: 'smooth'
-                    });
-
-                    if (!mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.add('hidden');
-                    }
-                }
-            });
-        });
-
-        // Function for page transition to external links
-        document.querySelectorAll('.external-link').forEach(link => {
-            link.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetUrl = this.href;
-                document.body.classList.add('fade-out');
-                setTimeout(() => {
-                    window.location.href = targetUrl;
-                }, 500);
-            });
-        });
+        }
     </script>
 </body>
 </html>
