@@ -1,632 +1,1322 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Rivava Finance Tracker</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rivava — Make It Simple.</title>
+    <meta name="description" content="Rivava: Make It Simple. Clear, controlled, and growing personal finances." />
+    <!-- Favicon and mobile-friendly icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/icon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96x96.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="128x128" href="/icon-128x128.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="384x384" href="/icon-384x384.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="/icon-512x512.png">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-<!-- PWA & Mobile App Manifest -->
-<link rel="manifest" href="./manifest.json">
-<meta name="theme-color" content="#000000">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Rivava Finance">
-<meta name="application-name" content="Rivava Finance">
+    <style>
+        /* ==============================================
+        ROOT VARIABLES & BASE STYLES
+        ==============================================
+        */
+        :root {
+            --bg-dark: #000000;
+            --bg-panel: #111111;
+            --text-primary: #FFFFFF;
+            --text-muted: #A0AEC0;
+            --accent-primary: #00FF7F; /* Main bright green */
+            --accent-secondary: #2D3748; /* Dark gray for secondary buttons */
+            
+            --accent-pink: #F000B8;
+            --accent-blue: #00A3FF;
+            --accent-lime: #BEFF00;
 
-<!-- App Icons (uses your folder: icons_folder) -->
-<link rel="icon" type="image/png" sizes="32x32" href="./icons_folder/icon-32x32.png">
-<link rel="apple-touch-icon" href="./icons_folder/icon-180x180.png">
+            --border-color: rgba(255, 255, 255, 0.1);
+            --shadow-glow: 0 0 40px rgba(0, 255, 127, 0.2);
+            --hover-glow: 0 15px 45px rgba(0, 255, 127, 0.25);
+            --transition-fast: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --transition-medium: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --transition-slow: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
 
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+        html {
+            scroll-behavior: smooth;
+        }
 
-<!-- Load Firebase SDKs -->
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+        }
+        
+        body.fade-out {
+            opacity: 0;
+        }
 
-<style>
-  :root{
-    --bg-dark:#000;
-    --card-dark:#0d0d0d;
-    --accent:#00ffc3;
-    --accent-glow: rgba(0, 255, 195, 0.3);
-    --text:#fff;
-    --muted:#888;
-    --danger: #ff5252;
-  }
-  *{box-sizing:border-box}
-  html {
-    -webkit-tap-highlight-color: transparent;
-  }
-  body{
-    margin:0;
-    font-family:'Poppins',sans-serif;
-    background:var(--bg-dark);
-    color:var(--text);
-    -webkit-font-smoothing:antialiased;
-    min-height:100vh;
-    overflow-x: hidden;
-    overscroll-behavior-y: contain;
-  }
+        /* Dynamic background gradient */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 15% 20%, rgba(0, 163, 255, 0.08), transparent 40%),
+                        radial-gradient(circle at 85% 80%, rgba(0, 255, 127, 0.08), transparent 40%),
+                        radial-gradient(circle at 50% 50%, rgba(240, 0, 184, 0.05), transparent 50%);
+            z-index: -1;
+            pointer-events: none;
+            animation: background-pan 25s linear infinite alternate;
+        }
 
-  /* Header */
-  header{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding: 12px 16px;
-    background:var(--card-dark);
-    border-bottom:1px solid #1a1a1a;
-    position:sticky;
-    top:0;
-    z-index:100;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  }
-  .header-right { display: flex; align-items: center; gap: 12px; }
-  .brand { display:flex; align-items:center; gap:12px; }
-  .logo-img { width:40px; height:40px; border-radius:8px; object-fit:cover; }
-  .username { font-size:1.25rem; font-weight:700; background:linear-gradient(90deg,var(--accent),#fff); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-  
-  /* Feedback Button */
-  .feedback-btn {
-      background: #1a1a1a;
-      border: 1px solid #333;
-      color: var(--muted);
-      width: 44px; height: 44px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.2s ease-in-out;
-  }
-  .feedback-btn:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      transform: scale(1.1) rotate(10deg);
-  }
-  .feedback-btn svg { width: 22px; height: 22px; stroke: currentColor; stroke-width: 2; }
+        @keyframes background-pan {
+            from { transform: translate(0, 0) scale(1); }
+            to { transform: translate(30px, -30px) scale(1.1); }
+        }
 
-  /* Install App Button */
-  #installBtn {
-      display: none;
-      background: var(--accent);
-      color: #000;
-      border: none;
-      padding: 8px 16px;
-      font-weight: 600;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-  }
-  #installBtn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px var(--accent-glow); }
+        /* Typography */
+        h1, h2, h3 {
+            font-weight: 800;
+            letter-spacing: -0.025em;
+        }
 
-  /* Profile Dropdown & Avatar */
-  .profile-container { position: relative; display: inline-block; }
-  .profile-avatar, .avatar-initials { width: 44px; height: 44px; border-radius: 50%; cursor: pointer; border: 2px solid #333; transition: all 0.2s ease; }
-  .profile-avatar:hover, .avatar-initials:hover { border-color: var(--accent); box-shadow: 0 0 10px var(--accent-glow); }
-  .avatar-initials {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: #000;
-  }
-  .profile-dropdown { display: none; position: absolute; top: 60px; right: 0; background-color: #111; min-width: 220px; box-shadow: 0 8px 25px rgba(0,0,0,0.5); border-radius: 12px; z-index: 101; border: 1px solid #222; overflow: hidden; animation: fadeIn 0.2s ease-out; }
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-  .profile-dropdown.show { display: block; }
-  .dropdown-header { padding: 16px; border-bottom: 1px solid #222; }
-  .dropdown-name { font-weight: 600; font-size: 1rem; margin: 0; }
-  .dropdown-email { color: var(--muted); font-size: 0.85rem; margin: 4px 0 0; }
-  .dropdown-item { display: block; width: 100%; padding: 12px 16px; border: none; background: none; color: var(--text); text-align: left; cursor: pointer; font-size: 0.9rem; font-weight: 600; transition: background-color 0.2s ease; }
-  .dropdown-item:hover { background-color: #222; }
-  .dropdown-item.danger { color: var(--danger); }
-  .dropdown-item.danger:hover { background-color: rgba(255, 82, 82, 0.1); }
+        p {
+            line-height: 1.7;
+            color: var(--text-muted);
+        }
+        
+        /* ==============================================
+        HEADER & NAVIGATION
+        ==============================================
+        */
+        #header {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.4s ease;
+        }
 
-  /* Main Content Area */
-  main {
-      max-width: 920px;
-      margin: 28px auto;
-      padding: 0 16px;
-  }
-  
-  /* Button Loading Animation */
-  button.primary .spinner { display: none; border: 2px solid rgba(0, 0, 0, 0.3); border-radius: 50%; border-top-color: #000; width: 20px; height: 20px; animation: spin 1s ease-in-out infinite; }
-  button.primary.is-loading .spinner { display: block; }
-  button.primary.is-loading .btn-text { display: none; }
-  button.primary.is-loading { cursor: not-allowed; display: flex; justify-content: center; align-items: center; }
-  @keyframes spin { to { transform: rotate(360deg); } }
+        #header.scrolled {
+            background: rgba(0, 0, 0, 0.8);
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logo-image {
+            transition: var(--transition-fast);
+        }
 
-  /* Modals */
-  .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, rgba(0,0,0,0.6), rgba(0,0,0,0.8)); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; z-index: 10000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
-  .modal-overlay.show { opacity: 1; pointer-events: auto; }
-  .modal-content { background: var(--card-dark); padding: 30px; border-radius: 16px; border: 1px solid #222; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6); text-align: center; width: 90%; max-width: 420px; transform: scale(0.9); transition: transform 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28); }
-  .modal-overlay.show .modal-content { transform: scale(1); }
-  .modal-logo { width: 70px; height: 70px; margin: 0 auto 15px; border-radius: 12px; animation: logo-pop 0.5s 0.2s ease-out backwards; }
-  @keyframes logo-pop { 0% { transform: scale(0.5) rotate(-15deg); opacity: 0; } 100% { transform: scale(1) rotate(0deg); opacity: 1; } }
-  .modal-content h2 { margin: 0 0 10px; font-size: 1.8rem; color: var(--accent); font-weight: 700; }
-  .modal-content p { margin: 0 0 25px; color: var(--muted); font-size: 1rem; }
-  .modal-content button { background: var(--accent); border: none; padding: 12px 30px; border-radius: 8px; color: #000; font-weight: 700; cursor: pointer; font-size: 1rem; transition: all 0.2s ease; }
-  .modal-content button:hover { transform: translateY(-2px); box-shadow: 0 4px 12px var(--accent-glow); }
-  
-  /* Redesigned Feedback Modal */
-  #feedback-category-selection { display: flex; flex-direction: column; gap: 12px; margin-top: 10px; }
-  .feedback-category-card { background: #111; border: 1px solid #222; border-radius: 10px; padding: 16px; text-align: left; cursor: pointer; transition: all 0.2s ease; }
-  .feedback-category-card:hover { border-color: var(--accent); background: #1a1a1a; transform: translateY(-2px); }
-  .feedback-category-card h3 { margin: 0 0 4px; color: var(--text); font-size: 1.1rem; }
-  .feedback-category-card p { margin: 0; color: var(--muted); font-size: 0.9rem; }
-  #feedback-text-input { display: none; }
-  .modal-content textarea { width: 100%; height: 120px; background: #050505; border: 1px solid #222; color: var(--text); border-radius: 8px; padding: 12px; font-family: 'Poppins', sans-serif; font-size: 1rem; margin-bottom: 16px; resize: vertical; }
-  .modal-content textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 2px rgba(0,255,195,0.2); }
-  .modal-actions { display: flex; gap: 10px; justify-content: center; }
-  .modal-actions button { flex: 1; }
-  .modal-actions button.secondary { background: #222; color: var(--text); }
-  .modal-actions button.secondary:hover { background: #333; box-shadow: none; }
+        #header.scrolled .logo-image {
+            transform: scale(0.9);
+        }
 
-  /* Info Blocks & Main UI */
-  .info-blocks{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;margin-bottom:18px;}
-  .info-block{background:var(--card-dark);padding:14px;border-radius:12px;text-align:center;border:1px solid #1a1a1a;transition: all 0.3s ease;}
-  .info-block:hover { transform: translateY(-3px); box-shadow: 0 6px 15px rgba(0, 255, 195, 0.1); border-color: #222; }
-  .info-block .value{display:block;margin-top:8px;font-size:1.6rem;color:var(--accent);font-weight:600;}
-  .tabs{display:flex;gap:10px;margin-bottom:16px;}
-  .tab{flex:1;background:var(--card-dark);padding:12px;border-radius:10px;text-align:center;cursor:pointer;border:1px solid #1a1a1a;transition:all 0.2s ease;}
-  .tab:hover{background:#111;}
-  .tab.active{background:var(--accent);color:#000;font-weight:700;}
-  .form-section{display:none; background:var(--card-dark);padding:18px;border-radius:12px;border:1px solid #1a1a1a;}
-  .form-section.active{display:block; animation: formFadeIn 0.5s ease;}
-  @keyframes formFadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-  label{display:block;margin-bottom:6px;font-weight:600;font-size:0.9rem;}
-  input,select{width:100%;padding:12px;border-radius:8px;background:#050505;border:1px solid #222;color:var(--text);margin-bottom:12px;font-size:16px;font-family:'Poppins',sans-serif; transition: border-color 0.2s ease, box-shadow 0.2s ease;}
-  input:focus,select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 2px rgba(0,255,195,0.2);}
-  
-  button.animated-add {
-    background: var(--accent); border: none; padding: 14px 20px; border-radius: 8px; color: #000; font-weight: 700; cursor: pointer; width: 100%; margin-top: 8px; font-size: 1rem; transition: all 0.2s ease; position: relative; overflow: hidden;
-  }
-  button.animated-add:hover { transform: translateY(-2px); box-shadow: 0 4px 15px var(--accent-glow); }
-  button.animated-add:active { transform: translateY(-1px) scale(0.98); box-shadow: 0 2px 8px var(--accent-glow); }
-  
-  button.primary{background:var(--accent);border:none;padding:14px 20px;border-radius:8px;color:#000;font-weight:700;cursor:pointer;width:100%;margin-top:16px;font-size:1rem;transition: all 0.2s ease;}
-  button.primary:hover{transform: translateY(-2px);box-shadow: 0 4px 12px var(--accent-glow);}
+        .rivava-text {
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-primary), #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 25px rgba(0, 255, 127, 0.3);
+            animation: glow 4s ease-in-out infinite alternate;
+        }
 
-  .table-container{overflow-x:auto;margin-top:24px;margin-bottom:16px;border-radius:12px;border: 1px solid #1a1a1a;-webkit-overflow-scrolling: touch;}
-  table{width:100%;border-collapse:collapse;min-width:600px;}
-  th,td{padding:12px 15px;border-bottom:1px solid #222;text-align:left;white-space: nowrap;}
-  th{color:var(--accent);font-weight:700;font-size:0.9rem;background: rgba(255,255,255,0.02);}
-  td{font-size:0.9rem;}
-  td button{background:var(--danger);color:#fff;border:none;padding:6px 10px;border-radius:6px;cursor:pointer;font-size:0.8rem;transition: all 0.2s ease;min-width: 60px;}
-  td button:hover{background:#ff3838;}
-  
-  /* --- IMPROVED: Table Row Animation --- */
-  @keyframes rowFadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-  tr.new-row { animation: rowFadeIn 0.4s ease-out; }
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 5px rgba(0, 255, 127, 0.3)); }
+            to { filter: drop-shadow(0 0 15px rgba(0, 255, 127, 0.7)); }
+        }
 
-  /* Welcome Overlay */
-  #welcomeOverlay{
-    position:fixed; top: 24px; left: 50%; transform: translateX(-50%) translateY(-20px); width: auto; max-width: 90%; padding: 16px 24px; border-radius: 12px; background: linear-gradient(135deg, #0d0d0d, #1a1a1a); color: var(--text); display: flex; align-items: center; gap: 16px; box-shadow: 0 12px 30px rgba(0,0,0,0.6); opacity: 0; pointer-events: none; z-index: 9999; transition: opacity .4s ease, transform .4s ease; border: 1px solid #222;
-  }
-  #welcomeOverlay.show{ opacity:1; transform: translateX(-50%) translateY(0); }
-  #welcomeOverlay #welcomeAvatar { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); }
-  #welcomeOverlay .welcome-main-text { font-weight: 700; font-size: 1.1rem; line-height: 1.2; }
-  #welcomeOverlay .welcome-sub-text { font-weight: 400; font-size: 0.9rem; color: var(--muted); margin-top: 4px; }
-  
-  /* Mobile Optimizations */
-  @media(max-width:768px){
-    main { margin: 16px auto; padding: 0 16px; }
-    .info-blocks{ grid-template-columns:1fr 1fr; gap:12px; }
-    .tabs{ flex-direction:row; gap:8px; }
-    .tab { font-size: 0.9rem; }
-    table{min-width:600px;}
-  }
+        .nav-link {
+            position: relative;
+            transition: var(--transition-fast);
+            color: var(--text-muted);
+        }
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent-primary);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .nav-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
 
-  @media(max-width:480px){
-    main { padding: 0 12px; }
-    .info-blocks{ grid-template-columns:1fr; }
-    .tabs{ flex-direction:column; }
-    .form-section { padding: 16px; }
-    td, th { padding: 10px 12px; font-size: 0.85rem; }
-  }
-  ::-webkit-scrollbar{width:8px;height:8px} ::-webkit-scrollbar-track{background:#111} ::-webkit-scrollbar-thumb{background:#333;border-radius:4px}
-</style>
+        /* ==============================================
+        HERO SECTION
+        ==============================================
+        */
+        .hero-rivava {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            letter-spacing: 0.1em;
+            background: linear-gradient(135deg, var(--accent-primary), white, var(--accent-blue), var(--accent-pink), var(--accent-primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 400% 400%;
+            animation: gradient-flow 8s ease-in-out infinite, hero-glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes hero-glow {
+            from { filter: drop-shadow(0 0 10px rgba(0, 255, 127, 0.4)); }
+            to { filter: drop-shadow(0 0 25px rgba(0, 163, 255, 0.5)); }
+        }
+
+        /* ==============================================
+        BUTTONS
+        ==============================================
+        */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem 1.8rem;
+            border-radius: 999px;
+            font-weight: 600;
+            transition: var(--transition-fast);
+            border: 1px solid transparent;
+            cursor: pointer;
+        }
+        .btn:disabled {
+            cursor: not-allowed;
+        }
+        .btn-primary {
+            background-color: var(--accent-primary);
+            color: #000000;
+            box-shadow: 0 8px 25px rgba(0, 255, 127, 0.25);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0, 255, 127, 0.4);
+        }
+        .btn-secondary {
+            background-color: var(--accent-secondary);
+            border-color: var(--border-color);
+            color: var(--text-primary);
+        }
+        .btn-secondary:hover {
+            background-color: #4A5568;
+            border-color: var(--accent-primary);
+        }
+        .btn-accent {
+            background: linear-gradient(45deg, #F000B8, #ef4444);
+            color: var(--text-primary);
+            box-shadow: 0 8px 25px rgba(240, 0, 184, 0.3);
+        }
+        .btn-accent:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(240, 0, 184, 0.5);
+        }
+
+        /* ==============================================
+        ICON STYLES
+        ==============================================
+        */
+        .gradient-icon {
+            color: var(--text-primary);
+            transition: var(--transition-fast);
+        }
+        .glass-panel:hover .gradient-icon,
+        .subtle-donate-link:hover .gradient-icon {
+            color: var(--accent-primary);
+            filter: drop-shadow(0 0 4px rgba(0, 255, 127, 0.4)) drop-shadow(0 0 12px rgba(0, 255, 127, 0.3)) brightness(1.2);
+            transform: scale(1.1);
+        }
+        
+        #privacy .gradient-icon {
+            color: var(--accent-primary);
+        }
+
+        .btn-primary:hover .icon-animate-heart,
+        .btn-accent:hover .icon-animate-heart {
+            animation: heartbeat 1s ease-in-out infinite;
+        }
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        .btn-primary:hover .icon-animate-plane {
+            animation: takeoff 0.5s ease-out forwards;
+        }
+        @keyframes takeoff {
+            from { transform: translate(0, 0) rotate(0deg); }
+            to { transform: translate(5px, -5px) rotate(15deg); }
+        }
+
+        /* ==============================================
+        CARDS & PANELS
+        ==============================================
+        */
+        .glass-panel {
+            background: linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(16px) saturate(1.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border-radius: 1.5rem;
+            transition: var(--transition-medium), border-color 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .glass-panel:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), var(--hover-glow);
+            border-color: rgba(0, 255, 127, 0.3);
+        }
+        .glass-panel::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(0, 255, 127, 0.1), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.5s;
+            pointer-events: none;
+        }
+        .glass-panel:hover::before {
+            opacity: 1;
+        }
+        
+        /* ==============================================
+        MISSION SECTION
+        ==============================================
+        */
+        #mission {
+            background: #05080D;
+            position: relative;
+            overflow: hidden;
+        }
+        #mission::before, #mission::after {
+            content: '';
+            position: absolute;
+            z-index: 0;
+            border-radius: 50%;
+            filter: blur(120px);
+            pointer-events: none;
+            animation: subtle-glow-pan 20s linear infinite alternate;
+        }
+        #mission::before {
+            width: 600px;
+            height: 600px;
+            top: -20%;
+            left: -20%;
+            background: var(--accent-blue);
+            opacity: 0.1;
+        }
+        #mission::after {
+            width: 500px;
+            height: 500px;
+            bottom: -25%;
+            right: -15%;
+            background: var(--accent-pink);
+            opacity: 0.1;
+            animation-delay: -10s;
+        }
+
+        @keyframes subtle-glow-pan {
+            from { transform: translate(0, 0); }
+            to { transform: translate(50px, 30px); }
+        }
+
+        .mission-card {
+            background: linear-gradient(160deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(24px) saturate(1.5);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            border-radius: 2rem;
+            transform: perspective(2000px) rotateX(7deg);
+            transition: var(--transition-medium);
+            position: relative;
+            z-index: 1;
+        }
+        .mission-card:hover {
+            transform: perspective(2000px) rotateX(0deg);
+            box-shadow: 0 30px 70px rgba(0,0,0,0.6), var(--hover-glow);
+        }
+        .mission-image-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+        .mission-image {
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: var(--transition-medium);
+        }
+        .mission-image:hover {
+            transform: scale(1.05) rotate(-1deg);
+        }
+        .mission-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .mission-image:nth-child(1) {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+        .mission-image:nth-child(2) {
+            grid-row: span 1;
+        }
+        .mission-image:nth-child(3) {
+            grid-row: span 1;
+        }
+
+        /* ==============================================
+        STORY CARDS
+        ==============================================
+        */
+        .story-card {
+            border-radius: 1.5rem;
+            overflow: hidden;
+            transition: var(--transition-medium);
+        }
+        .story-card:hover .story-image {
+            transform: scale(1.05);
+        }
+        .story-image-wrapper {
+            height: 200px;
+            overflow: hidden;
+        }
+        .story-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .story-card .read-more {
+            color: var(--accent-primary);
+            transition: var(--transition-fast);
+            cursor: pointer;
+        }
+        .story-card:hover .read-more {
+            letter-spacing: 0.5px;
+        }
+        .donate-circle-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: var(--accent-pink);
+            color: white;
+            opacity: 0.7;
+            transition: var(--transition-fast);
+        }
+        .story-card:hover .donate-circle-icon {
+            opacity: 1;
+            transform: scale(1.1) rotate(-15deg);
+            box-shadow: 0 0 10px var(--accent-pink);
+        }
+        .donate-circle-icon i {
+            font-size: 14px;
+        }
+
+        /* ==============================================
+        PLANS & DONATION SECTIONS
+        ==============================================
+        */
+        .progress-bar-container {
+            background-color: var(--accent-secondary);
+            border-radius: 999px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+        .progress-bar {
+            background-color: var(--accent-primary);
+            height: 1.5rem;
+            border-radius: 999px;
+            transition: width 0.8s ease-out;
+            box-shadow: 0 0 15px rgba(0, 255, 127, 0.5);
+        }
+        .plan-abandoned .plan-content {
+            opacity: 0.4;
+            filter: grayscale(90%);
+            transition: var(--transition-medium);
+        }
+        .plan-abandoned::after {
+            content: '×';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-15deg);
+            font-size: 18rem;
+            font-weight: 200;
+            color: #991b1b;
+            text-shadow: 0 0 20px rgba(153, 27, 27, 0.6);
+            opacity: 0.9;
+            z-index: 10;
+            line-height: 1;
+            pointer-events: none;
+        }
+        
+        .subtle-donate-link {
+            color: var(--text-muted);
+            transition: var(--transition-fast);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .subtle-donate-link:hover {
+            color: var(--text-primary);
+        }
+        .subtle-donate-link i {
+            transition: var(--transition-fast);
+        }
+        .progress-bar-wrapper .tooltip {
+            transition: opacity 0.3s ease;
+        }
+        .progress-bar-wrapper:hover .tooltip {
+            opacity: 1;
+        }
+        .leaderboard li:nth-child(1) {
+            background: linear-gradient(45deg, #FFDF00, #FBB034);
+            color: #212529; /* Darker text for better contrast */
+            border: 1px solid #FFDF00;
+        }
+        .leaderboard li:nth-child(1) span:last-child {
+            color: #212529;
+        }
+        .leaderboard li:nth-child(2) {
+            background: linear-gradient(45deg, #E8E8E8, #C0C0C0);
+            color: #212529;
+            border: 1px solid #E8E8E8;
+        }
+        .leaderboard li:nth-child(2) span:last-child {
+            color: #212529;
+        }
+        .leaderboard li:nth-child(3) {
+            background: linear-gradient(45deg, #D29968, #B87333);
+            color: #fff;
+            border: 1px solid #D29968;
+        }
+        .leaderboard li:nth-child(3) span:last-child {
+            color: #fff;
+        }
+        
+        /* ==============================================
+        MODAL STYLES
+        ==============================================
+        */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .modal.show {
+            display: flex;
+            opacity: 1;
+        }
+        .modal-content {
+            background: var(--bg-panel);
+            border: 1px solid var(--border-color);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            width: 90%;
+            max-width: 500px;
+            transform: scale(0.95);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        #storyModal .modal-content {
+            max-width: 800px;
+        }
+        .modal.show .modal-content {
+            transform: scale(1);
+        }
+        .modal-close {
+            position: absolute;
+            top: 1rem; right: 1rem;
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            transition: var(--transition-fast);
+        }
+        .modal-close:hover {
+            background: var(--accent-primary);
+            color: var(--bg-dark);
+            transform: rotate(90deg);
+        }
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            transition: var(--transition-fast);
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(0, 255, 127, 0.2);
+        }
+
+        /* ==============================================
+        ANIMATIONS
+        ==============================================
+        */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+        .stagger-4 { transition-delay: 0.4s; }
+        .stagger-5 { transition-delay: 0.5s; }
+        .stagger-6 { transition-delay: 0.6s; }
+
+    </style>
 </head>
-<body>
+<body class="relative">
+    <!-- HEADER -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-50">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center justify-between py-4 transition-all duration-300">
+                <a href="#hero" class="flex items-center gap-3">
+                    <img src="logo.png" alt="Rivava Logo" class="logo-image h-8 w-8 md:h-10 md:w-10" />
+                    <div>
+                        <div class="rivava-text text-2xl md:text-3xl leading-none">RIVAVA</div>
+                        <div class="text-xs text-gray-400 -mt-1 tracking-wider hidden sm:block">Make It Simple.</div>
+                    </div>
+                </a>
 
-<header>
-  <div class="brand">
-    <img src="./logo.png" alt="Rivava Logo" class="logo-img">
-    <div class="username">RIVAVA</div>
-  </div>
-  <div class="header-right">
-    <button id="installBtn">Install App</button>
-    <button id="feedbackBtn" class="feedback-btn" onclick="openFeedbackModal(true)" aria-label="Open Feedback Form">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-    </button>
-    <div id="topUserArea"></div>
-  </div>
-</header>
+                <nav class="hidden md:flex items-center gap-8 text-sm">
+                    <a href="#services" class="nav-link">Services</a>
+                    <a href="#mission" class="nav-link">Mission</a>
+                    <a href="#plans" class="nav-link">Our Journey</a>
+                    <a href="#privacy" class="nav-link">Privacy</a>
+                    <a href="#" class="nav-link" onclick="openAppModal()">Web App</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </nav>
 
-<main id="mainContent" style="display: none;">
-  <div class="info-blocks">
-    <div class="info-block">Time<span class="value" id="liveTime">--:--:-- --</span></div>
-    <div class="info-block">Date<span class="value" id="fixedDate">--/--/----</span></div>
-    <div class="info-block" style="grid-column: 1 / -1;">Total Expense<span class="value" id="totalExpense">₹0</span></div>
-  </div>
-
-  <div class="tabs">
-    <div class="tab active" onclick="showTab('earning')">Earning</div>
-    <div class="tab" onclick="showTab('expense')">Expense</div>
-  </div>
-
-  <div id="earning" class="form-section active">
-    <label for="earningCategory">Category</label>
-    <select id="earningCategory" onchange="handleEarningCategoryChange()"><option>Salary</option><option>Daily Earning</option><option>Other</option></select>
-    <input type="text" id="customEarningCategory" placeholder="Enter custom earning source" style="display:none;" />
-    <label for="earningAmount">Amount</label>
-    <input type="number" id="earningAmount" placeholder="Enter earning amount" min="0" step="0.01" />
-    <button class="animated-add" onclick="addEarning()">Add Earning</button>
-  </div>
-
-  <div id="expense" class="form-section">
-    <label for="expenseCategory">Category</label>
-    <select id="expenseCategory" onchange="handleCategoryChange()"><option>Personal</option><option>Food</option><option>Transport</option><option>Shopping</option><option>Recharge and Bills</option><option>Entertainment</option><option>Other</option></select>
-    <input type="text" id="customCategory" placeholder="Enter custom category" style="display:none;" />
-    <label for="expenseAmount">Amount</label>
-    <input type="number" id="expenseAmount" placeholder="Enter expense amount" min="0" step="0.01" />
-    <label for="paymentMethod">Payment Method</label>
-    <select id="paymentMethod"><option>UPI</option><option>Cash</option><option>Credit Card</option><option>Bank Transfer</option></select>
-    <button class="animated-add" onclick="addExpense()">Add Expense</button>
-  </div>
-
-  <div class="table-container">
-    <table id="dataTable" aria-label="Transactions table">
-      <thead><tr><th>Type</th><th>Amount</th><th>Category</th><th>Payment</th><th>Date</th><th>Time</th><th>Action</th></tr></thead>
-      <tbody></tbody>
-    </table>
-  </div>
-  <button id="submitBtn" class="primary" onclick="submitForm()">
-      <span class="btn-text">Submit All Transactions</span>
-      <div class="spinner"></div>
-  </button>
-</main>
-
-<!-- New User Modal -->
-<div id="newUserModal" class="modal-overlay">
-    <div class="modal-content">
-        <h2>Welcome to Rivava!</h2>
-        <p>Please confirm your details to get started.</p>
-        <label for="userNameInput" style="text-align: left; display: block; margin-bottom: 6px;">Full Name</label>
-        <input type="text" id="userNameInput" placeholder="Your full name">
-        <label for="phoneInput" style="text-align: left; display: block; margin-bottom: 6px;">Phone Number</label>
-        <input type="tel" id="phoneInput" placeholder="Your phone number">
-        <button onclick="completeRegistration()">Save & Continue</button>
-    </div>
-</div>
-
-
-<!-- Modals and Overlays -->
-<div id="welcomeOverlay" role="status" aria-live="polite">
-    <img id="welcomeAvatar" src="" alt="User Avatar">
-    <div class="welcome-content">
-        <div id="welcomeText" class="welcome-main-text"></div>
-        <div id="welcomeSubText" class="welcome-sub-text"></div>
-    </div>
-</div>
-
-<div id="successModal" class="modal-overlay">
-    <div class="modal-content">
-        <img src="./logo.png" alt="Success" class="modal-logo">
-        <h2>Success!</h2>
-        <p>Your transactions have been saved securely.</p>
-        <button onclick="closeModal('successModal')">Done</button>
-    </div>
-</div>
-
-<div id="feedbackModal" class="modal-overlay">
-    <div class="modal-content">
-        <div id="feedback-category-selection">
-            <h2>Submit Feedback</h2>
-            <p>What is your feedback about?</p>
-            <div class="feedback-category-card" onclick="selectFeedbackCategory('Bug / Issue')">
-                <h3>Report a Bug / Issue</h3>
-                <p>Let us know if something isn't working right.</p>
-            </div>
-            <div class="feedback-category-card" onclick="selectFeedbackCategory('Feature Suggestion')">
-                <h3>Suggest a Feature</h3>
-                <p>Have a great idea for a new feature?</p>
-            </div>
-            <div class="feedback-category-card" onclick="selectFeedbackCategory('Other')">
-                <h3>Other Comments</h3>
-                <p>General thoughts, questions, or praise.</p>
-            </div>
-        </div>
-        <div id="feedback-text-input">
-            <h2 id="feedback-title">Your Feedback</h2>
-            <textarea id="feedbackText" placeholder="Please provide as much detail as possible..."></textarea>
-            <div class="modal-actions">
-                <button class="secondary" onclick="openFeedbackModal(true)">Back</button>
-                <button class="primary" onclick="submitFeedback()">
-                    <span class="btn-text">Send Feedback</span>
-                    <div class="spinner"></div>
+                <button id="hambBtn" class="md:hidden p-2 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm" aria-label="menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M4 6h16M4 12h16M4 18h16" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
                 </button>
             </div>
         </div>
+
+        <!-- MOBILE MENU -->
+        <div id="mobileMenu" class="hidden md:hidden border-t border-white/10 bg-[color:var(--bg-panel)]/95 backdrop-blur-xl">
+            <div class="container mx-auto px-6 py-4 flex flex-col gap-2 text-base">
+                <a href="#services" class="block text-gray-300 hover:text-white transition-colors py-3">Services</a>
+                <a href="#mission" class="block text-gray-300 hover:text-white transition-colors py-3">Mission</a>
+                <a href="#plans" class="block text-gray-300 hover:text-white transition-colors py-3">Our Journey</a>
+                <a href="#privacy" class="block text-gray-300 hover:text-white transition-colors py-3">Privacy</a>
+                <a href="#" onclick="openAppModal()" class="block text-gray-300 hover:text-white transition-colors py-3">Web App</a>
+                <a href="#contact" class="block text-gray-300 hover:text-white transition-colors py-3">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="relative overflow-hidden">
+        <!-- HERO -->
+        <section id="hero" class="min-h-screen flex items-center justify-center relative z-10 pt-24 pb-12">
+            <div class="container mx-auto px-6 text-center">
+                <div class="hero-rivava fade-in-up">RIVAVA</div>
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight mt-4 fade-in-up stagger-1">Make It Simple.</h1>
+                <p class="max-w-xl mx-auto text-lg md:text-xl mt-6 fade-in-up stagger-2">Your money. Clear. Controlled. Growing.</p>
+
+                <div class="mt-10 flex flex-col sm:flex-row gap-4 items-center justify-center">
+                    <!-- UPDATED LINK -->
+                    <a href="donation.html" class="btn btn-primary text-lg fade-in-up stagger-3">
+                        Be a Part of This Journey
+                    </a>
+                    <a href="#services" class="btn btn-secondary text-lg fade-in-up stagger-4">
+                        Explore Services
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- OUR MISSION (MVP SECTION) -->
+        <section id="mission" class="py-20 md:py-32">
+            <div class="container mx-auto px-6">
+                <div class="mission-card p-8 md:p-12 fade-in-up">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div class="fade-in-up stagger-1">
+                            <h2 class="text-5xl md:text-6xl font-bold leading-tight">Our Mission</h2>
+                            <h3 class="text-2xl md:text-3xl font-semibold text-[color:var(--accent-primary)] mt-4">Your Ambition Deserves an Ally.</h3>
+                            <p class="mt-6 text-lg max-w-lg">
+                                We exist for those who build our cities—the delivery partners navigating monsoon traffic and the IT professionals burning the midnight oil. Your hard work deserves more than just a savings account; it deserves a dedicated financial partner to turn relentless effort into lasting wealth and security.
+                            </p>
+                        </div>
+                        <div class="mission-image-grid fade-in-up stagger-2">
+                            <div class="mission-image">
+                                <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=800&auto=format&fit=crop" alt="A smiling delivery rider in India">
+                            </div>
+                            <div class="mission-image">
+                                <img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?q=80&w=800&auto=format&fit=crop" alt="A young professional in a modern Indian office">
+                            </div>
+                            <div class="mission-image">
+                                <img src="https://images.unsplash.com/photo-1600857288214-462845420658?q=80&w=800&auto=format&fit=crop" alt="A bustling street scene in an Indian city at dusk">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STORIES -->
+        <section id="stories" class="container mx-auto px-6 pb-20">
+            <div class="text-center mb-14">
+                <h2 class="text-3xl md:text-4xl font-semibold fade-in-up">Stories of Transformation</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Story 1 -->
+                <div class="glass-panel story-card fade-in-up stagger-1">
+                    <div class="story-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1624625729155-a06fb551235a?q=80&w=600&auto=format&fit=crop" alt="A young man looking proudly at his new apartment keys">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Rohan's Journey: From Gigs to a Home</h3>
+                        <p class="text-sm mb-4">A delivery partner in Mumbai, Rohan juggled orders day and night. With a dedicated fund manager, he channelled his unpredictable income into a systematic investment plan (SIP), turning his dream of buying a flat into a reality.</p>
+                        <div class="flex items-center justify-between mt-4">
+                            <a onclick="openStoryModal('Rohan\'s Journey: From Gigs to a Home', 'https://images.unsplash.com/photo-1624625729155-a06fb551235a?q=80&w=600&auto=format&fit=crop', 'Rohan, a delivery partner in Mumbai, used to find it challenging to save money due to his fluctuating income. Every day was a hustle, navigating through traffic to make ends meet. He dreamed of owning a small flat for his family but felt it was out of reach. Through Rivava, he was connected with a dedicated fund manager who helped him set up a systematic investment plan (SIP). By consistently investing a small portion of his earnings, Rohan started building a corpus. Within a few years, his disciplined approach paid off, and he was able to make a down payment on his dream home.')" class="font-semibold text-sm read-more">Read more →</a>
+                            <!-- UPDATED LINK -->
+                            <a href="donation.html" class="donate-circle-icon"><i class="far fa-heart"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Story 2 -->
+                <div class="glass-panel story-card fade-in-up stagger-2">
+                    <div class="story-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1593720219276-0b1eacd0aef4?q=80&w=600&auto=format&fit=crop" alt="A young woman working on her laptop in a modern co-working space">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Priya's Plan: From Tech Park to Freedom</h3>
+                        <p class="text-sm mb-4">As a software developer in Bangalore, Priya felt overwhelmed by financial jargon. Our premium service gave her a clear, personalized roadmap to clear her education loan and confidently start investing for her future.</p>
+                        <div class="flex items-center justify-between mt-4">
+                            <a onclick="openStoryModal('Priya\'s Plan: From Tech Park to Freedom', 'https://images.unsplash.com/photo-1593720219276-0b1eacd0aef4?q=80&w=600&auto=format&fit=crop', 'Priya, a talented software developer in Bangalore, was earning well but felt lost in the world of finance. The burden of an education loan and the pressure to invest wisely were constant sources of stress. Our premium service provided her with a financial advisor who demystified complex concepts and created a clear, actionable plan. Priya is now debt-free and confidently growing her wealth, on track to achieve financial independence years ahead of schedule.')" class="font-semibold text-sm read-more">Read more →</a>
+                            <!-- UPDATED LINK -->
+                            <a href="donation.html" class="donate-circle-icon"><i class="far fa-heart"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Story 3 -->
+                <div class="glass-panel story-card fade-in-up stagger-3">
+                    <div class="story-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1610983947152-2b71933973c2?q=80&w=600&auto=format&fit=crop" alt="An Indian family smiling together">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">The Sharmas' Legacy: For Their Daughter</h3>
+                        <p class="text-sm mb-4">For the Sharma family, saving for their daughter's higher education felt like a mountain to climb. Through tailored guidance, they built a substantial fund, ensuring her dreams would never be limited by finances.</p>
+                        <div class="flex items-center justify-between mt-4">
+                            <a onclick="openStoryModal('The Sharmas\' Legacy: For Their Daughter', 'https://images.unsplash.com/photo-1610983947152-2b71933973c2?q=80&w=600&auto=format&fit=crop', 'The Sharma family had a simple but profound goal: to provide their daughter with the best possible education. However, the rising costs of higher education seemed daunting. Our team worked with them to create a long-term investment strategy tailored to their goals. Through a combination of mutual funds and other instruments, they have built a significant educational corpus, ensuring their daughter\'s dreams have the financial backing they deserve.')" class="font-semibold text-sm read-more">Read more →</a>
+                            <!-- UPDATED LINK -->
+                            <a href="donation.html" class="donate-circle-icon"><i class="far fa-heart"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES -->
+        <section id="services" class="container mx-auto px-6 py-20">
+            <div class="text-center mb-14">
+                <h2 class="text-3xl md:text-4xl font-semibold fade-in-up">Our Services</h2>
+                <p class="max-w-2xl mx-auto mt-4 text-lg fade-in-up stagger-1">Practical, measurable & habit-driven personal finance services for every stage of life.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service Card 1 -->
+                <div class="p-8 glass-panel fade-in-up stagger-1">
+                    <div class="text-4xl mb-4"><i class="fas fa-chart-line gradient-icon"></i></div>
+                    <h3 class="font-semibold text-xl mt-2 mb-3">Fund Manager</h3>
+                    <p class="text-sm">Monthly personalised advice, mid-month check, and review meetings by NISM-certified advisors.</p>
+                </div>
+                <!-- Service Card 2 -->
+                <div class="p-8 glass-panel fade-in-up stagger-2">
+                    <div class="text-4xl mb-4"><i class="fas fa-file-invoice-dollar gradient-icon"></i></div>
+                    <h3 class="font-semibold text-xl mt-2 mb-3">Expense Analysis</h3>
+                    <p class="text-sm">Daily tracking, EMP model (Evaluate, Monitor, Plan) and weekly summaries to optimize spending.</p>
+                </div>
+                <!-- Service Card 3 -->
+                <div class="p-8 glass-panel fade-in-up stagger-3">
+                    <div class="text-4xl mb-4"><i class="fas fa-shield-alt gradient-icon"></i></div>
+                    <h3 class="font-semibold text-xl mt-2 mb-3">CIBIL Boost</h3>
+                    <p class="text-sm">Actionable steps to improve credit score and support with disputes and credit utilization.</p>
+                </div>
+                <!-- Service Card 4 -->
+                <div class="p-8 glass-panel fade-in-up stagger-4">
+                    <div class="text-4xl mb-4"><i class="fas fa-hand-holding-usd gradient-icon"></i></div>
+                    <h3 class="font-semibold text-xl mt-2 mb-3">Loan Repayment Assistance</h3>
+                    <p class="text-sm">Profile-based plans to accelerate repayments while preserving your safety net.</p>
+                </div>
+                <!-- Service Card 5 -->
+                <div class="p-8 glass-panel fade-in-up stagger-5">
+                    <div class="text-4xl mb-4"><i class="fas fa-brain gradient-icon"></i></div>
+                    <h3 class="font-semibold text-xl mt-2 mb-3">Psychological Support</h3>
+                    <p class="text-sm">Habit formation, impulse control, and mindset coaching to make changes stick.</p>
+                </div>
+                <!-- Service Card 6 -->
+                <div class="p-8 glass-panel fade-in-up stagger-6">
+                    <div class="text-4xl mb-4"><i class="fas fa-video gradient-icon"></i></div>
+                    <h3 class="font-semibold text-xl mt-2 mb-3">Video Counseling</h3>
+                    <p class="text-sm">One free 15-min consultation monthly. Extra sessions available on-demand.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- TEAM SECTION -->
+        <section id="team" class="container mx-auto px-6 py-20">
+            <div class="text-center mb-14">
+                <h2 class="text-3xl md:text-4xl font-semibold fade-in-up">Our Expert Team</h2>
+                <p class="max-w-2xl mx-auto mt-4 text-lg fade-in-up stagger-1">Meet the professionals dedicated to your financial success.</p>
+            </div>
+
+            <!-- Desktop Grid -->
+            <div class="hidden md:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+                <div class="text-center fade-in-up stagger-1">
+                    <div class="team-member">
+                        <img src="aadya.jpeg" alt="Anjali Sharma" class="team-img">
+                        <div class="team-overlay"><div class="team-role">Lead Advisor</div></div>
+                    </div>
+                    <div class="mt-4"><div class="font-semibold text-lg">Anjali Sharma</div><div class="text-[color:var(--text-muted)]">Lead Financial Advisor</div></div>
+                </div>
+                <div class="text-center fade-in-up stagger-2">
+                    <div class="team-member">
+                        <img src="aditya.jpeg" alt="Aditya Singh" class="team-img">
+                        <div class="team-overlay"><div class="team-role">Tech Lead</div></div>
+                    </div>
+                    <div class="mt-4"><div class="font-semibold text-lg">Aditya Singh</div><div class="text-[color:var(--text-muted)]">Tech Lead</div></div>
+                </div>
+                <div class="text-center fade-in-up stagger-3">
+                    <div class="team-member">
+                        <img src="chittresh.jpeg" alt="Chittresh Goswami" class="team-img">
+                        <div class="team-overlay"><div class="team-role">Senior BDM</div></div>
+                    </div>
+                    <div class="mt-4"><div class="font-semibold text-lg">Chittresh Goswami</div><div class="text-[color:var(--text-muted)]">Senior BDM</div></div>
+                </div>
+                <div class="text-center fade-in-up stagger-4">
+                    <div class="team-member">
+                        <img src="hansreynolds.jpeg" alt="Hans Reynolds" class="team-img">
+                        <div class="team-overlay"><div class="team-role">Loan Strategist</div></div>
+                    </div>
+                    <div class="mt-4"><div class="font-semibold text-lg">Hans Reynolds</div><div class="text-[color:var(--text-muted)]">Loan Strategist</div></div>
+                </div>
+            </div>
+            
+            <!-- Mobile Scroll Grid -->
+            <div class="md:hidden team-grid-mobile fade-in-up">
+                 <div class="text-center">
+                    <div class="team-member">
+                        <img src="aadya.jpeg" alt="Anjali Sharma" class="team-img">
+                    </div>
+                    <div class="mt-4"><div class="font-semibold text-lg">Anjali Sharma</div><div class="text-[color:var(--text-muted)]">Lead Financial Advisor</div></div>
+                </div>
+                <div class="text-center">
+                    <div class="team-member">
+                        <img src="aditya.jpeg" alt="Aditya Singh" class="team-img">
+                    </div>
+                    <div class="mt-4"><div class="font-semibold text-lg">Aditya Singh</div><div class="text-[color:var(--text-muted)]">Tech Lead</div></div>
+                </div>
+                <div class="text-center">
+                    <div class="team-member">
+                        <img src="chittresh.jpeg" alt="Chittresh Goswami" class="team-img">
+                    </div>
+                    <div class="mt-4"><div class="font-semibold text-lg">Chittresh Goswami</div><div class="text-[color:var(--text-muted)]">Senior BDM</div></div>
+                </div>
+                <div class="text-center">
+                    <div class="team-member">
+                        <img src="hansreynolds.jpeg" alt="Hans Reynolds" class="team-img">
+                    </div>
+                    <div class="mt-4"><div class="font-semibold text-lg">Hans Reynolds</div><div class="text-[color:var(--text-muted)]">Loan Strategist</div></div>
+                </div>
+            </div>
+            
+            <div class="text-center max-w-3xl mx-auto mt-16">
+                <p class="text-lg fade-in-up stagger-1">
+                    To bring our mission to life, your finances are managed by a professional fund manager under strict risk controls. We believe in total transparency and accountability, providing you with periodic reports and user-first controls, ensuring you are always in command of your financial journey. Our team is committed to growing your wealth responsibly.
+                </p>
+            </div>
+        </section>
+
+        <!-- PLANS (ABANDONED) -->
+        <section id="plans" class="container mx-auto px-6 py-20">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl md:text-4xl font-semibold fade-in-up">Our Journey to a Community Model</h3>
+                <p class="mt-4 text-lg max-w-3xl mx-auto fade-in-up stagger-1">We started with subscriptions, but quickly realized a community-funded model better serves our mission. Your support now powers everything we do, keeping our services accessible for all.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
+                <div class="p-10 glass-panel text-center fade-in-up stagger-2 relative plan-abandoned">
+                    <div class="relative z-0 plan-content">
+                        <div class="text-sm font-bold uppercase tracking-widest text-[color:var(--accent-blue)]">User's Choice</div>
+                        <div class="text-5xl font-bold my-4">₹299</div>
+                        <p class="text-sm leading-relaxed h-20">Advisor support, expense tracking, and mid-month financial check-ins.</p>
+                        <button class="mt-8 btn btn-secondary w-full" disabled>Choose Plan</button>
+                    </div>
+                </div>
+
+                <div class="p-10 glass-panel text-center relative fade-in-up stagger-3 plan-abandoned">
+                       <div class="relative z-0 plan-content">
+                        <div class="text-sm font-bold uppercase tracking-widest text-[color:var(--accent-pink)]">Premium</div>
+                        <div class="text-5xl font-bold my-4">₹699</div>
+                        <p class="text-sm leading-relaxed h-20">Full advisor access, video counseling, psychological support, and premium features.</p>
+                        <button class="mt-8 btn btn-primary w-full" disabled>Choose Plan</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16 max-w-xl mx-auto fade-in-up stagger-4">
+                <h4 class="text-2xl font-bold text-center mb-4">Top Supporters</h4>
+                <div class="glass-panel p-6">
+                    <ul class="space-y-3 leaderboard">
+                        <li class="flex items-center justify-between text-lg font-semibold p-3 rounded-lg">
+                            <span><i class="fas fa-crown text-yellow-900 mr-3"></i>Rohan S.</span>
+                            <span>₹5,000</span>
+                        </li>
+                        <li class="flex items-center justify-between text-base p-2 rounded-lg">
+                            <span>2. Priya K.</span>
+                            <span class="text-gray-400">₹2,500</span>
+                        </li>
+                        <li class="flex items-center justify-between text-base p-2 rounded-lg">
+                            <span>3. Amit V.</span>
+                            <span class="text-gray-400">₹1,500</span>
+                        </li>
+                        <li class="flex items-center justify-between text-base p-2 rounded-lg">
+                            <span>4. Anonymous</span>
+                            <span class="text-gray-400">₹1,000</span>
+                        </li>
+                        <li class="flex items-center justify-between text-base p-2 rounded-lg">
+                            <span>5. Sunita M.</span>
+                            <span class="text-gray-400">₹750</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-12 max-w-xl mx-auto fade-in-up stagger-5">
+                <h4 class="text-2xl font-bold text-center mb-4 text-[color:var(--accent-primary)]">Our New Path: Community Powered</h4>
+                <div class="flex justify-between items-center text-sm mb-2 text-gray-400">
+                    <span id="journey-start-date"></span>
+                    <span id="journey-partners-supported" class="font-semibold text-white"></span>
+                </div>
+                <div class="relative progress-bar-wrapper">
+                    <div class="flex justify-between items-center text-sm font-semibold mb-2">
+                        <span>Raised: <span id="journey-amount-raised">₹0</span></span>
+                        <span>Goal: <span id="journey-goal-amount">₹75,000</span></span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div id="journey-progress-bar" class="progress-bar" style="width: 0%;"></div>
+                    </div>
+                    <!-- Tooltip -->
+                    <div class="tooltip absolute bottom-full mb-2 w-max left-1/2 -translate-x-1/2 bg-gray-900 text-white text-xs rounded py-1 px-2 opacity-0 pointer-events-none">
+                        <span id="journey-tooltip-text">Supports 0 delivery partners</span>
+                        <svg class="absolute text-gray-900 h-2 w-full left-0 top-full" x="0px" y="0px" viewBox="0 0 255 255" xml:space="preserve"><polygon class="fill-current" points="0,0 127.5,127.5 255,0"/></svg>
+                    </div>
+                </div>
+                <p class="text-center text-xs text-gray-500 mt-2">Progress is updated weekly.</p>
+            </div>
+        </section>
+        
+        <!-- DONATION SECTION -->
+        <section id="donate" class="container mx-auto px-6 py-20">
+            <div class="glass-panel p-8 md:p-12 rounded-2xl text-center max-w-4xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold fade-in-up">How can you be part of this revolution?</h2>
+                <p class="mt-4 max-w-2xl mx-auto fade-in-up stagger-1">Your support fuels our ability to provide this premium fund manager service and helps us reach more hardworking individuals.</p>
+                
+                 <div class="flex flex-col sm:flex-row items-center justify-center gap-8 mt-10 text-center">
+                    <!-- UPDATED LINK -->
+                    <a href="donation.html" class="subtle-donate-link fade-in-up stagger-1">
+                        <i class="fas fa-hand-holding-heart text-2xl gradient-icon"></i>
+                        <span class="font-semibold mt-2">Donate Once</span>
+                    </a>
+                    <!-- UPDATED LINK -->
+                    <a href="donation.html" class="subtle-donate-link fade-in-up stagger-2">
+                        <i class="fas fa-calendar-alt text-2xl gradient-icon"></i>
+                        <span class="font-semibold mt-2">Support Monthly</span>
+                    </a>
+                    <a href="#" onclick="openModal('messageModal')" class="subtle-donate-link fade-in-up stagger-3">
+                        <i class="fas fa-bullhorn text-2xl gradient-icon"></i>
+                        <span class="font-semibold mt-2">Spread the Word</span>
+                    </a>
+                </div>
+
+                <div class="mt-10 fade-in-up stagger-4">
+                    <!-- UPDATED LINK -->
+                    <a href="donation.html" class="btn btn-accent text-lg" aria-label="Donate to support our mission">
+                        <i class="fas fa-heart mr-2 icon-animate-heart"></i> Donate Now
+                    </a>
+                </div>
+                <p class="text-xs mt-6 text-gray-500 fade-in-up stagger-5">All contributions are tracked and reported quarterly for full transparency.</p>
+            </div>
+        </section>
+
+        <!-- PRIVACY & CARE SECTION -->
+        <section id="privacy" class="container mx-auto px-6 py-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-semibold fade-in-up">Your Privacy and Care</h2>
+            </div>
+            <div class="max-w-3xl mx-auto fade-in-up stagger-1">
+                <ul class="space-y-4 text-lg text-left">
+                    <li class="flex items-start gap-4">
+                        <i class="fas fa-shield-alt gradient-icon text-xl mt-1.5"></i>
+                        <span><strong>Minimal Data Collection:</strong> We only collect the essential data required to provide and improve our service.</span>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <i class="fas fa-lock gradient-icon text-xl mt-1.5"></i>
+                        <span><strong>End-to-End Encryption:</strong> All your personal and financial data is secured with bank-level encryption, both in transit and at rest.</span>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <i class="fas fa-user-secret gradient-icon text-xl mt-1.5"></i>
+                        <span><strong>Anonymized Reporting:</strong> Your progress contributes to anonymized reports, ensuring your personal identity is always protected.</span>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <i class="fas fa-toggle-on gradient-icon text-xl mt-1.5"></i>
+                        <span><strong>Full User Control:</strong> You have full control to manage, review, or opt-out of data collection at any time.</span>
+                    </li>
+                </ul>
+                <p class="mt-8 text-center">
+                    Our donation and fund management processes are designed with privacy at their core, offering options for anonymized participation to protect your identity.
+                </p>
+                <div class="mt-6 text-center">
+                    <!-- UPDATED LINK -->
+                    <a href="privacy-policy.html" target="_blank" class="font-semibold text-[color:var(--accent-primary)] hover:underline">Read our full Privacy Policy →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="container mx-auto px-6 py-20">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl md:text-4xl font-semibold fade-in-up">Get In Touch</h3>
+                <p class="mt-4 text-lg fade-in-up stagger-1">Book your free 15-minute consultation. We'll reach out within 24 hours.</p>
+            </div>
+
+            <form id="contactForm" class="max-w-2xl mx-auto fade-in-up stagger-2">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="name" class="text-sm text-gray-400 mb-2 block">Full Name</label>
+                        <input type="text" id="name" name="name" required class="form-control" />
+                    </div>
+                    <div>
+                        <label for="email" class="text-sm text-gray-400 mb-2 block">Email Address</label>
+                        <input type="email" id="email" name="email" required class="form-control" />
+                    </div>
+                </div>
+                <div class="mt-6">
+                    <label for="message" class="text-sm text-gray-400 mb-2 block">Your Financial Goal</label>
+                    <textarea id="message" name="message" class="form-control" rows="4"></textarea>
+                </div>
+                <div class="mt-8 text-center">
+                    <button type="submit" class="btn btn-primary btn-lg text-lg">
+                        <i class="fas fa-paper-plane mr-2 icon-animate-plane"></i> Request Call
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="border-t border-white/10 mt-20">
+            <div class="container mx-auto px-6 py-8 text-center text-sm text-gray-400">
+                <p>&copy; <span id="year"></span> Rivava. All Rights Reserved.</p>
+                <p class="mt-2">
+                    <!-- UPDATED LINK -->
+                    <a href="privacy-policy.html" target="_blank" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <span class="mx-2">|</span>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                </p>
+            </div>
+        </footer>
+    </main>
+
+    <!-- MODALS -->
+    <!-- Message Modal -->
+    <div id="messageModal" class="modal">
+        <div class="modal-content text-center relative">
+            <button class="modal-close" onclick="closeModal('messageModal')"><i class="fas fa-times"></i></button>
+            <div id="messageIcon" class="text-5xl text-[color:var(--accent-primary)] mb-4"></div>
+            <h3 id="messageTitle" class="text-2xl font-bold mb-2"></h3>
+            <p id="messageBody"></p>
+            <button class="btn btn-primary mt-8" onclick="closeModal('messageModal')">OK</button>
+        </div>
     </div>
-</div>
 
-<script>
-let selectedFeedbackCategory = '';
-let deferredInstallPrompt = null;
-const installButton = document.getElementById('installBtn');
+    <!-- Story Modal -->
+    <div id="storyModal" class="modal">
+        <div class="modal-content relative">
+            <button class="modal-close" onclick="closeModal('storyModal')"><i class="fas fa-times"></i></button>
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <img id="storyModalImage" src="" alt="Story image" class="rounded-lg w-full h-64 object-cover">
+                <div>
+                    <h3 id="storyModalTitle" class="text-2xl font-bold mb-4"></h3>
+                    <p id="storyModalBody" class="text-base"></p>
+                    <a href="donation.html" onclick="closeModal('storyModal')" class="btn btn-accent mt-6">Donate Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredInstallPrompt = e;
-    installButton.style.display = 'block';
-});
+    <!-- Web App Selection Modal -->
+    <div id="appModal" class="modal">
+        <div class="modal-content max-w-2xl relative">
+            <button class="modal-close" onclick="closeModal('appModal')"><i class="fas fa-times"></i></button>
+            <h3 class="text-2xl font-bold mb-2 text-center">Select a Financial Tool</h3>
+            <p class="text-center mb-8">Explore our free calculators to start your journey.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+                <a href="https://rivavainfo.github.io/FD-Calculator/" target="_blank" class="glass-panel p-6 external-link">
+                    <div class="text-4xl text-[color:var(--accent-primary)] mb-3"><i class="fas fa-wallet"></i></div>
+                    <div class="font-bold text-lg">FD Calculator</div>
+                </a>
+                <a href="https://rivavainfo.github.io/RD-Calculator/" target="_blank" class="glass-panel p-6 external-link">
+                    <div class="text-4xl text-[color:var(--accent-primary)] mb-3"><i class="fas fa-piggy-bank"></i></div>
+                    <div class="font-bold text-lg">RD Calculator</div>
+                </a>
+                <a href="https://rivavainfo.github.io/Loan-Calculator/" target="_blank" class="glass-panel p-6 external-link">
+                    <div class="text-4xl text-[color:var(--accent-primary)] mb-3"><i class="fas fa-calculator"></i></div>
+                    <div class="font-bold text-lg">Loan Calculator</div>
+                </a>
+            </div>
+        </div>
+    </div>
 
-installButton.addEventListener('click', async () => {
-    if (!deferredInstallPrompt) { return; }
-    deferredInstallPrompt.prompt();
-    const { outcome } = await deferredInstallPrompt.userChoice;
-    deferredInstallPrompt = null;
-    installButton.style.display = 'none';
-});
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Mobile Menu Toggle ---
+            const hambBtn = document.getElementById('hambBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            hambBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+            });
 
-window.addEventListener('appinstalled', () => {
-    deferredInstallPrompt = null;
-    installButton.style.display = 'none';
-});
+            // --- Header Scroll Effect ---
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
 
-/* ----------------------
-  CONFIG & INITIALIZATION
-  ---------------------- */
-const firebaseConfig = { apiKey: "AIzaSyAEB3DSSIWATjfcbmkO094GsO56paxrDhU", authDomain: "rivava-finance-tracker.firebaseapp.com", projectId: "rivava-finance-tracker", storageBucket: "rivava-finance-tracker.appspot.com", messagingSenderId: "615077199032", appId: "1:615077199032:web:fb2007f8a603fa8abcc84d" };
-let db;
-try { if (!firebase.apps.length) { firebase.initializeApp(firebaseConfig); } db = firebase.firestore(); } catch (error) { console.error("Firebase Init Error:", error); }
+            // --- Intersection Observer for Animations ---
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
 
-/* ----------------------
-  PAGE NAVIGATION
-  ---------------------- */
-function viewHistory() {
-    window.location.href = './history.html';
-}
+            document.querySelectorAll('.fade-in-up').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // --- Glass Panel Mouse Effect ---
+            const panels = document.querySelectorAll('.glass-panel');
+            panels.forEach(panel => {
+                panel.addEventListener('mousemove', (e) => {
+                    const rect = panel.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    panel.style.setProperty('--mouse-x', `${x}px`);
+                    panel.style.setProperty('--mouse-y', `${y}px`);
+                });
+            });
 
-/* ----------------------
-  MODAL & UI HELPERS
-  ---------------------- */
-function showWelcome(name, picture){
-    const ov = document.getElementById('welcomeOverlay');
-    const subtextEl = ov.querySelector('#welcomeSubText');
-    const subtexts = ["Let's make today profitable.", "Your financial journey continues.", "Track every rupee, build your future.", "Smart tracking for a brighter tomorrow."];
-    const randomSubtext = subtexts[Math.floor(Math.random() * subtexts.length)];
+            // --- Form Submissions ---
+            const contactForm = document.getElementById('contactForm');
+            contactForm.addEventListener('submit', handleFormSubmit);
 
-    ov.querySelector('#welcomeText').textContent = `Welcome back, ${name}!`;
-    ov.querySelector('#welcomeAvatar').src = picture || './icons_folder/icon-180x180.png'; // Fallback icon
-    subtextEl.textContent = randomSubtext;
+            // --- Copyright Year ---
+            document.getElementById('year').textContent = new Date().getFullYear();
 
-    ov.classList.add('show');
-    setTimeout(()=> ov.classList.remove('show'), 3500);
-}
+            // --- Page Transition for External Links ---
+            document.querySelectorAll('.external-link').forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetUrl = this.href;
+                    document.body.classList.add('fade-out');
+                    setTimeout(() => {
+                        window.open(targetUrl, '_blank');
+                        setTimeout(() => document.body.classList.remove('fade-out'), 200);
+                    }, 500);
+                });
+            });
 
-function openModal(modalId) { document.getElementById(modalId).classList.add('show'); }
-function closeModal(modalId) { document.getElementById(modalId).classList.remove('show'); }
+            const formatter = new Intl.NumberFormat('en-IN', {
+                style: 'currency',
+                currency: 'INR',
+                minimumFractionDigits: 0,
+            });
 
-document.querySelectorAll('.modal-overlay').forEach(modal => {
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal && modal.id !== 'newUserModal') {
-            closeModal(modal.id);
+            // --- Journey Progress Bar ---
+            // EDIT THESE VALUES TO UPDATE THE PROGRESS BAR
+            const journeyConfig = {
+                goal: 75000,
+                current: 0, 
+                startDate: "August 25, 2025"
+            };
+
+            const journeyAmountEl = document.getElementById('journey-amount-raised');
+            const journeyGoalEl = document.getElementById('journey-goal-amount');
+            const journeyProgressBarEl = document.getElementById('journey-progress-bar');
+            const journeyStartDateEl = document.getElementById('journey-start-date');
+            const journeyPartnersEl = document.getElementById('journey-partners-supported');
+            const journeyTooltipTextEl = document.getElementById('journey-tooltip-text');
+
+            // Set initial text values
+            journeyAmountEl.textContent = formatter.format(0); // Start at 0
+            journeyGoalEl.textContent = formatter.format(journeyConfig.goal);
+            journeyStartDateEl.textContent = `Campaign started: ${journeyConfig.startDate}`;
+            const initialPartners = Math.floor(journeyConfig.current / 699);
+            journeyPartnersEl.textContent = `Supports ${initialPartners} partners!`;
+            journeyTooltipTextEl.textContent = `This supports ${initialPartners} delivery partners this month!`;
+
+
+            // Animate the bar and numbers on scroll into view
+            const journeyObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const percentage = (journeyConfig.current / journeyConfig.goal) * 100;
+                        setTimeout(() => {
+                             journeyProgressBarEl.style.width = `${percentage}%`;
+                             // Animate number count up
+                             let start = 0;
+                             const end = journeyConfig.current;
+                             const duration = 800; // ms
+                             if (end > 0) {
+                                 const range = end - start;
+                                 let current = start;
+                                 const increment = end > start ? 1 : -1;
+                                 const stepTime = Math.abs(Math.floor(duration / range));
+                                 const timer = setInterval(() => {
+                                     current += increment * Math.ceil(range / (duration/stepTime));
+                                     if ((increment > 0 && current >= end) || (increment < 0 && current <= end)) {
+                                         current = end;
+                                         clearInterval(timer);
+                                     }
+                                     journeyAmountEl.textContent = formatter.format(current);
+                                 }, stepTime);
+                             }
+                        }, 300);
+                        journeyObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            if (journeyProgressBarEl) {
+                journeyObserver.observe(journeyProgressBarEl.parentElement.parentElement); // Observe the wrapper
+            }
+        });
+
+        // --- Modal Functions ---
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            }
         }
-    });
-});
 
-function openFeedbackModal(reset = false) {
-    if (reset) {
-        document.getElementById('feedback-category-selection').style.display = 'flex';
-        document.getElementById('feedback-text-input').style.display = 'none';
-        document.getElementById('feedbackText').value = '';
-    }
-    openModal('feedbackModal');
-}
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('show');
+                document.body.style.overflow = 'auto';
+            }
+        }
+        
+        function showMessageModal(title, message, icon) {
+            document.getElementById('messageTitle').textContent = title;
+            document.getElementById('messageBody').textContent = message;
+            document.getElementById('messageIcon').innerHTML = `<i class="${icon}"></i>`;
+            openModal('messageModal');
+        }
 
-function selectFeedbackCategory(category) {
-    selectedFeedbackCategory = category;
-    document.getElementById('feedback-title').textContent = `Feedback: ${category}`;
-    document.getElementById('feedback-category-selection').style.display = 'none';
-    document.getElementById('feedback-text-input').style.display = 'block';
-    document.getElementById('feedbackText').focus();
-}
+        function openAppModal() {
+            openModal('appModal');
+        }
 
-async function submitFeedback() {
-    const feedbackText = document.getElementById('feedbackText').value.trim();
-    if (!feedbackText || !selectedFeedbackCategory) return;
-    const user = JSON.parse(localStorage.getItem('rivava_user'));
-    if (!user) { return; }
+        function openStoryModal(title, imageUrl, body) {
+            document.getElementById('storyModalTitle').textContent = title;
+            document.getElementById('storyModalImage').src = imageUrl;
+            document.getElementById('storyModalBody').textContent = body;
+            openModal('storyModal');
+        }
 
-    const payload = { userEmail: user.email, category: selectedFeedbackCategory, feedback: feedbackText, submittedAt: firebase.firestore.FieldValue.serverTimestamp() };
-    const feedbackBtn = document.querySelector('#feedbackModal .primary');
-    feedbackBtn.classList.add('is-loading');
-    feedbackBtn.disabled = true;
+        // Close modals on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal.show').forEach(modal => closeModal(modal.id));
+            }
+        });
 
-    try {
-        await db.collection('feedback').add(payload);
-        closeModal('feedbackModal');
-    } catch (error) { console.error("Feedback Error:", error); } 
-    finally { feedbackBtn.classList.remove('is-loading'); feedbackBtn.disabled = false; }
-}
+        // --- Generic Form Handler ---
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const form = e.target;
+            const button = form.querySelector('button[type="submit"]');
+            const originalHTML = button.innerHTML;
 
-/* ----------------------
-  AUTH & USER UI
-  ---------------------- */
-function setSignedInUI(userObj, showWelcomeFlag){
-  document.getElementById('mainContent').style.display = 'block';
-  document.getElementById('feedbackBtn').style.display = 'flex';
-  const topUserArea = document.getElementById('topUserArea');
-  topUserArea.innerHTML = ''; 
-  const profileContainer = document.createElement('div');
-  profileContainer.className = 'profile-container';
-  
-  let avatarHTML;
-  if (userObj.picture) {
-      avatarHTML = `<img src="${userObj.picture}" alt="Profile" class="profile-avatar">`;
-  } else {
-      const initial = userObj.name ? userObj.name.charAt(0).toUpperCase() : '?';
-      const colors = ['#00ffc3', '#ff6b6b', '#4d94ff', '#feca57', '#ff9ff3'];
-      const color = colors[Math.abs(initial.charCodeAt(0) - 65) % colors.length];
-      avatarHTML = `<div class="avatar-initials" style="background-color: ${color};">${initial}</div>`;
-  }
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            button.disabled = true;
 
-  profileContainer.innerHTML = `<div class="profile-avatar-wrapper">${avatarHTML}</div><div id="profileDropdown" class="profile-dropdown">
-    <div class="dropdown-header"><div class="dropdown-name">${userObj.name}</div><div class="dropdown-email">${userObj.email}</div></div>
-    <button class="dropdown-item" onclick="viewHistory()">View Dashboard</button>
-    <button class="dropdown-item danger" onclick="signOut()">Sign out</button>
-  </div>`;
-  profileContainer.querySelector('.profile-avatar-wrapper').onclick = (e) => { 
-      e.stopPropagation();
-      document.getElementById('profileDropdown').classList.toggle('show'); 
-  };
-  topUserArea.appendChild(profileContainer);
-  if(showWelcomeFlag) { showWelcome(userObj.name.split(' ')[0], userObj.picture); }
-}
-
-function signOut(){ 
-    localStorage.removeItem('rivava_user'); 
-    window.location.href = './login.html';
-}
-
-async function completeRegistration() {
-    const user = JSON.parse(localStorage.getItem('rivava_user'));
-    const phone = document.getElementById('phoneInput').value.trim();
-    const name = document.getElementById('userNameInput').value.trim();
-
-    if (!phone || !name) { alert("Please fill in all fields."); return; }
-    user.phone = phone;
-    user.name = name;
-
-    try {
-        await db.collection('users').doc(user.sub).set({
-            name: user.name,
-            email: user.email,
-            phone: user.phone,
-            picture: user.picture || null, // Ensure picture is not undefined
-            createdAt: firebase.firestore.FieldValue.serverTimestamp()
-        }, { merge: true });
-
-        localStorage.setItem('rivava_user', JSON.stringify(user));
-        closeModal('newUserModal');
-        setSignedInUI(user, true);
-    } catch (error) {
-        console.error("Error completing registration:", error);
-        alert("Could not complete registration. Please try again.");
-    }
-}
-
-
-/* ----------------------
-  INITIALIZATION & CORE LOGIC
-  ---------------------- */
-window.addEventListener('load', async ()=> {
-  setFixedDate();
-  startLiveTime();
-  if ('serviceWorker' in navigator) { navigator.serviceWorker.register('./sw.js').then(reg => console.log('SW registered!', reg.scope)).catch(err => console.log('SW registration failed: ', err)); }
-  
-  const storedUserStr = localStorage.getItem('rivava_user');
-  if(!storedUserStr){ window.location.href = './login.html'; return; } 
-
-  try {
-      const user = JSON.parse(storedUserStr);
-      const userDoc = await db.collection('users').doc(user.sub).get();
-
-      if (!userDoc.exists || !userDoc.data().phone) {
-          document.getElementById('userNameInput').value = user.name;
-          openModal('newUserModal');
-      } else {
-          const dbUser = userDoc.data();
-          const updatedUser = { ...user, ...dbUser };
-          localStorage.setItem('rivava_user', JSON.stringify(updatedUser));
-          setSignedInUI(updatedUser, false);
-      }
-  } catch(e){ 
-      console.error("Auth check failed:", e);
-      localStorage.removeItem('rivava_user'); 
-      window.location.href = './login.html';
-  }
-});
-
-window.addEventListener('click', (e) => {
-    const pc = document.querySelector('.profile-container');
-    if (pc && !pc.contains(e.target)) {
-        document.getElementById('profileDropdown')?.classList.remove('show');
-    }
-});
-
-function showTab(tab) { document.querySelectorAll('.tab').forEach(t => t.classList.remove('active')); document.querySelectorAll('.form-section').forEach(s => s.classList.remove('active')); document.querySelector(`.tab[onclick="showTab('${tab}')"]`).classList.add('active'); document.getElementById(tab).classList.add('active'); }
-function setFixedDate() { const d = new Date(); document.getElementById("fixedDate").textContent = `${String(d.getDate()).padStart(2,"0")}/${String(d.getMonth()+1).padStart(2,"0")}/${d.getFullYear()}`; }
-function startLiveTime() { const el = document.getElementById("liveTime"); function u() { const n = new Date(); let h=n.getHours(); el.textContent = `${String(h%12||12).padStart(2,"0")}:${String(n.getMinutes()).padStart(2,"0")}:${String(n.getSeconds()).padStart(2,"0")} ${h>=12?'PM':'AM'}`; } u(); setInterval(u, 1000); }
-const dataTableBody = document.querySelector("#dataTable tbody");
-function updateTotalExpense() { let sum = 0; dataTableBody.querySelectorAll("tr").forEach(row => { if (row.cells[0].textContent === "Expense") { const amt = parseFloat(row.cells[1].textContent); if (!isNaN(amt)) sum += amt; } }); document.getElementById("totalExpense").textContent = `₹${sum.toFixed(2)}`; }
-function addRow(type, amount, category, payment, date, time) { const row = document.createElement("tr"); row.className = 'new-row'; row.innerHTML = `<td>${type}</td><td>${parseFloat(amount).toFixed(2)}</td><td>${category}</td><td>${payment}</td><td>${date}</td><td>${time}</td><td><button onclick="deleteRow(this)">Delete</button></td>`; dataTableBody.appendChild(row); setTimeout(()=> row.classList.remove('new-row'), 500); updateTotalExpense(); }
-function deleteRow(button) { button.closest("tr").remove(); updateTotalExpense(); }
-function handleEarningCategoryChange() { const sel = document.getElementById("earningCategory"), inp = document.getElementById("customEarningCategory"); if (sel.value === "Other") { inp.style.display = "block"; inp.focus(); } else { inp.style.display = "none"; inp.value = ""; } }
-function handleCategoryChange() { const sel = document.getElementById("expenseCategory"), inp = document.getElementById("customCategory"); if (sel.value === "Other") { inp.style.display = "block"; inp.focus(); } else { inp.style.display = "none"; inp.value = ""; } }
-function addEarning() { const amountInput = document.getElementById("earningAmount"); const amount = amountInput.value.trim(); if (!amount || +amount <= 0) { amountInput.focus(); return; } let category = document.getElementById("earningCategory").value; if (category === "Other") { category = document.getElementById("customEarningCategory").value.trim(); if (!category) { document.getElementById("customEarningCategory").focus(); return; } } addRow("Earning", amount, category, "-", document.getElementById("fixedDate").textContent, document.getElementById("liveTime").textContent); amountInput.value = ""; if (document.getElementById("earningCategory").value === "Other") { document.getElementById("customEarningCategory").value = ""; handleEarningCategoryChange(); document.getElementById("earningCategory").value = "Salary"; } }
-function addExpense() { const amountInput = document.getElementById("expenseAmount"); const amount = amountInput.value.trim(); if (!amount || +amount <= 0) { amountInput.focus(); return; } let category = document.getElementById("expenseCategory").value; if (category === "Other") { category = document.getElementById("customCategory").value.trim(); if (!category) { document.getElementById("customCategory").focus(); return; } } addRow("Expense", amount, category, document.getElementById("paymentMethod").value, document.getElementById("fixedDate").textContent, document.getElementById("liveTime").textContent); amountInput.value = ""; if (document.getElementById("expenseCategory").value === "Other") { document.getElementById("customCategory").value = ""; handleCategoryChange(); document.getElementById("expenseCategory").value = "Personal"; } }
-
-// --- ⚡️ FIXED & IMPROVED: Form Submission to Firebase ---
-async function submitForm() {
-  if (dataTableBody.children.length === 0) return;
-  const user = JSON.parse(localStorage.getItem('rivava_user'));
-  if (!user || !user.sub) { alert("You must be signed in to submit."); return; }
-
-  const submitBtn = document.getElementById('submitBtn');
-  submitBtn.classList.add('is-loading');
-  submitBtn.disabled = true;
-
-  const rows = Array.from(dataTableBody.querySelectorAll('tr')).map(r => {
-      // Helper function to parse DD/MM/YYYY and HH:MM:SS AM/PM into a valid Date object
-      const dateParts = r.cells[4].textContent.split('/'); // [DD, MM, YYYY]
-      const timeString = r.cells[5].textContent; // e.g., "02:05:30 PM"
-      const [time, modifier] = timeString.split(' ');
-      let [hours, minutes, seconds] = time.split(':');
-      if (hours === '12') { hours = '00'; }
-      if (modifier === 'PM') { hours = parseInt(hours, 10) + 12; }
-      // new Date() wants (YYYY, MonthIndex, Day, Hr, Min, Sec)
-      const transactionDate = new Date(dateParts[2], dateParts[1] - 1, dateParts[0], hours, minutes, seconds);
-
-      return {
-          type: r.cells[0].textContent,
-          amount: +r.cells[1].textContent,
-          category: r.cells[2].textContent,
-          payment: r.cells[3].textContent,
-          // Convert the JS Date to a Firestore Timestamp for proper data handling
-          transactionDate: firebase.firestore.Timestamp.fromDate(transactionDate),
-          submittedAt: firebase.firestore.FieldValue.serverTimestamp()
-      };
-  });
-  
-  const batch = db.batch();
-  // Saving to the 'submissions' collection as requested
-  const submissionsCollection = db.collection('users').doc(user.sub).collection('submissions');
-  
-  rows.forEach(submission => {
-      const newSubmissionRef = submissionsCollection.doc();
-      batch.set(newSubmissionRef, submission);
-  });
-
-  try {
-    await batch.commit();
-    openModal('successModal');
-    dataTableBody.innerHTML = '';
-    updateTotalExpense();
-  } catch (error) { 
-    console.error("Submit Error:", error); 
-    alert("There was an error saving your data. Please check your connection and try again.");
-  } 
-  finally { 
-    submitBtn.classList.remove('is-loading'); 
-    submitBtn.disabled = false; 
-  }
-}
-</script>
-
+            // Simulate API call
+            setTimeout(() => {
+                showMessageModal('Request Sent!', 'Thanks! We will contact you within 24 hours.', 'fas fa-check-circle');
+                
+                button.innerHTML = originalHTML;
+                button.disabled = false;
+                form.reset();
+            }, 1500);
+        }
+    </script>
 </body>
 </html>
