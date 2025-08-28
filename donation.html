@@ -1,136 +1,98 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Humare Apno Ke Liye. Ek Saath. — Rivava</title>
-    <meta name="description" content="Aapka chhota sa sahyog, kisi ki zindagi badal sakta hai. Join Rivava's mission to empower the next generation of Indian dreamers." />
-    <!-- Favicon -->
-    <link rel="icon" href="https://placehold.co/32x32/FFFFFF/000000?text=R" type="image/png">
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            --bg-dark: #000000;
-            --bg-panel: #111111;
-            --text-primary: #FFFFFF;
-            --text-muted: #A0AEC0;
-            --accent-primary: #FFFFFF;
-            --border-color: rgba(255, 255, 255, 0.1);
-            --shadow-glow: 0 0 60px rgba(255, 255, 255, 0.1);
-            --transition-fast: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-        }
-        body { background-color: var(--bg-dark); color: var(--text-primary); font-family: 'Inter', sans-serif; }
-        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 1rem 2rem; border-radius: 999px; font-weight: 700; transition: var(--transition-fast); cursor: pointer; }
-        .btn-primary { background-color: var(--accent-primary); color: #000000; box-shadow: 0 8px 25px rgba(255, 255, 255, 0.15); }
-        .btn-primary:hover { transform: translateY(-3px) scale(1.05); background-color: #e5e5e5; box-shadow: 0 12px 35px rgba(255, 255, 255, 0.2); }
-        .glass-panel { background: linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)); border: 1px solid var(--border-color); border-radius: 1.5rem; }
-        .popular-card { border-color: rgba(255, 255, 255, 0.4); box-shadow: 0 0 40px rgba(255, 255, 255, 0.1); }
-        .custom-badge { background-color: var(--accent-primary); color: var(--bg-dark); text-transform: uppercase; letter-spacing: 0.05em; }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donate — Rivava</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="relative">
-    <!-- HEADER -->
-    <header id="header" class="fixed top-0 left-0 right-0 z-50">
-        <div class="container mx-auto px-6">
-            <div class="flex items-center justify-between py-4">
-                <a href="index.html" class="flex items-center gap-3">
-                    <img src="https://placehold.co/40x40/FFFFFF/000000?text=R" alt="Rivava Logo" class="h-10 w-10" />
-                    <div><div class="rivava-text text-3xl leading-none">RIVAVA</div></div>
-                </a>
-            </div>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-6">
+
+  <div class="space-y-6 max-w-2xl w-full">
+
+    <!-- Option 1 -->
+    <div class="bg-white rounded-2xl shadow p-6 relative">
+      <span class="absolute -top-3 right-6 text-xs bg-blue-500 text-white font-bold px-3 py-1 rounded-full">Most People</span>
+      <div class="flex flex-col sm:flex-row items-center justify-between">
+        <div class="text-center sm:text-left mb-4 sm:mb-0">
+          <h3 class="font-bold text-2xl">₹49</h3>
+          <p class="text-sm text-gray-500">Common support from daily contributors.</p>
         </div>
-    </header>
+        <button onclick="donateUPI(49)" class="px-5 py-2 bg-blue-600 text-white rounded-xl shadow">Pay ₹49</button>
+      </div>
+    </div>
 
-    <main>
-        <!-- DONATION SECTION -->
-        <section id="donate" class="min-h-screen flex items-center pt-28 sm:pt-32 pb-16 sm:pb-20">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight">
-                        Humare Apno Ke Liye. Ek Saath.
-                    </h2>
-                    <p class="text-center text-lg sm:text-xl max-w-3xl mx-auto mt-6">
-                        Jo din raat kaam karte hain. Jo desh ko aage badhate hain. Unhe sirf ek mauka nahi, ek sahi raasta chahiye. Aapka sahyog unke liye woh raasta banata hai.
-                    </p>
-                </div>
-
-                <!-- Support Options -->
-                <p class="text-center text-gray-400 mb-8">Choose your sahyog option:</p>
-                <div class="space-y-6 max-w-3xl mx-auto">
-
-                    <!-- Option 1 -->
-                    <div class="glass-panel flex flex-col sm:flex-row items-center justify-between p-5 sm:p-6 relative">
-                        <span class="custom-badge absolute -top-3 right-6 text-xs font-bold px-4 py-1 rounded-full">Most People</span>
-                        <div class="flex-1 text-center sm:text-left mb-4 sm:mb-0">
-                            <h3 class="font-bold text-2xl">₹49</h3>
-                            <p class="text-sm text-muted">Common contribution from our supporters.</p>
-                        </div>
-                        <a href="upi://pay?pa=goswamichittresh-1@okhdfcbank&pn=Rivava&am=49&cu=INR" class="btn btn-primary w-full sm:w-auto">
-                            Pay ₹49
-                        </a>
-                    </div>
-
-                    <!-- Option 2 -->
-                    <div class="glass-panel popular-card flex flex-col sm:flex-row items-center justify-between p-5 sm:p-6 relative">
-                        <span class="custom-badge absolute -top-3 right-6 text-xs font-bold px-4 py-1 rounded-full">Your Age Group’s Choice</span>
-                        <div class="flex-1 text-center sm:text-left mb-4 sm:mb-0">
-                            <h3 class="font-bold text-2xl">₹99</h3>
-                            <p class="text-sm text-muted">Popular among young professionals.</p>
-                        </div>
-                        <a href="upi://pay?pa=goswamichittresh-1@okhdfcbank&pn=Rivava&am=99&cu=INR" class="btn btn-primary w-full sm:w-auto">
-                            Pay ₹99
-                        </a>
-                    </div>
-
-                    <!-- Option 3 -->
-                    <div class="glass-panel flex flex-col sm:flex-row items-center justify-between p-5 sm:p-6 relative">
-                        <span class="custom-badge absolute -top-3 right-6 text-xs font-bold px-4 py-1 rounded-full">Visionary</span>
-                        <div class="flex-1 text-center sm:text-left mb-4 sm:mb-0">
-                            <h3 class="font-bold text-2xl">₹501</h3>
-                            <p class="text-sm text-muted">For those who wish to support long-term.</p>
-                        </div>
-                        <a href="upi://pay?pa=goswamichittresh-1@okhdfcbank&pn=Rivava&am=501&cu=INR" class="btn btn-primary w-full sm:w-auto">
-                            Pay ₹501
-                        </a>
-                    </div>
-
-                    <!-- Custom Option -->
-                    <div class="glass-panel flex flex-col sm:flex-row items-center justify-between p-5 sm:p-6 relative">
-                        <div class="flex-1 text-center sm:text-left mb-4 sm:mb-0">
-                            <h3 class="font-bold text-2xl">Custom</h3>
-                            <p class="text-sm text-muted">Enter any amount directly in your UPI app.</p>
-                        </div>
-                        <a href="upi://pay?pa=goswamichittresh-1@okhdfcbank&pn=Rivava&cu=INR" class="btn btn-primary w-full sm:w-auto">
-                            Enter Custom Amount
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="border-t border-white/10 mt-20">
-        <div class="container mx-auto px-6 py-8 text-center text-sm text-gray-400">
-            <p>&copy; <span id="year"></span> Rivava. Made with ❤️ in India.</p>
+    <!-- Option 2 -->
+    <div class="bg-white rounded-2xl shadow p-6 relative border-2 border-blue-500">
+      <span class="absolute -top-3 right-6 text-xs bg-blue-600 text-white font-bold px-3 py-1 rounded-full">Your Age Group’s Choice</span>
+      <div class="flex flex-col sm:flex-row items-center justify-between">
+        <div class="text-center sm:text-left mb-4 sm:mb-0">
+          <h3 class="font-bold text-2xl">₹99</h3>
+          <p class="text-sm text-gray-500">Preferred by young professionals.</p>
         </div>
-    </footer>
+        <button onclick="donateUPI(99)" class="px-5 py-2 bg-blue-600 text-white rounded-xl shadow">Pay ₹99</button>
+      </div>
+    </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('year').textContent = new Date().getFullYear();
-        });
-    </script>
+    <!-- Option 3 -->
+    <div class="bg-white rounded-2xl shadow p-6 relative">
+      <span class="absolute -top-3 right-6 text-xs bg-blue-500 text-white font-bold px-3 py-1 rounded-full">Visionary</span>
+      <div class="flex flex-col sm:flex-row items-center justify-between">
+        <div class="text-center sm:text-left mb-4 sm:mb-0">
+          <h3 class="font-bold text-2xl">₹501</h3>
+          <p class="text-sm text-gray-500">For those who want to leave a legacy of support.</p>
+        </div>
+        <button onclick="donateUPI(501)" class="px-5 py-2 bg-blue-600 text-white rounded-xl shadow">Pay ₹501</button>
+      </div>
+    </div>
+
+    <!-- Custom Option -->
+    <div class="bg-white rounded-2xl shadow p-6 relative">
+      <div class="flex flex-col sm:flex-row items-center justify-between">
+        <div class="text-center sm:text-left mb-4 sm:mb-0">
+          <h3 class="font-bold text-2xl">Custom</h3>
+          <p class="text-sm text-gray-500">Enter any amount directly in your UPI app.</p>
+        </div>
+        <button onclick="donateUPI()" class="px-5 py-2 bg-blue-600 text-white rounded-xl shadow">Enter Custom Amount</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- QR Modal -->
+  <div id="qrModal" class="hidden fixed inset-0 bg-black/70 z-50 flex items-center justify-center">
+    <div class="bg-white rounded-2xl p-6 max-w-sm w-full text-center">
+      <h2 class="text-lg font-bold mb-4 text-black">Scan to Pay</h2>
+      <img id="qrImage" src="" alt="UPI QR" class="mx-auto mb-4 border rounded-lg" />
+      <button onclick="closeQR()" class="px-5 py-2 bg-blue-600 text-white rounded-xl shadow">Close</button>
+    </div>
+  </div>
+
+  <script>
+    const upiId = "goswamichittresh-1@okhdfcbank";
+    const payeeName = "Rivava";
+
+    function donateUPI(amount) {
+      let upiUrl = `upi://pay?pa=${upiId}&pn=${payeeName}&cu=INR`;
+      if (amount) upiUrl += `&am=${amount}`;
+
+      // detect mobile
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+      if (isMobile) {
+        // open UPI app
+        window.location.href = upiUrl;
+      } else {
+        // show QR for desktop
+        const qrApi = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiUrl)}`;
+        document.getElementById("qrImage").src = qrApi;
+        document.getElementById("qrModal").classList.remove("hidden");
+      }
+    }
+
+    function closeQR() {
+      document.getElementById("qrModal").classList.add("hidden");
+    }
+  </script>
 </body>
 </html>
