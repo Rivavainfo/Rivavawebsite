@@ -6,7 +6,7 @@
     <title>Humare Apno Ke Liye. Ek Saath. — Rivava</title>
     <meta name="description" content="Aapka chhota sa sahyog, kisi ki zindagi badal sakta hai. Join Rivava's mission to empower the next generation of Indian dreamers." />
     <!-- Favicon -->
-    <link rel="icon" href="https://placehold.co/32x32/FFFFFF/000000?text=R" type="image/png">
+    <link rel="icon" href="logo.png" type="image/png">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -45,7 +45,7 @@
         <div class="container mx-auto px-6">
             <div class="flex items-center justify-between py-4">
                 <a href="index.html" class="flex items-center gap-3">
-                    <img src="https://placehold.co/40x40/FFFFFF/000000?text=R" alt="Rivava Logo" class="h-10 w-10" />
+                    <img src="logo.png" alt="Rivava Logo" class="h-10 w-10" />
                     <div><div class="rivava-text text-3xl leading-none">RIVAVA</div></div>
                 </a>
             </div>
@@ -143,12 +143,10 @@
             document.getElementById('year').textContent = new Date().getFullYear();
         });
 
-        // Function to detect desktop
         function isDesktop() {
             return !(/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent));
         }
 
-        // QR code modal logic
         const qrModal = document.getElementById('qrModal');
         const closeQr = document.getElementById('closeQr');
         const qrCodeDiv = document.getElementById('qrcode');
@@ -156,8 +154,8 @@
         document.querySelectorAll('.btn-primary').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 if (isDesktop()) {
-                    e.preventDefault(); // prevent default UPI link
-                    qrCodeDiv.innerHTML = ""; // clear previous QR
+                    e.preventDefault();
+                    qrCodeDiv.innerHTML = "";
                     new QRCode(qrCodeDiv, {
                         text: this.href,
                         width: 200,
@@ -172,7 +170,6 @@
             qrModal.classList.add('hidden');
         });
 
-        // Close modal on outside click
         qrModal.addEventListener('click', (e) => {
             if (e.target === qrModal) qrModal.classList.add('hidden');
         });
