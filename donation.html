@@ -37,6 +37,9 @@
         .glass-panel { background: linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)); border: 1px solid var(--border-color); border-radius: 1.5rem; }
         .popular-card { border-color: rgba(255, 255, 255, 0.4); box-shadow: 0 0 40px rgba(255, 255, 255, 0.1); }
         .custom-badge { background-color: var(--accent-primary); color: var(--bg-dark); text-transform: uppercase; letter-spacing: 0.05em; }
+
+        /* Modal animations */
+        .modal { transition: all 0.3s ease; }
     </style>
 </head>
 <body class="relative">
@@ -136,6 +139,15 @@
         </div>
     </div>
 
+    <!-- Payment Success Modal -->
+    <div id="successModal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center hidden z-50">
+        <div class="bg-green-600 text-white p-6 rounded-xl relative text-center">
+            <span id="closeSuccess" class="absolute top-2 right-3 cursor-pointer text-white text-xl">&times;</span>
+            <h3 class="text-2xl font-bold mb-2">Payment Successful!</h3>
+            <p>Thank you for supporting Rivava.</p>
+        </div>
+    </div>
+
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script>
@@ -143,39 +155,42 @@
             document.getElementById('year').textContent = new Date().getFullYear();
         });
 
-        // Function to detect desktop
+        // Detect desktop
         function isDesktop() {
             return !(/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent));
         }
 
-        // QR code modal logic
         const qrModal = document.getElementById('qrModal');
         const closeQr = document.getElementById('closeQr');
         const qrCodeDiv = document.getElementById('qrcode');
 
+        const successModal = document.getElementById('successModal');
+        const closeSuccess = document.getElementById('closeSuccess');
+
         document.querySelectorAll('.btn-primary').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 if (isDesktop()) {
-                    e.preventDefault(); // prevent default UPI link
-                    qrCodeDiv.innerHTML = ""; // clear previous QR
-                    new QRCode(qrCodeDiv, {
-                        text: this.href,
-                        width: 200,
-                        height: 200,
-                    });
+                    e.preventDefault(); // prevent UPI link
+                    qrCodeDiv.innerHTML = "";
+                    new QRCode(qrCodeDiv, { text: this.href, width: 200, height: 200 });
                     qrModal.classList.remove('hidden');
+
+                    // Simulate payment done after 5 seconds for demonstration
+                    setTimeout(() => {
+                        qrModal.classList.add('hidden');
+                        successModal.classList.remove('hidden');
+                    }, 5000); // 5 seconds delay
                 }
             });
         });
 
-        closeQr.addEventListener('click', () => {
-            qrModal.classList.add('hidden');
-        });
+        // Close QR modal
+        closeQr.addEventListener('click', () => qrModal.classList.add('hidden'));
+        qrModal.addEventListener('click', (e) => { if (e.target === qrModal) qrModal.classList.add('hidden'); });
 
-        // Close modal on outside click
-        qrModal.addEventListener('click', (e) => {
-            if (e.target === qrModal) qrModal.classList.add('hidden');
-        });
+        // Close Success modal
+        closeSuccess.addEventListener('click', () => successModal.classList.add('hidden'));
+        successModal.addEventListener('click', (e) => { if (e.target === successModal) successModal.classList.add('hidden'); });
     </script>
 </body>
 </html>
