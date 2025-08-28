@@ -5,56 +5,73 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Donate — Rivava</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border-radius: 1rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+    .custom-badge {
+      background: linear-gradient(90deg, #2563eb, #1d4ed8);
+      color: white;
+    }
+    .btn {
+      padding: 0.6rem 1.2rem;
+      border-radius: 0.75rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .btn-primary {
+      background: #2563eb;
+      color: white;
+    }
+    .btn-primary:hover {
+      background: #1d4ed8;
+    }
+  </style>
 </head>
 <body class="bg-gray-100 min-h-screen flex items-center justify-center p-6">
 
   <div class="space-y-6 max-w-2xl w-full">
 
     <!-- Option 1 -->
-    <div class="bg-white rounded-2xl shadow p-6 relative">
-      <span class="absolute -top-3 right-6 text-xs bg-blue-500 text-white font-bold px-3 py-1 rounded-full">Most People</span>
-      <div class="flex flex-col sm:flex-row items-center justify-between">
-        <div class="text-center sm:text-left mb-4 sm:mb-0">
-          <h3 class="font-bold text-2xl">₹49</h3>
-          <p class="text-sm text-gray-500">Common support from daily contributors.</p>
-        </div>
-        <button onclick="donateUPI(49)" class="px-5 py-2 bg-blue-600 text-white rounded-xl shadow">Pay ₹49</button>
+    <div class="glass-panel flex flex-col sm:flex-row items-center justify-between p-5 sm:p-6 relative">
+      <span class="custom-badge absolute -top-3 right-6 text-xs font-bold px-4 py-1 rounded-full">Most People</span>
+      <div class="flex-1 text-center sm:text-left mb-4 sm:mb-0">
+        <h3 class="font-bold text-2xl">₹49</h3>
+        <p class="text-sm text-muted">Common contribution from our supporters.</p>
       </div>
+      <button onclick="donateUPI(49)" class="btn btn-primary w-full sm:w-auto">Pay ₹49</button>
     </div>
 
     <!-- Option 2 -->
-    <div class="bg-white rounded-2xl shadow p-6 relative border-2 border-blue-500">
-      <span class="absolute -top-3 right-6 text-xs bg-blue-600 text-white font-bold px-3 py-1 rounded-full">Your Age Group’s Choice</span>
-      <div class="flex flex-col sm:flex-row items-center justify-between">
-        <div class="text-center sm:text-left mb-4 sm:mb-0">
-          <h3 class="font-bold text-2xl">₹99</h3>
-          <p class="text-sm text-gray-500">Preferred by young professionals.</p>
-        </div>
-        <button onclick="donateUPI(99)" class="px-5 py-2 bg-blue-600 text-white rounded-xl shadow">Pay ₹99</button>
+    <div class="glass-panel flex flex-col sm:flex-row items-center justify-between p-5 sm:p-6 relative">
+      <span class="custom-badge absolute -top-3 right-6 text-xs font-bold px-4 py-1 rounded-full">Your Age Group’s Choice</span>
+      <div class="flex-1 text-center sm:text-left mb-4 sm:mb-0">
+        <h3 class="font-bold text-2xl">₹99</h3>
+        <p class="text-sm text-muted">Popular among young professionals.</p>
       </div>
+      <button onclick="donateUPI(99)" class="btn btn-primary w-full sm:w-auto">Pay ₹99</button>
     </div>
 
     <!-- Option 3 -->
-    <div class="bg-white rounded-2xl shadow p-6 relative">
-      <span class="absolute -top-3 right-6 text-xs bg-blue-500 text-white font-bold px-3 py-1 rounded-full">Visionary</span>
-      <div class="flex flex-col sm:flex-row items-center justify-between">
-        <div class="text-center sm:text-left mb-4 sm:mb-0">
-          <h3 class="font-bold text-2xl">₹501</h3>
-          <p class="text-sm text-gray-500">For those who want to leave a legacy of support.</p>
-        </div>
-        <button onclick="donateUPI(501)" class="px-5 py-2 bg-blue-600 text-white rounded-xl shadow">Pay ₹501</button>
+    <div class="glass-panel flex flex-col sm:flex-row items-center justify-between p-5 sm:p-6 relative">
+      <span class="custom-badge absolute -top-3 right-6 text-xs font-bold px-4 py-1 rounded-full">Visionary</span>
+      <div class="flex-1 text-center sm:text-left mb-4 sm:mb-0">
+        <h3 class="font-bold text-2xl">₹501</h3>
+        <p class="text-sm text-muted">For those who wish to support long-term.</p>
       </div>
+      <button onclick="donateUPI(501)" class="btn btn-primary w-full sm:w-auto">Pay ₹501</button>
     </div>
 
-    <!-- Custom Option -->
-    <div class="bg-white rounded-2xl shadow p-6 relative">
-      <div class="flex flex-col sm:flex-row items-center justify-between">
-        <div class="text-center sm:text-left mb-4 sm:mb-0">
-          <h3 class="font-bold text-2xl">Custom</h3>
-          <p class="text-sm text-gray-500">Enter any amount directly in your UPI app.</p>
-        </div>
-        <button onclick="donateUPI()" class="px-5 py-2 bg-blue-600 text-white rounded-xl shadow">Enter Custom Amount</button>
+    <!-- Custom -->
+    <div class="glass-panel flex flex-col sm:flex-row items-center justify-between p-5 sm:p-6 relative">
+      <div class="flex-1 text-center sm:text-left mb-4 sm:mb-0">
+        <h3 class="font-bold text-2xl">Custom</h3>
+        <p class="text-sm text-muted">Enter any amount directly in your UPI app.</p>
       </div>
+      <button onclick="donateUPI()" class="btn btn-primary w-full sm:w-auto">Enter Custom Amount</button>
     </div>
 
   </div>
@@ -64,7 +81,7 @@
     <div class="bg-white rounded-2xl p-6 max-w-sm w-full text-center">
       <h2 class="text-lg font-bold mb-4 text-black">Scan to Pay</h2>
       <img id="qrImage" src="" alt="UPI QR" class="mx-auto mb-4 border rounded-lg" />
-      <button onclick="closeQR()" class="px-5 py-2 bg-blue-600 text-white rounded-xl shadow">Close</button>
+      <button onclick="closeQR()" class="btn btn-primary">Close</button>
     </div>
   </div>
 
@@ -76,14 +93,11 @@
       let upiUrl = `upi://pay?pa=${upiId}&pn=${payeeName}&cu=INR`;
       if (amount) upiUrl += `&am=${amount}`;
 
-      // detect mobile
       const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
       if (isMobile) {
-        // open UPI app
-        window.location.href = upiUrl;
+        window.location.href = upiUrl; // open UPI app
       } else {
-        // show QR for desktop
         const qrApi = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiUrl)}`;
         document.getElementById("qrImage").src = qrApi;
         document.getElementById("qrModal").classList.remove("hidden");
