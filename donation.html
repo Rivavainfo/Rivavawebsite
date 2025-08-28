@@ -5,19 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Humare Apno Ke Liye. Ek Saath. — Rivava</title>
   <meta name="description" content="Aapka chhota sa sahyog, kisi ki zindagi badal sakta hai. Join Rivava's mission to empower the next generation of Indian dreamers." />
+  
   <!-- Favicon -->
   <link rel="icon" href="https://placehold.co/32x32/FFFFFF/000000?text=R" type="image/png">
-  <!-- Razorpay Checkout Script -->
+
+  <!-- Razorpay -->
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
-    /* Keep your exact design */
     :root {
       --bg-dark: #000000;
       --bg-panel: #111111;
@@ -28,119 +32,286 @@
       --shadow-glow: 0 0 60px rgba(255, 255, 255, 0.1);
       --transition-fast: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
-    body { background: var(--bg-dark); color: var(--text-primary); font-family: 'Inter', sans-serif; }
-    #header { background: rgba(0,0,0,0.5); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color);}
-    .rivava-text { font-weight: 800; background: linear-gradient(135deg, var(--accent-primary), var(--text-muted)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
-    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 1rem 2rem; border-radius: 999px; font-weight: 700; transition: var(--transition-fast);}
-    .btn-primary { background: var(--accent-primary); color: #000; box-shadow: 0 8px 25px rgba(255,255,255,0.15);}
-    .btn-primary:hover { transform: translateY(-3px) scale(1.05); background: #e5e5e5; }
-    .glass-panel { background: linear-gradient(160deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02)); border: 1px solid var(--border-color); backdrop-filter: blur(16px); border-radius: 1.5rem; transition: all 0.5s; position: relative; }
-    .glass-panel:hover { transform: translateY(-8px); border-color: rgba(255,255,255,0.3);}
-    .popular-card { border-color: rgba(255,255,255,0.4); box-shadow: 0 0 40px rgba(255,255,255,0.1);}
-    .custom-badge { background: var(--accent-primary); color: var(--bg-dark); text-transform: uppercase; }
-    .modal { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); backdrop-filter: blur(10px); z-index:100; justify-content:center; align-items:center;}
-    .modal.show { display:flex; }
-    .modal-content { background: var(--bg-panel); border:1px solid var(--border-color); border-radius:1.5rem; padding:2rem; width:90%; max-width:450px;}
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.04), transparent 40%),
+                  radial-gradient(circle at 85% 80%, rgba(255, 255, 255, 0.05), transparent 40%);
+      z-index: -1;
+      pointer-events: none;
+      animation: background-pan 30s linear infinite alternate;
+    }
+
+    @keyframes background-pan {
+      from { transform: translate(0, 0) scale(1.1); }
+      to { transform: translate(-20px, 20px) scale(1.2); }
+    }
+
+    h1, h2, h3 { font-weight: 800; letter-spacing: -0.025em; }
+    p { line-height: 1.8; color: var(--text-muted); }
+
+    #header {
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .rivava-text {
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent-primary), var(--text-muted));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 1rem 2rem;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: var(--transition-fast);
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background-color: var(--accent-primary);
+      color: #000000;
+      box-shadow: 0 8px 25px rgba(255, 255, 255, 0.15);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px) scale(1.05);
+      background-color: #e5e5e5;
+      box-shadow: 0 12px 35px rgba(255, 255, 255, 0.2);
+    }
+
+    .glass-panel {
+      background: linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+      border: 1px solid var(--border-color);
+      backdrop-filter: blur(16px) saturate(1.2);
+      border-radius: 1.5rem;
+      transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glass-panel:hover {
+      transform: translateY(-8px);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .popular-card {
+      border-color: rgba(255, 255, 255, 0.4);
+      box-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
+    }
+
+    .custom-badge {
+      background-color: var(--accent-primary);
+      color: var(--bg-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .modal {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px);
+      z-index: 100; justify-content: center; align-items: center;
+      opacity: 0; transition: opacity 0.4s ease;
+    }
+
+    .modal.show { display: flex; opacity: 1; }
+
+    .modal-content {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-color);
+      border-radius: 1.5rem;
+      padding: 2rem;
+      width: 90%; max-width: 450px;
+      transform: scale(0.95);
+      transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .modal.show .modal-content { transform: scale(1); }
+
+    .modal-close {
+      position: absolute; top: 1rem; right: 1rem;
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      transition: var(--transition-fast);
+    }
+
+    .modal-close:hover {
+      background: var(--accent-primary); color: var(--bg-dark);
+      transform: rotate(90deg);
+    }
+
+    .fade-in-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s, transform 0.8s; }
+    .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+    .stagger-1 { transition-delay: 0.2s; }
+    .stagger-2 { transition-delay: 0.4s; }
+    .stagger-3 { transition-delay: 0.6s; }
+
   </style>
 </head>
 <body class="relative">
 
-<!-- HEADER -->
 <header id="header" class="fixed top-0 left-0 right-0 z-50">
   <div class="container mx-auto px-6">
     <div class="flex items-center justify-between py-4">
       <a href="index.html" class="flex items-center gap-3">
         <img src="https://placehold.co/40x40/FFFFFF/000000?text=R" alt="Rivava Logo" class="h-10 w-10" />
-        <div class="rivava-text text-3xl">RIVAVA</div>
+        <div class="rivava-text text-3xl leading-none">RIVAVA</div>
       </a>
     </div>
   </div>
 </header>
 
 <main>
-  <!-- DONATION SECTION -->
-  <section id="donate" class="min-h-screen flex items-center pt-28 pb-16">
-    <div class="container mx-auto px-6">
+<section id="donate" class="min-h-screen flex items-center pt-28 sm:pt-32 pb-16 sm:pb-20">
+<div class="container mx-auto px-6">
 
-      <!-- Main Title -->
-      <div class="text-center mb-12">
-        <h2 class="text-4xl sm:text-5xl md:text-6xl font-extrabold">Humare Apno Ke Liye. Ek Saath.</h2>
-        <p class="text-lg text-gray-400 mt-6">Aapka sahyog unke liye woh raasta banata hai.</p>
-      </div>
+  <div class="text-center mb-12">
+    <h2 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight fade-in-up">Humare Apno Ke Liye. Ek Saath.</h2>
+    <p class="text-center text-lg sm:text-xl max-w-3xl mx-auto mt-6 fade-in-up stagger-1">Jo din raat kaam karte hain. Jo desh ko aage badhate hain. Unhe sirf ek mauka nahi, ek sahi raasta chahiye. Aapka sahyog unke liye woh raasta banata hai.</p>
+  </div>
 
-      <!-- Custom Amount -->
-      <div class="text-center mb-16">
-        <p class="text-gray-400 mb-4">Apne dil se sahyog karein.</p>
-        <div class="max-w-sm mx-auto">
-          <input id="customAmount" type="number" placeholder="Enter Amount (₹)" class="w-full bg-black/30 border border-white/10 rounded-full p-4 text-center text-xl font-semibold">
-          <button class="btn btn-primary w-full mt-6 text-lg" onclick="payCustomAmount()">Apna Sahyog Dein</button>
-        </div>
-      </div>
-
-      <!-- Support Options -->
-      <p class="text-center text-gray-400 mb-8">Ya, ek nek kaam mein humara saath dein.</p>
-      <div class="space-y-6 max-w-3xl mx-auto">
-
-        <!-- Option 1 -->
-        <div class="glass-panel flex flex-col sm:flex-row items-center justify-between p-6 relative">
-          <span class="custom-badge absolute -top-3 right-6 text-xs font-bold px-4 py-1 rounded-full">Community Choice</span>
-          <div class="flex-1 text-center sm:text-left mb-4 sm:mb-0">
-            <h3 class="font-bold text-2xl">₹49</h3>
-            <p class="text-sm text-gray-400">A common contribution from our delivery partners.</p>
-          </div>
-          <a href="upi://pay?pa=goswamichittresh-1@okhdfcbank&pn=Rivava&am=49&cu=INR" class="btn btn-primary w-full sm:w-auto">Sahyog Dein</a>
-        </div>
-
-        <!-- Option 2 -->
-        <div class="glass-panel popular-card flex flex-col sm:flex-row items-center justify-between p-6 relative">
-          <span class="custom-badge absolute -top-3 right-6 text-xs font-bold px-4 py-1 rounded-full">Popular</span>
-          <div class="flex-1 text-center sm:text-left mb-4 sm:mb-0">
-            <h3 class="font-bold text-2xl">₹99</h3>
-            <p class="text-sm text-gray-400">A popular choice for salaried professionals.</p>
-          </div>
-          <a href="upi://pay?pa=goswamichittresh-1@okhdfcbank&pn=Rivava&am=99&cu=INR" class="btn btn-primary w-full sm:w-auto">Zindagi Badlein</a>
-        </div>
-
-        <!-- Option 3 -->
-        <div class="glass-panel flex flex-col sm:flex-row items-center justify-between p-6 relative">
-          <span class="custom-badge absolute -top-3 right-6 text-xs font-bold px-4 py-1 rounded-full">Visionary</span>
-          <div class="flex-1 text-center sm:text-left mb-4 sm:mb-0">
-            <h3 class="font-bold text-2xl">₹501</h3>
-            <p class="text-sm text-gray-400">For those who wish to support long-term.</p>
-          </div>
-          <a href="upi://pay?pa=goswamichittresh-1@okhdfcbank&pn=Rivava&am=501&cu=INR" class="btn btn-primary w-full sm:w-auto">Ek Virasat Banayein</a>
-        </div>
-      </div>
-
-      <!-- QR Fallback for PC -->
-      <div class="text-center mt-12">
-        <p class="text-gray-400 mb-4">PC par ho? UPI scan karein:</p>
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=upi://pay?pa=goswamichittresh-1@okhdfcbank&pn=Rivava&cu=INR" alt="UPI QR Code" class="mx-auto rounded-xl shadow-lg">
-      </div>
-
+  <!-- Custom Amount -->
+  <div class="text-center mb-16 fade-in-up stagger-2">
+    <p class="text-gray-400 mb-4">Apne dil se sahyog karein.</p>
+    <div class="max-w-sm mx-auto">
+      <input id="customAmount" type="number" placeholder="Enter Amount (₹)" class="w-full bg-black/30 border border-white/10 rounded-full p-4 text-center text-xl font-semibold focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent appearance-none">
+      <button class="btn btn-primary w-full mt-6 text-lg" onclick="payCustomAmount()"> <i class="fas fa-heart mr-2"></i>Apna Sahyog Dein </button>
     </div>
-  </section>
+  </div>
+
+  <p class="text-center text-gray-400 mb-8 fade-in-up stagger-3">Ya, ek nek kaam mein humara saath dein.</p>
+  <div class="space-y-6 max-w-3xl mx-auto fade-in-up stagger-3">
+
+    <!-- Donation Options -->
+    <div class="glass-panel flex flex-col sm:flex-row items-center justify-between p-5 sm:p-6 relative">
+      <span class="custom-badge absolute -top-3 right-6 text-xs font-bold px-4 py-1 rounded-full">Community Choice</span>
+      <div class="flex-1 text-center sm:text-left mb-4 sm:mb-0">
+        <h3 class="font-bold text-2xl">₹49</h3>
+        <p class="text-sm text-muted">A common contribution from our delivery partners.</p>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-2">
+        <button class="btn btn-primary w-full sm:w-auto" onclick="startRazorpay(49)">Sahyog via Razorpay</button>
+        <a href="upi://pay?pa=goswamichittresh-1@okhdfcbank&pn=Rivava&am=49&cu=INR" class="btn btn-primary w-full sm:w-auto">Sahyog via UPI</a>
+      </div>
+    </div>
+
+    <div class="glass-panel popular-card flex flex-col sm:flex-row items-center justify-between p-5 sm:p-6 relative">
+      <span class="custom-badge absolute -top-3 right-6 text-xs font-bold px-4 py-1 rounded-full">Popular</span>
+      <div class="flex-1 text-center sm:text-left mb-4 sm:mb-0">
+        <h3 class="font-bold text-2xl">₹99</h3>
+        <p class="text-sm text-muted">A popular choice for salaried professionals.</p>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-2">
+        <button class="btn btn-primary w-full sm:w-auto" onclick="startRazorpay(99)">Zindagi via Razorpay</button>
+        <a href="upi://pay?pa=goswamichittresh-1@okhdfcbank&pn=Rivava&am=99&cu=INR" class="btn btn-primary w-full sm:w-auto">Zindagi via UPI</a>
+      </div>
+    </div>
+
+    <div class="glass-panel flex flex-col sm:flex-row items-center justify-between p-5 sm:p-6 relative">
+      <span class="custom-badge absolute -top-3 right-6 text-xs font-bold px-4 py-1 rounded-full">Visionary</span>
+      <div class="flex-1 text-center sm:text-left mb-4 sm:mb-0">
+        <h3 class="font-bold text-2xl">₹501</h3>
+        <p class="text-sm text-muted">For those who wish to support long-term.</p>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-2">
+        <button class="btn btn-primary w-full sm:w-auto" onclick="startRazorpay(501)">Virasat via Razorpay</button>
+        <a href="upi://pay?pa=goswamichittresh-1@okhdfcbank&pn=Rivava&am=501&cu=INR" class="btn btn-primary w-full sm:w-auto">Virasat via UPI</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
 </main>
 
-<!-- FOOTER -->
 <footer class="border-t border-white/10 mt-20">
   <div class="container mx-auto px-6 py-8 text-center text-sm text-gray-400">
     <p>&copy; <span id="year"></span> Rivava. Made with ❤️ in India.</p>
   </div>
 </footer>
 
+<!-- SUCCESS MODAL -->
+<div id="paymentSuccessModal" class="modal">
+  <div class="modal-content text-center">
+    <button class="modal-close" onclick="closePaymentModal()"><i class="fas fa-times"></i></button>
+    <div class="text-6xl text-white mb-4"><i class="fas fa-check-circle"></i></div>
+    <h3 class="text-2xl sm:text-3xl font-bold mb-2">Dhanyavaad.</h3>
+    <p id="modalMessage" class="text-base sm:text-lg">Aapka sahyog humare liye anmol hai.</p>
+    <button class="btn btn-primary mt-8" onclick="closePaymentModal()">Done</button>
+  </div>
+</div>
+
 <script>
+document.addEventListener('DOMContentLoaded', () => {
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 50); });
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+
   document.getElementById('year').textContent = new Date().getFullYear();
+});
 
-  function payCustomAmount() {
-    const amount = document.getElementById('customAmount').value;
-    if (amount > 0) {
-      window.location.href = `upi://pay?pa=goswamichittresh-1@okhdfcbank&pn=Rivava&am=${amount}&cu=INR`;
+// Razorpay Integration
+function startRazorpay(amount) {
+  const options = {
+    "key": "YOUR_KEY_ID",
+    "amount": amount*100,
+    "currency": "INR",
+    "name": "Rivava",
+    "description": "Contribution",
+    "image": "https://placehold.co/40x40/FFFFFF/000000?text=R",
+    "handler": function(response){ showSuccessModal(response.razorpay_payment_id); },
+    "prefill": { "name":"", "email":"", "contact":"" },
+    "notes": { "address":"Rivava Foundation" },
+    "theme": { "color":"#000000" }
+  };
+  const rzp = new Razorpay(options);
+  rzp.on('payment.failed', function(resp){ alert("Payment failed: "+resp.error.description); });
+  rzp.open();
+}
+
+function payCustomAmount() {
+  const amount = document.getElementById('customAmount').value;
+  if(amount && !isNaN(amount) && amount>0){
+    if(confirm("Pay via Razorpay? OK for Razorpay, Cancel for UPI")){
+      startRazorpay(amount);
     } else {
-      alert("Please enter a valid amount.");
+      window.location.href = `upi://pay?pa=goswamichittresh-1@okhdfcbank&pn=Rivava&am=${amount}&cu=INR`;
     }
-  }
-</script>
+  } else { alert("Enter a valid amount."); }
+}
 
+// Modal
+const modal = document.getElementById('paymentSuccessModal');
+const modalMessage = document.getElementById('modalMessage');
+function showSuccessModal(id){ modalMessage.textContent = `Aapka sahyog safal raha. Payment ID: ${id}`; modal.classList.add('show'); document.body.style.overflow='hidden'; }
+function closePaymentModal(){ modal.classList.remove('show'); document.body.style.overflow='auto'; }
+document.addEventListener('keydown', e=>{ if(e.key==='Escape' && modal.classList.contains('show')) closePaymentModal(); });
+
+</script>
 </body>
 </html>
