@@ -13,6 +13,9 @@
     
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Roboto Font for RIVAVA text -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
     
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,27 +24,28 @@
 
     <style>
         :root {
-            --bg-dark: #000000;
+            --bg-dark: #003366; /* Header deep blue */
             --bg-panel: #111111;
             --text-primary: #FFFFFF;
             --text-muted: #A0AEC0;
-            --accent-primary: #FFFFFF;
-            --border-color: rgba(255, 255, 255, 0.1);
+            --accent-primary: #66ccff; /* Light blue accent */
+            --border-color: rgba(102, 204, 255, 0.2);
             --shadow-glow: 0 0 60px rgba(255, 255, 255, 0.1);
             --transition-fast: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
-        body { background-color: var(--bg-dark); color: var(--text-primary); font-family: 'Inter', sans-serif; }
+        body { background-color: #f4f4f4; color: var(--text-primary); font-family: 'Inter', sans-serif; }
+        .rivava-text { font-family: 'Roboto', sans-serif; color: var(--accent-primary); }
         .btn { display: inline-flex; align-items: center; justify-content: center; padding: 1rem 2rem; border-radius: 999px; font-weight: 700; transition: var(--transition-fast); cursor: pointer; }
-        .btn-primary { background-color: var(--accent-primary); color: #000000; box-shadow: 0 8px 25px rgba(255, 255, 255, 0.15); }
-        .btn-primary:hover { transform: translateY(-3px) scale(1.05); background-color: #e5e5e5; box-shadow: 0 12px 35px rgba(255, 255, 255, 0.2); }
+        .btn-primary { background-color: var(--accent-primary); color: #003366; box-shadow: 0 8px 25px rgba(102, 204, 255, 0.15); }
+        .btn-primary:hover { transform: translateY(-3px) scale(1.05); background-color: #33b5ff; box-shadow: 0 12px 35px rgba(102, 204, 255, 0.2); }
         .glass-panel { background: linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)); border: 1px solid var(--border-color); border-radius: 1.5rem; }
-        .popular-card { border-color: rgba(255, 255, 255, 0.4); box-shadow: 0 0 40px rgba(255, 255, 255, 0.1); }
-        .custom-badge { background-color: var(--accent-primary); color: var(--bg-dark); text-transform: uppercase; letter-spacing: 0.05em; }
+        .popular-card { border-color: rgba(102, 204, 255, 0.4); box-shadow: 0 0 40px rgba(255, 255, 255, 0.1); }
+        .custom-badge { background-color: var(--accent-primary); color: #003366; text-transform: uppercase; letter-spacing: 0.05em; }
     </style>
 </head>
 <body class="relative">
     <!-- HEADER -->
-    <header id="header" class="fixed top-0 left-0 right-0 z-50">
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 bg-[#003366]">
         <div class="container mx-auto px-6">
             <div class="flex items-center justify-between py-4">
                 <a href="index.html" class="flex items-center gap-3">
@@ -68,6 +72,17 @@
                 <!-- Support Options -->
                 <p class="text-center text-gray-400 mb-8">Choose your sahyog option:</p>
                 <div class="space-y-6 max-w-3xl mx-auto">
+
+                    <!-- Custom Option (First) -->
+                    <div class="glass-panel flex flex-col sm:flex-row items-center justify-between p-5 sm:p-6 relative">
+                        <div class="flex-1 text-center sm:text-left mb-4 sm:mb-0">
+                            <h3 class="font-bold text-2xl">Custom</h3>
+                            <p class="text-sm text-muted">Enter any amount directly in your UPI app.</p>
+                        </div>
+                        <a href="upi://pay?pa=goswamichittresh-1@okhdfcbank&pn=Rivava&cu=INR&tn=Thank%20you%20for%20supporting%20this%20cause.%20Your%20support%20will%20bring%20financial%20freedom%20to%20the%20needed%20ones.%20Your%20great%20contribution%20will%20be%20updated%20on%20our%20site%20weekly.%20THANK%20YOU%20SO%20MUCH." class="btn btn-primary w-full sm:w-auto">
+                            Enter Custom Amount
+                        </a>
+                    </div>
 
                     <!-- Option 1 -->
                     <div class="glass-panel flex flex-col sm:flex-row items-center justify-between p-5 sm:p-6 relative">
@@ -105,16 +120,6 @@
                         </a>
                     </div>
 
-                    <!-- Custom Option -->
-                    <div class="glass-panel flex flex-col sm:flex-row items-center justify-between p-5 sm:p-6 relative">
-                        <div class="flex-1 text-center sm:text-left mb-4 sm:mb-0">
-                            <h3 class="font-bold text-2xl">Custom</h3>
-                            <p class="text-sm text-muted">Enter any amount directly in your UPI app.</p>
-                        </div>
-                        <a href="upi://pay?pa=goswamichittresh-1@okhdfcbank&pn=Rivava&cu=INR&tn=Thank%20you%20for%20supporting%20this%20cause.%20Your%20support%20will%20bring%20financial%20freedom%20to%20the%20needed%20ones.%20Your%20great%20contribution%20will%20be%20updated%20on%20our%20site%20weekly.%20THANK%20YOU%20SO%20MUCH." class="btn btn-primary w-full sm:w-auto">
-                            Enter Custom Amount
-                        </a>
-                    </div>
                 </div>
             </div>
         </section>
