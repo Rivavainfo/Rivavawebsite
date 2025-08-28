@@ -13,9 +13,6 @@
     
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <!-- Roboto Font for RIVAVA text -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
     
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,41 +21,186 @@
 
     <style>
         :root {
-            --bg-dark: #003366; /* Header deep blue */
+            --bg-dark: #000000;
             --bg-panel: #111111;
             --text-primary: #FFFFFF;
             --text-muted: #A0AEC0;
-            --accent-primary: #66ccff; /* Light blue accent */
-            --border-color: rgba(102, 204, 255, 0.2);
+            --accent-primary: #FFFFFF; /* White/silver for buttons on this page */
+            --accent-green: #00FF7F; /* Green for header text, from index.html */
+            --border-color: rgba(255, 255, 255, 0.1);
             --shadow-glow: 0 0 60px rgba(255, 255, 255, 0.1);
             --transition-fast: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
-        body { background-color: #f4f4f4; color: var(--text-primary); font-family: 'Inter', sans-serif; }
-        .rivava-text { font-family: 'Roboto', sans-serif; color: var(--accent-primary); }
+
+        body { 
+            background-color: var(--bg-dark);
+            color: var(--text-primary); 
+            font-family: 'Inter', sans-serif; 
+            overflow-x: hidden;
+        }
+
+        /* Dynamic background gradient from the example */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 15% 20%, rgba(0, 163, 255, 0.08), transparent 40%),
+                        radial-gradient(circle at 85% 80%, rgba(0, 255, 127, 0.08), transparent 40%),
+                        radial-gradient(circle at 50% 50%, rgba(240, 0, 184, 0.05), transparent 50%);
+            z-index: -1;
+            pointer-events: none;
+            animation: background-pan 25s linear infinite alternate;
+        }
+
+        @keyframes background-pan {
+            from { transform: translate(0, 0) scale(1); }
+            to { transform: translate(30px, -30px) scale(1.1); }
+        }
+        
+        /* ==============================================
+         HEADER & NAVIGATION STYLES (from index.html)
+         ============================================== */
+        #header {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.4s ease;
+        }
+
+        #header.scrolled {
+            background: rgba(0, 0, 0, 0.8);
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logo-image {
+            transition: var(--transition-fast);
+        }
+
+        #header.scrolled .logo-image {
+            transform: scale(0.9);
+        }
+
+        .rivava-text {
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-green), #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 25px rgba(0, 255, 127, 0.3);
+            animation: glow 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 5px rgba(0, 255, 127, 0.3)); }
+            to { filter: drop-shadow(0 0 15px rgba(0, 255, 127, 0.7)); }
+        }
+
+        .nav-link {
+            position: relative;
+            transition: var(--transition-fast);
+            color: var(--text-muted);
+        }
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent-green);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .nav-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* ==============================================
+         DONATION PAGE SPECIFIC STYLES
+         ============================================== */
         .btn { display: inline-flex; align-items: center; justify-content: center; padding: 1rem 2rem; border-radius: 999px; font-weight: 700; transition: var(--transition-fast); cursor: pointer; }
-        .btn-primary { background-color: var(--accent-primary); color: #003366; box-shadow: 0 8px 25px rgba(102, 204, 255, 0.15); }
-        .btn-primary:hover { transform: translateY(-3px) scale(1.05); background-color: #33b5ff; box-shadow: 0 12px 35px rgba(102, 204, 255, 0.2); }
-        .glass-panel { background: linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)); border: 1px solid var(--border-color); border-radius: 1.5rem; }
-        .popular-card { border-color: rgba(102, 204, 255, 0.4); box-shadow: 0 0 40px rgba(255, 255, 255, 0.1); }
-        .custom-badge { background-color: var(--accent-primary); color: #003366; text-transform: uppercase; letter-spacing: 0.05em; }
+        
+        .btn-primary { 
+            background-color: var(--accent-primary);
+            color: var(--bg-dark); 
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.15); 
+        }
+        .btn-primary:hover { 
+            transform: translateY(-3px) scale(1.05); 
+            background-color: #e5e5e5;
+            box-shadow: 0 12px 35px rgba(255, 255, 255, 0.2); 
+        }
+
+        .glass-panel { 
+            background: linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)); 
+            border: 1px solid var(--border-color); 
+            border-radius: 1.5rem; 
+        }
+        .popular-card { 
+            border-color: rgba(255, 255, 255, 0.4); 
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
+        }
+        .custom-badge { 
+            background-color: var(--accent-primary); 
+            color: var(--bg-dark); 
+            text-transform: uppercase; 
+            letter-spacing: 0.05em; 
+        }
     </style>
 </head>
 <body class="relative">
     <!-- HEADER -->
-    <header id="header" class="fixed top-0 left-0 right-0 z-50 bg-[#003366]">
+    <header id="header" class="fixed top-0 left-0 right-0 z-50">
         <div class="container mx-auto px-6">
-            <div class="flex items-center justify-between py-4">
+            <div class="flex items-center justify-between py-4 transition-all duration-300">
                 <a href="index.html" class="flex items-center gap-3">
-                    <img src="logo.png" alt="Rivava Logo" class="h-10 w-10" />
-                    <div><div class="rivava-text text-3xl leading-none">RIVAVA</div></div>
+                    <img src="aee970e5-75ae-4761-b8e3-63ae4991f0d5-removebg-preview.png" alt="Rivava Logo" class="logo-image h-8 w-8 md:h-10 md:w-10" onerror="this.onerror=null;this.src='https://placehold.co/40x40/000000/FFFFFF?text=R';"/>
+                    <div>
+                        <div class="rivava-text text-2xl md:text-3xl leading-none">RIVAVA</div>
+                        <div class="text-xs text-gray-400 -mt-1 tracking-wider hidden sm:block">Make It Simple.</div>
+                    </div>
                 </a>
+
+                <nav class="hidden md:flex items-center gap-8 text-sm">
+                    <a href="index.html#services" class="nav-link">Services</a>
+                    <a href="index.html#mission" class="nav-link">Mission</a>
+                    <a href="index.html#plans" class="nav-link">Our Journey</a>
+                    <a href="index.html#privacy" class="nav-link">Privacy</a>
+                    <a href="index.html#contact" class="nav-link">Contact</a>
+                </nav>
+
+                <button id="hambBtn" class="md:hidden p-2 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm" aria-label="menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M4 6h16M4 12h16M4 18h16" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- MOBILE MENU -->
+        <div id="mobileMenu" class="hidden md:hidden border-t border-white/10 bg-[color:var(--bg-panel)]/95 backdrop-blur-xl">
+            <div class="container mx-auto px-6 py-4 flex flex-col gap-2 text-base">
+                <a href="index.html#services" class="block text-gray-300 hover:text-white transition-colors py-3">Services</a>
+                <a href="index.html#mission" class="block text-gray-300 hover:text-white transition-colors py-3">Mission</a>
+                <a href="index.html#plans" class="block text-gray-300 hover:text-white transition-colors py-3">Our Journey</a>
+                <a href="index.html#privacy" class="block text-gray-300 hover:text-white transition-colors py-3">Privacy</a>
+                <a href="index.html#contact" class="block text-gray-300 hover:text-white transition-colors py-3">Contact</a>
             </div>
         </div>
     </header>
 
     <main>
         <!-- DONATION SECTION -->
-        <section id="donate" class="min-h-screen flex items-center pt-28 sm:pt-32 pb-16 sm:pb-20">
+        <section id="donate" class="min-h-screen flex items-center pt-32 sm:pt-36 pb-16 sm:pb-20">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
                     <h2 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight">
@@ -72,8 +214,8 @@
                 <!-- Support Options -->
                 <p class="text-center text-gray-400 mb-8">Choose your sahyog option:</p>
                 <div class="space-y-6 max-w-3xl mx-auto">
-
-                    <!-- Custom Option (First) -->
+                    
+                    <!-- Custom Option -->
                     <div class="glass-panel flex flex-col sm:flex-row items-center justify-between p-5 sm:p-6 relative">
                         <div class="flex-1 text-center sm:text-left mb-4 sm:mb-0">
                             <h3 class="font-bold text-2xl">Custom</h3>
@@ -119,7 +261,6 @@
                             Pay ₹501
                         </a>
                     </div>
-
                 </div>
             </div>
         </section>
@@ -134,9 +275,9 @@
 
     <!-- QR Code Modal -->
     <div id="qrModal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center hidden z-50">
-        <div class="bg-white p-6 rounded-xl relative">
-            <span id="closeQr" class="absolute top-2 right-3 cursor-pointer text-gray-600 text-xl">&times;</span>
-            <h3 class="text-center font-bold mb-4">Scan to Pay</h3>
+        <div class="bg-white p-6 rounded-xl relative text-black">
+            <span id="closeQr" class="absolute top-2 right-3 cursor-pointer text-gray-600 text-2xl font-bold">&times;</span>
+            <h3 class="text-center font-bold mb-4 text-lg">Scan to Pay</h3>
             <div id="qrcode" class="mx-auto"></div>
         </div>
     </div>
@@ -146,8 +287,29 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('year').textContent = new Date().getFullYear();
+
+            // --- Mobile Menu Toggle ---
+            const hambBtn = document.getElementById('hambBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            hambBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+            });
+
+            // --- Header Scroll Effect ---
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
         });
 
+        // Function to detect if the user is on a desktop device
         function isDesktop() {
             return !(/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent));
         }
@@ -156,6 +318,7 @@
         const closeQr = document.getElementById('closeQr');
         const qrCodeDiv = document.getElementById('qrcode');
 
+        // Add click listeners to all primary payment buttons
         document.querySelectorAll('.btn-primary').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 if (isDesktop()) {
@@ -171,12 +334,16 @@
             });
         });
 
+        // Close the modal when the 'x' is clicked
         closeQr.addEventListener('click', () => {
             qrModal.classList.add('hidden');
         });
 
+        // Close the modal if the user clicks on the background overlay
         qrModal.addEventListener('click', (e) => {
-            if (e.target === qrModal) qrModal.classList.add('hidden');
+            if (e.target === qrModal) {
+                qrModal.classList.add('hidden');
+            }
         });
     </script>
 </body>
