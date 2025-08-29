@@ -11,6 +11,11 @@
     <link rel="icon" type="image/png" sizes="192x192" href="icon_folder/icon-192x192.png" onerror="this.onerror=null;this.src='https://placehold.co/192x192/000000/FFFFFF?text=R';">
     <link rel="apple-touch-icon" sizes="180x180" href="icon_folder/icon-180x180.png" onerror="this.onerror=null;this.src='https://placehold.co/180x180/000000/FFFFFF?text=R';">
     
+    <!-- Preconnect to external domains to speed up resource loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -18,8 +23,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <style>
@@ -185,28 +188,25 @@
         }
         
         #hero-donation-widget {
-            position: absolute;
-            top: 7rem;
-            right: 1.5rem;
-            width: 250px;
+            width: 100%;
+            max-width: 300px;
             z-index: 20;
         }
         
-        #hero-donation-widget span, #hero-donation-widget div {
-            text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+        #hero-donation-widget .supporters-text {
+            font-weight: 600;
+            text-shadow: 0 0 8px rgba(0, 255, 127, 0.5);
         }
         
         #hero-donation-widget .progress-bar-container {
-            background-color: rgba(45, 55, 72, 0.4);
-            border: none;
+            background-color: rgba(10, 10, 10, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
         }
-
-        @media (max-width: 768px) {
-            #hero-donation-widget {
-                display: none;
-            }
+        #hero-donation-widget .progress-bar {
+            height: 0.75rem;
+            box-shadow: 0 0 8px rgba(0, 255, 127, 0.5), 0 0 16px rgba(0, 255, 127, 0.3);
         }
-
 
         /* ==============================================
          BUTTONS
@@ -504,6 +504,35 @@
             font-size: 0.875rem;
             color: var(--accent-primary);
         }
+        
+        @media (max-width: 640px) {
+            .team-member-card {
+                background-color: var(--bg-panel);
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                border: 1px solid var(--border-color);
+            }
+            .team-member-card:hover {
+                transform: none;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            }
+            .team-img {
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+            .team-info {
+                position: static;
+                background: none;
+                padding: 1rem;
+                text-align: center;
+            }
+            .team-info .team-name {
+                font-size: 1rem;
+            }
+            .team-info .team-role {
+                font-size: 0.8rem;
+            }
+        }
+
 
         /* ==============================================
          PLANS & DONATION SECTIONS
@@ -516,14 +545,16 @@
         }
         .progress-bar {
             background-color: var(--accent-primary);
-            height: 1rem; /* Adjusted height */
-            border-radius: 999px;
-            transition: width 0.8s ease-out;
             box-shadow: 0 0 15px rgba(0, 255, 127, 0.5);
+            height: 1rem;
+            border-radius: 999px;
+            transition: width 1.2s cubic-bezier(0.25, 1, 0.5, 1);
         }
+        
         #plans .progress-bar {
              height: 1.5rem;
         }
+        
         .plan-abandoned .plan-content {
             opacity: 0.4;
             filter: grayscale(90%);
@@ -747,45 +778,49 @@
         <!-- HERO -->
         <section id="hero" class="min-h-screen flex items-center justify-center relative z-10 pt-24 pb-12">
             <div class="container mx-auto px-6 text-center">
-                <div class="hero-rivava fade-in-up">RIVAVA</div>
-                <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight mt-4 fade-in-up stagger-1">Make It Simple.</h1>
-                <p class="max-w-xl mx-auto text-lg md:text-xl mt-6 fade-in-up stagger-2">Your money. Clear. Controlled. Growing.</p>
+                <div class="flex flex-col items-center justify-center gap-8">
+                    <div>
+                        <div class="hero-rivava fade-in-up">RIVAVA</div>
+                        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight mt-4 fade-in-up stagger-1">Make It Simple.</h1>
+                        <p class="max-w-xl mx-auto text-lg md:text-xl mt-6 fade-in-up stagger-2">Your money. Clear. Controlled. Growing.</p>
+                    </div>
 
-                <div class="mt-10 flex flex-col sm:flex-row gap-4 items-center justify-center">
-                    <a href="#donate" class="btn btn-primary text-lg fade-in-up stagger-3">
-                        Be a Part of This Journey
-                    </a>
-                    <a href="#services" class="btn btn-secondary text-lg fade-in-up stagger-4">
-                        Explore Services
-                    </a>
+                    <div class="mt-2 flex flex-col sm:flex-row gap-4 items-center justify-center">
+                        <a href="#donate" class="btn btn-primary text-lg fade-in-up stagger-3">
+                            Be a Part of This Journey
+                        </a>
+                        <a href="#services" class="btn btn-secondary text-lg fade-in-up stagger-4">
+                            Explore Services
+                        </a>
+                    </div>
+
+                    <!-- HERO DONATION WIDGET -->
+                    <div id="hero-donation-widget" class="fade-in-up stagger-5">
+                        <div class="progress-bar-container mb-2">
+                            <div id="hero-journey-progress-bar" class="progress-bar" style="width: 0%;"></div>
+                        </div>
+                        <div class="text-xs text-gray-300 text-center supporters-text">
+                            <i class="fas fa-users mr-1 text-[color:var(--accent-primary)]"></i>
+                            <span id="hero-journey-donors">0</span> Supporters
+                        </div>
+                        <!-- Hidden elements for script compatibility -->
+                        <span id="hero-journey-amount-raised" class="hidden"></span>
+                        <span id="hero-journey-goal-amount" class="hidden"></span>
+                    </div>
                 </div>
-            </div>
-            
-            <!-- HERO DONATION WIDGET -->
-            <div id="hero-donation-widget" class="fade-in-up">
-                <div class="progress-bar-container mb-2">
-                    <div id="hero-journey-progress-bar" class="progress-bar" style="width: 0%;"></div>
-                </div>
-                <div class="text-xs text-gray-400 text-center">
-                    <i class="fas fa-users mr-1 text-[color:var(--accent-primary)]"></i>
-                    <span id="hero-journey-donors">0</span> Supporters
-                </div>
-                <!-- Hidden elements for script compatibility -->
-                <span id="hero-journey-amount-raised" class="hidden"></span>
-                <span id="hero-journey-goal-amount" class="hidden"></span>
             </div>
         </section>
 
         <!-- OUR MISSION (MVP SECTION) -->
-        <section id="mission" class="py-20 md:py-32">
+        <section id="mission" class="py-12 md:py-24">
             <div class="container mx-auto px-6">
                 <div class="mission-card p-8 md:p-12 fade-in-up">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                         <div class="fade-in-up stagger-1">
-                            <h2 class="text-5xl md:text-6xl font-bold leading-tight">Our Mission</h2>
-                            <h3 class="text-2xl md:text-3xl font-semibold text-[color:var(--accent-primary)] mt-4">Your Ambition Deserves an Ally.</h3>
-                            <p class="mt-6 text-lg max-w-lg">
-                                We exist for those who build our cities—the delivery partners navigating monsoon traffic and the IT professionals burning the midnight oil. Your hard work deserves more than just a savings account; it deserves a dedicated financial partner to turn relentless effort into lasting wealth and security.
+                            <h2 class="text-4xl md:text-5xl font-bold leading-tight">Our Mission</h2>
+                            <h3 class="text-xl md:text-2xl font-semibold text-[color:var(--accent-primary)] mt-4">Be a part to bring freedom.</h3>
+                            <p class="mt-6 text-base md:text-lg max-w-lg">
+                                Suicide, debt traps, and an absence of funds are tragedies that can ruin lives. Is there no salvation from this? We believe the answer is yes—if we are responsible enough. Be a part of this mission to help individuals, or be the one who helps fix these issues.
                             </p>
                         </div>
                         <div class="mission-image-grid fade-in-up stagger-2">
@@ -805,8 +840,8 @@
         </section>
 
         <!-- STORIES -->
-        <section id="stories" class="container mx-auto px-6 pb-20">
-            <div class="text-center mb-14">
+        <section id="stories" class="container mx-auto px-6 py-12 md:py-20">
+            <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-semibold fade-in-up">Stories of Transformation</h2>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -862,8 +897,8 @@
         </section>
 
         <!-- SERVICES -->
-        <section id="services" class="container mx-auto px-6 py-20">
-            <div class="text-center mb-14">
+        <section id="services" class="container mx-auto px-6 py-12 md:py-20">
+            <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-semibold fade-in-up">Our Services</h2>
                 <p class="max-w-2xl mx-auto mt-4 text-lg fade-in-up stagger-1">Practical, measurable & habit-driven personal finance services for every stage of life.</p>
             </div>
@@ -909,13 +944,13 @@
         </section>
         
         <!-- TEAM SECTION -->
-        <section id="team" class="container mx-auto px-6 py-20">
-            <div class="text-center mb-14">
+        <section id="team" class="container mx-auto px-6 py-12 md:py-20">
+            <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-semibold fade-in-up">Our Expert Team</h2>
                 <p class="max-w-2xl mx-auto mt-4 text-lg fade-in-up stagger-1">Meet the professionals dedicated to your financial success.</p>
             </div>
 
-            <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10">
                 <div class="team-member-card fade-in-up stagger-1">
                     <img src="aadya.jpeg" alt="Anjali Sharma" class="team-img" onerror="this.onerror=null;this.src='https://placehold.co/300x300/111111/FFFFFF?text=Anjali';">
                     <div class="team-info">
@@ -954,7 +989,7 @@
         </section>
 
         <!-- PLANS (ABANDONED) -->
-        <section id="plans" class="container mx-auto px-6 py-20">
+        <section id="plans" class="container mx-auto px-6 py-12 md:py-20">
             <div class="text-center mb-12">
                 <h3 class="text-3xl md:text-4xl font-semibold fade-in-up">Our Journey to a Community Model</h3>
                 <p class="mt-4 text-lg max-w-3xl mx-auto fade-in-up stagger-1">We started with subscriptions, but quickly realized a community-funded model better serves our mission. Your support now powers everything we do, keeping our services accessible for all.</p>
@@ -985,16 +1020,16 @@
                 <div class="glass-panel p-6">
                     <ul class="space-y-3 leaderboard">
                         <li class="flex items-center justify-between text-lg font-semibold p-3 rounded-lg">
-                            <span><i class="fas fa-crown text-yellow-900 mr-3"></i>Rohan S.</span>
-                            <span>₹5,000</span>
+                            <span><i class="fas fa-crown text-yellow-900 mr-3"></i>Dhruv Kashyap</span>
+                            <span>₹2700</span>
                         </li>
                         <li class="flex items-center justify-between text-base p-2 rounded-lg">
-                            <span>2. Priya K.</span>
-                            <span class="text-gray-400">₹2,500</span>
+                            <span>2. Vanshika Singh</span>
+                            <span class="text-gray-400">₹501</span>
                         </li>
                         <li class="flex items-center justify-between text-base p-2 rounded-lg">
-                            <span>3. Amit V.</span>
-                            <span class="text-gray-400">₹1,500</span>
+                            <span>3. Abhishek Yadav</span>
+                            <span class="text-gray-400">₹98</span>
                         </li>
                     </ul>
                 </div>
@@ -1024,7 +1059,7 @@
         </section>
         
         <!-- DONATION SECTION -->
-        <section id="donate" class="container mx-auto px-6 py-20">
+        <section id="donate" class="container mx-auto px-6 py-12 md:py-20">
             <div class="glass-panel p-8 md:p-12 rounded-2xl text-center max-w-4xl mx-auto">
                 <h2 class="text-3xl md:text-4xl font-bold fade-in-up">How can you be part of this revolution?</h2>
                 <p class="mt-4 max-w-2xl mx-auto fade-in-up stagger-1">Your support fuels our ability to provide this premium fund manager service and helps us reach more hardworking individuals.</p>
@@ -1054,7 +1089,7 @@
         </section>
 
         <!-- PRIVACY & CARE SECTION -->
-        <section id="privacy" class="container mx-auto px-6 py-20">
+        <section id="privacy" class="container mx-auto px-6 py-12 md:py-20">
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-semibold fade-in-up">Your Privacy and Care</h2>
             </div>
@@ -1066,11 +1101,11 @@
                     </li>
                     <li class="flex items-start gap-4">
                         <i class="fas fa-lock gradient-icon text-xl mt-1.5"></i>
-                        <span><strong>End-to-End Encryption:</strong> All your personal and financial data is secured with bank-level encryption, both in transit and at rest.</span>
+                        <span><strong>Firebase Security Based:</strong> Your data is protected by robust, industry-standard security measures provided by Google's Firebase platform.</span>
                     </li>
                     <li class="flex items-start gap-4">
                         <i class="fas fa-user-secret gradient-icon text-xl mt-1.5"></i>
-                        <span><strong>Anonymized Reporting:</strong> Your progress contributes to anonymized reports, ensuring your personal identity is always protected.</span>
+                        <span><strong>Security Provided in Reports:</strong> Any reports generated use anonymized data, meaning your personal identity is always kept private and secure.</span>
                     </li>
                     <li class="flex items-start gap-4">
                         <i class="fas fa-toggle-on gradient-icon text-xl mt-1.5"></i>
@@ -1087,7 +1122,7 @@
         </section>
 
         <!-- CONTACT -->
-        <section id="contact" class="container mx-auto px-6 py-20">
+        <section id="contact" class="container mx-auto px-6 py-12 md:py-20">
             <div class="text-center mb-12">
                 <h3 class="text-3xl md:text-4xl font-semibold fade-in-up">Get In Touch</h3>
                 <p class="mt-4 text-lg fade-in-up stagger-1">Book your free 15-minute consultation. We'll reach out within 24 hours.</p>
@@ -1123,7 +1158,7 @@
                 <p class="mt-2">
                     <a href="privacy-policy.html" target="_blank" class="hover:text-white transition-colors">Privacy Policy</a>
                     <span class="mx-2">|</span>
-                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                    <a href="terms-of-service.html" target="_blank" class="hover:text-white transition-colors">Terms of Service</a>
                 </p>
             </div>
         </footer>
@@ -1243,14 +1278,15 @@
             // --- Journey Progress Bar ---
             const journeyConfig = {
                 goal: 75000,
-                current: 0, 
-                donors: 0,
-                startDate: "August 25, 2025"
+                current: 3348, 
+                donors: 5,
+                startDate: "August 29, 2025"
             };
             
             // Initialize both progress bars
             populateProgressData('', journeyConfig); // Main bar
             populateProgressData('hero-', journeyConfig); // Hero bar
+            animateProgress('hero-', journeyConfig); // Animate hero bar on load
             
             const mainProgressBarWrapper = document.getElementById('main-progress-bar-wrapper');
             if (mainProgressBarWrapper) {
@@ -1334,14 +1370,21 @@
         function handleFormSubmit(e) {
             e.preventDefault();
             const form = e.target;
+            const name = form.querySelector('#name').value;
+            const email = form.querySelector('#email').value;
+            const message = form.querySelector('#message').value;
             const button = form.querySelector('button[type="submit"]');
             const originalHTML = button.innerHTML;
 
             button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
             button.disabled = true;
 
+            const whatsappMessage = `Hello, I'd like to request a call.\n\nName: ${name}\nEmail: ${email}\nFinancial Goal: ${message}`;
+            const whatsappUrl = `https://wa.me/918090516657?text=${encodeURIComponent(whatsappMessage)}`;
+
+            window.open(whatsappUrl, '_blank');
+
             setTimeout(() => {
-                showMessageModal('Request Sent!', 'Thanks! We will contact you within 24 hours.', 'fas fa-check-circle');
                 button.innerHTML = originalHTML;
                 button.disabled = false;
                 form.reset();
