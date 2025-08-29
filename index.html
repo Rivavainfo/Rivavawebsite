@@ -6,17 +6,10 @@
     <title>Rivava — Make It Simple.</title>
     <meta name="description" content="Rivava: Make It Simple. Clear, controlled, and growing personal finances." />
     <!-- Favicon and mobile-friendly icons -->
-    <link rel="icon" type="image/png" sizes="32x32" href="icon_folder/icon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="icon_folder/icon-96x96.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="icon_folder/icon-192x192.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="icon_folder/icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="128x128" href="icon_folder/icon-128x128.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="icon_folder/icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="icon_folder/icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="icon_folder/icon-180x180.png">
-    <link rel="apple-touch-icon" sizes="192x192" href="icon_folder/icon-192x192.png">
-    <link rel="apple-touch-icon" sizes="384x384" href="icon_folder/icon-384x384.png">
-    <link rel="apple-touch-icon" sizes="512x512" href="icon_folder/icon-512x512.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icon_folder/icon-32x32.png" onerror="this.onerror=null;this.src='https://placehold.co/32x32/000000/FFFFFF?text=R';">
+    <link rel="icon" type="image/png" sizes="96x96" href="icon_folder/icon-96x96.png" onerror="this.onerror=null;this.src='https://placehold.co/96x96/000000/FFFFFF?text=R';">
+    <link rel="icon" type="image/png" sizes="192x192" href="icon_folder/icon-192x192.png" onerror="this.onerror=null;this.src='https://placehold.co/192x192/000000/FFFFFF?text=R';">
+    <link rel="apple-touch-icon" sizes="180x180" href="icon_folder/icon-180x180.png" onerror="this.onerror=null;this.src='https://placehold.co/180x180/000000/FFFFFF?text=R';">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -31,9 +24,8 @@
 
     <style>
         /* ==============================================
-        ROOT VARIABLES & BASE STYLES
-        ==============================================
-        */
+         ROOT VARIABLES & BASE STYLES
+         ============================================== */
         :root {
             --bg-dark: #000000;
             --bg-panel: #111111;
@@ -51,7 +43,6 @@
             --hover-glow: 0 15px 45px rgba(0, 255, 127, 0.25);
             --transition-fast: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             --transition-medium: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-            --transition-slow: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         html {
@@ -106,9 +97,8 @@
         }
         
         /* ==============================================
-        HEADER & NAVIGATION
-        ==============================================
-        */
+         HEADER & NAVIGATION
+         ============================================== */
         #header {
             background: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(12px);
@@ -171,9 +161,8 @@
         }
 
         /* ==============================================
-        HERO SECTION
-        ==============================================
-        */
+         HERO SECTION
+         ============================================== */
         .hero-rivava {
             font-size: clamp(2.5rem, 8vw, 5rem);
             font-weight: 900;
@@ -194,11 +183,34 @@
             from { filter: drop-shadow(0 0 10px rgba(0, 255, 127, 0.4)); }
             to { filter: drop-shadow(0 0 25px rgba(0, 163, 255, 0.5)); }
         }
+        
+        #hero-donation-widget {
+            position: absolute;
+            top: 7rem;
+            right: 1.5rem;
+            width: 250px;
+            z-index: 20;
+        }
+        
+        #hero-donation-widget span, #hero-donation-widget div {
+            text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+        }
+        
+        #hero-donation-widget .progress-bar-container {
+            background-color: rgba(45, 55, 72, 0.4);
+            border: none;
+        }
+
+        @media (max-width: 768px) {
+            #hero-donation-widget {
+                display: none;
+            }
+        }
+
 
         /* ==============================================
-        BUTTONS
-        ==============================================
-        */
+         BUTTONS
+         ============================================== */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -212,13 +224,14 @@
         }
         .btn:disabled {
             cursor: not-allowed;
+            opacity: 0.6;
         }
         .btn-primary {
             background-color: var(--accent-primary);
             color: #000000;
             box-shadow: 0 8px 25px rgba(0, 255, 127, 0.25);
         }
-        .btn-primary:hover {
+        .btn-primary:hover:not(:disabled) {
             transform: translateY(-3px);
             box-shadow: 0 12px 35px rgba(0, 255, 127, 0.4);
         }
@@ -227,7 +240,7 @@
             border-color: var(--border-color);
             color: var(--text-primary);
         }
-        .btn-secondary:hover {
+        .btn-secondary:hover:not(:disabled) {
             background-color: #4A5568;
             border-color: var(--accent-primary);
         }
@@ -236,15 +249,14 @@
             color: var(--text-primary);
             box-shadow: 0 8px 25px rgba(240, 0, 184, 0.3);
         }
-        .btn-accent:hover {
+        .btn-accent:hover:not(:disabled) {
             transform: translateY(-3px);
             box-shadow: 0 12px 35px rgba(240, 0, 184, 0.5);
         }
 
         /* ==============================================
-        ICON STYLES
-        ==============================================
-        */
+         ICON STYLES
+         ============================================== */
         .gradient-icon {
             color: var(--text-primary);
             transition: var(--transition-fast);
@@ -260,15 +272,14 @@
             color: var(--accent-primary);
         }
 
-        .btn-primary:hover .icon-animate-heart,
-        .btn-accent:hover .icon-animate-heart {
+        .btn:hover .icon-animate-heart {
             animation: heartbeat 1s ease-in-out infinite;
         }
         @keyframes heartbeat {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.2); }
         }
-        .btn-primary:hover .icon-animate-plane {
+        .btn:hover .icon-animate-plane {
             animation: takeoff 0.5s ease-out forwards;
         }
         @keyframes takeoff {
@@ -277,9 +288,8 @@
         }
 
         /* ==============================================
-        CARDS & PANELS
-        ==============================================
-        */
+         CARDS & PANELS
+         ============================================== */
         .glass-panel {
             background: linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
             border: 1px solid var(--border-color);
@@ -310,9 +320,8 @@
         }
         
         /* ==============================================
-        MISSION SECTION
-        ==============================================
-        */
+         MISSION SECTION
+         ============================================== */
         #mission {
             background: #05080D;
             position: relative;
@@ -396,13 +405,14 @@
         }
 
         /* ==============================================
-        STORY CARDS
-        ==============================================
-        */
+         STORY CARDS
+         ============================================== */
         .story-card {
             border-radius: 1.5rem;
             overflow: hidden;
             transition: var(--transition-medium);
+            display: flex;
+            flex-direction: column;
         }
         .story-card:hover .story-image {
             transform: scale(1.05);
@@ -416,6 +426,12 @@
             height: 100%;
             object-fit: cover;
             transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .story-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
         .story-card .read-more {
             color: var(--accent-primary);
@@ -447,9 +463,8 @@
         }
 
         /* ==============================================
-        TEAM SECTION
-        ==============================================
-        */
+         TEAM SECTION
+         ============================================== */
         .team-member-card {
             position: relative;
             overflow: hidden;
@@ -491,9 +506,8 @@
         }
 
         /* ==============================================
-        PLANS & DONATION SECTIONS
-        ==============================================
-        */
+         PLANS & DONATION SECTIONS
+         ============================================== */
         .progress-bar-container {
             background-color: var(--accent-secondary);
             border-radius: 999px;
@@ -502,10 +516,13 @@
         }
         .progress-bar {
             background-color: var(--accent-primary);
-            height: 1.5rem;
+            height: 1rem; /* Adjusted height */
             border-radius: 999px;
             transition: width 0.8s ease-out;
             box-shadow: 0 0 15px rgba(0, 255, 127, 0.5);
+        }
+        #plans .progress-bar {
+             height: 1.5rem;
         }
         .plan-abandoned .plan-content {
             opacity: 0.4;
@@ -539,9 +556,6 @@
         .subtle-donate-link:hover {
             color: var(--text-primary);
         }
-        .subtle-donate-link i {
-            transition: var(--transition-fast);
-        }
         .progress-bar-wrapper .tooltip {
             transition: opacity 0.3s ease;
         }
@@ -550,35 +564,28 @@
         }
         .leaderboard li:nth-child(1) {
             background: linear-gradient(45deg, #FFDF00, #FBB034);
-            color: #212529; /* Darker text for better contrast */
+            color: #212529;
             border: 1px solid #FFDF00;
         }
-        .leaderboard li:nth-child(1) span:last-child {
-            color: #212529;
-        }
+        .leaderboard li:nth-child(1) span:last-child { color: #212529; }
         .leaderboard li:nth-child(2) {
             background: linear-gradient(45deg, #E8E8E8, #C0C0C0);
             color: #212529;
             border: 1px solid #E8E8E8;
         }
-        .leaderboard li:nth-child(2) span:last-child {
-            color: #212529;
-        }
+        .leaderboard li:nth-child(2) span:last-child { color: #212529; }
         .leaderboard li:nth-child(3) {
             background: linear-gradient(45deg, #D29968, #B87333);
             color: #fff;
             border: 1px solid #D29968;
         }
-        .leaderboard li:nth-child(3) span:last-child {
-            color: #fff;
-        }
+        .leaderboard li:nth-child(3) span:last-child { color: #fff; }
         
         /* ==============================================
-        MODAL STYLES
-        ==============================================
-        */
+         MODAL STYLES (OPTIMIZED & MOBILE-FIRST)
+         ============================================== */
         .modal {
-            display: none;
+            display: none; /* Hidden by default */
             position: fixed;
             inset: 0;
             background: rgba(0, 0, 0, 0.7);
@@ -588,6 +595,7 @@
             align-items: center;
             opacity: 0;
             transition: opacity 0.4s ease;
+            padding: 1rem; /* Add padding for small screens */
         }
         .modal.show {
             display: flex;
@@ -597,12 +605,14 @@
             background: var(--bg-panel);
             border: 1px solid var(--border-color);
             border-radius: 1.5rem;
-            padding: 2.5rem;
-            width: 90%;
-            max-width: 500px;
+            padding: 2rem;
+            width: 100%; /* Full width on small screens */
+            max-width: 500px; /* Max width for larger screens */
             transform: scale(0.95);
             transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            max-height: 90vh; /* Prevent overflow on vertical screens */
+            overflow-y: auto; /* Allow scrolling within modal */
         }
         #storyModal .modal-content {
             max-width: 800px;
@@ -617,11 +627,42 @@
             border-radius: 50%;
             background: rgba(255,255,255,0.1);
             transition: var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
         }
         .modal-close:hover {
             background: var(--accent-primary);
             color: var(--bg-dark);
             transform: rotate(90deg);
+        }
+        /* Story Modal Specific Mobile Styles */
+        #storyModal .modal-body-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        #storyModalImage {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 1rem;
+        }
+        @media (min-width: 768px) {
+            .modal-content {
+                padding: 2.5rem;
+            }
+            #storyModal .modal-body-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+                align-items: center;
+            }
+            #storyModalImage {
+                height: 100%;
+                max-height: 350px;
+            }
         }
         .form-control {
             width: 100%;
@@ -639,9 +680,8 @@
         }
 
         /* ==============================================
-        ANIMATIONS
-        ==============================================
-        */
+         ANIMATIONS
+         ============================================== */
         .fade-in-up {
             opacity: 0;
             transform: translateY(30px);
@@ -666,7 +706,7 @@
         <div class="container mx-auto px-6">
             <div class="flex items-center justify-between py-4 transition-all duration-300">
                 <a href="#hero" class="flex items-center gap-3">
-                    <img src="logo.png" alt="Rivava Logo" class="logo-image h-8 w-8 md:h-10 md:w-10" />
+                    <img src="logo.png" alt="Rivava Logo" class="logo-image h-8 w-8 md:h-10 md:w-10" onerror="this.onerror=null;this.src='https://placehold.co/40x40/000000/FFFFFF?text=R';">
                     <div>
                         <div class="rivava-text text-2xl md:text-3xl leading-none">RIVAVA</div>
                         <div class="text-xs text-gray-400 -mt-1 tracking-wider hidden sm:block">Make It Simple.</div>
@@ -678,7 +718,7 @@
                     <a href="#mission" class="nav-link">Mission</a>
                     <a href="#plans" class="nav-link">Our Journey</a>
                     <a href="#privacy" class="nav-link">Privacy</a>
-                    <a href="#" class="nav-link" onclick="openAppModal()">Web App</a>
+                    <a href="#" class="nav-link" id="openAppModalBtn">Web App</a>
                     <a href="#contact" class="nav-link">Contact</a>
                 </nav>
 
@@ -697,7 +737,7 @@
                 <a href="#mission" class="block text-gray-300 hover:text-white transition-colors py-3">Mission</a>
                 <a href="#plans" class="block text-gray-300 hover:text-white transition-colors py-3">Our Journey</a>
                 <a href="#privacy" class="block text-gray-300 hover:text-white transition-colors py-3">Privacy</a>
-                <a href="#" onclick="openAppModal()" class="block text-gray-300 hover:text-white transition-colors py-3">Web App</a>
+                <a href="#" id="openAppModalBtnMobile" class="block text-gray-300 hover:text-white transition-colors py-3">Web App</a>
                 <a href="#contact" class="block text-gray-300 hover:text-white transition-colors py-3">Contact</a>
             </div>
         </div>
@@ -712,14 +752,27 @@
                 <p class="max-w-xl mx-auto text-lg md:text-xl mt-6 fade-in-up stagger-2">Your money. Clear. Controlled. Growing.</p>
 
                 <div class="mt-10 flex flex-col sm:flex-row gap-4 items-center justify-center">
-                    <!-- UPDATED LINK -->
-                    <a href="donation.html" class="btn btn-primary text-lg fade-in-up stagger-3">
+                    <a href="#donate" class="btn btn-primary text-lg fade-in-up stagger-3">
                         Be a Part of This Journey
                     </a>
                     <a href="#services" class="btn btn-secondary text-lg fade-in-up stagger-4">
                         Explore Services
                     </a>
                 </div>
+            </div>
+            
+            <!-- HERO DONATION WIDGET -->
+            <div id="hero-donation-widget" class="fade-in-up">
+                <div class="progress-bar-container mb-2">
+                    <div id="hero-journey-progress-bar" class="progress-bar" style="width: 0%;"></div>
+                </div>
+                <div class="text-xs text-gray-400 text-center">
+                    <i class="fas fa-users mr-1 text-[color:var(--accent-primary)]"></i>
+                    <span id="hero-journey-donors">0</span> Supporters
+                </div>
+                <!-- Hidden elements for script compatibility -->
+                <span id="hero-journey-amount-raised" class="hidden"></span>
+                <span id="hero-journey-goal-amount" class="hidden"></span>
             </div>
         </section>
 
@@ -737,13 +790,13 @@
                         </div>
                         <div class="mission-image-grid fade-in-up stagger-2">
                             <div class="mission-image">
-                                <img src="assets/mission-1.jpg" alt="A smiling delivery rider in India">
+                                <img src="assets/mission-1.jpg" alt="A smiling delivery rider in India" onerror="this.onerror=null;this.src='https://placehold.co/600x400/111111/FFFFFF?text=Mission+1';">
                             </div>
                             <div class="mission-image">
-                                <img src="assets/mission-2.jpg" alt="A young professional in a modern Indian office">
+                                <img src="assets/mission-2.jpg" alt="A young professional in a modern Indian office" onerror="this.onerror=null;this.src='https://placehold.co/300x200/111111/FFFFFF?text=Mission+2';">
                             </div>
                             <div class="mission-image">
-                                <img src="assets/mission-3.jpg" alt="A bustling street scene in an Indian city at dusk">
+                                <img src="assets/mission-3.jpg" alt="A bustling street scene in an Indian city at dusk" onerror="this.onerror=null;this.src='https://placehold.co/300x200/111111/FFFFFF?text=Mission+3';">
                             </div>
                         </div>
                     </div>
@@ -760,45 +813,48 @@
                 <!-- Story 1 -->
                 <div class="glass-panel story-card fade-in-up stagger-1">
                     <div class="story-image-wrapper">
-                        <img src="assets/story-1.jpg" alt="A father and daughter enjoying ice cream">
+                        <img src="assets/story-1.jpg" alt="A father and daughter enjoying ice cream" class="story-image" onerror="this.onerror=null;this.src='https://placehold.co/400x200/111111/FFFFFF?text=Story+1';">
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Sunil's Promise: A Kulfi a Day</h3>
-                        <p class="text-sm mb-4">For Sunil, a food delivery partner, some days are slower than others. But with Rivava, a slow day doesn’t mean a sad day for his daughter. His small, consistent savings mean he can always afford her favorite kulfi, a small joy that makes his hard work worthwhile.</p>
+                    <div class="p-6 story-content">
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Sunil's Promise: A Kulfi a Day</h3>
+                            <p class="text-sm mb-4">For Sunil, a food delivery partner, some days are slower than others. But with Rivava, a slow day doesn’t mean a sad day for his daughter. His small, consistent savings mean he can always afford her favorite kulfi, a small joy that makes his hard work worthwhile.</p>
+                        </div>
                         <div class="flex items-center justify-between mt-4">
-                            <a onclick="openStoryModal('Sunil\'s Promise: A Kulfi a Day', 'assets/story-1.jpg', 'Sunil’s income as a food delivery partner can be unpredictable. There are days when the orders are few and far between, and the earnings are slim. In the past, a slow day meant cutting back on even the smallest of pleasures. But since he started using Rivava’s services to manage his finances, he’s been able to build a small but steady savings fund. Now, no matter how the day goes, he knows he can always keep his promise to his daughter: a delicious kulfi at the end of the day. It’s a small thing, but to him, it’s everything.')" class="font-semibold text-sm read-more">Read more →</a>
-                            <!-- UPDATED LINK -->
-                            <a href="donation.html" class="donate-circle-icon"><i class="far fa-heart"></i></a>
+                            <button data-story-title="Sunil's Promise: A Kulfi a Day" data-story-img="assets/story-1.jpg" data-story-body="Sunil’s income as a food delivery partner can be unpredictable. There are days when the orders are few and far between, and the earnings are slim. In the past, a slow day meant cutting back on even the smallest of pleasures. But since he started using Rivava’s services to manage his finances, he’s been able to build a small but steady savings fund. Now, no matter how the day goes, he knows he can always keep his promise to his daughter: a delicious kulfi at the end of the day. It’s a small thing, but to him, it’s everything." class="font-semibold text-sm read-more story-trigger">Read more →</button>
+                            <a href="#donate" class="donate-circle-icon"><i class="far fa-heart"></i></a>
                         </div>
                     </div>
                 </div>
                 <!-- Story 2 -->
                 <div class="glass-panel story-card fade-in-up stagger-2">
                     <div class="story-image-wrapper">
-                        <img src="assets/story-2.jpg" alt="A family planning a trip">
+                        <img src="assets/story-2.jpg" alt="A family planning a trip" class="story-image" onerror="this.onerror=null;this.src='https://placehold.co/400x200/111111/FFFFFF?text=Story+2';">
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">The Mehra's Vacation: From End-of-Month Stress to a Planned Getaway</h3>
-                        <p class="text-sm mb-4">The Mehras used to dread the end of the month, but with Rivava’s help, they’ve turned their finances around. Now, instead of worrying, they’re planning their first family vacation, all thanks to the money they’ve saved.</p>
+                    <div class="p-6 story-content">
+                        <div>
+                           <h3 class="text-xl font-bold mb-2">The Mehra's Vacation: From End-of-Month Stress to a Planned Getaway</h3>
+                           <p class="text-sm mb-4">The Mehras used to dread the end of the month, but with Rivava’s help, they’ve turned their finances around. Now, instead of worrying, they’re planning their first family vacation, all thanks to the money they’ve saved.</p>
+                        </div>
                         <div class="flex items-center justify-between mt-4">
-                            <a onclick="openStoryModal('The Mehra\'s Vacation: From End-of-Month Stress to a Planned Getaway', 'assets/story-2.jpg', 'For the Mehra family, the last week of the month was always a stressful time. With bills piling up and their savings dwindling, there was little room for anything beyond the essentials. A family vacation felt like an impossible dream. But after they started working with a Rivava financial advisor, they learned how to track their expenses and create a realistic budget. By making small changes and consistently saving, they were amazed at how quickly their savings grew. Now, they’re excitedly planning their first-ever family trip to the mountains, a dream that has finally become a reality.')" class="font-semibold text-sm read-more">Read more →</a>
-                            <!-- UPDATED LINK -->
-                            <a href="donation.html" class="donate-circle-icon"><i class="far fa-heart"></i></a>
+                            <button data-story-title="The Mehra's Vacation: From End-of-Month Stress to a Planned Getaway" data-story-img="assets/story-2.jpg" data-story-body="For the Mehra family, the last week of the month was always a stressful time. With bills piling up and their savings dwindling, there was little room for anything beyond the essentials. A family vacation felt like an impossible dream. But after they started working with a Rivava financial advisor, they learned how to track their expenses and create a realistic budget. By making small changes and consistently saving, they were amazed at how quickly their savings grew. Now, they’re excitedly planning their first-ever family trip to the mountains, a dream that has finally become a reality." class="font-semibold text-sm read-more story-trigger">Read more →</button>
+                            <a href="#donate" class="donate-circle-icon"><i class="far fa-heart"></i></a>
                         </div>
                     </div>
                 </div>
                 <!-- Story 3 -->
                 <div class="glass-panel story-card fade-in-up stagger-3">
                     <div class="story-image-wrapper">
-                        <img src="assets/story-4.jpg" alt="A man in his mobile accessory shop">
+                        <img src="assets/story-4.jpg" alt="A man in his mobile accessory shop" class="story-image" onerror="this.onerror=null;this.src='https://placehold.co/400x200/111111/FFFFFF?text=Story+3';">
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Rajesh's Empire: From One Shop to Many</h3>
-                        <p class="text-sm mb-4">Rajesh dreamed of expanding his mobile accessory shop, but managing the finances alone was tough. With Rivava’s guidance, he started a disciplined savings plan. Today, he’s proudly hired employees and is opening multiple branches.</p>
+                    <div class="p-6 story-content">
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Rajesh's Empire: From One Shop to Many</h3>
+                            <p class="text-sm mb-4">Rajesh dreamed of expanding his mobile accessory shop, but managing the finances alone was tough. With Rivava’s guidance, he started a disciplined savings plan. Today, he’s proudly hired employees and is opening multiple branches.</p>
+                        </div>
                         <div class="flex items-center justify-between mt-4">
-                            <a onclick="openStoryModal('Rajesh\'s Empire: From One Shop to Many', 'assets/story-4.jpg', 'Rajesh’s mobile accessory shop was his pride and joy, but he knew it had the potential to be so much more. He dreamed of expanding, but the day-to-day expenses of running the business on his own always seemed to eat up any extra cash. After partnering with Rivava, Rajesh learned how to separate his business and personal finances and started a savings plan specifically for his expansion goal. Within a year, he had saved enough to not only stock more inventory, but to hire his first employee. Today, he’s proudly opened a second location and is looking to expand even further.')" class="font-semibold text-sm read-more">Read more →</a>
-                            <!-- UPDATED LINK -->
-                            <a href="donation.html" class="donate-circle-icon"><i class="far fa-heart"></i></a>
+                            <button data-story-title="Rajesh's Empire: From One Shop to Many" data-story-img="assets/story-4.jpg" data-story-body="Rajesh’s mobile accessory shop was his pride and joy, but he knew it had the potential to be so much more. He dreamed of expanding, but the day-to-day expenses of running the business on his own always seemed to eat up any extra cash. After partnering with Rivava, Rajesh learned how to separate his business and personal finances and started a savings plan specifically for his expansion goal. Within a year, he had saved enough to not only stock more inventory, but to hire his first employee. Today, he’s proudly opened a second location and is looking to expand even further." class="font-semibold text-sm read-more story-trigger">Read more →</button>
+                            <a href="#donate" class="donate-circle-icon"><i class="far fa-heart"></i></a>
                         </div>
                     </div>
                 </div>
@@ -859,31 +915,30 @@
                 <p class="max-w-2xl mx-auto mt-4 text-lg fade-in-up stagger-1">Meet the professionals dedicated to your financial success.</p>
             </div>
 
-            <!-- Responsive Grid -->
             <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10">
                 <div class="team-member-card fade-in-up stagger-1">
-                    <img src="aadya.jpeg" alt="Anjali Sharma" class="team-img">
+                    <img src="aadya.jpeg" alt="Anjali Sharma" class="team-img" onerror="this.onerror=null;this.src='https://placehold.co/300x300/111111/FFFFFF?text=Anjali';">
                     <div class="team-info">
                         <div class="team-name">Anjali Sharma</div>
                         <div class="team-role">Lead Financial Advisor</div>
                     </div>
                 </div>
                 <div class="team-member-card fade-in-up stagger-2">
-                    <img src="aditya.jpeg" alt="Aditya Singh" class="team-img">
+                    <img src="aditya.jpeg" alt="Aditya Singh" class="team-img" onerror="this.onerror=null;this.src='https://placehold.co/300x300/111111/FFFFFF?text=Aditya';">
                     <div class="team-info">
                         <div class="team-name">Aditya Singh</div>
                         <div class="team-role">Tech Lead</div>
                     </div>
                 </div>
                 <div class="team-member-card fade-in-up stagger-3">
-                    <img src="chittresh.jpeg" alt="Chittresh Goswami" class="team-img">
+                    <img src="chittresh.jpeg" alt="Chittresh Goswami" class="team-img" onerror="this.onerror=null;this.src='https://placehold.co/300x300/111111/FFFFFF?text=Chittresh';">
                     <div class="team-info">
                         <div class="team-name">Chittresh Goswami</div>
                         <div class="team-role">Senior BDM</div>
                     </div>
                 </div>
                 <div class="team-member-card fade-in-up stagger-4">
-                    <img src="hansreynolds.jpeg" alt="Hans Reynolds" class="team-img">
+                    <img src="hansreynolds.jpeg" alt="Hans Reynolds" class="team-img" onerror="this.onerror=null;this.src='https://placehold.co/300x300/111111/FFFFFF?text=Hans';">
                     <div class="team-info">
                         <div class="team-name">Hans Reynolds</div>
                         <div class="team-role">Loan Strategist</div>
@@ -916,7 +971,7 @@
                 </div>
 
                 <div class="p-10 glass-panel text-center relative fade-in-up stagger-3 plan-abandoned">
-                       <div class="relative z-0 plan-content">
+                        <div class="relative z-0 plan-content">
                         <div class="text-sm font-bold uppercase tracking-widest text-[color:var(--accent-pink)]">Premium</div>
                         <div class="text-5xl font-bold my-4">₹699</div>
                         <p class="text-sm leading-relaxed h-20">Full advisor access, video counseling, psychological support, and premium features.</p>
@@ -941,23 +996,15 @@
                             <span>3. Amit V.</span>
                             <span class="text-gray-400">₹1,500</span>
                         </li>
-                        <li class="flex items-center justify-between text-base p-2 rounded-lg">
-                            <span>4. Anonymous</span>
-                            <span class="text-gray-400">₹1,000</span>
-                        </li>
-                        <li class="flex items-center justify-between text-base p-2 rounded-lg">
-                            <span>5. Sunita M.</span>
-                            <span class="text-gray-400">₹750</span>
-                        </li>
                     </ul>
                 </div>
             </div>
 
-            <div class="mt-12 max-w-xl mx-auto fade-in-up stagger-5">
+            <div id="main-progress-bar-wrapper" class="mt-12 max-w-xl mx-auto fade-in-up stagger-5">
                 <h4 class="text-2xl font-bold text-center mb-4 text-[color:var(--accent-primary)]">Our New Path: Community Powered</h4>
                 <div class="flex justify-between items-center text-sm mb-2 text-gray-400">
                     <span id="journey-start-date"></span>
-                    <span id="journey-partners-supported" class="font-semibold text-white"></span>
+                    <span id="journey-donors" class="font-semibold text-white"></span>
                 </div>
                 <div class="relative progress-bar-wrapper">
                     <div class="flex justify-between items-center text-sm font-semibold mb-2">
@@ -967,7 +1014,6 @@
                     <div class="progress-bar-container">
                         <div id="journey-progress-bar" class="progress-bar" style="width: 0%;"></div>
                     </div>
-                    <!-- Tooltip -->
                     <div class="tooltip absolute bottom-full mb-2 w-max left-1/2 -translate-x-1/2 bg-gray-900 text-white text-xs rounded py-1 px-2 opacity-0 pointer-events-none">
                         <span id="journey-tooltip-text">Supports 0 delivery partners</span>
                         <svg class="absolute text-gray-900 h-2 w-full left-0 top-full" x="0px" y="0px" viewBox="0 0 255 255" xml:space="preserve"><polygon class="fill-current" points="0,0 127.5,127.5 255,0"/></svg>
@@ -984,24 +1030,21 @@
                 <p class="mt-4 max-w-2xl mx-auto fade-in-up stagger-1">Your support fuels our ability to provide this premium fund manager service and helps us reach more hardworking individuals.</p>
                 
                  <div class="flex flex-col sm:flex-row items-center justify-center gap-8 mt-10 text-center">
-                    <!-- UPDATED LINK -->
-                    <a href="donation.html" class="subtle-donate-link fade-in-up stagger-1">
+                    <a href="#donate" class="subtle-donate-link fade-in-up stagger-1">
                         <i class="fas fa-hand-holding-heart text-2xl gradient-icon"></i>
                         <span class="font-semibold mt-2">Donate Once</span>
                     </a>
-                    <!-- UPDATED LINK -->
-                    <a href="donation.html" class="subtle-donate-link fade-in-up stagger-2">
+                    <a href="#donate" class="subtle-donate-link fade-in-up stagger-2">
                         <i class="fas fa-calendar-alt text-2xl gradient-icon"></i>
                         <span class="font-semibold mt-2">Support Monthly</span>
                     </a>
-                    <a href="#" onclick="openModal('messageModal')" class="subtle-donate-link fade-in-up stagger-3">
+                    <button id="spreadTheWordBtn" class="subtle-donate-link fade-in-up stagger-3">
                         <i class="fas fa-bullhorn text-2xl gradient-icon"></i>
                         <span class="font-semibold mt-2">Spread the Word</span>
-                    </a>
+                    </button>
                 </div>
 
                 <div class="mt-10 fade-in-up stagger-4">
-                    <!-- UPDATED LINK -->
                     <a href="donation.html" class="btn btn-accent text-lg" aria-label="Donate to support our mission">
                         <i class="fas fa-heart mr-2 icon-animate-heart"></i> Donate Now
                     </a>
@@ -1038,7 +1081,6 @@
                     Our donation and fund management processes are designed with privacy at their core, offering options for anonymized participation to protect your identity.
                 </p>
                 <div class="mt-6 text-center">
-                    <!-- UPDATED LINK -->
                     <a href="privacy-policy.html" target="_blank" class="font-semibold text-[color:var(--accent-primary)] hover:underline">Read our full Privacy Policy →</a>
                 </div>
             </div>
@@ -1079,7 +1121,6 @@
             <div class="container mx-auto px-6 py-8 text-center text-sm text-gray-400">
                 <p>&copy; <span id="year"></span> Rivava. All Rights Reserved.</p>
                 <p class="mt-2">
-                    <!-- UPDATED LINK -->
                     <a href="privacy-policy.html" target="_blank" class="hover:text-white transition-colors">Privacy Policy</a>
                     <span class="mx-2">|</span>
                     <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
@@ -1092,24 +1133,24 @@
     <!-- Message Modal -->
     <div id="messageModal" class="modal">
         <div class="modal-content text-center relative">
-            <button class="modal-close" onclick="closeModal('messageModal')"><i class="fas fa-times"></i></button>
+            <button class="modal-close" data-modal-close="messageModal"><i class="fas fa-times"></i></button>
             <div id="messageIcon" class="text-5xl text-[color:var(--accent-primary)] mb-4"></div>
             <h3 id="messageTitle" class="text-2xl font-bold mb-2"></h3>
             <p id="messageBody"></p>
-            <button class="btn btn-primary mt-8" onclick="closeModal('messageModal')">OK</button>
+            <button class="btn btn-primary mt-8" data-modal-close="messageModal">OK</button>
         </div>
     </div>
 
     <!-- Story Modal -->
     <div id="storyModal" class="modal">
         <div class="modal-content relative">
-            <button class="modal-close" onclick="closeModal('storyModal')"><i class="fas fa-times"></i></button>
-            <div class="grid md:grid-cols-2 gap-8 items-center">
-                <img id="storyModalImage" src="" alt="Story image" class="rounded-lg w-full h-64 object-cover">
+            <button class="modal-close" data-modal-close="storyModal"><i class="fas fa-times"></i></button>
+            <div class="modal-body-grid">
+                <img id="storyModalImage" src="" alt="Story image" onerror="this.onerror=null;this.src='https://placehold.co/400x400/111111/FFFFFF?text=Story';">
                 <div>
                     <h3 id="storyModalTitle" class="text-2xl font-bold mb-4"></h3>
                     <p id="storyModalBody" class="text-base"></p>
-                    <a href="donation.html" onclick="closeModal('storyModal')" class="btn btn-accent mt-6">Donate Now</a>
+                    <a href="#donate" class="btn btn-accent mt-6" data-modal-close="storyModal">Donate Now</a>
                 </div>
             </div>
         </div>
@@ -1118,7 +1159,7 @@
     <!-- Web App Selection Modal -->
     <div id="appModal" class="modal">
         <div class="modal-content max-w-2xl relative">
-            <button class="modal-close" onclick="closeModal('appModal')"><i class="fas fa-times"></i></button>
+            <button class="modal-close" data-modal-close="appModal"><i class="fas fa-times"></i></button>
             <h3 class="text-2xl font-bold mb-2 text-center">Select a Financial Tool</h3>
             <p class="text-center mb-8">Explore our free calculators to start your journey.</p>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
@@ -1140,10 +1181,12 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- Mobile Menu Toggle ---
-            const hambBtn = document.getElementById('hambBtn');
+            // --- Global Elements ---
+            const header = document.getElementById('header');
             const mobileMenu = document.getElementById('mobileMenu');
-            hambBtn.addEventListener('click', () => {
+            
+            // --- Mobile Menu Toggle ---
+            document.getElementById('hambBtn').addEventListener('click', () => {
                 mobileMenu.classList.toggle('hidden');
             });
             mobileMenu.querySelectorAll('a').forEach(link => {
@@ -1151,14 +1194,10 @@
             });
 
             // --- Header Scroll Effect ---
-            const header = document.getElementById('header');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-            });
+            const handleScroll = () => {
+                header.classList.toggle('scrolled', window.scrollY > 50);
+            };
+            window.addEventListener('scroll', handleScroll, { passive: true });
 
             // --- Intersection Observer for Animations ---
             const observer = new IntersectionObserver((entries) => {
@@ -1169,14 +1208,10 @@
                     }
                 });
             }, { threshold: 0.1 });
-
-            document.querySelectorAll('.fade-in-up').forEach(el => {
-                observer.observe(el);
-            });
+            document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
             
             // --- Glass Panel Mouse Effect ---
-            const panels = document.querySelectorAll('.glass-panel');
-            panels.forEach(panel => {
+            document.querySelectorAll('.glass-panel').forEach(panel => {
                 panel.addEventListener('mousemove', (e) => {
                     const rect = panel.getBoundingClientRect();
                     const x = e.clientX - rect.left;
@@ -1186,9 +1221,8 @@
                 });
             });
 
-            // --- Form Submissions ---
-            const contactForm = document.getElementById('contactForm');
-            contactForm.addEventListener('submit', handleFormSubmit);
+            // --- Form Submission ---
+            document.getElementById('contactForm').addEventListener('submit', handleFormSubmit);
 
             // --- Copyright Year ---
             document.getElementById('year').textContent = new Date().getFullYear();
@@ -1206,89 +1240,90 @@
                 });
             });
 
-            const formatter = new Intl.NumberFormat('en-IN', {
-                style: 'currency',
-                currency: 'INR',
-                minimumFractionDigits: 0,
-            });
-
             // --- Journey Progress Bar ---
-            // EDIT THESE VALUES TO UPDATE THE PROGRESS BAR
             const journeyConfig = {
                 goal: 75000,
                 current: 0, 
+                donors: 0,
                 startDate: "August 25, 2025"
             };
-
-            const journeyAmountEl = document.getElementById('journey-amount-raised');
-            const journeyGoalEl = document.getElementById('journey-goal-amount');
-            const journeyProgressBarEl = document.getElementById('journey-progress-bar');
-            const journeyStartDateEl = document.getElementById('journey-start-date');
-            const journeyPartnersEl = document.getElementById('journey-partners-supported');
-            const journeyTooltipTextEl = document.getElementById('journey-tooltip-text');
-
-            // Set initial text values
-            journeyAmountEl.textContent = formatter.format(0); // Start at 0
-            journeyGoalEl.textContent = formatter.format(journeyConfig.goal);
-            journeyStartDateEl.textContent = `Campaign started: ${journeyConfig.startDate}`;
-            const initialPartners = Math.floor(journeyConfig.current / 699);
-            journeyPartnersEl.textContent = `Supports ${initialPartners} partners!`;
-            journeyTooltipTextEl.textContent = `This supports ${initialPartners} delivery partners this month!`;
-
-
-            // Animate the bar and numbers on scroll into view
-            const journeyObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const percentage = (journeyConfig.current / journeyConfig.goal) * 100;
-                        setTimeout(() => {
-                             journeyProgressBarEl.style.width = `${percentage}%`;
-                             // Animate number count up
-                             let start = 0;
-                             const end = journeyConfig.current;
-                             const duration = 800; // ms
-                             if (end > 0) {
-                                 const range = end - start;
-                                 let current = start;
-                                 const increment = end > start ? 1 : -1;
-                                 const stepTime = Math.abs(Math.floor(duration / range));
-                                 const timer = setInterval(() => {
-                                     current += increment * Math.ceil(range / (duration/stepTime));
-                                     if ((increment > 0 && current >= end) || (increment < 0 && current <= end)) {
-                                         current = end;
-                                         clearInterval(timer);
-                                     }
-                                     journeyAmountEl.textContent = formatter.format(current);
-                                 }, stepTime);
-                             }
-                        }, 300);
-                        journeyObserver.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.5 });
-
-            if (journeyProgressBarEl) {
-                journeyObserver.observe(journeyProgressBarEl.parentElement.parentElement); // Observe the wrapper
+            
+            // Initialize both progress bars
+            populateProgressData('', journeyConfig); // Main bar
+            populateProgressData('hero-', journeyConfig); // Hero bar
+            
+            const mainProgressBarWrapper = document.getElementById('main-progress-bar-wrapper');
+            if (mainProgressBarWrapper) {
+                const journeyObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            animateProgress('', journeyConfig); // Animate main bar on scroll
+                            journeyObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                journeyObserver.observe(mainProgressBarWrapper);
             }
         });
 
-        // --- Modal Functions ---
-        function openModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if (modal) {
-                modal.classList.add('show');
+        // --- Modal Functions (Optimized) ---
+        const modals = {};
+        document.querySelectorAll('.modal').forEach(modal => modals[modal.id] = modal);
+
+        const openModal = (modalId) => {
+            if (modals[modalId]) {
+                modals[modalId].classList.add('show');
                 document.body.style.overflow = 'hidden';
             }
-        }
+        };
 
-        function closeModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if (modal) {
-                modal.classList.remove('show');
+        const closeModal = (modalId) => {
+            if (modals[modalId]) {
+                modals[modalId].classList.remove('show');
                 document.body.style.overflow = 'auto';
             }
-        }
+        };
         
+        // Event delegation for closing modals
+        document.addEventListener('click', (e) => {
+            const closeBtn = e.target.closest('[data-modal-close]');
+            if (closeBtn) {
+                closeModal(closeBtn.dataset.modalClose);
+                const anchor = e.target.closest('a');
+                if(anchor && anchor.getAttribute('href').startsWith('#')) {
+                    setTimeout(() => {
+                        document.querySelector(anchor.getAttribute('href')).scrollIntoView();
+                    }, 0);
+                }
+            }
+        });
+        
+        // Open specific modals
+        document.getElementById('openAppModalBtn').addEventListener('click', (e) => { e.preventDefault(); openModal('appModal'); });
+        document.getElementById('openAppModalBtnMobile').addEventListener('click', (e) => { e.preventDefault(); openModal('appModal'); });
+        
+        document.getElementById('spreadTheWordBtn').addEventListener('click', () => {
+             showMessageModal('Share Our Mission!', 'Help us by sharing our story with your friends and family.', 'fas fa-bullhorn');
+        });
+
+        // Story Modal Logic
+        document.querySelectorAll('.story-trigger').forEach(button => {
+            button.addEventListener('click', () => {
+                document.getElementById('storyModalTitle').textContent = button.dataset.storyTitle;
+                document.getElementById('storyModalImage').src = button.dataset.storyImg;
+                document.getElementById('storyModalBody').textContent = button.dataset.storyBody;
+                openModal('storyModal');
+            });
+        });
+
+        // Close modals on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                Object.keys(modals).forEach(id => closeModal(id));
+            }
+        });
+
+        // --- Helper Functions ---
         function showMessageModal(title, message, icon) {
             document.getElementById('messageTitle').textContent = title;
             document.getElementById('messageBody').textContent = message;
@@ -1296,42 +1331,66 @@
             openModal('messageModal');
         }
 
-        function openAppModal() {
-            openModal('appModal');
-        }
-
-        function openStoryModal(title, imageUrl, body) {
-            document.getElementById('storyModalTitle').textContent = title;
-            document.getElementById('storyModalImage').src = imageUrl;
-            document.getElementById('storyModalBody').textContent = body;
-            openModal('storyModal');
-        }
-
-        // Close modals on escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                document.querySelectorAll('.modal.show').forEach(modal => closeModal(modal.id));
-            }
-        });
-
-        // --- Generic Form Handler ---
         function handleFormSubmit(e) {
             e.preventDefault();
             const form = e.target;
             const button = form.querySelector('button[type="submit"]');
             const originalHTML = button.innerHTML;
 
-            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
             button.disabled = true;
 
-            // Simulate API call
             setTimeout(() => {
                 showMessageModal('Request Sent!', 'Thanks! We will contact you within 24 hours.', 'fas fa-check-circle');
-                
                 button.innerHTML = originalHTML;
                 button.disabled = false;
                 form.reset();
             }, 1500);
+        }
+        
+        const formatter = new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', minimumFractionDigits: 0 });
+
+        function populateProgressData(prefix, config) {
+            const goalEl = document.getElementById(`${prefix}journey-goal-amount`);
+            const amountEl = document.getElementById(`${prefix}journey-amount-raised`);
+            const donorsEl = document.getElementById(`${prefix}journey-donors`);
+
+            if(goalEl) goalEl.textContent = formatter.format(config.goal);
+            if(amountEl) amountEl.textContent = formatter.format(config.current);
+            if(donorsEl) donorsEl.textContent = config.donors;
+            
+            if (prefix !== 'hero-') { // Only the main bar has these elements
+                document.getElementById('journey-start-date').textContent = `Campaign started: ${config.startDate}`;
+                document.getElementById('journey-tooltip-text').textContent = `Supports ${Math.floor(config.current / 699)} delivery partners this month!`;
+            }
+        }
+
+        function animateProgress(prefix, config) {
+            const amountEl = document.getElementById(`${prefix}journey-amount-raised`);
+            const barEl = document.getElementById(`${prefix}journey-progress-bar`);
+            const percentage = (config.current / config.goal) * 100;
+            
+            setTimeout(() => {
+                barEl.style.width = `${percentage}%`;
+                if(!amountEl) return; // Don't animate the number if the element doesn't exist
+
+                let start = 0;
+                const end = config.current;
+                const duration = 1200;
+                if (end === start) return;
+
+                const range = end - start;
+                let current = start;
+                const increment = Math.ceil(range / (duration / 16));
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= end) {
+                        current = end;
+                        clearInterval(timer);
+                    }
+                    amountEl.textContent = formatter.format(current);
+                }, 16);
+            }, 300);
         }
     </script>
 </body>
