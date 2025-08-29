@@ -253,6 +253,25 @@
             transform: translateY(-3px);
             box-shadow: 0 12px 35px rgba(240, 0, 184, 0.5);
         }
+        .btn-challenge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+        .btn-challenge:hover {
+            background-color: var(--accent-primary);
+            color: var(--bg-dark);
+            border-color: var(--accent-primary);
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 8px 25px rgba(0, 255, 127, 0.4);
+        }
 
         /* ==============================================
          ICON STYLES
@@ -285,6 +304,12 @@
         @keyframes takeoff {
             from { transform: translate(0, 0) rotate(0deg); }
             to { transform: translate(5px, -5px) rotate(15deg); }
+        }
+        .app-card-icon {
+            transition: transform 0.3s ease;
+        }
+        #appModal .glass-panel:hover .app-card-icon {
+            transform: translateY(-5px) scale(1.1);
         }
 
         /* ==============================================
@@ -744,32 +769,50 @@
                     </div>
                 </a>
 
-                <nav class="hidden md:flex items-center gap-8 text-sm">
-                    <a href="#services" class="nav-link">Services</a>
-                    <a href="#mission" class="nav-link">Mission</a>
-                    <a href="#plans" class="nav-link">Our Journey</a>
-                    <a href="#privacy" class="nav-link">Privacy</a>
-                    <a href="#" class="nav-link" id="openAppModalBtn">Web App</a>
-                    <a href="#contact" class="nav-link">Contact</a>
-                </nav>
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center gap-6">
+                    <nav class="flex items-center gap-8 text-sm">
+                        <a href="#services" class="nav-link">Services</a>
+                        <a href="#mission" class="nav-link">Mission</a>
+                        <a href="#plans" class="nav-link">Our Journey</a>
+                        <a href="#privacy" class="nav-link">Privacy</a>
+                        <a href="#contact" class="nav-link">Contact</a>
+                    </nav>
+                    <div class="flex items-center gap-4 border-l border-white/10 pl-6">
+                         <a href="challenge.html" class="btn-challenge" title="7-Day Challenge">
+                            <i class="fas fa-calendar-check text-lg"></i>
+                            <span class="sr-only">7-Day Challenge</span>
+                        </a>
+                        <button id="openAppModalBtn" class="btn btn-secondary text-sm py-2 px-4">Web App</button>
+                    </div>
+                </div>
 
-                <button id="hambBtn" class="md:hidden p-2 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm" aria-label="menu">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path d="M4 6h16M4 12h16M4 18h16" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                </button>
+                <!-- Mobile Header Buttons -->
+                <div class="flex items-center gap-2 md:hidden">
+                    <a href="challenge.html" class="btn-challenge" title="7-Day Challenge">
+                       <i class="fas fa-calendar-check text-lg"></i>
+                       <span class="sr-only">7-Day Challenge</span>
+                    </a>
+                    <button id="hambBtn" class="p-2 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm" aria-label="menu">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path d="M4 6h16M4 12h16M4 18h16" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                </div>
             </div>
         </div>
 
         <!-- MOBILE MENU -->
         <div id="mobileMenu" class="hidden md:hidden border-t border-white/10 bg-[color:var(--bg-panel)]/95 backdrop-blur-xl">
-            <div class="container mx-auto px-6 py-4 flex flex-col gap-2 text-base">
+            <div class="container mx-auto px-6 py-4 flex flex-col text-base">
                 <a href="#services" class="block text-gray-300 hover:text-white transition-colors py-3">Services</a>
                 <a href="#mission" class="block text-gray-300 hover:text-white transition-colors py-3">Mission</a>
                 <a href="#plans" class="block text-gray-300 hover:text-white transition-colors py-3">Our Journey</a>
                 <a href="#privacy" class="block text-gray-300 hover:text-white transition-colors py-3">Privacy</a>
-                <a href="#" id="openAppModalBtnMobile" class="block text-gray-300 hover:text-white transition-colors py-3">Web App</a>
                 <a href="#contact" class="block text-gray-300 hover:text-white transition-colors py-3">Contact</a>
+                <div class="mt-4 pt-4 border-t border-white/10">
+                    <button id="openAppModalBtnMobile" class="btn btn-secondary w-full text-center">Web App</button>
+                </div>
             </div>
         </div>
     </header>
@@ -839,10 +882,10 @@
             </div>
         </section>
 
-        <!-- STORIES -->
+        <!-- GOALS -->
         <section id="stories" class="container mx-auto px-6 py-12 md:py-20">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-semibold fade-in-up">Stories of Transformation</h2>
+                <h2 class="text-3xl md:text-4xl font-semibold fade-in-up">Goals of Transformation</h2>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Story 1 -->
@@ -852,11 +895,11 @@
                     </div>
                     <div class="p-6 story-content">
                         <div>
-                            <h3 class="text-xl font-bold mb-2">Sunil's Promise: A Kulfi a Day</h3>
-                            <p class="text-sm mb-4">For Sunil, a food delivery partner, some days are slower than others. But with Rivava, a slow day doesn’t mean a sad day for his daughter. His small, consistent savings mean he can always afford her favorite kulfi, a small joy that makes his hard work worthwhile.</p>
+                            <h3 class="text-xl font-bold mb-2">Sunil's Promise: An Ice Cream a Day</h3>
+                            <p class="text-sm mb-4">For Sunil, a food delivery partner, some days are slower than others. But with Rivava, a slow day doesn’t mean a sad day for his daughter. His small, consistent savings mean he can always afford her favorite ice cream, a small joy that makes his hard work worthwhile.</p>
                         </div>
                         <div class="flex items-center justify-between mt-4">
-                            <button data-story-title="Sunil's Promise: A Kulfi a Day" data-story-img="assets/story-1.jpg" data-story-body="Sunil’s income as a food delivery partner can be unpredictable. There are days when the orders are few and far between, and the earnings are slim. In the past, a slow day meant cutting back on even the smallest of pleasures. But since he started using Rivava’s services to manage his finances, he’s been able to build a small but steady savings fund. Now, no matter how the day goes, he knows he can always keep his promise to his daughter: a delicious kulfi at the end of the day. It’s a small thing, but to him, it’s everything." class="font-semibold text-sm read-more story-trigger">Read more →</button>
+                            <button data-story-title="Sunil's Promise: An Ice Cream a Day" data-story-img="assets/story-1.jpg" data-story-body="Sunil’s income as a food delivery partner can be unpredictable. There are days when the orders are few and far between, and the earnings are slim. In the past, a slow day meant cutting back on even the smallest of pleasures. But since he started using Rivava’s services to manage his finances, he’s been able to build a small but steady savings fund. Now, no matter how the day goes, he knows he can always keep his promise to his daughter: a delicious ice cream at the end of the day. It’s a small thing, but to him, it’s everything." class="font-semibold text-sm read-more story-trigger">Read more →</button>
                             <a href="#donate" class="donate-circle-icon"><i class="far fa-heart"></i></a>
                         </div>
                     </div>
@@ -1195,20 +1238,31 @@
     <div id="appModal" class="modal">
         <div class="modal-content max-w-2xl relative">
             <button class="modal-close" data-modal-close="appModal"><i class="fas fa-times"></i></button>
-            <h3 class="text-2xl font-bold mb-2 text-center">Select a Financial Tool</h3>
-            <p class="text-center mb-8">Explore our free calculators to start your journey.</p>
+            <div class="text-center mb-8">
+                <div class="bg-green-500/10 border border-green-500/20 rounded-2xl p-6 mb-6">
+                     <i class="fas fa-calendar-check text-4xl text-[color:var(--accent-primary)] mb-3"></i>
+                    <h3 class="text-2xl font-bold">Start Your Journey</h3>
+                    <p class="text-gray-400 mt-2 mb-4">Take the first step towards financial clarity with our 7-day challenge.</p>
+                    <a href="challenge.html" class="btn btn-primary">Accept the Challenge</a>
+                </div>
+                <h4 class="text-xl font-semibold">Or, Use Our Free Tools</h4>
+                <p class="text-gray-500 text-sm">Simple calculators to help you plan.</p>
+            </div>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
                 <a href="https://rivavainfo.github.io/FD-Calculator/" target="_blank" class="glass-panel p-6 external-link">
-                    <div class="text-4xl text-[color:var(--accent-primary)] mb-3"><i class="fas fa-wallet"></i></div>
+                    <div class="text-4xl text-[color:var(--accent-primary)] mb-3 app-card-icon"><i class="fas fa-wallet"></i></div>
                     <div class="font-bold text-lg">FD Calculator</div>
+                    <p class="text-xs text-gray-500 mt-1">Calculate FD returns.</p>
                 </a>
                 <a href="https://rivavainfo.github.io/RD-Calculator/" target="_blank" class="glass-panel p-6 external-link">
-                    <div class="text-4xl text-[color:var(--accent-primary)] mb-3"><i class="fas fa-piggy-bank"></i></div>
+                    <div class="text-4xl text-[color:var(--accent-primary)] mb-3 app-card-icon"><i class="fas fa-piggy-bank"></i></div>
                     <div class="font-bold text-lg">RD Calculator</div>
+                    <p class="text-xs text-gray-500 mt-1">Plan your recurring deposits.</p>
                 </a>
                 <a href="https://rivavainfo.github.io/Loan-Calculator/" target="_blank" class="glass-panel p-6 external-link">
-                    <div class="text-4xl text-[color:var(--accent-primary)] mb-3"><i class="fas fa-calculator"></i></div>
+                    <div class="text-4xl text-[color:var(--accent-primary)] mb-3 app-card-icon"><i class="fas fa-calculator"></i></div>
                     <div class="font-bold text-lg">Loan Calculator</div>
+                    <p class="text-xs text-gray-500 mt-1">Estimate your loan EMIs.</p>
                 </a>
             </div>
         </div>
@@ -1224,8 +1278,13 @@
             document.getElementById('hambBtn').addEventListener('click', () => {
                 mobileMenu.classList.toggle('hidden');
             });
-            mobileMenu.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+            mobileMenu.querySelectorAll('a, button').forEach(link => {
+                link.addEventListener('click', () => {
+                    // Don't hide if it's the modal button itself
+                    if(link.id !== 'openAppModalBtnMobile') {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
             });
 
             // --- Header Scroll Effect ---
@@ -1263,17 +1322,29 @@
             document.getElementById('year').textContent = new Date().getFullYear();
 
             // --- Page Transition for External Links ---
-            document.querySelectorAll('.external-link').forEach(link => {
-                link.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const targetUrl = this.href;
-                    document.body.classList.add('fade-out');
-                    setTimeout(() => {
-                        window.open(targetUrl, '_blank');
-                        setTimeout(() => document.body.classList.remove('fade-out'), 200);
-                    }, 500);
-                });
+            document.querySelectorAll('a:not([href^="#"]):not([href="challenge.html"])').forEach(link => {
+                if(link.target === '_blank' || link.classList.contains('external-link')) {
+                    link.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const targetUrl = this.href;
+                        document.body.classList.add('fade-out');
+                        setTimeout(() => {
+                            window.open(targetUrl, '_blank');
+                            setTimeout(() => document.body.classList.remove('fade-out'), 200);
+                        }, 500);
+                    });
+                } else if (link.href && !link.href.includes('javascript:')) {
+                     link.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const targetUrl = this.href;
+                        document.body.classList.add('fade-out');
+                        setTimeout(() => {
+                            window.location.href = targetUrl;
+                        }, 500);
+                    });
+                }
             });
+
 
             // --- Journey Progress Bar ---
             const journeyConfig = {
