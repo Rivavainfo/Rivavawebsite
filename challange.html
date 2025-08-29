@@ -1,0 +1,345 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Finance Tracker — Rivava</title>
+
+    <meta name="description" content="Start your 7-day savings challenge with the Rivava finance tracker." />
+
+    <!-- Favicon and mobile-friendly icons -->
+
+    <link rel="icon" type="image/png" sizes="32x32" href="icon_folder/icon-32x32.png" onerror="this.onerror=null;this.src='https://placehold.co/32x32/000000/FFFFFF?text=R';">
+
+    <link rel="icon" type="image/png" sizes="96x96" href="icon_folder/icon-96x96.png" onerror="this.onerror=null;this.src='https://placehold.co/96x96/000000/FFFFFF?text=R';">
+
+    <link rel="icon" type="image/png" sizes="192x192" href="icon_folder/icon-192x192.png" onerror="this.onerror=null;this.src='https://placehold.co/192x192/000000/FFFFFF?text=R';">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="icon_folder/icon-180x180.png" onerror="this.onerror=null;this.src='https://placehold.co/180x180/000000/FFFFFF?text=R';">
+
+   
+
+    <!-- Tailwind CSS -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+   
+
+    <!-- Font Awesome for icons -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+   
+
+    <!-- Google Fonts: Inter -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+
+
+    <style>
+
+        :root {
+
+            --bg-dark: #000000;
+
+            --bg-panel: #111111;
+
+            --text-primary: #FFFFFF;
+
+            --text-muted: #A0AEC0;
+
+            --accent-primary: #00FF7F;
+
+            --border-color: rgba(255, 255, 255, 0.1);
+
+        }
+
+
+
+        html {
+
+            scroll-behavior: smooth;
+
+        }
+
+
+
+        body {
+
+            background-color: var(--bg-dark);
+
+            color: var(--text-primary);
+
+            font-family: 'Inter', sans-serif;
+
+            -webkit-font-smoothing: antialiased;
+
+            -moz-osx-font-smoothing: grayscale;
+
+            overflow-x: hidden;
+
+        }
+
+       
+
+        body::before {
+
+            content: '';
+
+            position: fixed;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            background: radial-gradient(circle at 15% 20%, rgba(0, 163, 255, 0.08), transparent 40%),
+
+                        radial-gradient(circle at 85% 80%, rgba(0, 255, 127, 0.08), transparent 40%);
+
+            z-index: -1;
+
+            pointer-events: none;
+
+        }
+
+
+
+        h1, h2, h3 {
+
+            font-weight: 800;
+
+            letter-spacing: -0.025em;
+
+        }
+
+
+
+        p, li {
+
+            line-height: 1.7;
+
+            color: var(--text-muted);
+
+        }
+
+
+
+        .rivava-text {
+
+            font-weight: 800;
+
+            background: linear-gradient(135deg, var(--accent-primary), #ffffff);
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+        }
+
+       
+
+        .btn {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 1rem 2.5rem;
+
+            border-radius: 999px;
+
+            font-weight: 700;
+
+            transition: all 0.3s ease;
+
+            border: 1px solid transparent;
+
+            cursor: pointer;
+
+        }
+
+        .btn-primary {
+
+            background-color: var(--accent-primary);
+
+            color: #000000;
+
+            box-shadow: 0 8px 25px rgba(0, 255, 127, 0.25);
+
+        }
+
+        .btn-primary:hover {
+
+            transform: translateY(-3px);
+
+            box-shadow: 0 12px 35px rgba(0, 255, 127, 0.4);
+
+        }
+
+        .feature-card {
+
+            background: var(--bg-panel);
+
+            border: 1px solid var(--border-color);
+
+            border-radius: 1.5rem;
+
+            padding: 2rem;
+
+            text-align: center;
+
+        }
+
+    </style>
+
+</head>
+
+<body class="relative">
+
+    <header id="header" class="sticky top-0 z-50 bg-black/50 backdrop-blur-lg border-b border-[color:var(--border-color)]">
+
+        <div class="container mx-auto px-6">
+
+            <div class="flex items-center justify-between py-4">
+
+                <a href="index.html" class="flex items-center gap-3">
+
+                    <img src="logo.png" alt="Rivava Logo" class="h-8 w-8 md:h-10 md:w-10" onerror="this.onerror=null;this.src='https://placehold.co/40x40/000000/FFFFFF?text=R';">
+
+                    <div>
+
+                        <div class="rivava-text text-2xl md:text-3xl leading-none">RIVAVA</div>
+
+                        <div class="text-xs text-gray-400 -mt-1 tracking-wider hidden sm:block">Make It Simple.</div>
+
+                    </div>
+
+                </a>
+
+                <a href="index.html" class="text-sm text-gray-300 hover:text-white transition-colors">← Back to Home</a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <main>
+
+        <section class="text-center py-20 md:py-32">
+
+            <div class="container mx-auto px-6">
+
+                <h1 class="text-4xl md:text-6xl font-extrabold">A <span class="text-[color:var(--accent-primary)]">7-Day Challenge</span> to Master Your Money.</h1>
+
+                <p class="mt-6 text-lg md:text-xl max-w-2xl mx-auto">Track your expenses for just one week and unlock a free one-on-one counseling session. No hidden costs, no future fees. Just a simple way to start your financial journey.</p>
+
+                <a href="https://rivavainfo.github.io/RivavaForm/" target="_blank" class="btn btn-primary text-lg mt-10">
+
+                    Accept the Challenge
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+
+        <section class="pb-20 md:pb-32">
+
+            <div class="container mx-auto px-6">
+
+                <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+
+                    <div class="feature-card">
+
+                        <i class="fas fa-chart-pie text-4xl text-[color:var(--accent-primary)] mb-4"></i>
+
+                        <h3 class="text-xl font-bold">Daily Tracking</h3>
+
+                        <p class="mt-2 text-sm">Easily log your daily expenses to see where your money is going.</p>
+
+                    </div>
+
+                    <div class="feature-card">
+
+                        <i class="fas fa-award text-4xl text-[color:var(--accent-primary)] mb-4"></i>
+
+                        <h3 class="text-xl font-bold">Earn Valuable Streaks</h3>
+
+                        <p class="mt-2 text-sm">Complete challenges to earn streaks, which you can redeem for free counseling sessions and future offers.</p>
+
+                    </div>
+
+                    <div class="feature-card">
+
+                        <i class="fas fa-users text-4xl text-[color:var(--accent-primary)] mb-4"></i>
+
+                        <h3 class="text-xl font-bold">Community Support</h3>
+
+                        <p class="mt-2 text-sm">Join a community of users who are all on the same financial journey.</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <section class="pb-20 md:pb-32">
+
+            <div class="container mx-auto px-6 text-center">
+
+                <h2 class="text-3xl md:text-4xl font-bold">Get All Premium Features for Free as an Early User</h2>
+
+                <p class="mt-4 text-lg max-w-2xl mx-auto">We're building this app with our community. Sign up now and you'll get free access to all our premium features, forever.</p>
+
+                <a href="https://rivavainfo.github.io/RivavaForm/" target="_blank" class="btn btn-primary text-lg mt-10">
+
+                    Start for Free & Lock in Your Access
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <footer class="border-t border-white/10">
+
+        <div class="container mx-auto px-6 py-8 text-center text-sm text-gray-400">
+
+            <p>Made with love ❤️ in India</p>
+
+        </div>
+
+    </footer>
+
+</body>
+
+</html>
