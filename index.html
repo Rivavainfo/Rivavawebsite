@@ -754,6 +754,9 @@
         body.light-mode .text-gray-200, body.light-mode .text-gray-300 { color: #1e293b !important; }
         body.light-mode .text-gray-400, body.light-mode .text-gray-500 { color: #475569 !important; }
         body.light-mode .bg-black { background-color: #f1f5f9 !important; }
+        body.light-mode .bg-black\/40 { background-color: rgba(241, 245, 249, 0.4) !important; }
+        body.light-mode .bg-black\/60 { background-color: rgba(241, 245, 249, 0.6) !important; }
+        body.light-mode .bg-black\/80 { background-color: rgba(241, 245, 249, 0.8) !important; }
         body.light-mode .bg-gray-800 { background-color: #e2e8f0 !important; }
         body.light-mode .bg-gray-900 { background-color: #cbd5e1 !important; }
         body.light-mode .border-white\/10 { border-color: rgba(0,0,0,0.1) !important; }
@@ -762,6 +765,11 @@
             background: rgba(255, 255, 255, 0.7);
             border: 1px solid rgba(0,0,0,0.1);
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        body.light-mode .hero-rivava {
+            background: linear-gradient(135deg, var(--accent-primary), #333, var(--accent-blue), var(--accent-pink), var(--accent-primary));
+            -webkit-background-clip: text;
+            background-size: 300% 300%;
         }
 
         /* Market Ticker */
@@ -801,16 +809,7 @@
 
 
     <!-- STICKY WRAPPER FOR TICKER AND HEADER -->
-    <div class="sticky top-0 z-[60] flex flex-col w-full shadow-lg">
-        <div class="ticker-container text-xs text-gray-300 z-40 relative">
-        <div class="ticker-wrapper" id="market-ticker">
-            <span class="ticker-item flex items-center gap-2">NIFTY 50 <span id="ticker-nifty-change" class="text-sm font-bold animate-pulse bg-gray-700 text-transparent rounded w-10">45.20 pts</span></span>
-            <span class="ticker-item flex items-center gap-2">RELIANCE <span id="ticker-rel-change" class="text-sm font-bold animate-pulse bg-gray-700 text-transparent rounded w-10">1.2%</span></span>
-            <span class="ticker-item flex items-center gap-2">BTC <span id="ticker-btc-change" class="text-sm font-bold animate-pulse bg-gray-700 text-transparent rounded w-10">2.4%</span></span>
-            <span class="ticker-item flex items-center gap-2">AAPL <span id="ticker-aapl-change" class="text-sm font-bold animate-pulse bg-gray-700 text-transparent rounded w-10">0.8%</span></span>
-            <span class="ticker-item flex items-center gap-2">TCS <span id="ticker-tcs-change" class="text-sm font-bold animate-pulse bg-gray-700 text-transparent rounded w-10">0.5%</span></span>
-                    </div>
-    </div>
+    <div class="sticky top-0 z-[60] flex flex-col w-full shadow-lg bg-[color:var(--bg-panel)]/90 backdrop-blur-xl border-b border-white/10">
         <header id="header" class=" left-0 right-0 z-50">
         <div class="container mx-auto px-6">
             <div class="flex items-center justify-between py-4 transition-all duration-300">
@@ -825,23 +824,22 @@
                 <!-- Desktop Navigation -->
                 <div class="hidden md:flex items-center gap-6">
                     <nav class="flex items-center gap-8 text-sm">
+                        <a href="#dashboard" class="nav-link">Dashboard</a>
+                        <a href="#features" class="nav-link">Features</a>
                         <a href="#services" class="nav-link">Services</a>
-
-                    <button id="themeToggle" class="text-gray-300 hover:text-white transition-colors" aria-label="Toggle Theme">
-                        <i class="fas fa-moon text-lg"></i>
-                    </button>
-                    <button id="cmdPaletteBtn" class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/20 text-sm text-gray-400 hover:text-white hover:border-white/40 transition-colors">
-                        <i class="fas fa-search"></i>
-                        <span>Search</span>
-                        <kbd class="ml-2 bg-white/10 px-1.5 rounded text-xs font-mono">Ctrl+K</kbd>
-                    </button>
-                    <a href="#dashboard"
- class="nav-link">Dashboard</a>
-                        <a href="#plans" class="nav-link">Our Journey</a>
+                        <a href="#plans" class="nav-link">Plans</a>
                         <a href="#privacy" class="nav-link">Privacy</a>
                         <a href="#contact" class="nav-link">Contact</a>
                     </nav>
                     <div class="flex items-center gap-4 border-l border-white/10 pl-6">
+                        <button id="themeToggle" class="text-gray-300 hover:text-white transition-colors" aria-label="Toggle Theme">
+                            <i class="fas fa-moon text-lg"></i>
+                        </button>
+                        <button id="cmdPaletteBtn" class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/20 text-sm text-gray-400 hover:text-white hover:border-white/40 transition-colors">
+                            <i class="fas fa-search"></i>
+                            <span>Search</span>
+                            <kbd class="ml-2 bg-white/10 px-1.5 rounded text-xs font-mono">Ctrl+K</kbd>
+                        </button>
                          <a href="challenge.html" class="btn-challenge" title="7-Day Challenge">
                             <i class="fas fa-calendar-check text-lg"></i>
                             <span class="sr-only">7-Day Challenge</span>
@@ -868,21 +866,21 @@
         <!-- MOBILE MENU -->
         <div id="mobileMenu" class="hidden md:hidden border-t border-white/10 bg-[color:var(--bg-panel)]/95 backdrop-blur-xl">
             <div class="container mx-auto px-6 py-4 flex flex-col text-base">
+                <a href="#dashboard" class="block text-gray-300 hover:text-white transition-colors py-3">Dashboard</a>
+                <a href="#features" class="block text-gray-300 hover:text-white transition-colors py-3">Features</a>
                 <a href="#services" class="block text-gray-300 hover:text-white transition-colors py-3">Services</a>
-
-                    <button id="themeToggle" class="text-gray-300 hover:text-white transition-colors" aria-label="Toggle Theme">
-                        <i class="fas fa-moon text-lg"></i>
-                    </button>
-                    <button id="cmdPaletteBtn" class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/20 text-sm text-gray-400 hover:text-white hover:border-white/40 transition-colors">
-                        <i class="fas fa-search"></i>
-                        <span>Search</span>
-                        <kbd class="ml-2 bg-white/10 px-1.5 rounded text-xs font-mono">Ctrl+K</kbd>
-                    </button>
-                    <a href="#dashboard"
- class="block text-gray-300 hover:text-white transition-colors py-3">Dashboard</a>
-                <a href="#plans" class="block text-gray-300 hover:text-white transition-colors py-3">Our Journey</a>
+                <a href="#plans" class="block text-gray-300 hover:text-white transition-colors py-3">Plans</a>
                 <a href="#privacy" class="block text-gray-300 hover:text-white transition-colors py-3">Privacy</a>
                 <a href="#contact" class="block text-gray-300 hover:text-white transition-colors py-3">Contact</a>
+                <div class="mt-4 pt-4 border-t border-white/10 flex items-center justify-between">
+                    <button id="themeToggleMobile" class="text-gray-300 hover:text-white transition-colors" aria-label="Toggle Theme" onclick="document.getElementById('themeToggle').click()">
+                        <i class="fas fa-moon text-lg"></i> Light/Dark
+                    </button>
+                    <button id="cmdPaletteBtnMobile" class="flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/20 text-sm text-gray-400 hover:text-white hover:border-white/40 transition-colors" onclick="document.getElementById('cmdPaletteBtn').click()">
+                        <i class="fas fa-search"></i>
+                        <span>Search</span>
+                    </button>
+                </div>
                 <div class="mt-4 pt-4 border-t border-white/10">
                     <button id="openAppModalBtnMobile" class="btn btn-secondary w-full text-center">Web App</button>
                 </div>
@@ -901,6 +899,7 @@
                         <div class="hero-rivava fade-in-up">RIVAVA</div>
                         <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight mt-4 fade-in-up stagger-1">Make It Simple.</h1>
                         <p class="max-w-xl mx-auto text-lg md:text-xl mt-6 fade-in-up stagger-2">Your money. Clear. Controlled. Growing.</p>
+                        <p class="text-sm uppercase tracking-widest text-yellow-500 mt-4 font-bold fade-in-up stagger-2">Be a master of your money</p>
                     </div>
 
                     <div class="mt-2 flex flex-col sm:flex-row gap-4 items-center justify-center">
@@ -1253,7 +1252,7 @@
                     <p class="text-gray-300 mb-6 text-center max-w-md">Unlock Curated Stock/Crypto Portfolios, Market News, and Premium Investment Content.</p>
                     <div class="flex gap-4">
                         <a href="donation.html" class="btn btn-primary bg-yellow-600 hover:bg-yellow-500 text-white shadow-lg shadow-yellow-500/20 border-0">Unlock Premium</a>
-                        <button class="btn btn-secondary">Talk to Advisor</button>
+                        <a href="tel:+918881176909" class="btn btn-secondary">Talk to Advisor</a>
                     </div>
                 </div>
 
@@ -1309,9 +1308,9 @@
 
                     <h3 class="text-2xl font-bold mb-4">Advisor Access</h3>
                     <div class="flex flex-wrap gap-3">
-                        <button class="btn btn-secondary flex items-center gap-2"><i class="fab fa-whatsapp text-green-500"></i> WhatsApp Advisor</button>
+                        <a href="https://wa.me/918090516657?text=Hello,%20I'd%20like%20to%20connect%20with%20an%20advisor." target="_blank" rel="noopener noreferrer" class="btn btn-secondary flex items-center gap-2"><i class="fab fa-whatsapp text-green-500"></i> WhatsApp Advisor</a>
                         <a href="tel:+918881176909" class="btn btn-secondary flex items-center gap-2"><i class="fas fa-phone"></i> Call +91-8881176909</a>
-                        <button class="btn btn-secondary flex items-center gap-2"><i class="fas fa-video"></i> Book Video Call</button>
+                        <a href="https://wa.me/918090516657?text=Hello,%20I'd%20like%20to%20book%20a%20video%20call." target="_blank" rel="noopener noreferrer" class="btn btn-secondary flex items-center gap-2"><i class="fas fa-video"></i> Book Video Call</a>
                         <button class="btn btn-secondary flex items-center gap-2 border-[color:var(--accent-primary)] text-[color:var(--accent-primary)]"><i class="fas fa-star"></i> Premium Consultation</button>
                     </div>
                 </div>
@@ -1376,15 +1375,8 @@
             <!-- Mobile App Showcase / Download CTAs -->
             <div class="mt-24 glass-panel p-8 md:p-12 text-center fade-in-up stagger-3 bg-gradient-to-br from-black to-gray-900">
                 <h3 class="text-3xl font-bold mb-4">Take Rivava Everywhere</h3>
-                <p class="text-gray-400 mb-8 max-w-xl mx-auto">Download the mobile app to manage your finances on the go. Available for iOS and Android.</p>
-                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                    <button class="bg-black border border-white/20 hover:border-white/40 transition-all rounded-xl px-6 py-3 flex items-center gap-3 w-48">
-                        <i class="fab fa-apple text-3xl"></i>
-                        <div class="text-left">
-                            <div class="text-[10px] text-gray-400 leading-none">Download on the</div>
-                            <div class="text-sm font-bold leading-none mt-1">App Store</div>
-                        </div>
-                    </button>
+                <p class="text-gray-400 mb-8 max-w-xl mx-auto">Download the mobile app to manage your finances on the go. Available for Android on the Google Play Store.</p>
+                <div class="flex justify-center items-center">
                     <button class="bg-black border border-white/20 hover:border-white/40 transition-all rounded-xl px-6 py-3 flex items-center gap-3 w-48">
                         <i class="fab fa-google-play text-2xl text-green-400"></i>
                         <div class="text-left">
