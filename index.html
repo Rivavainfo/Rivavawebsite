@@ -804,18 +804,18 @@
     <div class="sticky top-0 z-[60] flex flex-col w-full shadow-lg">
         <div class="ticker-container text-xs text-gray-300 z-40 relative">
         <div class="ticker-wrapper" id="market-ticker">
-            <span class="ticker-item flex items-center gap-2">NIFTY 50: <span id="ticker-nifty-price" class="font-bold animate-pulse bg-gray-700 text-transparent rounded w-16">22,500.50</span> <span id="ticker-nifty-change" class="text-sm font-bold animate-pulse bg-gray-700 text-transparent rounded w-10">45.20 pts</span></span>
-            <span class="ticker-item flex items-center gap-2">RELIANCE: <span id="ticker-rel-price" class="font-bold animate-pulse bg-gray-700 text-transparent rounded w-16">₹2,950.40</span> <span id="ticker-rel-change" class="text-sm font-bold animate-pulse bg-gray-700 text-transparent rounded w-10">1.2%</span></span>
-            <span class="ticker-item flex items-center gap-2">BTC: <span id="ticker-btc-price" class="font-bold animate-pulse bg-gray-700 text-transparent rounded w-16">$68,450.00</span> <span id="ticker-btc-change" class="text-sm font-bold animate-pulse bg-gray-700 text-transparent rounded w-10">2.4%</span></span>
-            <span class="ticker-item flex items-center gap-2">AAPL: <span id="ticker-aapl-price" class="font-bold animate-pulse bg-gray-700 text-transparent rounded w-16">$173.50</span> <span id="ticker-aapl-change" class="text-sm font-bold animate-pulse bg-gray-700 text-transparent rounded w-10">0.8%</span></span>
-            <span class="ticker-item flex items-center gap-2">TCS: <span id="ticker-tcs-price" class="font-bold animate-pulse bg-gray-700 text-transparent rounded w-16">₹4,120.00</span> <span id="ticker-tcs-change" class="text-sm font-bold animate-pulse bg-gray-700 text-transparent rounded w-10">0.5%</span></span>
+            <span class="ticker-item flex items-center gap-2">NIFTY 50 <span id="ticker-nifty-change" class="text-sm font-bold animate-pulse bg-gray-700 text-transparent rounded w-10">45.20 pts</span></span>
+            <span class="ticker-item flex items-center gap-2">RELIANCE <span id="ticker-rel-change" class="text-sm font-bold animate-pulse bg-gray-700 text-transparent rounded w-10">1.2%</span></span>
+            <span class="ticker-item flex items-center gap-2">BTC <span id="ticker-btc-change" class="text-sm font-bold animate-pulse bg-gray-700 text-transparent rounded w-10">2.4%</span></span>
+            <span class="ticker-item flex items-center gap-2">AAPL <span id="ticker-aapl-change" class="text-sm font-bold animate-pulse bg-gray-700 text-transparent rounded w-10">0.8%</span></span>
+            <span class="ticker-item flex items-center gap-2">TCS <span id="ticker-tcs-change" class="text-sm font-bold animate-pulse bg-gray-700 text-transparent rounded w-10">0.5%</span></span>
                     </div>
     </div>
         <header id="header" class=" left-0 right-0 z-50">
         <div class="container mx-auto px-6">
             <div class="flex items-center justify-between py-4 transition-all duration-300">
                 <a href="#hero" class="flex items-center gap-3">
-                    <img src="logo.png" alt="Rivava Logo" class="logo-image h-8 w-8 md:h-10 md:w-10" onerror="this.onerror=null;this.src='https://placehold.co/40x40/000000/FFFFFF?text=R';">
+                    <img loading="lazy" src="logo.png" alt="Rivava Logo" class="logo-image h-8 w-8 md:h-10 md:w-10" onerror="this.onerror=null;this.src='https://placehold.co/40x40/000000/FFFFFF?text=R';">
                     <div>
                         <div class="rivava-text text-2xl md:text-3xl leading-none">RIVAVA</div>
                         <div class="text-xs text-gray-400 -mt-1 tracking-wider hidden sm:block">Make It Simple.</div>
@@ -912,12 +912,9 @@
                         </a>
                     </div>
 
-
-
                         <!-- Hidden elements for script compatibility -->
                         <span id="hero-journey-amount-raised" class="hidden"></span>
                         <span id="hero-journey-goal-amount" class="hidden"></span>
-                    </div>
                 </div>
             </div>
         </section>
@@ -934,7 +931,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Net Worth Dashboard -->
-                <div class="glass-panel p-8 fade-in-up stagger-1 flex flex-col items-center text-center">
+                <div class="glass-panel hover-lift p-8 fade-in-up stagger-1 flex flex-col items-center text-center">
                     <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center mb-6 shadow-lg shadow-blue-500/20">
                         <i class="fas fa-wallet text-2xl text-white"></i>
                     </div>
@@ -949,7 +946,7 @@
                 </div>
 
                 <!-- Budget Dashboard -->
-                <div class="glass-panel p-8 fade-in-up stagger-2 flex flex-col items-center text-center">
+                <div class="glass-panel hover-lift p-8 fade-in-up stagger-2 flex flex-col items-center text-center">
                     <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center mb-6 shadow-lg shadow-purple-500/20">
                         <i class="fas fa-chart-pie text-2xl text-white"></i>
                     </div>
@@ -962,12 +959,12 @@
                         <div class="flex justify-between text-sm"><span class="text-gray-400">Total Expenses</span><span class="font-medium text-red-400">₹45,000</span></div>
                     </div>
                     <div class="w-full bg-gray-800 rounded-full h-2 mt-4">
-                        <div class="bg-gradient-to-r from-purple-500 to-pink-600 h-2 rounded-full" style="width: 100%"></div>
+                        <div class="bg-gradient-to-r from-purple-500 to-pink-600 h-2 rounded-full" style="width: 75%"></div>
                     </div>
                 </div>
 
                 <!-- Financial Health Score -->
-                <div class="glass-panel p-8 fade-in-up stagger-3 flex flex-col items-center text-center">
+                <div class="glass-panel hover-lift p-8 fade-in-up stagger-3 flex flex-col items-center text-center">
                     <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center mb-6 shadow-lg shadow-green-500/20">
                         <i class="fas fa-heartbeat text-2xl text-white"></i>
                     </div>
@@ -997,7 +994,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                 <!-- Auto SMS Tracking -->
-                <div class="glass-panel p-8 fade-in-up stagger-1">
+                <div class="glass-panel hover-lift p-8 fade-in-up stagger-1">
                     <h3 class="text-2xl font-bold mb-4 flex items-center gap-3"><i class="fas fa-robot text-blue-400"></i> Automatic SMS Tracking</h3>
                     <ul class="space-y-3 mb-6">
                         <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span class="text-gray-300">Detect bank transaction SMS with user permission</span></li>
@@ -1013,7 +1010,7 @@
 
                 <!-- Manual Tracking & AI -->
                 <div class="space-y-8">
-                    <div class="glass-panel p-8 fade-in-up stagger-2">
+                    <div class="glass-panel hover-lift p-8 fade-in-up stagger-2">
                         <h3 class="text-xl font-bold mb-4 flex items-center gap-3"><i class="fas fa-edit text-purple-400"></i> Manual Tracking</h3>
                         <p class="text-gray-400 mb-4">Full control over your entries with powerful management tools.</p>
                         <div class="flex flex-wrap gap-2">
@@ -1023,7 +1020,7 @@
                         </div>
                     </div>
 
-                    <div class="glass-panel p-8 fade-in-up stagger-3">
+                    <div class="glass-panel hover-lift p-8 fade-in-up stagger-3">
                         <h3 class="text-xl font-bold mb-2 flex items-center gap-3"><i class="fas fa-brain text-pink-400"></i> AI Categorization</h3>
                         <p class="text-[color:var(--accent-primary)] font-medium mb-3">Smarter organization that adapts to your spending habits.</p>
                         <ul class="text-sm text-gray-400 space-y-2">
@@ -1036,7 +1033,7 @@
             </div>
 
             <!-- Expense Heatmap -->
-            <div class="glass-panel p-8 fade-in-up stagger-4">
+            <div class="glass-panel hover-lift p-8 fade-in-up stagger-4">
                 <h3 class="text-xl font-bold mb-6">Expense Heatmap (This Month)</h3>
                 <div class="flex flex-wrap gap-2 justify-center">
                     <!-- Generating a fake 30-day heatmap -->
@@ -1080,7 +1077,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                 <!-- Spending Analytics -->
-                <div class="glass-panel p-6 fade-in-up stagger-1 lg:col-span-2">
+                <div class="glass-panel hover-lift p-6 fade-in-up stagger-1 lg:col-span-2">
                     <h3 class="text-xl font-bold mb-4 flex items-center gap-2"><i class="fas fa-chart-line text-green-400"></i> Spending Analytics</h3>
                     <div class="grid grid-cols-2 gap-4 text-sm">
                         <div class="bg-white/5 p-3 rounded-lg"><span class="block text-gray-400 mb-1">Monthly Cash Flow</span><span class="font-bold text-white">+₹12,500</span></div>
@@ -1094,7 +1091,7 @@
                 </div>
 
                 <!-- Smart Savings Goals -->
-                <div class="glass-panel p-6 fade-in-up stagger-2 lg:col-span-2">
+                <div class="glass-panel hover-lift p-6 fade-in-up stagger-2 lg:col-span-2">
                     <h3 class="text-xl font-bold mb-4 flex items-center gap-2"><i class="fas fa-bullseye text-blue-400"></i> Smart Savings Goals</h3>
                     <div class="space-y-4">
                         <div>
@@ -1110,7 +1107,7 @@
                 </div>
 
                 <!-- Bill Reminder Center -->
-                <div class="glass-panel p-6 fade-in-up stagger-3 lg:col-span-2">
+                <div class="glass-panel hover-lift p-6 fade-in-up stagger-3 lg:col-span-2">
                     <h3 class="text-xl font-bold mb-4 flex items-center gap-2"><i class="fas fa-calendar-alt text-red-400"></i> Bill Reminder Center</h3>
                     <ul class="space-y-3">
                         <li class="flex justify-between items-center bg-white/5 p-2 rounded">
@@ -1125,7 +1122,7 @@
                 </div>
 
                 <!-- Financial Milestones -->
-                <div class="glass-panel p-6 fade-in-up stagger-4 lg:col-span-2">
+                <div class="glass-panel hover-lift p-6 fade-in-up stagger-4 lg:col-span-2">
                     <h3 class="text-xl font-bold mb-4 flex items-center gap-2"><i class="fas fa-trophy text-yellow-400"></i> Milestones</h3>
                     <div class="grid grid-cols-2 gap-3">
                         <div class="bg-yellow-500/10 border border-yellow-500/20 p-3 rounded-lg text-center">
@@ -1159,29 +1156,29 @@
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10">
-                <div class="team-member-card fade-in-up stagger-1">
-                    <img src="aadya.jpeg" alt="Anjali Sharma" class="team-img" onerror="this.onerror=null;this.src='https://placehold.co/300x300/111111/FFFFFF?text=Anjali';">
+                <div class="team-member-card hover-lift fade-in-up stagger-1">
+                    <img loading="lazy" src="aadya.jpeg" alt="Anjali Sharma" class="team-img" onerror="this.onerror=null;this.src='https://placehold.co/300x300/111111/FFFFFF?text=Anjali';">
                     <div class="team-info">
                         <div class="team-name">Anjali Sharma</div>
                         <div class="team-role">Lead Financial Advisor</div>
                     </div>
                 </div>
-                <div class="team-member-card fade-in-up stagger-2">
-                    <img src="aditya.jpeg" alt="Aditya Singh" class="team-img" onerror="this.onerror=null;this.src='https://placehold.co/300x300/111111/FFFFFF?text=Aditya';">
+                <div class="team-member-card hover-lift fade-in-up stagger-2">
+                    <img loading="lazy" src="aditya.jpeg" alt="Aditya Singh" class="team-img" onerror="this.onerror=null;this.src='https://placehold.co/300x300/111111/FFFFFF?text=Aditya';">
                     <div class="team-info">
                         <div class="team-name">Aditya Singh</div>
                         <div class="team-role">Tech Lead</div>
                     </div>
                 </div>
-                <div class="team-member-card fade-in-up stagger-3">
-                    <img src="chittresh.jpeg" alt="Chittresh Goswami" class="team-img" onerror="this.onerror=null;this.src='https://placehold.co/300x300/111111/FFFFFF?text=Chittresh';">
+                <div class="team-member-card hover-lift fade-in-up stagger-3">
+                    <img loading="lazy" src="chittresh.jpeg" alt="Chittresh Goswami" class="team-img" onerror="this.onerror=null;this.src='https://placehold.co/300x300/111111/FFFFFF?text=Chittresh';">
                     <div class="team-info">
                         <div class="team-name">Chittresh Goswami</div>
                         <div class="team-role">Senior BDM</div>
                     </div>
                 </div>
-                <div class="team-member-card fade-in-up stagger-4">
-                    <img src="hansreynolds.jpeg" alt="Hans Reynolds" class="team-img" onerror="this.onerror=null;this.src='https://placehold.co/300x300/111111/FFFFFF?text=Hans';">
+                <div class="team-member-card hover-lift fade-in-up stagger-4">
+                    <img loading="lazy" src="hansreynolds.jpeg" alt="Hans Reynolds" class="team-img" onerror="this.onerror=null;this.src='https://placehold.co/300x300/111111/FFFFFF?text=Hans';">
                     <div class="team-info">
                         <div class="team-name">Hans Reynolds</div>
                         <div class="team-role">Loan Strategist</div>
@@ -1209,7 +1206,7 @@
             <!-- Portfolio Allocation & Tracking -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                 <!-- Allocation -->
-                <div class="glass-panel p-6 fade-in-up stagger-1">
+                <div class="glass-panel hover-lift p-6 fade-in-up stagger-1">
                     <h3 class="text-lg font-bold mb-4">Portfolio Allocation</h3>
                     <div class="space-y-3">
                         <div class="flex items-center gap-3"><div class="w-3 h-3 rounded-full bg-blue-500"></div><span class="flex-1 text-sm">Equity</span><span class="font-medium">45%</span></div>
@@ -1221,7 +1218,7 @@
                 </div>
 
                 <!-- Asset Tracking -->
-                <div class="glass-panel p-6 fade-in-up stagger-2 md:col-span-2">
+                <div class="glass-panel hover-lift p-6 fade-in-up stagger-2 md:col-span-2">
                     <h3 class="text-lg font-bold mb-4 flex justify-between">
                         <span>Stock & Crypto Tracking</span>
                         <span class="text-xs font-normal text-gray-400 bg-white/5 px-2 py-1 rounded">Investment Watchlists</span>
@@ -1261,7 +1258,7 @@
                 </div>
 
                 <!-- Blurred Content Below -->
-                <div class="glass-panel p-6 opacity-50 pointer-events-none">
+                <div class="glass-panel hover-lift p-6 opacity-50 pointer-events-none">
                     <h3 class="text-lg font-bold mb-4">Investment Thesis Reports</h3>
                     <div class="space-y-4">
                         <div class="bg-white/5 p-4 rounded-lg">
@@ -1275,7 +1272,7 @@
                     </div>
                 </div>
 
-                <div class="glass-panel p-6 opacity-50 pointer-events-none">
+                <div class="glass-panel hover-lift p-6 opacity-50 pointer-events-none">
                     <h3 class="text-lg font-bold mb-4 flex items-center gap-2"><i class="fas fa-robot text-blue-400"></i> Rivava AI Analysis</h3>
                     <ul class="space-y-3 mb-4 text-sm text-gray-300">
                         <li><i class="fas fa-check text-green-400 mr-2"></i> AI Market Insights</li>
@@ -1304,10 +1301,10 @@
                 <!-- Elite Features -->
                 <div class="fade-in-up stagger-1">
                     <div class="grid grid-cols-2 gap-4 mb-8">
-                        <div class="glass-panel p-4 text-center"><i class="fas fa-video text-2xl text-[color:var(--accent-primary)] mb-2 block"></i><span class="text-sm font-medium">Private Video Sessions</span></div>
-                        <div class="glass-panel p-4 text-center"><i class="fas fa-headset text-2xl text-blue-400 mb-2 block"></i><span class="text-sm font-medium">Priority Support</span></div>
-                        <div class="glass-panel p-4 text-center"><i class="fas fa-book-open text-2xl text-yellow-500 mb-2 block"></i><span class="text-sm font-medium">Exclusive Research</span></div>
-                        <div class="glass-panel p-4 text-center"><i class="fas fa-users text-2xl text-purple-400 mb-2 block"></i><span class="text-sm font-medium">Elite Community</span></div>
+                        <div class="glass-panel hover-lift p-4 text-center"><i class="fas fa-video text-2xl text-[color:var(--accent-primary)] mb-2 block"></i><span class="text-sm font-medium">Private Video Sessions</span></div>
+                        <div class="glass-panel hover-lift p-4 text-center"><i class="fas fa-headset text-2xl text-blue-400 mb-2 block"></i><span class="text-sm font-medium">Priority Support</span></div>
+                        <div class="glass-panel hover-lift p-4 text-center"><i class="fas fa-book-open text-2xl text-yellow-500 mb-2 block"></i><span class="text-sm font-medium">Exclusive Research</span></div>
+                        <div class="glass-panel hover-lift p-4 text-center"><i class="fas fa-users text-2xl text-purple-400 mb-2 block"></i><span class="text-sm font-medium">Elite Community</span></div>
                     </div>
 
                     <h3 class="text-2xl font-bold mb-4">Advisor Access</h3>
@@ -1320,7 +1317,7 @@
                 </div>
 
                 <!-- Elite Dashboard Preview -->
-                <div class="glass-panel p-1 fade-in-up stagger-2 relative overflow-hidden">
+                <div class="glass-panel hover-lift p-1 fade-in-up stagger-2 relative overflow-hidden">
                     <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
                     <div class="bg-black/60 p-8 rounded-xl h-full">
                         <div class="flex justify-between items-center mb-6 border-b border-white/10 pb-4">
@@ -1330,8 +1327,8 @@
 
                         <div class="space-y-6">
                             <div>
-                                <div class="flex justify-between text-sm mb-2"><span class="text-gray-400">Monthly Minutes</span><span class="font-bold">600 Minutes</span></div>
-                                <div class="w-full bg-gray-800 rounded-full h-2"><div class="bg-gradient-to-r from-[color:var(--accent-primary)] to-blue-500 h-2 rounded-full" style="width: 100%"></div></div>
+                                <div class="flex justify-between text-sm mb-2"><span class="text-gray-400">Monthly Minutes</span><span class="font-bold">450 / 600</span></div>
+                                <div class="w-full bg-gray-800 rounded-full h-2"><div class="bg-gradient-to-r from-[color:var(--accent-primary)] to-blue-500 h-2 rounded-full" style="width: 75%"></div></div>
                             </div>
 
                             <div class="bg-white/5 p-4 rounded-lg">
@@ -1357,11 +1354,11 @@
                                 </div>
                             </div>
 
-                            <div class="flex items-center gap-4 bg-white/5 p-4 rounded-lg">
-                                <img src="https://placehold.co/100x100/333/FFF?text=MC" alt="Advisor" class="w-12 h-12 rounded-full border-2 border-[color:var(--accent-primary)]">
+                            <div class="flex items-center gap-4 bg-white/5 p-4 rounded-lg hover-lift">
+                                <img loading="lazy" src="https://placehold.co/100x100/333/FFF?text=MC" alt="Advisor" class="w-12 h-12 rounded-full border-2 border-[color:var(--accent-primary)]">
                                 <div>
                                     <div class="font-bold">Mr. Chandra</div>
-                                    <div class="text-xs text-[color:var(--accent-primary)] flex items-center gap-1"><div class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div> Available</div>
+                                    <div class="text-xs text-[color:var(--accent-primary)] flex items-center gap-1"><div class="w-1.5 h-1.5 rounded-full bg-green-500 pulse-slow"></div> Available</div>
                                     <div class="text-xs text-gray-400 mt-1">Typically within 15 minutes</div>
                                 </div>
                             </div>
@@ -1409,7 +1406,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Existing Privacy points + New User Controls -->
-                <div class="glass-panel p-8 fade-in-up stagger-1 flex flex-col items-center">
+                <div class="glass-panel hover-lift p-8 fade-in-up stagger-1 flex flex-col items-center">
                     <div class="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-6">
                         <i class="fas fa-shield-alt text-3xl text-[color:var(--accent-primary)]"></i>
                     </div>
@@ -1417,7 +1414,7 @@
                     <p class="text-gray-400 text-sm">Your financial data is protected using encrypted key security architecture, secure authentication, and privacy-first design principles.</p>
                 </div>
 
-                <div class="glass-panel p-8 fade-in-up stagger-2 flex flex-col items-center">
+                <div class="glass-panel hover-lift p-8 fade-in-up stagger-2 flex flex-col items-center">
                     <div class="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-6">
                         <i class="fas fa-comment-slash text-3xl text-[color:var(--accent-primary)]"></i>
                     </div>
@@ -1425,7 +1422,7 @@
                     <p class="text-gray-400 text-sm">SMS tracking is opt-in. You can use full Manual Mode anytime.</p>
                 </div>
 
-                <div class="glass-panel p-8 fade-in-up stagger-3 flex flex-col items-center">
+                <div class="glass-panel hover-lift p-8 fade-in-up stagger-3 flex flex-col items-center">
                     <div class="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-6">
                         <i class="fas fa-user-shield text-3xl text-[color:var(--accent-primary)]"></i>
                     </div>
@@ -1433,7 +1430,7 @@
                     <p class="text-gray-400 text-sm">Clear Transaction History, Reset AI Learning, and manage all preferences.</p>
                 </div>
 
-                <div class="glass-panel p-8 fade-in-up stagger-4 flex flex-col items-center lg:col-start-2">
+                <div class="glass-panel hover-lift p-8 fade-in-up stagger-4 flex flex-col items-center lg:col-start-2">
                     <div class="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-6">
                         <i class="fas fa-file-csv text-3xl text-[color:var(--accent-primary)]"></i>
                     </div>
@@ -1532,17 +1529,17 @@
                 <p class="text-gray-500 text-sm">Simple calculators to help you plan.</p>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
-                <a href="https://rivavainfo.github.io/FD-Calculator/" target="_blank" class="glass-panel p-6 external-link">
+                <a href="https://rivavainfo.github.io/FD-Calculator/" target="_blank" class="glass-panel hover-lift p-6 external-link">
                     <div class="text-4xl text-[color:var(--accent-primary)] mb-3 app-card-icon"><i class="fas fa-wallet"></i></div>
                     <div class="font-bold text-lg">FD Calculator</div>
                     <p class="text-xs text-gray-500 mt-1">Calculate FD returns.</p>
                 </a>
-                <a href="https://rivavainfo.github.io/RD-Calculator/" target="_blank" class="glass-panel p-6 external-link">
+                <a href="https://rivavainfo.github.io/RD-Calculator/" target="_blank" class="glass-panel hover-lift p-6 external-link">
                     <div class="text-4xl text-[color:var(--accent-primary)] mb-3 app-card-icon"><i class="fas fa-piggy-bank"></i></div>
                     <div class="font-bold text-lg">RD Calculator</div>
                     <p class="text-xs text-gray-500 mt-1">Plan your recurring deposits.</p>
                 </a>
-                <a href="https://rivavainfo.github.io/Loan-Calculator/" target="_blank" class="glass-panel p-6 external-link">
+                <a href="https://rivavainfo.github.io/Loan-Calculator/" target="_blank" class="glass-panel hover-lift p-6 external-link">
                     <div class="text-4xl text-[color:var(--accent-primary)] mb-3 app-card-icon"><i class="fas fa-calculator"></i></div>
                     <div class="font-bold text-lg">Loan Calculator</div>
                     <p class="text-xs text-gray-500 mt-1">Estimate your loan EMIs.</p>
@@ -1890,36 +1887,25 @@
                     return;
                 }
 
-                const formatMoney = (val, cur) => new Intl.NumberFormat('en-US', { style: 'currency', currency: cur }).format(val);
-
-                const updateEl = (id, dataObj, isINR = false) => {
+                const updateEl = (id, dataObj) => {
                     if (!dataObj) return; // Leave skeleton loading state active
-                    const { price, change } = dataObj;
-                    const elPrice = document.getElementById(`${id}-price`);
+                    const { change } = dataObj;
                     const elChange = document.getElementById(`${id}-change`);
-                    if (elPrice && elChange) {
-                        elPrice.innerText = isINR ? `₹${price.toLocaleString('en-IN', {minimumFractionDigits: 2})}` : formatMoney(price, 'USD');
-                        elPrice.classList.remove('animate-pulse', 'bg-gray-700', 'text-transparent');
-
-                        elChange.innerHTML = `<i class="fas fa-arrow-${change >= 0 ? 'up' : 'down'} mr-1"></i>${Math.abs(change).toFixed(2)}%`;
-                        elChange.className = `text-sm font-bold ${change >= 0 ? 'text-green-400' : 'text-red-400'}`;
+                    if (elChange) {
+                        elChange.innerHTML = `<i class="fas fa-arrow-${change >= 0 ? 'up' : 'down'} text-lg pulse-slow"></i>`;
+                        elChange.className = `ml-2 ${change >= 0 ? 'text-green-400' : 'text-red-400'}`;
                         elChange.classList.remove('animate-pulse', 'bg-gray-700', 'text-transparent');
                     }
                 };
 
-                updateEl('wl-reliance', data.stocks.reliance, true);
-                updateEl('wl-aapl', data.stocks.aapl, false);
-                updateEl('wl-btc', data.crypto.btc, false);
-                updateEl('wl-eth', data.crypto.eth, false);
-
-                updateEl('ticker-rel', data.stocks.reliance, true);
-                updateEl('ticker-tcs', data.stocks.tcs, true);
-                updateEl('ticker-nifty', data.stocks.nifty, true);
-                updateEl('ticker-aapl', data.stocks.aapl, false);
-                updateEl('ticker-btc', data.crypto.btc, false);
+                updateEl('ticker-rel', data.stocks.reliance);
+                updateEl('ticker-tcs', data.stocks.tcs);
+                updateEl('ticker-nifty', data.stocks.nifty);
+                updateEl('ticker-aapl', data.stocks.aapl);
+                updateEl('ticker-btc', data.crypto.btc);
 
                 const statusEl = document.getElementById('market-status');
-                if (statusEl) statusEl.innerHTML = `<div class="w-2 h-2 rounded-full bg-green-500"></div> Live`;
+                if (statusEl) statusEl.innerHTML = `<div class="w-2 h-2 rounded-full bg-green-500 pulse-slow"></div> Live`;
                 const updatedEl = document.getElementById('market-last-updated');
                 if (updatedEl) updatedEl.innerText = new Date().toLocaleTimeString();
 
