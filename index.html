@@ -797,18 +797,21 @@
 <body class="relative">
     <!-- HEADER -->
 
-    <div class="ticker-container text-xs text-gray-300 z-40 relative">
-        <div class="ticker-wrapper" id="market-ticker">
-            <span class="ticker-item">NIFTY 50: 22,500 <i class="fas fa-arrow-up ml-2 ticker-up"></i></span>
-            <span class="ticker-item">SENSEX: 74,100 <i class="fas fa-arrow-up ml-2 ticker-up"></i></span>
-            <span class="ticker-item">BTC/USD: $64,200 <i class="fas fa-arrow-down ml-2 ticker-down"></i></span>
-            <span class="ticker-item">ETH/USD: $3,450 <i class="fas fa-arrow-up ml-2 ticker-up"></i></span>
-            <span class="ticker-item">RELIANCE: ₹2,950 <i class="fas fa-arrow-up ml-2 ticker-up"></i></span>
-            <span class="ticker-item">HDFCBANK: ₹1,540 <i class="fas fa-arrow-down ml-2 ticker-down"></i></span>
-        </div>
-    </div>
 
-    <header id="header" class="fixed top-0 left-0 right-0 z-50">
+
+
+    <!-- STICKY WRAPPER FOR TICKER AND HEADER -->
+    <div class="sticky top-0 z-[60] flex flex-col w-full shadow-lg">
+        <div class="ticker-container text-xs text-gray-300 z-40 relative">
+        <div class="ticker-wrapper" id="market-ticker">
+            <span class="ticker-item flex items-center gap-2">NIFTY 50: <span id="ticker-nifty-price" class="font-bold animate-pulse bg-gray-700 text-transparent rounded w-16">22,500.50</span> <span id="ticker-nifty-change" class="text-sm font-bold animate-pulse bg-gray-700 text-transparent rounded w-10">45.20 pts</span></span>
+            <span class="ticker-item flex items-center gap-2">RELIANCE: <span id="ticker-rel-price" class="font-bold animate-pulse bg-gray-700 text-transparent rounded w-16">₹2,950.40</span> <span id="ticker-rel-change" class="text-sm font-bold animate-pulse bg-gray-700 text-transparent rounded w-10">1.2%</span></span>
+            <span class="ticker-item flex items-center gap-2">BTC: <span id="ticker-btc-price" class="font-bold animate-pulse bg-gray-700 text-transparent rounded w-16">$68,450.00</span> <span id="ticker-btc-change" class="text-sm font-bold animate-pulse bg-gray-700 text-transparent rounded w-10">2.4%</span></span>
+            <span class="ticker-item flex items-center gap-2">AAPL: <span id="ticker-aapl-price" class="font-bold animate-pulse bg-gray-700 text-transparent rounded w-16">$173.50</span> <span id="ticker-aapl-change" class="text-sm font-bold animate-pulse bg-gray-700 text-transparent rounded w-10">0.8%</span></span>
+            <span class="ticker-item flex items-center gap-2">TCS: <span id="ticker-tcs-price" class="font-bold animate-pulse bg-gray-700 text-transparent rounded w-16">₹4,120.00</span> <span id="ticker-tcs-change" class="text-sm font-bold animate-pulse bg-gray-700 text-transparent rounded w-10">0.5%</span></span>
+                    </div>
+    </div>
+        <header id="header" class=" left-0 right-0 z-50">
         <div class="container mx-auto px-6">
             <div class="flex items-center justify-between py-4 transition-all duration-300">
                 <a href="#hero" class="flex items-center gap-3">
@@ -886,10 +889,12 @@
             </div>
         </div>
     </header>
+    </div>
+
 
     <main class="relative overflow-hidden">
         <!-- HERO -->
-        <section id="hero" class="min-h-screen flex items-center justify-center relative z-10 pt-24 pb-12">
+        <section id="hero" class="min-h-screen flex items-center justify-center relative z-10 pt-32 pb-12">
             <div class="container mx-auto px-6 text-center">
                 <div class="flex flex-col items-center justify-center gap-8">
                     <div>
@@ -907,15 +912,8 @@
                         </a>
                     </div>
 
-                    <!-- HERO DONATION WIDGET -->
-                    <div id="hero-donation-widget" class="fade-in-up stagger-5">
-                        <div class="progress-bar-container mb-2">
-                            <div id="hero-journey-progress-bar" class="progress-bar" style="width: 0%;"></div>
-                        </div>
-                        <div class="text-xs text-gray-300 text-center supporters-text">
-                            <i class="fas fa-users mr-1 text-[color:var(--accent-primary)]"></i>
-                            <span id="hero-journey-donors">0</span> Supporters
-                        </div>
+
+
                         <!-- Hidden elements for script compatibility -->
                         <span id="hero-journey-amount-raised" class="hidden"></span>
                         <span id="hero-journey-goal-amount" class="hidden"></span>
@@ -941,10 +939,10 @@
                         <i class="fas fa-wallet text-2xl text-white"></i>
                     </div>
                     <h3 class="text-2xl font-bold mb-2">Net Worth</h3>
-                    <div class="text-3xl font-extrabold text-[color:var(--accent-primary)] mb-6">₹12,45,000</div>
+                    <div class="text-3xl font-extrabold text-[color:var(--accent-primary)] mb-6"><span id="nw-total">₹12,45,000</span></div>
                     <div class="w-full space-y-3 text-left">
-                        <div class="flex justify-between text-sm"><span class="text-gray-400">Assets</span><span class="font-medium">₹15,00,000</span></div>
-                        <div class="flex justify-between text-sm"><span class="text-gray-400">Investments</span><span class="font-medium">₹8,50,000</span></div>
+                        <div class="flex justify-between text-sm"><span class="text-gray-400">Assets</span><span class="font-medium"><span id="nw-assets">₹15,00,000</span></span></div>
+                        <div class="flex justify-between text-sm"><span class="text-gray-400">Investments</span><span class="font-medium"><span id="nw-investments">₹8,50,000</span></span></div>
                         <div class="flex justify-between text-sm"><span class="text-gray-400">Cash</span><span class="font-medium">₹2,50,000</span></div>
                         <div class="flex justify-between text-sm border-t border-white/10 pt-2"><span class="text-gray-400">Liabilities</span><span class="font-medium text-red-400">-₹2,55,000</span></div>
                     </div>
@@ -964,7 +962,7 @@
                         <div class="flex justify-between text-sm"><span class="text-gray-400">Total Expenses</span><span class="font-medium text-red-400">₹45,000</span></div>
                     </div>
                     <div class="w-full bg-gray-800 rounded-full h-2 mt-4">
-                        <div class="bg-gradient-to-r from-purple-500 to-pink-600 h-2 rounded-full" style="width: 75%"></div>
+                        <div class="bg-gradient-to-r from-purple-500 to-pink-600 h-2 rounded-full" style="width: 100%"></div>
                     </div>
                 </div>
 
@@ -1332,28 +1330,47 @@
 
                         <div class="space-y-6">
                             <div>
-                                <div class="flex justify-between text-sm mb-2"><span class="text-gray-400">Monthly Minutes</span><span class="font-bold">450 / 600</span></div>
-                                <div class="w-full bg-gray-800 rounded-full h-2"><div class="bg-gradient-to-r from-[color:var(--accent-primary)] to-blue-500 h-2 rounded-full" style="width: 75%"></div></div>
+                                <div class="flex justify-between text-sm mb-2"><span class="text-gray-400">Monthly Minutes</span><span class="font-bold">600 Minutes</span></div>
+                                <div class="w-full bg-gray-800 rounded-full h-2"><div class="bg-gradient-to-r from-[color:var(--accent-primary)] to-blue-500 h-2 rounded-full" style="width: 100%"></div></div>
                             </div>
 
                             <div class="bg-white/5 p-4 rounded-lg">
+                                <div class="flex justify-between items-center text-sm mb-2">
+                                    <span class="text-gray-400">Plan</span>
+                                    <span class="text-white font-medium">Rivava Elite Premium</span>
+                                </div>
+                                <div class="flex justify-between items-center text-sm mb-2">
+                                    <span class="text-gray-400">Price</span>
+                                    <span class="text-white font-medium">₹3,999</span>
+                                </div>
+                                <div class="flex justify-between items-center text-sm mb-2">
+                                    <span class="text-gray-400">Status</span>
+                                    <span class="text-green-400 font-medium">Active</span>
+                                </div>
                                 <div class="flex justify-between items-center text-sm mb-4 pb-4 border-b border-white/10">
-                                    <span class="text-gray-400">Billing Summary</span>
-                                    <span class="text-white font-medium">₹1,999/mo (Active)</span>
+                                    <span class="text-gray-400">Renewal</span>
+                                    <span class="text-white font-medium">Auto Renew Enabled</span>
                                 </div>
                                 <div class="flex justify-between items-center text-sm">
-                                    <span class="text-gray-400">Upcoming Session</span>
-                                    <span class="font-medium">Thursday, 4:00 PM</span>
+                                    <span class="text-gray-400">Priority Support</span>
+                                    <span class="text-green-400 font-medium">Enabled</span>
                                 </div>
                             </div>
 
                             <div class="flex items-center gap-4 bg-white/5 p-4 rounded-lg">
-                                <img src="https://placehold.co/100x100/333/FFF?text=Adv" alt="Advisor" class="w-12 h-12 rounded-full">
+                                <img src="https://placehold.co/100x100/333/FFF?text=MC" alt="Advisor" class="w-12 h-12 rounded-full border-2 border-[color:var(--accent-primary)]">
                                 <div>
-                                    <div class="font-bold">Sarah Jenkins</div>
-                                    <div class="text-xs text-[color:var(--accent-primary)]">Dedicated Advisor</div>
+                                    <div class="font-bold">Mr. Chandra</div>
+                                    <div class="text-xs text-[color:var(--accent-primary)] flex items-center gap-1"><div class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div> Available</div>
+                                    <div class="text-xs text-gray-400 mt-1">Typically within 15 minutes</div>
                                 </div>
                             </div>
+                            <div class="text-xs font-bold text-gray-400 mt-4 mb-2 uppercase tracking-wider">Support</div>
+                            <ul class="space-y-2">
+                                <li class="flex items-center gap-2 text-sm text-gray-300"><i class="fab fa-whatsapp text-green-500"></i> WhatsApp</li>
+                                <li class="flex items-center gap-2 text-sm text-gray-300"><i class="fas fa-video text-blue-400"></i> Video Call</li>
+                                <li class="flex items-center gap-2 text-sm text-gray-300"><i class="fas fa-user-tie text-yellow-500"></i> Private Consultation</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -1396,8 +1413,8 @@
                     <div class="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-6">
                         <i class="fas fa-shield-alt text-3xl text-[color:var(--accent-primary)]"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Bank-Level Security</h3>
-                    <p class="text-gray-400 text-sm">We use 256-bit encryption. Your data is yours alone.</p>
+                    <h3 class="text-xl font-bold mb-4">Encrypted Key Security</h3>
+                    <p class="text-gray-400 text-sm">Your financial data is protected using encrypted key security architecture, secure authentication, and privacy-first design principles.</p>
                 </div>
 
                 <div class="glass-panel p-8 fade-in-up stagger-2 flex flex-col items-center">
@@ -1823,5 +1840,126 @@
         </div>
     </div>
 
+
+    <!-- MARKET DATA SCRIPT -->
+    <script>
+        class MarketDataService {
+            constructor() {
+                this.cryptoUrl = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd&include_24hr_change=true';
+            }
+
+            async fetchMarketData() {
+                try {
+                    const cryptoRes = await fetch(this.cryptoUrl);
+                    if (!cryptoRes.ok) throw new Error('Crypto API failed');
+                    const cryptoData = await cryptoRes.json();
+
+                    const apiKey = window.NEXT_PUBLIC_API_KEY || 'demo';
+
+                    const aaplRes = await fetch(`https://finnhub.io/api/v1/quote?symbol=AAPL&token=${apiKey}`);
+                    const aaplData = aaplRes.ok ? await aaplRes.json() : null;
+
+                    const relRes = await fetch(`https://finnhub.io/api/v1/quote?symbol=RELIANCE.NS&token=${apiKey}`);
+                    const relData = relRes.ok ? await relRes.json() : null;
+
+                    const tcsRes = await fetch(`https://finnhub.io/api/v1/quote?symbol=TCS.NS&token=${apiKey}`);
+                    const tcsData = tcsRes.ok ? await tcsRes.json() : null;
+
+                    return {
+                        crypto: {
+                            btc: { price: cryptoData.bitcoin.usd, change: cryptoData.bitcoin.usd_24h_change },
+                            eth: { price: cryptoData.ethereum.usd, change: cryptoData.ethereum.usd_24h_change }
+                        },
+                        stocks: {
+                            aapl: aaplData && aaplData.c ? { price: aaplData.c, change: aaplData.dp } : null,
+                            reliance: relData && relData.c ? { price: relData.c, change: relData.dp } : null,
+                            tcs: tcsData && tcsData.c ? { price: tcsData.c, change: tcsData.dp } : null,
+                            nifty: null
+                        }
+                    };
+                } catch (error) {
+                    console.error('Market data fetch error:', error);
+                    return null;
+                }
+            }
+
+            updateUI(data) {
+                if (!data || !data.stocks || !data.crypto || (!data.stocks.reliance && !data.stocks.aapl && !data.crypto.btc)) {
+                    const errorEl = document.getElementById('market-data-error');
+                    if (errorEl) errorEl.classList.remove('hidden');
+                    return;
+                }
+
+                const formatMoney = (val, cur) => new Intl.NumberFormat('en-US', { style: 'currency', currency: cur }).format(val);
+
+                const updateEl = (id, dataObj, isINR = false) => {
+                    if (!dataObj) return; // Leave skeleton loading state active
+                    const { price, change } = dataObj;
+                    const elPrice = document.getElementById(`${id}-price`);
+                    const elChange = document.getElementById(`${id}-change`);
+                    if (elPrice && elChange) {
+                        elPrice.innerText = isINR ? `₹${price.toLocaleString('en-IN', {minimumFractionDigits: 2})}` : formatMoney(price, 'USD');
+                        elPrice.classList.remove('animate-pulse', 'bg-gray-700', 'text-transparent');
+
+                        elChange.innerHTML = `<i class="fas fa-arrow-${change >= 0 ? 'up' : 'down'} mr-1"></i>${Math.abs(change).toFixed(2)}%`;
+                        elChange.className = `text-sm font-bold ${change >= 0 ? 'text-green-400' : 'text-red-400'}`;
+                        elChange.classList.remove('animate-pulse', 'bg-gray-700', 'text-transparent');
+                    }
+                };
+
+                updateEl('wl-reliance', data.stocks.reliance, true);
+                updateEl('wl-aapl', data.stocks.aapl, false);
+                updateEl('wl-btc', data.crypto.btc, false);
+                updateEl('wl-eth', data.crypto.eth, false);
+
+                updateEl('ticker-rel', data.stocks.reliance, true);
+                updateEl('ticker-tcs', data.stocks.tcs, true);
+                updateEl('ticker-nifty', data.stocks.nifty, true);
+                updateEl('ticker-aapl', data.stocks.aapl, false);
+                updateEl('ticker-btc', data.crypto.btc, false);
+
+                const statusEl = document.getElementById('market-status');
+                if (statusEl) statusEl.innerHTML = `<div class="w-2 h-2 rounded-full bg-green-500"></div> Live`;
+                const updatedEl = document.getElementById('market-last-updated');
+                if (updatedEl) updatedEl.innerText = new Date().toLocaleTimeString();
+
+                const inrExchangeRate = 83.5;
+                const relianceValue = (data.stocks.reliance ? data.stocks.reliance.price : 2850.40) * 10;
+                const aaplValueINR = (data.stocks.aapl ? data.stocks.aapl.price : 185.92) * 5 * inrExchangeRate;
+                const btcValueINR = (data.crypto.btc ? data.crypto.btc.price : 68000) * 0.5 * inrExchangeRate;
+                const ethValueINR = (data.crypto.eth ? data.crypto.eth.price : 3800) * 2 * inrExchangeRate;
+
+                const dynamicInvestments = relianceValue + aaplValueINR + btcValueINR + ethValueINR + 650000;
+                const baseAssets = 650000;
+                const liabilities = 255000;
+                const totalNetWorth = dynamicInvestments + baseAssets - liabilities;
+
+                const formatINR = (val) => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(val);
+
+                const nwTotalEl = document.getElementById('nw-total');
+                const nwAssetsEl = document.getElementById('nw-assets');
+                const nwInvestmentsEl = document.getElementById('nw-investments');
+
+                if(nwTotalEl) nwTotalEl.innerText = formatINR(totalNetWorth);
+                if(nwAssetsEl) nwAssetsEl.innerText = formatINR(dynamicInvestments + baseAssets);
+                if(nwInvestmentsEl) nwInvestmentsEl.innerText = formatINR(dynamicInvestments);
+            }
+
+            async init() {
+                const data = await this.fetchMarketData();
+                this.updateUI(data);
+                setInterval(async () => {
+                    const newData = await this.fetchMarketData();
+                    this.updateUI(newData);
+                }, 60000);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const marketService = new MarketDataService();
+            marketService.init();
+        });
+    </script>
 </body>
+
 </html>
