@@ -1252,7 +1252,7 @@
                     <h3 class="text-2xl font-bold mb-2">Premium Content</h3>
                     <p class="text-gray-300 mb-6 text-center max-w-md">Unlock Curated Stock/Crypto Portfolios, Market News, and Premium Investment Content.</p>
                     <div class="flex gap-4">
-                        <button class="btn btn-primary bg-yellow-600 hover:bg-yellow-500 text-white shadow-lg shadow-yellow-500/20 border-0">Unlock Premium</button>
+                        <a href="donation.html" class="btn btn-primary bg-yellow-600 hover:bg-yellow-500 text-white shadow-lg shadow-yellow-500/20 border-0">Unlock Premium</a>
                         <button class="btn btn-secondary">Talk to Advisor</button>
                     </div>
                 </div>
@@ -1310,7 +1310,7 @@
                     <h3 class="text-2xl font-bold mb-4">Advisor Access</h3>
                     <div class="flex flex-wrap gap-3">
                         <button class="btn btn-secondary flex items-center gap-2"><i class="fab fa-whatsapp text-green-500"></i> WhatsApp Advisor</button>
-                        <button class="btn btn-secondary flex items-center gap-2"><i class="fas fa-phone"></i> Book Call</button>
+                        <a href="tel:+918881176909" class="btn btn-secondary flex items-center gap-2"><i class="fas fa-phone"></i> Call +91-8881176909</a>
                         <button class="btn btn-secondary flex items-center gap-2"><i class="fas fa-video"></i> Book Video Call</button>
                         <button class="btn btn-secondary flex items-center gap-2 border-[color:var(--accent-primary)] text-[color:var(--accent-primary)]"><i class="fas fa-star"></i> Premium Consultation</button>
                     </div>
@@ -1888,14 +1888,21 @@
                 }
 
                 const updateEl = (id, dataObj) => {
-                    if (!dataObj) return; // Leave skeleton loading state active
-                    const { change } = dataObj;
                     const elChange = document.getElementById(`${id}-change`);
-                    if (elChange) {
-                        elChange.innerHTML = `<i class="fas fa-arrow-${change >= 0 ? 'up' : 'down'} text-lg pulse-slow"></i>`;
-                        elChange.className = `ml-2 ${change >= 0 ? 'text-green-400' : 'text-red-400'}`;
-                        elChange.classList.remove('animate-pulse', 'bg-gray-700', 'text-transparent');
+                    if (!elChange) return;
+
+                    if (!dataObj || dataObj.change === undefined || dataObj.change === null) {
+                        // Hide it entirely if there is no data to avoid empty grey boxes
+                        const parent = elChange.closest('.ticker-item');
+                        if (parent) parent.style.display = 'none';
+                        return;
                     }
+
+                    const { change } = dataObj;
+                    // Only show Green UP or Red DOWN arrow, no numbers
+                    elChange.innerHTML = `<i class="fas fa-arrow-${change >= 0 ? 'up' : 'down'} text-lg pulse-slow"></i>`;
+                    elChange.className = `ml-2 ${change >= 0 ? 'text-green-400' : 'text-red-400'}`;
+                    elChange.classList.remove('animate-pulse', 'bg-gray-700', 'text-transparent');
                 };
 
                 updateEl('ticker-rel', data.stocks.reliance);
