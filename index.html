@@ -1,0 +1,1827 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rivava — Make It Simple.</title>
+    <meta name="description" content="Rivava: Make It Simple. Clear, controlled, and growing personal finances." />
+    <!-- Favicon and mobile-friendly icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="icon_folder/icon-32x32.png" onerror="this.onerror=null;this.src='https://placehold.co/32x32/000000/FFFFFF?text=R';">
+    <link rel="icon" type="image/png" sizes="96x96" href="icon_folder/icon-96x96.png" onerror="this.onerror=null;this.src='https://placehold.co/96x96/000000/FFFFFF?text=R';">
+    <link rel="icon" type="image/png" sizes="192x192" href="icon_folder/icon-192x192.png" onerror="this.onerror=null;this.src='https://placehold.co/192x192/000000/FFFFFF?text=R';">
+    <link rel="apple-touch-icon" sizes="180x180" href="icon_folder/icon-180x180.png" onerror="this.onerror=null;this.src='https://placehold.co/180x180/000000/FFFFFF?text=R';">
+
+    <!-- Preconnect to external domains to speed up resource loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==============================================
+         ROOT VARIABLES & BASE STYLES
+         ============================================== */
+        :root {
+            --bg-dark: #000000;
+            --bg-panel: #111111;
+            --text-primary: #FFFFFF;
+            --text-muted: #A0AEC0;
+            --accent-primary: #00FF7F; /* Main bright green */
+            --accent-secondary: #2D3748; /* Dark gray for secondary buttons */
+
+            --accent-pink: #F000B8;
+            --accent-blue: #00A3FF;
+            --accent-lime: #BEFF00;
+
+            --border-color: rgba(255, 255, 255, 0.1);
+            --shadow-glow: 0 0 40px rgba(0, 255, 127, 0.2);
+            --hover-glow: 0 15px 45px rgba(0, 255, 127, 0.25);
+            --transition-fast: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --transition-medium: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        body.fade-out {
+            opacity: 0;
+        }
+
+        /* Dynamic background gradient */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 15% 20%, rgba(0, 163, 255, 0.08), transparent 40%),
+                        radial-gradient(circle at 85% 80%, rgba(0, 255, 127, 0.08), transparent 40%),
+                        radial-gradient(circle at 50% 50%, rgba(240, 0, 184, 0.05), transparent 50%);
+            z-index: -1;
+            pointer-events: none;
+            animation: background-pan 25s linear infinite alternate;
+        }
+
+        @keyframes background-pan {
+            from { transform: translate(0, 0) scale(1); }
+            to { transform: translate(30px, -30px) scale(1.1); }
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-weight: 800;
+            letter-spacing: -0.025em;
+        }
+
+        p {
+            line-height: 1.7;
+            color: var(--text-muted);
+        }
+
+        /* ==============================================
+         HEADER & NAVIGATION
+         ============================================== */
+        #header {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.4s ease;
+        }
+
+        #header.scrolled {
+            background: rgba(0, 0, 0, 0.8);
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo-image {
+            transition: var(--transition-fast);
+        }
+
+        #header.scrolled .logo-image {
+            transform: scale(0.9);
+        }
+
+        .rivava-text {
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-primary), #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 25px rgba(0, 255, 127, 0.3);
+            animation: glow 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 5px rgba(0, 255, 127, 0.3)); }
+            to { filter: drop-shadow(0 0 15px rgba(0, 255, 127, 0.7)); }
+        }
+
+        .nav-link {
+            position: relative;
+            transition: var(--transition-fast);
+            color: var(--text-muted);
+        }
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent-primary);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .nav-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* ==============================================
+         HERO SECTION
+         ============================================== */
+        .hero-rivava {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            letter-spacing: 0.1em;
+            background: linear-gradient(135deg, var(--accent-primary), white, var(--accent-blue), var(--accent-pink), var(--accent-primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 400% 400%;
+            animation: gradient-flow 8s ease-in-out infinite, hero-glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes hero-glow {
+            from { filter: drop-shadow(0 0 10px rgba(0, 255, 127, 0.4)); }
+            to { filter: drop-shadow(0 0 25px rgba(0, 163, 255, 0.5)); }
+        }
+
+        #hero-donation-widget {
+            width: 100%;
+            max-width: 300px;
+            z-index: 20;
+        }
+
+        #hero-donation-widget .supporters-text {
+            font-weight: 600;
+            text-shadow: 0 0 8px rgba(0, 255, 127, 0.5);
+        }
+
+        #hero-donation-widget .progress-bar-container {
+            background-color: rgba(10, 10, 10, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
+        }
+        #hero-donation-widget .progress-bar {
+            height: 0.75rem;
+            box-shadow: 0 0 8px rgba(0, 255, 127, 0.5), 0 0 16px rgba(0, 255, 127, 0.3);
+        }
+
+        /* ==============================================
+         BUTTONS
+         ============================================== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem 1.8rem;
+            border-radius: 999px;
+            font-weight: 600;
+            transition: var(--transition-fast);
+            border: 1px solid transparent;
+            cursor: pointer;
+        }
+        .btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+        .btn-primary {
+            background-color: var(--accent-primary);
+            color: #000000;
+            box-shadow: 0 8px 25px rgba(0, 255, 127, 0.25);
+        }
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0, 255, 127, 0.4);
+        }
+        .btn-secondary {
+            background-color: var(--accent-secondary);
+            border-color: var(--border-color);
+            color: var(--text-primary);
+        }
+        .btn-secondary:hover:not(:disabled) {
+            background-color: #4A5568;
+            border-color: var(--accent-primary);
+        }
+        .btn-accent {
+            background: linear-gradient(45deg, #F000B8, #ef4444);
+            color: var(--text-primary);
+            box-shadow: 0 8px 25px rgba(240, 0, 184, 0.3);
+        }
+        .btn-accent:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(240, 0, 184, 0.5);
+        }
+        .btn-challenge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+        .btn-challenge:hover {
+            background-color: var(--accent-primary);
+            color: var(--bg-dark);
+            border-color: var(--accent-primary);
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 8px 25px rgba(0, 255, 127, 0.4);
+        }
+
+        /* ==============================================
+         ICON STYLES
+         ============================================== */
+        .gradient-icon {
+            color: var(--text-primary);
+            transition: var(--transition-fast);
+        }
+        .glass-panel:hover .gradient-icon,
+        .subtle-donate-link:hover .gradient-icon {
+            color: var(--accent-primary);
+            filter: drop-shadow(0 0 4px rgba(0, 255, 127, 0.4)) drop-shadow(0 0 12px rgba(0, 255, 127, 0.3)) brightness(1.2);
+            transform: scale(1.1);
+        }
+
+        #privacy .gradient-icon {
+            color: var(--accent-primary);
+        }
+
+        .btn:hover .icon-animate-heart {
+            animation: heartbeat 1s ease-in-out infinite;
+        }
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        .btn:hover .icon-animate-plane {
+            animation: takeoff 0.5s ease-out forwards;
+        }
+        @keyframes takeoff {
+            from { transform: translate(0, 0) rotate(0deg); }
+            to { transform: translate(5px, -5px) rotate(15deg); }
+        }
+        .app-card-icon {
+            transition: transform 0.3s ease;
+        }
+        #appModal .glass-panel:hover .app-card-icon {
+            transform: translateY(-5px) scale(1.1);
+        }
+
+        /* ==============================================
+         CARDS & PANELS
+         ============================================== */
+        .glass-panel {
+            background: linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(16px) saturate(1.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border-radius: 1.5rem;
+            transition: var(--transition-medium), border-color 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .glass-panel:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), var(--hover-glow);
+            border-color: rgba(0, 255, 127, 0.3);
+        }
+        .glass-panel::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(0, 255, 127, 0.1), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.5s;
+            pointer-events: none;
+        }
+        .glass-panel:hover::before {
+            opacity: 1;
+        }
+
+        /* ==============================================
+         MISSION SECTION
+         ============================================== */
+        #mission {
+            background: #05080D;
+            position: relative;
+            overflow: hidden;
+        }
+        #mission::before, #mission::after {
+            content: '';
+            position: absolute;
+            z-index: 0;
+            border-radius: 50%;
+            filter: blur(120px);
+            pointer-events: none;
+            animation: subtle-glow-pan 20s linear infinite alternate;
+        }
+        #mission::before {
+            width: 600px;
+            height: 600px;
+            top: -20%;
+            left: -20%;
+            background: var(--accent-blue);
+            opacity: 0.1;
+        }
+        #mission::after {
+            width: 500px;
+            height: 500px;
+            bottom: -25%;
+            right: -15%;
+            background: var(--accent-pink);
+            opacity: 0.1;
+            animation-delay: -10s;
+        }
+
+        @keyframes subtle-glow-pan {
+            from { transform: translate(0, 0); }
+            to { transform: translate(50px, 30px); }
+        }
+
+        .mission-card {
+            background: linear-gradient(160deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(24px) saturate(1.5);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            border-radius: 2rem;
+            transform: perspective(2000px) rotateX(7deg);
+            transition: var(--transition-medium);
+            position: relative;
+            z-index: 1;
+        }
+        .mission-card:hover {
+            transform: perspective(2000px) rotateX(0deg);
+            box-shadow: 0 30px 70px rgba(0,0,0,0.6), var(--hover-glow);
+        }
+        .mission-image-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+        .mission-image {
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: var(--transition-medium);
+        }
+        .mission-image:hover {
+            transform: scale(1.05) rotate(-1deg);
+        }
+        .mission-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .mission-image:nth-child(1) {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+        .mission-image:nth-child(2) {
+            grid-row: span 1;
+        }
+        .mission-image:nth-child(3) {
+            grid-row: span 1;
+        }
+
+        /* ==============================================
+         STORY CARDS
+         ============================================== */
+        .story-card {
+            border-radius: 1.5rem;
+            overflow: hidden;
+            transition: var(--transition-medium);
+            display: flex;
+            flex-direction: column;
+        }
+        .story-card:hover .story-image {
+            transform: scale(1.05);
+        }
+        .story-image-wrapper {
+            height: 200px;
+            overflow: hidden;
+        }
+        .story-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .story-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .story-card .read-more {
+            color: var(--accent-primary);
+            transition: var(--transition-fast);
+            cursor: pointer;
+        }
+        .story-card:hover .read-more {
+            letter-spacing: 0.5px;
+        }
+        .donate-circle-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: var(--accent-pink);
+            color: white;
+            opacity: 0.7;
+            transition: var(--transition-fast);
+        }
+        .story-card:hover .donate-circle-icon {
+            opacity: 1;
+            transform: scale(1.1) rotate(-15deg);
+            box-shadow: 0 0 10px var(--accent-pink);
+        }
+        .donate-circle-icon i {
+            font-size: 14px;
+        }
+
+        /* ==============================================
+         TEAM SECTION
+         ============================================== */
+        .team-member-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            transition: var(--transition-medium);
+        }
+        .team-member-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5), var(--hover-glow);
+        }
+        .team-img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .team-member-card:hover .team-img {
+            transform: scale(1.05);
+        }
+        .team-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0));
+            padding: 1.5rem;
+            text-align: left;
+        }
+        .team-info .team-name {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--text-primary);
+        }
+        .team-info .team-role {
+            font-size: 0.875rem;
+            color: var(--accent-primary);
+        }
+
+        @media (max-width: 640px) {
+            .team-member-card {
+                background-color: var(--bg-panel);
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                border: 1px solid var(--border-color);
+            }
+            .team-member-card:hover {
+                transform: none;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            }
+            .team-img {
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+            .team-info {
+                position: static;
+                background: none;
+                padding: 1rem;
+                text-align: center;
+            }
+            .team-info .team-name {
+                font-size: 1rem;
+            }
+            .team-info .team-role {
+                font-size: 0.8rem;
+            }
+        }
+
+
+        /* ==============================================
+         PLANS & DONATION SECTIONS
+         ============================================== */
+        .progress-bar-container {
+            background-color: var(--accent-secondary);
+            border-radius: 999px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+        .progress-bar {
+            background-color: var(--accent-primary);
+            box-shadow: 0 0 15px rgba(0, 255, 127, 0.5);
+            height: 1rem;
+            border-radius: 999px;
+            transition: width 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        #plans .progress-bar {
+             height: 1.5rem;
+        }
+
+        .plan-abandoned .plan-content {
+            opacity: 0.4;
+            filter: grayscale(90%);
+            transition: var(--transition-medium);
+        }
+
+        .subtle-donate-link {
+            color: var(--text-muted);
+            transition: var(--transition-fast);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .subtle-donate-link:hover {
+            color: var(--text-primary);
+        }
+        .progress-bar-wrapper .tooltip {
+            transition: opacity 0.3s ease;
+        }
+        .progress-bar-wrapper:hover .tooltip {
+            opacity: 1;
+        }
+        .leaderboard li:nth-child(1) {
+            background: linear-gradient(45deg, #FFDF00, #FBB034);
+            color: #212529;
+            border: 1px solid #FFDF00;
+        }
+        .leaderboard li:nth-child(1) span:last-child { color: #212529; }
+        .leaderboard li:nth-child(2) {
+            background: linear-gradient(45deg, #E8E8E8, #C0C0C0);
+            color: #212529;
+            border: 1px solid #E8E8E8;
+        }
+        .leaderboard li:nth-child(2) span:last-child { color: #212529; }
+        .leaderboard li:nth-child(3) {
+            background: linear-gradient(45deg, #D29968, #B87333);
+            color: #fff;
+            border: 1px solid #D29968;
+        }
+        .leaderboard li:nth-child(3) span:last-child { color: #fff; }
+
+        /* ==============================================
+         MODAL STYLES (OPTIMIZED & MOBILE-FIRST)
+         ============================================== */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            padding: 1rem; /* Add padding for small screens */
+        }
+        .modal.show {
+            display: flex;
+            opacity: 1;
+        }
+        .modal-content {
+            background: var(--bg-panel);
+            border: 1px solid var(--border-color);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            width: 100%; /* Full width on small screens */
+            max-width: 500px; /* Max width for larger screens */
+            transform: scale(0.95);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            max-height: 90vh; /* Prevent overflow on vertical screens */
+            overflow-y: auto; /* Allow scrolling within modal */
+        }
+        #storyModal .modal-content {
+            max-width: 800px;
+        }
+        .modal.show .modal-content {
+            transform: scale(1);
+        }
+        .modal-close {
+            position: absolute;
+            top: 1rem; right: 1rem;
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            transition: var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+        .modal-close:hover {
+            background: var(--accent-primary);
+            color: var(--bg-dark);
+            transform: rotate(90deg);
+        }
+        /* Story Modal Specific Mobile Styles */
+        #storyModal .modal-body-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        #storyModalImage {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 1rem;
+        }
+        @media (min-width: 768px) {
+            .modal-content {
+                padding: 2.5rem;
+            }
+            #storyModal .modal-body-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+                align-items: center;
+            }
+            #storyModalImage {
+                height: 100%;
+                max-height: 350px;
+            }
+        }
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            transition: var(--transition-fast);
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(0, 255, 127, 0.2);
+        }
+
+        /* ==============================================
+         ANIMATIONS
+         ============================================== */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+        .stagger-4 { transition-delay: 0.4s; }
+        .stagger-5 { transition-delay: 0.5s; }
+        .stagger-6 { transition-delay: 0.6s; }
+
+
+        /* Light Mode Extensions */
+        body.light-mode {
+            --bg-dark: #f8fafc;
+            --bg-panel: #ffffff;
+            --text-primary: #0f172a;
+            --text-muted: #475569;
+            --border-color: rgba(0, 0, 0, 0.1);
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+        }
+        body.light-mode .text-white, body.light-mode .text-gray-100 { color: #0f172a !important; }
+        body.light-mode .text-gray-200, body.light-mode .text-gray-300 { color: #1e293b !important; }
+        body.light-mode .text-gray-400, body.light-mode .text-gray-500 { color: #475569 !important; }
+        body.light-mode .bg-black { background-color: #f1f5f9 !important; }
+        body.light-mode .bg-gray-800 { background-color: #e2e8f0 !important; }
+        body.light-mode .bg-gray-900 { background-color: #cbd5e1 !important; }
+        body.light-mode .border-white\/10 { border-color: rgba(0,0,0,0.1) !important; }
+        body.light-mode .border-white\/20 { border-color: rgba(0,0,0,0.2) !important; }
+        body.light-mode .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        /* Market Ticker */
+        @keyframes ticker-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .ticker-container {
+            overflow: hidden;
+            white-space: nowrap;
+            background: var(--bg-panel);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0.5rem 0;
+            display: flex;
+            position: relative;
+        }
+        .ticker-wrapper {
+            display: flex;
+            animation: ticker-scroll 30s linear infinite;
+        }
+        .ticker-item {
+            display: inline-flex;
+            align-items: center;
+            padding: 0 2rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        .ticker-up { color: #00FF7F; }
+        .ticker-down { color: #FF4136; }
+
+    </style>
+</head>
+<body class="relative">
+    <!-- HEADER -->
+
+    <div class="ticker-container text-xs text-gray-300 z-40 relative">
+        <div class="ticker-wrapper" id="market-ticker">
+            <span class="ticker-item">NIFTY 50: 22,500 <i class="fas fa-arrow-up ml-2 ticker-up"></i></span>
+            <span class="ticker-item">SENSEX: 74,100 <i class="fas fa-arrow-up ml-2 ticker-up"></i></span>
+            <span class="ticker-item">BTC/USD: $64,200 <i class="fas fa-arrow-down ml-2 ticker-down"></i></span>
+            <span class="ticker-item">ETH/USD: $3,450 <i class="fas fa-arrow-up ml-2 ticker-up"></i></span>
+            <span class="ticker-item">RELIANCE: ₹2,950 <i class="fas fa-arrow-up ml-2 ticker-up"></i></span>
+            <span class="ticker-item">HDFCBANK: ₹1,540 <i class="fas fa-arrow-down ml-2 ticker-down"></i></span>
+        </div>
+    </div>
+
+    <header id="header" class="fixed top-0 left-0 right-0 z-50">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center justify-between py-4 transition-all duration-300">
+                <a href="#hero" class="flex items-center gap-3">
+                    <img src="logo.png" alt="Rivava Logo" class="logo-image h-8 w-8 md:h-10 md:w-10" onerror="this.onerror=null;this.src='https://placehold.co/40x40/000000/FFFFFF?text=R';">
+                    <div>
+                        <div class="rivava-text text-2xl md:text-3xl leading-none">RIVAVA</div>
+                        <div class="text-xs text-gray-400 -mt-1 tracking-wider hidden sm:block">Make It Simple.</div>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center gap-6">
+                    <nav class="flex items-center gap-8 text-sm">
+                        <a href="#services" class="nav-link">Services</a>
+
+                    <button id="themeToggle" class="text-gray-300 hover:text-white transition-colors" aria-label="Toggle Theme">
+                        <i class="fas fa-moon text-lg"></i>
+                    </button>
+                    <button id="cmdPaletteBtn" class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/20 text-sm text-gray-400 hover:text-white hover:border-white/40 transition-colors">
+                        <i class="fas fa-search"></i>
+                        <span>Search</span>
+                        <kbd class="ml-2 bg-white/10 px-1.5 rounded text-xs font-mono">Ctrl+K</kbd>
+                    </button>
+                    <a href="#dashboard"
+ class="nav-link">Dashboard</a>
+                        <a href="#plans" class="nav-link">Our Journey</a>
+                        <a href="#privacy" class="nav-link">Privacy</a>
+                        <a href="#contact" class="nav-link">Contact</a>
+                    </nav>
+                    <div class="flex items-center gap-4 border-l border-white/10 pl-6">
+                         <a href="challenge.html" class="btn-challenge" title="7-Day Challenge">
+                            <i class="fas fa-calendar-check text-lg"></i>
+                            <span class="sr-only">7-Day Challenge</span>
+                        </a>
+                        <button id="openAppModalBtn" class="btn btn-secondary text-sm py-2 px-4">Web App</button>
+                    </div>
+                </div>
+
+                <!-- Mobile Header Buttons -->
+                <div class="flex items-center gap-2 md:hidden">
+                    <a href="challenge.html" class="btn-challenge" title="7-Day Challenge">
+                       <i class="fas fa-calendar-check text-lg"></i>
+                       <span class="sr-only">7-Day Challenge</span>
+                    </a>
+                    <button id="hambBtn" class="p-2 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm" aria-label="menu">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path d="M4 6h16M4 12h16M4 18h16" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MOBILE MENU -->
+        <div id="mobileMenu" class="hidden md:hidden border-t border-white/10 bg-[color:var(--bg-panel)]/95 backdrop-blur-xl">
+            <div class="container mx-auto px-6 py-4 flex flex-col text-base">
+                <a href="#services" class="block text-gray-300 hover:text-white transition-colors py-3">Services</a>
+
+                    <button id="themeToggle" class="text-gray-300 hover:text-white transition-colors" aria-label="Toggle Theme">
+                        <i class="fas fa-moon text-lg"></i>
+                    </button>
+                    <button id="cmdPaletteBtn" class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/20 text-sm text-gray-400 hover:text-white hover:border-white/40 transition-colors">
+                        <i class="fas fa-search"></i>
+                        <span>Search</span>
+                        <kbd class="ml-2 bg-white/10 px-1.5 rounded text-xs font-mono">Ctrl+K</kbd>
+                    </button>
+                    <a href="#dashboard"
+ class="block text-gray-300 hover:text-white transition-colors py-3">Dashboard</a>
+                <a href="#plans" class="block text-gray-300 hover:text-white transition-colors py-3">Our Journey</a>
+                <a href="#privacy" class="block text-gray-300 hover:text-white transition-colors py-3">Privacy</a>
+                <a href="#contact" class="block text-gray-300 hover:text-white transition-colors py-3">Contact</a>
+                <div class="mt-4 pt-4 border-t border-white/10">
+                    <button id="openAppModalBtnMobile" class="btn btn-secondary w-full text-center">Web App</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="relative overflow-hidden">
+        <!-- HERO -->
+        <section id="hero" class="min-h-screen flex items-center justify-center relative z-10 pt-24 pb-12">
+            <div class="container mx-auto px-6 text-center">
+                <div class="flex flex-col items-center justify-center gap-8">
+                    <div>
+                        <div class="hero-rivava fade-in-up">RIVAVA</div>
+                        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight mt-4 fade-in-up stagger-1">Make It Simple.</h1>
+                        <p class="max-w-xl mx-auto text-lg md:text-xl mt-6 fade-in-up stagger-2">Your money. Clear. Controlled. Growing.</p>
+                    </div>
+
+                    <div class="mt-2 flex flex-col sm:flex-row gap-4 items-center justify-center">
+                        <a href="#donate" class="btn btn-primary text-lg fade-in-up stagger-3">
+                            Be a Part of This Journey
+                        </a>
+                        <a href="#services" class="btn btn-secondary text-lg fade-in-up stagger-4">
+                            Explore Services
+                        </a>
+                    </div>
+
+                    <!-- HERO DONATION WIDGET -->
+                    <div id="hero-donation-widget" class="fade-in-up stagger-5">
+                        <div class="progress-bar-container mb-2">
+                            <div id="hero-journey-progress-bar" class="progress-bar" style="width: 0%;"></div>
+                        </div>
+                        <div class="text-xs text-gray-300 text-center supporters-text">
+                            <i class="fas fa-users mr-1 text-[color:var(--accent-primary)]"></i>
+                            <span id="hero-journey-donors">0</span> Supporters
+                        </div>
+                        <!-- Hidden elements for script compatibility -->
+                        <span id="hero-journey-amount-raised" class="hidden"></span>
+                        <span id="hero-journey-goal-amount" class="hidden"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- OUR MISSION (MVP SECTION) -->
+
+    <section id="dashboard" class="py-24 relative z-10">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in-up">
+                <div class="text-sm font-bold uppercase tracking-widest text-[color:var(--accent-primary)] mb-2">Overview</div>
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Your Financial Command Center</h2>
+                <p class="text-xl text-gray-400 max-w-2xl mx-auto">Track your net worth, budget, and overall financial health at a glance.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Net Worth Dashboard -->
+                <div class="glass-panel p-8 fade-in-up stagger-1 flex flex-col items-center text-center">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center mb-6 shadow-lg shadow-blue-500/20">
+                        <i class="fas fa-wallet text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Net Worth</h3>
+                    <div class="text-3xl font-extrabold text-[color:var(--accent-primary)] mb-6">₹12,45,000</div>
+                    <div class="w-full space-y-3 text-left">
+                        <div class="flex justify-between text-sm"><span class="text-gray-400">Assets</span><span class="font-medium">₹15,00,000</span></div>
+                        <div class="flex justify-between text-sm"><span class="text-gray-400">Investments</span><span class="font-medium">₹8,50,000</span></div>
+                        <div class="flex justify-between text-sm"><span class="text-gray-400">Cash</span><span class="font-medium">₹2,50,000</span></div>
+                        <div class="flex justify-between text-sm border-t border-white/10 pt-2"><span class="text-gray-400">Liabilities</span><span class="font-medium text-red-400">-₹2,55,000</span></div>
+                    </div>
+                </div>
+
+                <!-- Budget Dashboard -->
+                <div class="glass-panel p-8 fade-in-up stagger-2 flex flex-col items-center text-center">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center mb-6 shadow-lg shadow-purple-500/20">
+                        <i class="fas fa-chart-pie text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Monthly Budget</h3>
+                    <div class="text-3xl font-extrabold text-white mb-6">₹45,000 <span class="text-sm font-normal text-gray-400">/ ₹60,000</span></div>
+                    <div class="w-full space-y-3 text-left">
+                        <div class="flex justify-between text-sm"><span class="text-gray-400">Daily Budget</span><span class="font-medium">₹2,000</span></div>
+                        <div class="flex justify-between text-sm"><span class="text-gray-400">Available Cash</span><span class="font-medium text-[color:var(--accent-primary)]">₹15,000</span></div>
+                        <div class="flex justify-between text-sm"><span class="text-gray-400">Total Income</span><span class="font-medium">₹85,000</span></div>
+                        <div class="flex justify-between text-sm"><span class="text-gray-400">Total Expenses</span><span class="font-medium text-red-400">₹45,000</span></div>
+                    </div>
+                    <div class="w-full bg-gray-800 rounded-full h-2 mt-4">
+                        <div class="bg-gradient-to-r from-purple-500 to-pink-600 h-2 rounded-full" style="width: 75%"></div>
+                    </div>
+                </div>
+
+                <!-- Financial Health Score -->
+                <div class="glass-panel p-8 fade-in-up stagger-3 flex flex-col items-center text-center">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center mb-6 shadow-lg shadow-green-500/20">
+                        <i class="fas fa-heartbeat text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Health Score</h3>
+                    <div class="text-5xl font-extrabold text-[color:var(--accent-primary)] mb-6">85<span class="text-lg text-gray-400">/100</span></div>
+                    <div class="w-full space-y-3 text-left">
+                        <div class="flex items-center gap-2 text-sm"><i class="fas fa-check-circle text-green-400"></i><span class="text-gray-300">Spending optimized</span></div>
+                        <div class="flex items-center gap-2 text-sm"><i class="fas fa-check-circle text-green-400"></i><span class="text-gray-300">Savings on track</span></div>
+                        <div class="flex items-center gap-2 text-sm"><i class="fas fa-check-circle text-green-400"></i><span class="text-gray-300">Positive Cash Flow</span></div>
+                        <div class="flex items-center gap-2 text-sm"><i class="fas fa-exclamation-circle text-yellow-400"></i><span class="text-gray-300">Budgeting needs attention</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+        <!-- GOALS -->
+
+    <section id="features" class="py-24 relative z-10 bg-black/40">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in-up">
+                <div class="text-sm font-bold uppercase tracking-widest text-blue-400 mb-2">Smart Tracking</div>
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Effortless Finance Tracking</h2>
+                <p class="text-xl text-gray-400 max-w-2xl mx-auto">Log transactions manually or let Rivava automatically track them for you.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <!-- Auto SMS Tracking -->
+                <div class="glass-panel p-8 fade-in-up stagger-1">
+                    <h3 class="text-2xl font-bold mb-4 flex items-center gap-3"><i class="fas fa-robot text-blue-400"></i> Automatic SMS Tracking</h3>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span class="text-gray-300">Detect bank transaction SMS with user permission</span></li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span class="text-gray-300">Automatically identify income and expenses</span></li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span class="text-gray-300">Merchant and bill detection</span></li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span class="text-gray-300">Subscription and rewards recognition</span></li>
+                    </ul>
+                    <div class="bg-blue-900/30 border border-blue-500/30 p-4 rounded-lg text-sm text-blue-200 flex gap-3">
+                        <i class="fas fa-info-circle mt-0.5"></i>
+                        <p>SMS access is completely optional. Users can continue using manual tracking anytime.</p>
+                    </div>
+                </div>
+
+                <!-- Manual Tracking & AI -->
+                <div class="space-y-8">
+                    <div class="glass-panel p-8 fade-in-up stagger-2">
+                        <h3 class="text-xl font-bold mb-4 flex items-center gap-3"><i class="fas fa-edit text-purple-400"></i> Manual Tracking</h3>
+                        <p class="text-gray-400 mb-4">Full control over your entries with powerful management tools.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-white/10 px-3 py-1 rounded-full text-sm">Add/Edit/Delete</span>
+                            <span class="bg-white/10 px-3 py-1 rounded-full text-sm">Category Management</span>
+                            <span class="bg-white/10 px-3 py-1 rounded-full text-sm">Transaction History</span>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel p-8 fade-in-up stagger-3">
+                        <h3 class="text-xl font-bold mb-2 flex items-center gap-3"><i class="fas fa-brain text-pink-400"></i> AI Categorization</h3>
+                        <p class="text-[color:var(--accent-primary)] font-medium mb-3">Smarter organization that adapts to your spending habits.</p>
+                        <ul class="text-sm text-gray-400 space-y-2">
+                            <li>• Learns from merchant corrections</li>
+                            <li>• Improves categorization over time</li>
+                            <li>• Reset AI Learning option available anytime</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Expense Heatmap -->
+            <div class="glass-panel p-8 fade-in-up stagger-4">
+                <h3 class="text-xl font-bold mb-6">Expense Heatmap (This Month)</h3>
+                <div class="flex flex-wrap gap-2 justify-center">
+                    <!-- Generating a fake 30-day heatmap -->
+                    <div class="w-8 h-8 rounded bg-red-500/80" title="High Spending"></div>
+                    <div class="w-8 h-8 rounded bg-gray-800" title="No Spending"></div>
+                    <div class="w-8 h-8 rounded bg-yellow-500/50" title="Low Spending"></div>
+                    <div class="w-8 h-8 rounded bg-gray-800"></div>
+                    <div class="w-8 h-8 rounded bg-gray-800"></div>
+                    <div class="w-8 h-8 rounded bg-red-500/90" title="High Spending"></div>
+                    <div class="w-8 h-8 rounded bg-yellow-500/60" title="Low Spending"></div>
+                    <div class="w-8 h-8 rounded bg-gray-800"></div>
+                    <div class="w-8 h-8 rounded bg-gray-800"></div>
+                    <div class="w-8 h-8 rounded bg-yellow-500/40"></div>
+                    <div class="w-8 h-8 rounded bg-red-500/70"></div>
+                    <div class="w-8 h-8 rounded bg-gray-800"></div>
+                    <div class="w-8 h-8 rounded bg-gray-800"></div>
+                    <div class="w-8 h-8 rounded bg-gray-800"></div>
+                    <div class="w-8 h-8 rounded bg-yellow-500/50"></div>
+                    <div class="w-8 h-8 rounded bg-gray-800"></div>
+                    <div class="w-8 h-8 rounded bg-gray-800"></div>
+                </div>
+                <div class="flex justify-center gap-6 mt-4 text-xs text-gray-400">
+                    <span class="flex items-center gap-2"><div class="w-3 h-3 rounded bg-gray-800"></div> No spending</span>
+                    <span class="flex items-center gap-2"><div class="w-3 h-3 rounded bg-yellow-500/50"></div> Low spending</span>
+                    <span class="flex items-center gap-2"><div class="w-3 h-3 rounded bg-red-500/80"></div> High spending</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+        <!-- SERVICES -->
+
+    <section id="services" class="py-24 relative z-10">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in-up">
+                <div class="text-sm font-bold uppercase tracking-widest text-green-400 mb-2">Analytics & Savings</div>
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Understand Your Money</h2>
+                <p class="text-xl text-gray-400 max-w-2xl mx-auto">Deep insights, goal tracking, and intelligent reminders to keep you ahead.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <!-- Spending Analytics -->
+                <div class="glass-panel p-6 fade-in-up stagger-1 lg:col-span-2">
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2"><i class="fas fa-chart-line text-green-400"></i> Spending Analytics</h3>
+                    <div class="grid grid-cols-2 gap-4 text-sm">
+                        <div class="bg-white/5 p-3 rounded-lg"><span class="block text-gray-400 mb-1">Monthly Cash Flow</span><span class="font-bold text-white">+₹12,500</span></div>
+                        <div class="bg-white/5 p-3 rounded-lg"><span class="block text-gray-400 mb-1">Income vs Expense</span><span class="font-bold text-green-400">Positive</span></div>
+                        <div class="bg-white/5 p-3 rounded-lg"><span class="block text-gray-400 mb-1">Top Merchant</span><span class="font-bold text-white">Amazon</span></div>
+                        <div class="bg-white/5 p-3 rounded-lg"><span class="block text-gray-400 mb-1">Recurring Payments</span><span class="font-bold text-white">4 Active</span></div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-white/10">
+                        <span class="text-gray-400 text-sm">Category Breakdown & Subscription Detection included.</span>
+                    </div>
+                </div>
+
+                <!-- Smart Savings Goals -->
+                <div class="glass-panel p-6 fade-in-up stagger-2 lg:col-span-2">
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2"><i class="fas fa-bullseye text-blue-400"></i> Smart Savings Goals</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-sm mb-1"><span>Emergency Fund</span><span class="text-gray-400">₹3L / ₹5L</span></div>
+                            <div class="w-full bg-gray-800 rounded-full h-1.5"><div class="bg-blue-500 h-1.5 rounded-full" style="width: 60%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm mb-1"><span>Vacation</span><span class="text-gray-400">₹40k / ₹1L</span></div>
+                            <div class="w-full bg-gray-800 rounded-full h-1.5"><div class="bg-yellow-500 h-1.5 rounded-full" style="width: 40%"></div></div>
+                        </div>
+                        <div class="text-xs text-gray-400 mt-2">Track goals for Car, House, Education, and Retirement.</div>
+                    </div>
+                </div>
+
+                <!-- Bill Reminder Center -->
+                <div class="glass-panel p-6 fade-in-up stagger-3 lg:col-span-2">
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2"><i class="fas fa-calendar-alt text-red-400"></i> Bill Reminder Center</h3>
+                    <ul class="space-y-3">
+                        <li class="flex justify-between items-center bg-white/5 p-2 rounded">
+                            <div><div class="font-medium">Netflix Subscription</div><div class="text-xs text-gray-400">Recurring</div></div>
+                            <div class="text-right"><div class="text-red-400 font-bold">₹649</div><div class="text-xs text-gray-400">Due in 2 days</div></div>
+                        </li>
+                        <li class="flex justify-between items-center bg-white/5 p-2 rounded">
+                            <div><div class="font-medium">Electricity Bill</div><div class="text-xs text-gray-400">Utility</div></div>
+                            <div class="text-right"><div class="text-green-400 font-bold">Paid</div><div class="text-xs text-gray-400">✓ Successful</div></div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Financial Milestones -->
+                <div class="glass-panel p-6 fade-in-up stagger-4 lg:col-span-2">
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2"><i class="fas fa-trophy text-yellow-400"></i> Milestones</h3>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="bg-yellow-500/10 border border-yellow-500/20 p-3 rounded-lg text-center">
+                            <i class="fas fa-star text-yellow-400 mb-2"></i>
+                            <div class="text-sm font-bold">₹1 Lakh Saved</div>
+                        </div>
+                        <div class="bg-blue-500/10 border border-blue-500/20 p-3 rounded-lg text-center">
+                            <i class="fas fa-fire text-blue-400 mb-2"></i>
+                            <div class="text-sm font-bold">Budget Streak</div>
+                        </div>
+                        <div class="bg-purple-500/10 border border-purple-500/20 p-3 rounded-lg text-center">
+                            <i class="fas fa-receipt text-purple-400 mb-2"></i>
+                            <div class="text-sm font-bold">100 Transactions</div>
+                        </div>
+                        <div class="bg-green-500/10 border border-green-500/20 p-3 rounded-lg text-center opacity-50 grayscale">
+                            <i class="fas fa-flag text-green-400 mb-2"></i>
+                            <div class="text-sm font-bold">Goal Completed</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+        <!-- TEAM SECTION -->
+        <section id="team" class="container mx-auto px-6 py-12 md:py-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-semibold fade-in-up">Our Expert Team</h2>
+                <p class="max-w-2xl mx-auto mt-4 text-lg fade-in-up stagger-1">Meet the professionals dedicated to your financial success.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10">
+                <div class="team-member-card fade-in-up stagger-1">
+                    <img src="aadya.jpeg" alt="Anjali Sharma" class="team-img" onerror="this.onerror=null;this.src='https://placehold.co/300x300/111111/FFFFFF?text=Anjali';">
+                    <div class="team-info">
+                        <div class="team-name">Anjali Sharma</div>
+                        <div class="team-role">Lead Financial Advisor</div>
+                    </div>
+                </div>
+                <div class="team-member-card fade-in-up stagger-2">
+                    <img src="aditya.jpeg" alt="Aditya Singh" class="team-img" onerror="this.onerror=null;this.src='https://placehold.co/300x300/111111/FFFFFF?text=Aditya';">
+                    <div class="team-info">
+                        <div class="team-name">Aditya Singh</div>
+                        <div class="team-role">Tech Lead</div>
+                    </div>
+                </div>
+                <div class="team-member-card fade-in-up stagger-3">
+                    <img src="chittresh.jpeg" alt="Chittresh Goswami" class="team-img" onerror="this.onerror=null;this.src='https://placehold.co/300x300/111111/FFFFFF?text=Chittresh';">
+                    <div class="team-info">
+                        <div class="team-name">Chittresh Goswami</div>
+                        <div class="team-role">Senior BDM</div>
+                    </div>
+                </div>
+                <div class="team-member-card fade-in-up stagger-4">
+                    <img src="hansreynolds.jpeg" alt="Hans Reynolds" class="team-img" onerror="this.onerror=null;this.src='https://placehold.co/300x300/111111/FFFFFF?text=Hans';">
+                    <div class="team-info">
+                        <div class="team-name">Hans Reynolds</div>
+                        <div class="team-role">Loan Strategist</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center max-w-3xl mx-auto mt-16">
+                <p class="text-lg fade-in-up stagger-1">
+                    To bring our mission to life, your finances are managed by a professional fund manager under strict risk controls. We believe in total transparency and accountability, providing you with periodic reports and user-first controls, ensuring you are always in command of your financial journey. Our team is committed to growing your wealth responsibly.
+                </p>
+            </div>
+        </section>
+
+        <!-- PLANS (ABANDONED) -->
+
+    <section id="plans" class="py-24 relative z-10 bg-black/40">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in-up">
+                <div class="text-sm font-bold uppercase tracking-widest text-yellow-500 mb-2">Premium Rivava Portfolio</div>
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Elevate Your Wealth</h2>
+                <p class="text-xl text-gray-400 max-w-2xl mx-auto">Curated portfolios, market insights, and AI-driven analysis.</p>
+            </div>
+
+            <!-- Portfolio Allocation & Tracking -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <!-- Allocation -->
+                <div class="glass-panel p-6 fade-in-up stagger-1">
+                    <h3 class="text-lg font-bold mb-4">Portfolio Allocation</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3"><div class="w-3 h-3 rounded-full bg-blue-500"></div><span class="flex-1 text-sm">Equity</span><span class="font-medium">45%</span></div>
+                        <div class="flex items-center gap-3"><div class="w-3 h-3 rounded-full bg-purple-500"></div><span class="flex-1 text-sm">Crypto</span><span class="font-medium">20%</span></div>
+                        <div class="flex items-center gap-3"><div class="w-3 h-3 rounded-full bg-yellow-500"></div><span class="flex-1 text-sm">Gold</span><span class="font-medium">15%</span></div>
+                        <div class="flex items-center gap-3"><div class="w-3 h-3 rounded-full bg-green-500"></div><span class="flex-1 text-sm">Debt</span><span class="font-medium">10%</span></div>
+                        <div class="flex items-center gap-3"><div class="w-3 h-3 rounded-full bg-gray-400"></div><span class="flex-1 text-sm">Cash</span><span class="font-medium">10%</span></div>
+                    </div>
+                </div>
+
+                <!-- Asset Tracking -->
+                <div class="glass-panel p-6 fade-in-up stagger-2 md:col-span-2">
+                    <h3 class="text-lg font-bold mb-4 flex justify-between">
+                        <span>Stock & Crypto Tracking</span>
+                        <span class="text-xs font-normal text-gray-400 bg-white/5 px-2 py-1 rounded">Investment Watchlists</span>
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="bg-white/5 p-4 rounded-lg flex justify-between items-center">
+                            <div><div class="font-bold">RELIANCE</div><div class="text-xs text-gray-400">NSE</div></div>
+                            <div class="text-right"><div class="font-bold">₹2,950</div><div class="text-xs text-green-400">+1.2% <i class="fas fa-arrow-up"></i></div></div>
+                        </div>
+                        <div class="bg-white/5 p-4 rounded-lg flex justify-between items-center">
+                            <div><div class="font-bold">AAPL</div><div class="text-xs text-gray-400">NYSE</div></div>
+                            <div class="text-right"><div class="font-bold">$173.50</div><div class="text-xs text-green-400">+0.8% <i class="fas fa-arrow-up"></i></div></div>
+                        </div>
+                        <div class="bg-white/5 p-4 rounded-lg flex justify-between items-center">
+                            <div><div class="font-bold">BTC</div><div class="text-xs text-gray-400">Crypto</div></div>
+                            <div class="text-right"><div class="font-bold">$64,200</div><div class="text-xs text-red-400">-2.1% <i class="fas fa-arrow-down"></i></div></div>
+                        </div>
+                        <div class="bg-white/5 p-4 rounded-lg flex justify-between items-center">
+                            <div><div class="font-bold">ETH</div><div class="text-xs text-gray-400">Crypto</div></div>
+                            <div class="text-right"><div class="font-bold">$3,450</div><div class="text-xs text-green-400">+3.4% <i class="fas fa-arrow-up"></i></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Premium Reports & AI -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 relative">
+                <!-- Lock Indicator Overlay for Non-Premium -->
+                <div class="absolute inset-0 bg-black/60 backdrop-blur-[2px] z-20 flex flex-col items-center justify-center rounded-2xl border border-white/10 fade-in-up">
+                    <i class="fas fa-lock text-4xl text-yellow-500 mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-2">Premium Content</h3>
+                    <p class="text-gray-300 mb-6 text-center max-w-md">Unlock Curated Stock/Crypto Portfolios, Market News, and Premium Investment Content.</p>
+                    <div class="flex gap-4">
+                        <button class="btn btn-primary bg-yellow-600 hover:bg-yellow-500 text-white shadow-lg shadow-yellow-500/20 border-0">Unlock Premium</button>
+                        <button class="btn btn-secondary">Talk to Advisor</button>
+                    </div>
+                </div>
+
+                <!-- Blurred Content Below -->
+                <div class="glass-panel p-6 opacity-50 pointer-events-none">
+                    <h3 class="text-lg font-bold mb-4">Investment Thesis Reports</h3>
+                    <div class="space-y-4">
+                        <div class="bg-white/5 p-4 rounded-lg">
+                            <div class="flex justify-between mb-2"><span class="font-bold text-yellow-500">IREDA</span><span class="text-xs bg-white/10 px-2 py-1 rounded"><i class="fas fa-file-pdf"></i> Report</span></div>
+                            <p class="text-sm text-gray-400">AI Summary: Strong growth potential in renewable energy sector based on recent policy shifts...</p>
+                        </div>
+                        <div class="bg-white/5 p-4 rounded-lg">
+                            <div class="flex justify-between mb-2"><span class="font-bold text-yellow-500">RTX</span><span class="text-xs bg-white/10 px-2 py-1 rounded"><i class="fas fa-file-pdf"></i> Report</span></div>
+                            <p class="text-sm text-gray-400">AI Summary: Defense contractor showing resilient margins amid geopolitical tailwinds...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-panel p-6 opacity-50 pointer-events-none">
+                    <h3 class="text-lg font-bold mb-4 flex items-center gap-2"><i class="fas fa-robot text-blue-400"></i> Rivava AI Analysis</h3>
+                    <ul class="space-y-3 mb-4 text-sm text-gray-300">
+                        <li><i class="fas fa-check text-green-400 mr-2"></i> AI Market Insights</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i> Trend Analysis</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i> Price Scenarios</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i> Risk Indicators</li>
+                    </ul>
+                    <div class="text-xs text-gray-500 mt-4 border-t border-white/10 pt-4">"Educational insights only. Not financial advice."</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+        <!-- SUBSCRIPTION SECTION -->
+
+    <section id="elite" class="py-24 relative z-10">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in-up">
+                <div class="text-sm font-bold uppercase tracking-widest text-[color:var(--accent-primary)] mb-2">Rivava Elite</div>
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Exclusive Access & Support</h2>
+                <p class="text-xl text-gray-400 max-w-2xl mx-auto">Priority service, dedicated advisors, and elite community access.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Elite Features -->
+                <div class="fade-in-up stagger-1">
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="glass-panel p-4 text-center"><i class="fas fa-video text-2xl text-[color:var(--accent-primary)] mb-2 block"></i><span class="text-sm font-medium">Private Video Sessions</span></div>
+                        <div class="glass-panel p-4 text-center"><i class="fas fa-headset text-2xl text-blue-400 mb-2 block"></i><span class="text-sm font-medium">Priority Support</span></div>
+                        <div class="glass-panel p-4 text-center"><i class="fas fa-book-open text-2xl text-yellow-500 mb-2 block"></i><span class="text-sm font-medium">Exclusive Research</span></div>
+                        <div class="glass-panel p-4 text-center"><i class="fas fa-users text-2xl text-purple-400 mb-2 block"></i><span class="text-sm font-medium">Elite Community</span></div>
+                    </div>
+
+                    <h3 class="text-2xl font-bold mb-4">Advisor Access</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <button class="btn btn-secondary flex items-center gap-2"><i class="fab fa-whatsapp text-green-500"></i> WhatsApp Advisor</button>
+                        <button class="btn btn-secondary flex items-center gap-2"><i class="fas fa-phone"></i> Book Call</button>
+                        <button class="btn btn-secondary flex items-center gap-2"><i class="fas fa-video"></i> Book Video Call</button>
+                        <button class="btn btn-secondary flex items-center gap-2 border-[color:var(--accent-primary)] text-[color:var(--accent-primary)]"><i class="fas fa-star"></i> Premium Consultation</button>
+                    </div>
+                </div>
+
+                <!-- Elite Dashboard Preview -->
+                <div class="glass-panel p-1 fade-in-up stagger-2 relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
+                    <div class="bg-black/60 p-8 rounded-xl h-full">
+                        <div class="flex justify-between items-center mb-6 border-b border-white/10 pb-4">
+                            <h3 class="text-xl font-bold">Elite Dashboard Preview</h3>
+                            <span class="bg-[color:var(--accent-primary)]/20 text-[color:var(--accent-primary)] px-3 py-1 rounded-full text-xs font-bold uppercase">Active</span>
+                        </div>
+
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between text-sm mb-2"><span class="text-gray-400">Monthly Minutes</span><span class="font-bold">450 / 600</span></div>
+                                <div class="w-full bg-gray-800 rounded-full h-2"><div class="bg-gradient-to-r from-[color:var(--accent-primary)] to-blue-500 h-2 rounded-full" style="width: 75%"></div></div>
+                            </div>
+
+                            <div class="bg-white/5 p-4 rounded-lg">
+                                <div class="flex justify-between items-center text-sm mb-4 pb-4 border-b border-white/10">
+                                    <span class="text-gray-400">Billing Summary</span>
+                                    <span class="text-white font-medium">₹1,999/mo (Active)</span>
+                                </div>
+                                <div class="flex justify-between items-center text-sm">
+                                    <span class="text-gray-400">Upcoming Session</span>
+                                    <span class="font-medium">Thursday, 4:00 PM</span>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-4 bg-white/5 p-4 rounded-lg">
+                                <img src="https://placehold.co/100x100/333/FFF?text=Adv" alt="Advisor" class="w-12 h-12 rounded-full">
+                                <div>
+                                    <div class="font-bold">Sarah Jenkins</div>
+                                    <div class="text-xs text-[color:var(--accent-primary)]">Dedicated Advisor</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile App Showcase / Download CTAs -->
+            <div class="mt-24 glass-panel p-8 md:p-12 text-center fade-in-up stagger-3 bg-gradient-to-br from-black to-gray-900">
+                <h3 class="text-3xl font-bold mb-4">Take Rivava Everywhere</h3>
+                <p class="text-gray-400 mb-8 max-w-xl mx-auto">Download the mobile app to manage your finances on the go. Available for iOS and Android.</p>
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <button class="bg-black border border-white/20 hover:border-white/40 transition-all rounded-xl px-6 py-3 flex items-center gap-3 w-48">
+                        <i class="fab fa-apple text-3xl"></i>
+                        <div class="text-left">
+                            <div class="text-[10px] text-gray-400 leading-none">Download on the</div>
+                            <div class="text-sm font-bold leading-none mt-1">App Store</div>
+                        </div>
+                    </button>
+                    <button class="bg-black border border-white/20 hover:border-white/40 transition-all rounded-xl px-6 py-3 flex items-center gap-3 w-48">
+                        <i class="fab fa-google-play text-2xl text-green-400"></i>
+                        <div class="text-left">
+                            <div class="text-[10px] text-gray-400 leading-none">GET IT ON</div>
+                            <div class="text-sm font-bold leading-none mt-1">Google Play</div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+        <!-- PRIVACY & CARE SECTION -->
+
+    <section id="privacy" class="py-24 relative z-10 bg-black/60">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-extrabold mb-12 fade-in-up">Privacy & User Control</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Existing Privacy points + New User Controls -->
+                <div class="glass-panel p-8 fade-in-up stagger-1 flex flex-col items-center">
+                    <div class="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-6">
+                        <i class="fas fa-shield-alt text-3xl text-[color:var(--accent-primary)]"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Bank-Level Security</h3>
+                    <p class="text-gray-400 text-sm">We use 256-bit encryption. Your data is yours alone.</p>
+                </div>
+
+                <div class="glass-panel p-8 fade-in-up stagger-2 flex flex-col items-center">
+                    <div class="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-6">
+                        <i class="fas fa-comment-slash text-3xl text-[color:var(--accent-primary)]"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Optional SMS Permission</h3>
+                    <p class="text-gray-400 text-sm">SMS tracking is opt-in. You can use full Manual Mode anytime.</p>
+                </div>
+
+                <div class="glass-panel p-8 fade-in-up stagger-3 flex flex-col items-center">
+                    <div class="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-6">
+                        <i class="fas fa-user-shield text-3xl text-[color:var(--accent-primary)]"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">User Controlled Settings</h3>
+                    <p class="text-gray-400 text-sm">Clear Transaction History, Reset AI Learning, and manage all preferences.</p>
+                </div>
+
+                <div class="glass-panel p-8 fade-in-up stagger-4 flex flex-col items-center lg:col-start-2">
+                    <div class="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-6">
+                        <i class="fas fa-file-csv text-3xl text-[color:var(--accent-primary)]"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">CSV Backup & Restore</h3>
+                    <p class="text-gray-400 text-sm">Export transactions to CSV or import backups for offline data portability.</p>
+                </div>
+            </div>
+
+            <a href="privacy-policy.html" class="inline-block mt-12 text-[color:var(--accent-primary)] hover:text-white transition-colors underline fade-in-up stagger-4">Read our full Privacy Policy</a>
+        </div>
+    </section>
+
+
+        <!-- CONTACT -->
+        <section id="contact" class="container mx-auto px-6 py-12 md:py-20">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl md:text-4xl font-semibold fade-in-up">Get In Touch</h3>
+                <p class="mt-4 text-lg fade-in-up stagger-1">Book your free 15-minute consultation. We'll reach out within 24 hours.</p>
+            </div>
+
+            <form id="contactForm" class="max-w-2xl mx-auto fade-in-up stagger-2">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="name" class="text-sm text-gray-400 mb-2 block">Full Name</label>
+                        <input type="text" id="name" name="name" required class="form-control" />
+                    </div>
+                    <div>
+                        <label for="email" class="text-sm text-gray-400 mb-2 block">Email Address</label>
+                        <input type="email" id="email" name="email" required class="form-control" />
+                    </div>
+                </div>
+                <div class="mt-6">
+                    <label for="message" class="text-sm text-gray-400 mb-2 block">Your Financial Goal</label>
+                    <textarea id="message" name="message" class="form-control" rows="4"></textarea>
+                </div>
+                <div class="mt-8 text-center">
+                    <button type="submit" class="btn btn-primary btn-lg text-lg">
+                        <i class="fas fa-paper-plane mr-2 icon-animate-plane"></i> Request Call
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="border-t border-white/10 mt-20">
+            <div class="container mx-auto px-6 py-8 text-center text-sm text-gray-400">
+                <p>&copy; <span id="year"></span> Rivava. All Rights Reserved.</p>
+                <p class="mt-2">
+                    <a href="privacy-policy.html" target="_blank" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <span class="mx-2">|</span>
+                    <a href="terms-of-service.html" target="_blank" class="hover:text-white transition-colors">Terms of Service</a>
+                </p>
+            </div>
+        </footer>
+    </main>
+
+    <!-- MODALS -->
+    <!-- Message Modal -->
+    <div id="messageModal" class="modal">
+        <div class="modal-content text-center relative">
+            <button class="modal-close" data-modal-close="messageModal"><i class="fas fa-times"></i></button>
+            <div id="messageIcon" class="text-5xl text-[color:var(--accent-primary)] mb-4"></div>
+            <h3 id="messageTitle" class="text-2xl font-bold mb-2"></h3>
+            <p id="messageBody"></p>
+            <button class="btn btn-primary mt-8" data-modal-close="messageModal">OK</button>
+        </div>
+    </div>
+
+    <!-- Story Modal -->
+    <div id="storyModal" class="modal">
+        <div class="modal-content relative">
+            <button class="modal-close" data-modal-close="storyModal"><i class="fas fa-times"></i></button>
+            <div class="modal-body-grid">
+                <img id="storyModalImage" src="" alt="Story image" onerror="this.onerror=null;this.src='https://placehold.co/400x400/111111/FFFFFF?text=Story';">
+                <div>
+                    <h3 id="storyModalTitle" class="text-2xl font-bold mb-4"></h3>
+                    <p id="storyModalBody" class="text-base"></p>
+                    <a href="#donate" class="btn btn-accent mt-6" data-modal-close="storyModal">Subscribe Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Web App Selection Modal -->
+    <div id="appModal" class="modal">
+        <div class="modal-content max-w-2xl relative">
+            <button class="modal-close" data-modal-close="appModal"><i class="fas fa-times"></i></button>
+            <div class="text-center mb-8">
+                <div class="bg-green-500/10 border border-green-500/20 rounded-2xl p-6 mb-6">
+                     <i class="fas fa-calendar-check text-4xl text-[color:var(--accent-primary)] mb-3"></i>
+                    <h3 class="text-2xl font-bold">Start Your Journey</h3>
+                    <p class="text-gray-400 mt-2 mb-4">Take the first step towards financial clarity with our 7-day challenge.</p>
+                    <a href="challenge.html" class="btn btn-primary">Accept the Challenge</a>
+                </div>
+                <h4 class="text-xl font-semibold">Or, Use Our Free Tools</h4>
+                <p class="text-gray-500 text-sm">Simple calculators to help you plan.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+                <a href="https://rivavainfo.github.io/FD-Calculator/" target="_blank" class="glass-panel p-6 external-link">
+                    <div class="text-4xl text-[color:var(--accent-primary)] mb-3 app-card-icon"><i class="fas fa-wallet"></i></div>
+                    <div class="font-bold text-lg">FD Calculator</div>
+                    <p class="text-xs text-gray-500 mt-1">Calculate FD returns.</p>
+                </a>
+                <a href="https://rivavainfo.github.io/RD-Calculator/" target="_blank" class="glass-panel p-6 external-link">
+                    <div class="text-4xl text-[color:var(--accent-primary)] mb-3 app-card-icon"><i class="fas fa-piggy-bank"></i></div>
+                    <div class="font-bold text-lg">RD Calculator</div>
+                    <p class="text-xs text-gray-500 mt-1">Plan your recurring deposits.</p>
+                </a>
+                <a href="https://rivavainfo.github.io/Loan-Calculator/" target="_blank" class="glass-panel p-6 external-link">
+                    <div class="text-4xl text-[color:var(--accent-primary)] mb-3 app-card-icon"><i class="fas fa-calculator"></i></div>
+                    <div class="font-bold text-lg">Loan Calculator</div>
+                    <p class="text-xs text-gray-500 mt-1">Estimate your loan EMIs.</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Global Elements ---
+            const header = document.getElementById('header');
+            const mobileMenu = document.getElementById('mobileMenu');
+
+            // --- Mobile Menu Toggle ---
+            document.getElementById('hambBtn').addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            mobileMenu.querySelectorAll('a, button').forEach(link => {
+                link.addEventListener('click', () => {
+                    // Don't hide if it's the modal button itself
+                    if(link.id !== 'openAppModalBtnMobile') {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+
+            // --- Header Scroll Effect ---
+            const handleScroll = () => {
+                header.classList.toggle('scrolled', window.scrollY > 50);
+            };
+            window.addEventListener('scroll', handleScroll, { passive: true });
+
+            // --- Intersection Observer for Animations ---
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+
+            // --- Glass Panel Mouse Effect ---
+            document.querySelectorAll('.glass-panel').forEach(panel => {
+                panel.addEventListener('mousemove', (e) => {
+                    const rect = panel.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    panel.style.setProperty('--mouse-x', `${x}px`);
+                    panel.style.setProperty('--mouse-y', `${y}px`);
+                });
+            });
+
+
+            // --- Theme Toggle Logic ---
+            const themeToggleBtn = document.getElementById('themeToggle');
+            const toggleTheme = () => {
+                document.body.classList.toggle('light-mode');
+                const isLight = document.body.classList.contains('light-mode');
+                themeToggleBtn.innerHTML = isLight ? '<i class="fas fa-sun text-lg text-yellow-500"></i>' : '<i class="fas fa-moon text-lg"></i>';
+                localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            };
+            themeToggleBtn.addEventListener('click', toggleTheme);
+            if (localStorage.getItem('theme') === 'light') toggleTheme();
+
+            // --- Command Palette Logic ---
+            const cmdBtn = document.getElementById('cmdPaletteBtn');
+            const cmdModal = document.getElementById('cmdModal');
+            cmdBtn?.addEventListener('click', () => openModal('cmdModal'));
+            document.addEventListener('keydown', (e) => {
+                if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+                    e.preventDefault();
+                    if (cmdModal.classList.contains('show')) closeModal('cmdModal');
+                    else { openModal('cmdModal'); document.querySelector('#cmdModal input')?.focus(); }
+                }
+            });
+
+            // --- Ticker Clone for infinite scroll ---
+            const tickerWrapper = document.getElementById('market-ticker');
+            if(tickerWrapper) {
+                tickerWrapper.innerHTML += tickerWrapper.innerHTML;
+            }
+
+
+            // --- Form Submission ---
+            document.getElementById('contactForm').addEventListener('submit', handleFormSubmit);
+
+            // --- Copyright Year ---
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // --- Page Transition for External Links ---
+            document.querySelectorAll('a:not([href^="#"]):not([href="challenge.html"])').forEach(link => {
+                if(link.target === '_blank' || link.classList.contains('external-link')) {
+                    link.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const targetUrl = this.href;
+                        document.body.classList.add('fade-out');
+                        setTimeout(() => {
+                            window.open(targetUrl, '_blank');
+                            setTimeout(() => document.body.classList.remove('fade-out'), 200);
+                        }, 500);
+                    });
+                } else if (link.href && !link.href.includes('javascript:')) {
+                     link.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const targetUrl = this.href;
+                        document.body.classList.add('fade-out');
+                        setTimeout(() => {
+                            window.location.href = targetUrl;
+                        }, 500);
+                    });
+                }
+            });
+
+
+            // --- Journey Progress Bar ---
+            const journeyConfig = {
+                goal: 75000,
+                current: 3348,
+                donors: 5,
+                startDate: "August 29, 2025"
+            };
+
+            // Initialize both progress bars
+            populateProgressData('', journeyConfig); // Main bar
+            populateProgressData('hero-', journeyConfig); // Hero bar
+            animateProgress('hero-', journeyConfig); // Animate hero bar on load
+
+            const mainProgressBarWrapper = document.getElementById('main-progress-bar-wrapper');
+            if (mainProgressBarWrapper) {
+                const journeyObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            animateProgress('', journeyConfig); // Animate main bar on scroll
+                            journeyObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                journeyObserver.observe(mainProgressBarWrapper);
+            }
+        });
+
+        // --- Modal Functions (Optimized) ---
+        const modals = {};
+        document.querySelectorAll('.modal').forEach(modal => modals[modal.id] = modal);
+
+        const openModal = (modalId) => {
+            if (modals[modalId]) {
+                modals[modalId].classList.add('show');
+                document.body.style.overflow = 'hidden';
+            }
+        };
+
+        const closeModal = (modalId) => {
+            if (modals[modalId]) {
+                modals[modalId].classList.remove('show');
+                document.body.style.overflow = 'auto';
+            }
+        };
+
+        // Event delegation for closing modals
+        document.addEventListener('click', (e) => {
+            const closeBtn = e.target.closest('[data-modal-close]');
+            if (closeBtn) {
+                closeModal(closeBtn.dataset.modalClose);
+                const anchor = e.target.closest('a');
+                if(anchor && anchor.getAttribute('href').startsWith('#')) {
+                    setTimeout(() => {
+                        document.querySelector(anchor.getAttribute('href')).scrollIntoView();
+                    }, 0);
+                }
+            }
+        });
+
+        // Open specific modals
+        document.getElementById('openAppModalBtn').addEventListener('click', (e) => { e.preventDefault(); openModal('appModal'); });
+        document.getElementById('openAppModalBtnMobile').addEventListener('click', (e) => { e.preventDefault(); openModal('appModal'); });
+
+        document.getElementById('spreadTheWordBtn').addEventListener('click', () => {
+             showMessageModal('Share Our Mission!', 'Help us by sharing our story with your friends and family.', 'fas fa-bullhorn');
+        });
+
+        // Story Modal Logic
+        document.querySelectorAll('.story-trigger').forEach(button => {
+            button.addEventListener('click', () => {
+                document.getElementById('storyModalTitle').textContent = button.dataset.storyTitle;
+                document.getElementById('storyModalImage').src = button.dataset.storyImg;
+                document.getElementById('storyModalBody').textContent = button.dataset.storyBody;
+                openModal('storyModal');
+            });
+        });
+
+        // Close modals on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                Object.keys(modals).forEach(id => closeModal(id));
+            }
+        });
+
+        // --- Helper Functions ---
+        function showMessageModal(title, message, icon) {
+            document.getElementById('messageTitle').textContent = title;
+            document.getElementById('messageBody').textContent = message;
+            document.getElementById('messageIcon').innerHTML = `<i class="${icon}"></i>`;
+            openModal('messageModal');
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const form = e.target;
+            const name = form.querySelector('#name').value;
+            const email = form.querySelector('#email').value;
+            const message = form.querySelector('#message').value;
+            const button = form.querySelector('button[type="submit"]');
+            const originalHTML = button.innerHTML;
+
+            button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
+            button.disabled = true;
+
+            const whatsappMessage = `Hello, I'd like to request a call.\n\nName: ${name}\nEmail: ${email}\nFinancial Goal: ${message}`;
+            const whatsappUrl = `https://wa.me/918090516657?text=${encodeURIComponent(whatsappMessage)}`;
+
+            window.open(whatsappUrl, '_blank');
+
+            setTimeout(() => {
+                button.innerHTML = originalHTML;
+                button.disabled = false;
+                form.reset();
+            }, 1500);
+        }
+
+        const formatter = new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', minimumFractionDigits: 0 });
+
+        function populateProgressData(prefix, config) {
+            const goalEl = document.getElementById(`${prefix}journey-goal-amount`);
+            const amountEl = document.getElementById(`${prefix}journey-amount-raised`);
+            const donorsEl = document.getElementById(`${prefix}journey-donors`);
+
+            if(goalEl) goalEl.textContent = formatter.format(config.goal);
+            if(amountEl) amountEl.textContent = formatter.format(config.current);
+            if(donorsEl) donorsEl.textContent = config.donors;
+
+            if (prefix !== 'hero-') { // Only the main bar has these elements
+                document.getElementById('journey-start-date').textContent = `Campaign started: ${config.startDate}`;
+                document.getElementById('journey-tooltip-text').textContent = `Supports ${Math.floor(config.current / 699)} delivery partners this month!`;
+            }
+        }
+
+        function animateProgress(prefix, config) {
+            const amountEl = document.getElementById(`${prefix}journey-amount-raised`);
+            const barEl = document.getElementById(`${prefix}journey-progress-bar`);
+            const percentage = (config.current / config.goal) * 100;
+
+            setTimeout(() => {
+                barEl.style.width = `${percentage}%`;
+                if(!amountEl) return; // Don't animate the number if the element doesn't exist
+
+                let start = 0;
+                const end = config.current;
+                const duration = 1200;
+                if (end === start) return;
+
+                const range = end - start;
+                let current = start;
+                const increment = Math.ceil(range / (duration / 16));
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= end) {
+                        current = end;
+                        clearInterval(timer);
+                    }
+                    amountEl.textContent = formatter.format(current);
+                }, 16);
+            }, 300);
+        }
+    </script>
+
+    <!-- Command Palette Modal -->
+    <div id="cmdModal" class="modal fixed inset-0 z-[100] flex items-start justify-center pt-[20vh] bg-black/80 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="bg-gray-900 border border-white/10 w-full max-w-lg rounded-xl shadow-2xl overflow-hidden transform scale-95 transition-transform duration-300 modal-content">
+            <div class="p-4 border-b border-white/10 flex items-center gap-3">
+                <i class="fas fa-search text-gray-400"></i>
+                <input type="text" placeholder="Search transactions, merchants, stocks, reports..." class="w-full bg-transparent border-none text-white focus:outline-none focus:ring-0 text-lg placeholder-gray-500" autofocus>
+                <button data-modal-close="cmdModal" class="text-gray-400 hover:text-white px-2 text-xs border border-gray-700 rounded bg-gray-800">ESC</button>
+            </div>
+            <div class="p-2 max-h-64 overflow-y-auto">
+                <div class="px-3 py-2 text-xs font-bold text-gray-500 uppercase tracking-wider">Quick Links</div>
+                <a href="#dashboard" class="block px-3 py-2 text-gray-300 hover:bg-white/5 hover:text-white rounded-lg flex items-center gap-3" data-modal-close="cmdModal"><i class="fas fa-wallet text-blue-400 w-5 text-center"></i> Net Worth Dashboard</a>
+                <a href="#features" class="block px-3 py-2 text-gray-300 hover:bg-white/5 hover:text-white rounded-lg flex items-center gap-3" data-modal-close="cmdModal"><i class="fas fa-chart-pie text-purple-400 w-5 text-center"></i> Monthly Budget</a>
+                <a href="#services" class="block px-3 py-2 text-gray-300 hover:bg-white/5 hover:text-white rounded-lg flex items-center gap-3" data-modal-close="cmdModal"><i class="fas fa-bullseye text-green-400 w-5 text-center"></i> Savings Goals</a>
+                <a href="#plans" class="block px-3 py-2 text-gray-300 hover:bg-white/5 hover:text-white rounded-lg flex items-center gap-3" data-modal-close="cmdModal"><i class="fas fa-chart-line text-yellow-500 w-5 text-center"></i> Stock Tracking</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
