@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rivava — Research Hub</title>
+    <meta name="description" content="Rivava Research Hub - Deep dives, investment theses, and market intelligence." />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #000000;
+            color: #FFFFFF;
+            font-family: 'Inter', sans-serif;
+        }
+        .nav-link { color: #A0AEC0; }
+        .nav-link:hover { color: #FFFFFF; }
+        .glass-panel {
+            background: linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(16px) saturate(1.2);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body class="relative">
+    <header id="header" class="left-0 right-0 z-50 py-4 border-b border-white/10 bg-black/50 backdrop-blur-xl">
+        <div class="container mx-auto px-6 flex items-center justify-between">
+            <a href="index.html" class="text-2xl font-extrabold text-white">RIVAVA <span class="text-sm font-normal text-gray-400">| Research</span></a>
+            <nav class="hidden md:flex gap-8">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="learn.html" class="nav-link">Learn</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-24">
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-8 text-center">Research Hub</h1>
+        <p class="text-xl text-gray-400 text-center mb-16 max-w-2xl mx-auto">In-depth analysis, investment theses, and market intelligence to guide your decisions.</p>
+
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold mb-6 border-b border-white/10 pb-2">Featured Research</h2>
+            <div class="glass-panel">
+                <h3 class="text-xl font-bold mb-2">The Future of Renewable Energy Stocks</h3>
+                <p class="text-gray-400 mb-4">An in-depth look at regulatory tailwinds and valuation metrics for top performers in the sector.</p>
+                <ul class="list-disc list-inside text-gray-400 ml-4 mb-4 text-sm">
+                    <li>Investment summary</li>
+                    <li>Key thesis</li>
+                    <li>Business overview</li>
+                    <li>Growth drivers</li>
+                    <li>Risks & Valuation</li>
+                </ul>
+                <a href="#" class="text-green-400 hover:underline">Read Full Report &rarr;</a>
+            </div>
+        </section>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <section>
+                <h2 class="text-2xl font-bold mb-6 border-b border-white/10 pb-2">Stock Research</h2>
+                <div class="glass-panel">
+                    <h3 class="text-lg font-bold mb-2">Tech Giant Analysis: AAPL vs MSFT</h3>
+                    <p class="text-gray-400 text-sm mb-4">Comparing growth drivers and long-term thesis.</p>
+                    <a href="#" class="text-blue-400 hover:underline text-sm">View Analysis</a>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="text-2xl font-bold mb-6 border-b border-white/10 pb-2">Fund Research</h2>
+                <div class="glass-panel">
+                    <h3 class="text-lg font-bold mb-2">Top 5 Index Funds for Core Portfolio</h3>
+                    <p class="text-gray-400 text-sm mb-4">Evaluating expense ratios and tracking errors.</p>
+                    <a href="#" class="text-blue-400 hover:underline text-sm">View Report</a>
+                </div>
+            </section>
+        </div>
+
+        <section class="mt-16">
+            <h2 class="text-2xl font-bold mb-6 border-b border-white/10 pb-2">Advisor Commentary</h2>
+            <div class="glass-panel">
+                <p class="italic text-gray-300">"Current market volatility presents a unique opportunity for long-term investors focused on fundamentals, rather than short-term price action." - Anjali Sharma, Lead Advisor</p>
+            </div>
+        </section>
+
+        <section class="mt-16">
+            <h2 class="text-2xl font-bold mb-6 border-b border-white/10 pb-2">Research Methodology</h2>
+            <div class="glass-panel">
+                <p class="text-gray-400">Our research is grounded in fundamental analysis, long-term macroeconomic trends, and strict risk assessment. We do not rely on momentum trading or social media sentiment.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="border-t border-white/10 mt-20 py-8 text-center text-gray-400 text-sm">
+        <p>&copy; 2026 Rivava. Research and educational purposes only.</p>
+    </footer>
+</body>
+</html>
