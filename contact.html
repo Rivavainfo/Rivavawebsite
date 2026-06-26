@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us — Rivava</title>
+    <meta name="description" content="Get in touch with the Rivava team for support, elite inquiries, and general questions." />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="icon_folder/icon-32x32.png" onerror="this.onerror=null;this.src='https://placehold.co/32x32/000000/FFFFFF?text=R';">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #0A0A0A;
+            --text-primary: #FAFAFA;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --transition-medium: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.03), transparent 60%),
+                        radial-gradient(circle at 0% 100%, rgba(0, 112, 243, 0.04), transparent 50%);
+            z-index: -1;
+            pointer-events: none;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(20px);
+            border-radius: 1rem;
+            transition: var(--transition-medium);
+            box-shadow: 0 4px 24px -8px rgba(0,0,0,0.5);
+        }
+        .glass-panel:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+        .form-input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            color: white;
+            transition: all 0.2s ease;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #FFFFFF;
+            background: rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body class="relative">
+
+    <!-- Header -->
+    <div class="sticky top-0 z-[60] flex flex-col w-full shadow-lg bg-[#0A0A0A]/80 backdrop-blur-2xl border-b border-white/5" id="header-wrapper">
+        <header id="header" class="left-0 right-0 z-50">
+            <div class="container mx-auto px-6 lg:px-12">
+                <div class="flex items-center justify-between py-4 h-20">
+                    <a href="index.html" class="flex items-center gap-3 group">
+                        <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white/10 transition-colors">
+                            <span class="text-xl font-bold">R</span>
+                        </div>
+                        <span class="text-xl font-semibold tracking-tight">Rivava</span>
+                    </a>
+
+                    <div class="hidden md:flex items-center bg-white/5 rounded-full px-6 py-2 border border-white/5">
+                        <nav class="flex items-center gap-8 text-sm font-medium">
+                            <a href="index.html" class="text-gray-300 hover:text-white transition-colors">Home</a>
+                            <a href="about.html" class="text-gray-300 hover:text-white transition-colors">About</a>
+                            <a href="blogs/index.html" class="text-gray-300 hover:text-white transition-colors">Blog</a>
+                        </nav>
+                    </div>
+
+                    <div class="hidden md:flex items-center gap-4">
+                        <a href="contact.html" class="text-white transition-colors">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <main class="relative overflow-hidden pt-32 pb-20">
+        <div class="container mx-auto px-6 lg:px-12">
+            <!-- Header -->
+            <div class="text-center max-w-4xl mx-auto mb-20">
+                <h1 class="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight">Contact Us.</h1>
+                <p class="text-xl text-gray-400 leading-relaxed font-light">
+                    Have questions about Rivava Elite? Need support with your account? Our team is here to help.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
+                <!-- Contact Information -->
+                <div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
+                        <div class="glass-panel p-6">
+                            <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center mb-4"><i class="fas fa-envelope"></i></div>
+                            <h4 class="font-bold text-white mb-1">Email Support</h4>
+                            <p class="text-sm text-gray-400 mb-2">Typically replies in 24h</p>
+                            <a href="mailto:support@rivava.com" class="text-sm text-white font-medium hover:underline">support@rivava.com</a>
+                        </div>
+
+                        <div class="glass-panel p-6">
+                            <div class="w-10 h-10 rounded-full bg-green-500/10 flex items-center justify-center mb-4"><i class="fab fa-whatsapp text-green-500"></i></div>
+                            <h4 class="font-bold text-white mb-1">WhatsApp</h4>
+                            <p class="text-sm text-gray-400 mb-2">Priority support line</p>
+                            <a href="https://wa.me/918090516657" class="text-sm text-white font-medium hover:underline">+91 80905 16657</a>
+                        </div>
+
+                        <div class="glass-panel p-6 sm:col-span-2">
+                            <div class="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center mb-4"><i class="fas fa-clock text-blue-400"></i></div>
+                            <h4 class="font-bold text-white mb-1">Office Hours</h4>
+                            <p class="text-sm text-gray-400">Monday - Friday: 9:00 AM - 6:00 PM (IST)</p>
+                            <p class="text-sm text-gray-400">Saturday - Sunday: Closed</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQs -->
+                    <div>
+                        <h3 class="text-2xl font-bold mb-6">Frequently Asked Questions</h3>
+                        <div class="space-y-4">
+                            <div class="glass-panel p-6">
+                                <h4 class="font-bold text-white mb-2">Is the mobile app available on iOS?</h4>
+                                <p class="text-sm text-gray-400">Currently, the Rivava app is exclusively available on the Google Play Store for Android devices.</p>
+                            </div>
+                            <div class="glass-panel p-6">
+                                <h4 class="font-bold text-white mb-2">How do I access premium research?</h4>
+                                <p class="text-sm text-gray-400">Premium research reports are available to Rivava Elite members. You can apply for Elite status via the Pricing section.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div>
+                    <div class="glass-panel p-8 md:p-10 relative overflow-hidden">
+                        <div class="absolute -right-20 -top-20 w-64 h-64 bg-white/5 blur-[100px] rounded-full"></div>
+                        <h3 class="text-2xl font-bold mb-6 relative z-10">Send us a message</h3>
+                        <form class="space-y-6 relative z-10" id="contactForm">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-400 mb-2">First Name</label>
+                                    <input type="text" class="form-input" required>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-400 mb-2">Last Name</label>
+                                    <input type="text" class="form-input" required>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 mb-2">Email Address</label>
+                                <input type="email" class="form-input" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 mb-2">Support Category</label>
+                                <select class="form-input appearance-none">
+                                    <option class="bg-[#111]">General Inquiry</option>
+                                    <option class="bg-[#111]">Technical Support</option>
+                                    <option class="bg-[#111]">Rivava Elite Application</option>
+                                    <option class="bg-[#111]">Feedback</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 mb-2">Message</label>
+                                <textarea class="form-input h-32 resize-none" required></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-white text-black font-bold py-4 rounded-xl hover:bg-gray-200 transition-colors">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Map Placeholder -->
+            <div class="mt-24 max-w-6xl mx-auto">
+                <div class="glass-panel p-2 rounded-2xl">
+                    <div class="w-full h-96 bg-[#111] rounded-xl border border-white/5 flex flex-col items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(rgba(255,255,255,0.2) 1px, transparent 1px); background-size: 20px 20px;"></div>
+                        <i class="fas fa-map-marker-alt text-4xl text-gray-600 mb-4 relative z-10"></i>
+                        <h4 class="font-bold text-gray-400 relative z-10">Global Headquarters</h4>
+                        <p class="text-sm text-gray-500 mt-2 relative z-10">Mumbai, India</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/10 bg-[#050505] pt-20 pb-10">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-500 text-sm">&copy; <span id="year"></span> Rivava. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const ogText = btn.textContent;
+            btn.textContent = 'Message Sent!';
+            btn.classList.add('bg-green-500', 'text-white');
+            setTimeout(() => {
+                btn.textContent = ogText;
+                btn.classList.remove('bg-green-500', 'text-white');
+                e.target.reset();
+            }, 3000);
+        });
+    </script>
+</body>
+</html>

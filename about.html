@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us — Rivava</title>
+    <meta name="description" content="Learn about Rivava's mission, vision, and the team behind the research-first investment platform." />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="icon_folder/icon-32x32.png" onerror="this.onerror=null;this.src='https://placehold.co/32x32/000000/FFFFFF?text=R';">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #0A0A0A;
+            --text-primary: #FAFAFA;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --transition-medium: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.03), transparent 60%),
+                        radial-gradient(circle at 0% 100%, rgba(0, 112, 243, 0.04), transparent 50%);
+            z-index: -1;
+            pointer-events: none;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(20px);
+            border-radius: 1rem;
+            transition: var(--transition-medium);
+            box-shadow: 0 4px 24px -8px rgba(0,0,0,0.5);
+        }
+        .glass-panel:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+    </style>
+</head>
+<body class="relative">
+
+    <!-- Header -->
+    <div class="sticky top-0 z-[60] flex flex-col w-full shadow-lg bg-[#0A0A0A]/80 backdrop-blur-2xl border-b border-white/5" id="header-wrapper">
+        <header id="header" class="left-0 right-0 z-50">
+            <div class="container mx-auto px-6 lg:px-12">
+                <div class="flex items-center justify-between py-4 h-20">
+                    <a href="index.html" class="flex items-center gap-3 group">
+                        <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white/10 transition-colors">
+                            <span class="text-xl font-bold">R</span>
+                        </div>
+                        <span class="text-xl font-semibold tracking-tight">Rivava</span>
+                    </a>
+
+                    <div class="hidden md:flex items-center bg-white/5 rounded-full px-6 py-2 border border-white/5">
+                        <nav class="flex items-center gap-8 text-sm font-medium">
+                            <a href="index.html" class="text-gray-300 hover:text-white transition-colors">Home</a>
+                            <a href="about.html" class="text-white transition-colors">About</a>
+                            <a href="blogs/index.html" class="text-gray-300 hover:text-white transition-colors">Blog</a>
+                        </nav>
+                    </div>
+
+                    <div class="hidden md:flex items-center gap-4">
+                        <a href="contact.html" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <main class="relative overflow-hidden pt-32 pb-20">
+        <div class="container mx-auto px-6 lg:px-12">
+            <!-- Hero -->
+            <div class="text-center max-w-4xl mx-auto mb-32">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8">
+                    <span class="text-sm font-medium text-gray-300">Our Story</span>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-extrabold mb-8 tracking-tight">Bringing clarity to wealth.</h1>
+                <p class="text-xl text-gray-400 leading-relaxed font-light">
+                    Rivava was founded on a simple principle: investors deserve institutional-grade research, intuitive tools, and unbiased education. We are removing the noise from personal finance.
+                </p>
+            </div>
+
+            <!-- Mission & Vision -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-32">
+                <div class="glass-panel p-10 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 blur-[100px] rounded-full"></div>
+                    <i class="fas fa-bullseye text-3xl text-blue-400 mb-6 relative z-10"></i>
+                    <h3 class="text-2xl font-bold mb-4 relative z-10">Our Mission</h3>
+                    <p class="text-gray-400 leading-relaxed relative z-10">
+                        To empower every investor with the data, insights, and education needed to make confident, research-driven financial decisions. We aim to replace FOMO with facts.
+                    </p>
+                </div>
+
+                <div class="glass-panel p-10 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-green-500/10 blur-[100px] rounded-full"></div>
+                    <i class="fas fa-eye text-3xl text-green-400 mb-6 relative z-10"></i>
+                    <h3 class="text-2xl font-bold mb-4 relative z-10">Our Vision</h3>
+                    <p class="text-gray-400 leading-relaxed relative z-10">
+                        A world where wealth creation is accessible, transparent, and guided by expert analysis rather than market hype. A future where financial literacy is the standard.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Core Values -->
+            <div class="mb-32">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold">Core Values</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="glass-panel p-8">
+                        <h4 class="font-bold text-lg mb-3">Radical Transparency</h4>
+                        <p class="text-sm text-gray-400">We show you the models, the risks, and the reasoning behind every insight. No black boxes.</p>
+                    </div>
+                    <div class="glass-panel p-8">
+                        <h4 class="font-bold text-lg mb-3">Education First</h4>
+                        <p class="text-sm text-gray-400">We believe in teaching you how to fish. Every feature is designed to make you a smarter investor.</p>
+                    </div>
+                    <div class="glass-panel p-8">
+                        <h4 class="font-bold text-lg mb-3">Security by Design</h4>
+                        <p class="text-sm text-gray-400">Your financial data is yours. We employ bank-level encryption and strict privacy controls.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technology & Innovation -->
+            <div class="glass-panel p-12 mb-32 border border-white/10 bg-gradient-to-br from-white/5 to-transparent">
+                <div class="max-w-3xl">
+                    <h2 class="text-3xl font-bold mb-6">Technology & Security</h2>
+                    <p class="text-gray-400 mb-8 leading-relaxed">
+                        Rivava is built on a modern, secure technology stack. We leverage advanced machine learning models for budget forecasting and natural language processing to make financial queries intuitive. All user data is secured using AES-256 encryption, and we enforce strict read-only access to financial institutions.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm font-medium">AES-256 Encryption</span>
+                        <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm font-medium">SOC2 Compliant Infrastructure</span>
+                        <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm font-medium">Read-Only APIs</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline -->
+            <div class="mb-32">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold">Our Journey</h2>
+                </div>
+                <div class="max-w-3xl mx-auto space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-white/20 before:to-transparent">
+
+                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                        <div class="flex items-center justify-center w-10 h-10 rounded-full border border-white/20 bg-[#0A0A0A] text-white shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-[0_0_15px_rgba(255,255,255,0.1)] z-10">
+                            <i class="fas fa-rocket text-sm"></i>
+                        </div>
+                        <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-panel p-6">
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="font-bold text-white">The Genesis</h4>
+                                <span class="text-xs font-mono text-gray-500">2022</span>
+                            </div>
+                            <p class="text-sm text-gray-400">Rivava was conceptualized to solve the lack of accessible, high-quality research for retail investors.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                        <div class="flex items-center justify-center w-10 h-10 rounded-full border border-white/20 bg-[#0A0A0A] text-white shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-[0_0_15px_rgba(255,255,255,0.1)] z-10">
+                            <i class="fas fa-code text-sm"></i>
+                        </div>
+                        <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-panel p-6">
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="font-bold text-white">Platform Beta</h4>
+                                <span class="text-xs font-mono text-gray-500">2023</span>
+                            </div>
+                            <p class="text-sm text-gray-400">Launched our proprietary portfolio tracking tools and initial AI forecasting models to early adopters.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                        <div class="flex items-center justify-center w-10 h-10 rounded-full border border-white/20 bg-[#0A0A0A] text-[color:var(--accent-lime)] shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-[0_0_15px_rgba(0,230,118,0.2)] z-10">
+                            <i class="fas fa-star text-sm"></i>
+                        </div>
+                        <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-panel p-6 border-[color:var(--accent-lime)]/30">
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="font-bold text-white">Rivava Elite Launch</h4>
+                                <span class="text-xs font-mono text-[color:var(--accent-lime)]">Present</span>
+                            </div>
+                            <p class="text-sm text-gray-400">Introduced institutional research access and 1-on-1 advisor sessions to scale our impact.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/10 bg-[#050505] pt-20 pb-10">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-500 text-sm">&copy; <span id="year"></span> Rivava. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

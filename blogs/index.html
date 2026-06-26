@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog — Rivava</title>
+    <meta name="description" content="Insights, research, and educational articles to help you master your wealth." />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="../icon_folder/icon-32x32.png" onerror="this.onerror=null;this.src='https://placehold.co/32x32/000000/FFFFFF?text=R';">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #0A0A0A;
+            --text-primary: #FAFAFA;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --transition-medium: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.03), transparent 60%),
+                        radial-gradient(circle at 0% 100%, rgba(0, 112, 243, 0.04), transparent 50%);
+            z-index: -1;
+            pointer-events: none;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(20px);
+            border-radius: 1rem;
+            transition: var(--transition-medium);
+            box-shadow: 0 4px 24px -8px rgba(0,0,0,0.5);
+        }
+        .glass-panel:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-4px);
+        }
+        .blog-card-image {
+            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-panel:hover .blog-card-image {
+            transform: scale(1.05);
+        }
+        .form-input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            color: white;
+            transition: all 0.2s ease;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #FFFFFF;
+            background: rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body class="relative">
+
+    <!-- Header -->
+    <div class="sticky top-0 z-[60] flex flex-col w-full shadow-lg bg-[#0A0A0A]/80 backdrop-blur-2xl border-b border-white/5" id="header-wrapper">
+        <header id="header" class="left-0 right-0 z-50">
+            <div class="container mx-auto px-6 lg:px-12">
+                <div class="flex items-center justify-between py-4 h-20">
+                    <a href="../index.html" class="flex items-center gap-3 group">
+                        <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white/10 transition-colors">
+                            <span class="text-xl font-bold">R</span>
+                        </div>
+                        <span class="text-xl font-semibold tracking-tight">Rivava</span>
+                    </a>
+
+                    <div class="hidden md:flex items-center bg-white/5 rounded-full px-6 py-2 border border-white/5">
+                        <nav class="flex items-center gap-8 text-sm font-medium">
+                            <a href="../index.html" class="text-gray-300 hover:text-white transition-colors">Home</a>
+                            <a href="../about.html" class="text-gray-300 hover:text-white transition-colors">About</a>
+                            <a href="index.html" class="text-white transition-colors">Blog</a>
+                        </nav>
+                    </div>
+
+                    <div class="hidden md:flex items-center gap-4">
+                        <a href="../contact.html" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <main class="relative overflow-hidden pt-32 pb-20">
+        <div class="container mx-auto px-6 lg:px-12">
+            <!-- Header -->
+            <div class="text-center max-w-4xl mx-auto mb-20">
+                <h1 class="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight">Intelligence hub.</h1>
+                <p class="text-xl text-gray-400 leading-relaxed font-light mb-10">
+                    Explore our latest research, market commentary, and educational guides.
+                </p>
+
+                <!-- Search -->
+                <div class="max-w-2xl mx-auto relative">
+                    <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"></i>
+                    <input type="text" placeholder="Search articles..." class="form-input pl-12 rounded-full">
+                </div>
+
+                <!-- Categories -->
+                <div class="flex flex-wrap justify-center gap-3 mt-8">
+                    <a href="#" class="px-4 py-2 rounded-full bg-white text-black text-sm font-medium">All</a>
+                    <a href="#" class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm font-medium hover:bg-white/10 transition-colors">AI & Tech</a>
+                    <a href="#" class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm font-medium hover:bg-white/10 transition-colors">Investing</a>
+                    <a href="#" class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm font-medium hover:bg-white/10 transition-colors">Personal Finance</a>
+                    <a href="#" class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm font-medium hover:bg-white/10 transition-colors">Market Analysis</a>
+                </div>
+            </div>
+
+            <!-- Featured Article -->
+            <div class="mb-24">
+                <a href="blog1.html" class="group block">
+                    <div class="glass-panel p-2 rounded-3xl overflow-hidden relative">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10 pointer-events-none"></div>
+                        <div class="aspect-[21/9] md:aspect-[21/7] overflow-hidden rounded-2xl relative bg-gray-900">
+                            <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=2000&auto=format&fit=crop" alt="Featured" class="w-full h-full object-cover blog-card-image grayscale group-hover:grayscale-0">
+                        </div>
+                        <div class="absolute bottom-0 left-0 p-8 md:p-12 z-20 w-full md:w-2/3">
+                            <span class="px-3 py-1 bg-white/10 border border-white/20 rounded-full text-xs font-bold uppercase tracking-wider mb-4 inline-block">AI & Tech</span>
+                            <h2 class="text-3xl md:text-5xl font-bold mb-4 group-hover:text-gray-300 transition-colors">AI in Personal Finance: How Machine Learning is Changing Wealth Management.</h2>
+                            <p class="text-gray-400 mb-6 line-clamp-2">Discover how artificial intelligence is moving beyond simple budgeting apps to provide predictive forecasting and institutional-grade portfolio management for retail investors.</p>
+                            <div class="flex items-center gap-4 text-sm text-gray-500 font-medium">
+                                <span><i class="far fa-clock mr-2"></i>8 min read</span>
+                                <span><i class="far fa-calendar mr-2"></i>Oct 28, 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Latest Posts Grid -->
+            <h3 class="text-2xl font-bold mb-8">Latest Articles</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
+
+                <!-- Blog 2 -->
+                <a href="blog2.html" class="glass-panel group overflow-hidden flex flex-col h-full">
+                    <div class="aspect-video overflow-hidden relative bg-gray-900">
+                        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=1000&auto=format&fit=crop" alt="Blog 2" class="w-full h-full object-cover blog-card-image grayscale group-hover:grayscale-0">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <span class="text-xs font-bold text-blue-400 uppercase tracking-wider mb-2">Investing</span>
+                        <h3 class="text-xl font-bold mb-3 group-hover:text-blue-400 transition-colors">Investment Risk Explained: Beyond Beta and Volatility.</h3>
+                        <p class="text-gray-400 text-sm mb-6 flex-grow line-clamp-3">A deep dive into the true meaning of risk in portfolio construction and how to mitigate permanent capital loss.</p>
+                        <div class="flex items-center justify-between text-xs text-gray-500 font-medium mt-auto pt-4 border-t border-white/5">
+                            <span>Adarsh Chandra</span>
+                            <span>7 min read</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Blog 3 -->
+                <a href="blog3.html" class="glass-panel group overflow-hidden flex flex-col h-full">
+                    <div class="aspect-video overflow-hidden relative bg-gray-900">
+                        <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=1000&auto=format&fit=crop" alt="Blog 3" class="w-full h-full object-cover blog-card-image grayscale group-hover:grayscale-0">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <span class="text-xs font-bold text-green-400 uppercase tracking-wider mb-2">Mindset</span>
+                        <h3 class="text-xl font-bold mb-3 group-hover:text-green-400 transition-colors">Wealth Creation Principles for the Modern Economy.</h3>
+                        <p class="text-gray-400 text-sm mb-6 flex-grow line-clamp-3">Timeless principles applied to today's macroeconomic environment. Why patience and research still outperform hype.</p>
+                        <div class="flex items-center justify-between text-xs text-gray-500 font-medium mt-auto pt-4 border-t border-white/5">
+                            <span>Aditya</span>
+                            <span>9 min read</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Blog 4 -->
+                <a href="blog4.html" class="glass-panel group overflow-hidden flex flex-col h-full">
+                    <div class="aspect-video overflow-hidden relative bg-gray-900">
+                        <img src="https://images.unsplash.com/photo-1642543492481-44e81e3914a7?q=80&w=1000&auto=format&fit=crop" alt="Blog 4" class="w-full h-full object-cover blog-card-image grayscale group-hover:grayscale-0">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <span class="text-xs font-bold text-purple-400 uppercase tracking-wider mb-2">Strategy</span>
+                        <h3 class="text-xl font-bold mb-3 group-hover:text-purple-400 transition-colors">Diversification Strategies: Are You Actually Diversified?</h3>
+                        <p class="text-gray-400 text-sm mb-6 flex-grow line-clamp-3">Holding 10 tech stocks isn't diversification. Learn how to build a truly uncorrelated portfolio across asset classes.</p>
+                        <div class="flex items-center justify-between text-xs text-gray-500 font-medium mt-auto pt-4 border-t border-white/5">
+                            <span>Chittresh</span>
+                            <span>8 min read</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Blog 5 -->
+                <a href="blog5.html" class="glass-panel group overflow-hidden flex flex-col h-full">
+                    <div class="aspect-video overflow-hidden relative bg-gray-900">
+                        <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1000&auto=format&fit=crop" alt="Blog 5" class="w-full h-full object-cover blog-card-image grayscale group-hover:grayscale-0">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <span class="text-xs font-bold text-yellow-500 uppercase tracking-wider mb-2">Personal Finance</span>
+                        <h3 class="text-xl font-bold mb-3 group-hover:text-yellow-500 transition-colors">Smart Expense Tracking: Moving from Budgets to Systems.</h3>
+                        <p class="text-gray-400 text-sm mb-6 flex-grow line-clamp-3">Why traditional budgeting fails and how to build automated systems for cashflow management.</p>
+                        <div class="flex items-center justify-between text-xs text-gray-500 font-medium mt-auto pt-4 border-t border-white/5">
+                            <span>Adarsh Chandra</span>
+                            <span>6 min read</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Blog 6 -->
+                <a href="blog6.html" class="glass-panel group overflow-hidden flex flex-col h-full">
+                    <div class="aspect-video overflow-hidden relative bg-gray-900">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1000&auto=format&fit=crop" alt="Blog 6" class="w-full h-full object-cover blog-card-image grayscale group-hover:grayscale-0">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <span class="text-xs font-bold text-teal-400 uppercase tracking-wider mb-2">Basics</span>
+                        <h3 class="text-xl font-bold mb-3 group-hover:text-teal-400 transition-colors">Financial Planning for Beginners: The First 5 Steps.</h3>
+                        <p class="text-gray-400 text-sm mb-6 flex-grow line-clamp-3">A no-nonsense guide to establishing an emergency fund, tackling debt, and making your first investments.</p>
+                        <div class="flex items-center justify-between text-xs text-gray-500 font-medium mt-auto pt-4 border-t border-white/5">
+                            <span>Chittresh</span>
+                            <span>10 min read</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Blog 7 -->
+                <a href="blog7.html" class="glass-panel group overflow-hidden flex flex-col h-full">
+                    <div class="aspect-video overflow-hidden relative bg-gray-900">
+                        <img src="https://images.unsplash.com/photo-1639322537504-6427a16b0a28?q=80&w=1000&auto=format&fit=crop" alt="Blog 7" class="w-full h-full object-cover blog-card-image grayscale group-hover:grayscale-0">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <span class="text-xs font-bold text-pink-500 uppercase tracking-wider mb-2">Future</span>
+                        <h3 class="text-xl font-bold mb-3 group-hover:text-pink-500 transition-colors">The Future of AI Wealth Management.</h3>
+                        <p class="text-gray-400 text-sm mb-6 flex-grow line-clamp-3">How large language models are democratizing access to institutional-grade financial analysis and advisory services.</p>
+                        <div class="flex items-center justify-between text-xs text-gray-500 font-medium mt-auto pt-4 border-t border-white/5">
+                            <span>Aditya</span>
+                            <span>8 min read</span>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+
+            <!-- Newsletter -->
+            <div class="glass-panel p-10 max-w-4xl mx-auto text-center relative overflow-hidden bg-gradient-to-t from-white/5 to-transparent">
+                <div class="absolute -top-32 -left-32 w-64 h-64 bg-white/5 blur-[100px] rounded-full"></div>
+                <h3 class="text-3xl font-bold mb-4 relative z-10">Stay ahead of the market.</h3>
+                <p class="text-gray-400 mb-8 relative z-10">Join 10,000+ investors receiving our weekly research and insights.</p>
+                <form class="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto relative z-10">
+                    <input type="email" placeholder="Your email address" class="form-input rounded-xl" required>
+                    <button type="submit" class="bg-white text-black font-bold px-8 py-3 rounded-xl hover:bg-gray-200 transition-colors whitespace-nowrap">Subscribe</button>
+                </form>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/10 bg-[#050505] pt-20 pb-10">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-500 text-sm">&copy; <span id="year"></span> Rivava. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
