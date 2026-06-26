@@ -895,28 +895,70 @@
     <main class="relative overflow-hidden">
         <!-- HERO -->
         <section id="hero" class="min-h-screen flex items-center justify-center relative z-10 pt-32 pb-12">
-            <div class="container mx-auto px-6 text-center">
-                <div class="flex flex-col items-center justify-center gap-8">
-                    <div>
-                        <div class="hero-rivava fade-in-up">RIVAVA</div>
-                        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight mt-4 fade-in-up stagger-1">Invest only after you understand the research.</h1>
-                        <p class="max-w-xl mx-auto text-lg md:text-xl mt-6 fade-in-up stagger-2">Rivava is a research-first investment platform that helps you study stocks, funds, market trends, and advisor-backed insights before you invest and track your portfolio.<br><br>Don't invest blindly based on influencers, social media hype, or FOMO. Use research, education, and advisor-backed insight before making investment decisions.</p>
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
+                    <div class="lg:w-1/2 text-center lg:text-left">
+                        <div class="hero-rivava fade-in-up inline-block">RIVAVA</div>
+                        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight mt-4 fade-in-up stagger-1">Unlock expert-analyzed research. Learn to master your money.</h1>
+                        <p class="max-w-xl mx-auto lg:mx-0 text-lg md:text-xl mt-6 fade-in-up stagger-2">Rivava turns premium data and advisor-reviewed insights into simple education, helping you understand the why behind every decision before you invest.</p>
                         <p class="text-sm uppercase tracking-widest text-yellow-500 mt-4 font-bold fade-in-up stagger-2">Be a master of your money</p>
+                        <p class="text-sm uppercase tracking-widest text-yellow-500 mt-4 font-bold fade-in-up stagger-2">Become a master of your money with data, education, and expert review.</p>
+
+                        <div class="mt-8 flex flex-col sm:flex-row gap-4 items-center justify-center lg:justify-start">
+                            <a href="#contact" class="btn btn-primary text-lg fade-in-up stagger-3">
+                                Talk to Advisor
+                            </a>
+                            <a href="donation.html" class="btn btn-secondary text-lg fade-in-up stagger-4">
+                                Unlock Premium
+                            </a>
+                        </div>
                     </div>
 
-                    <div class="mt-2 flex flex-col sm:flex-row gap-4 items-center justify-center">
-                        <a href="research.html" class="btn btn-primary text-lg fade-in-up stagger-3">
-                            Explore Research
-                        </a>
-                        <a href="learn.html" class="btn btn-secondary text-lg fade-in-up stagger-4">
-                            Start Learning
-                        </a>
-                    </div>
+                    <div class="lg:w-1/2 w-full max-w-md mx-auto fade-in-up stagger-3 relative">
+                        <!-- Premium PDF Preview Card -->
+                        <div class="glass-panel overflow-hidden relative">
+                            <!-- Blurred PDF Background -->
+                            <div class="h-64 bg-white relative overflow-hidden">
+                                <div class="absolute inset-0 bg-black/40 z-10 backdrop-blur-md"></div>
+                                <div class="absolute inset-0 bg-gradient-to-b from-gray-200 to-white text-gray-800 p-4 blur-sm opacity-50">
+                                    <h4 class="text-xl font-bold mb-2">Detailed Research Report</h4>
+                                    <div class="space-y-2">
+                                        <div class="h-4 bg-gray-300 rounded w-3/4"></div>
+                                        <div class="h-4 bg-gray-300 rounded w-full"></div>
+                                        <div class="h-4 bg-gray-300 rounded w-5/6"></div>
+                                        <div class="h-4 bg-gray-300 rounded w-full mt-4"></div>
+                                        <div class="h-4 bg-gray-300 rounded w-4/5"></div>
+                                    </div>
+                                    <div class="mt-6 flex justify-between">
+                                         <div class="w-1/3 h-20 bg-gray-300 rounded"></div>
+                                         <div class="w-1/3 h-20 bg-gray-300 rounded"></div>
+                                    </div>
+                                </div>
 
-                        <!-- Hidden elements for script compatibility -->
-                        <span id="hero-journey-amount-raised" class="hidden"></span>
-                        <span id="hero-journey-goal-amount" class="hidden"></span>
+                                <!-- Lock Icon Overlay -->
+                                <div class="absolute inset-0 z-20 flex items-center justify-center">
+                                    <div class="w-16 h-16 rounded-full bg-black/60 border border-white/20 flex items-center justify-center shadow-lg shadow-[color:var(--accent-primary)]/20">
+                                        <i class="fas fa-lock text-2xl text-[color:var(--accent-primary)]"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="p-6 text-center border-t border-white/10">
+                                <h3 class="text-xl font-bold mb-2">Premium PDF Report Preview</h3>
+                                <p class="text-gray-400 text-sm mb-6">This expert-analyzed report is blurred until premium access is unlocked. Talk to an advisor to understand the data, risks, and learning path before upgrading.</p>
+                                <a href="donation.html" class="btn btn-secondary w-full border border-[color:var(--accent-primary)]/50 hover:bg-[color:var(--accent-primary)] hover:text-black transition-colors">Unlock Premium</a>
+                            </div>
+                        </div>
+
+                        <!-- Decorative Glows -->
+                        <div class="absolute -top-10 -right-10 w-32 h-32 bg-[color:var(--accent-primary)] rounded-full blur-[80px] opacity-30 z-[-1]"></div>
+                        <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-[color:var(--accent-blue)] rounded-full blur-[80px] opacity-30 z-[-1]"></div>
+                    </div>
                 </div>
+
+                <!-- Hidden elements for script compatibility -->
+                <span id="hero-journey-amount-raised" class="hidden"></span>
+                <span id="hero-journey-goal-amount" class="hidden"></span>
             </div>
         </section>
 
