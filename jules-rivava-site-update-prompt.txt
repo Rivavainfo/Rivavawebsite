@@ -1,0 +1,83 @@
+Primary goals
+1. Use the provided PDF assets as source material
+   - Locate the PDF files in the assets folder, especially:
+     - assets/RTX CORP.pdf
+     - assets/ireda portfolio 3.0.pdf
+   - Extract only basic, non-sensitive summary information from these PDFs and show it on the site as educational/research previews.
+   - Do not copy large PDF sections verbatim. Summarize clearly and add a disclaimer that the content is educational and not financial advice.
+
+2. Add a PDF preview experience
+   - Create a small report-preview component/card that shows a few visible headline fields from a PDF, such as report title, sector/company/fund name, date if available, and a short educational summary.
+   - Most detailed PDF data should be visually blurred or locked behind a preview overlay.
+   - Include a clear call-to-action such as “Unlock full research” or “Read full report”.
+   - Keep the hero section centered only. Do not add side-aligned hero content; the hero copy and calls-to-action should stay visually centered.
+
+3. Add AI-generated blog content aligned with Learning Center and Research Hub topics
+   - Review learn.html and research.html to understand existing topic categories.
+   - Add several new blog entries to blog.html that match those topics, for example:
+     - How to Research a Stock Before Buying
+     - Reading Research Reports Without Getting Overwhelmed
+     - Building a Watchlist With a Thesis
+     - Understanding Sector Trends Before Investing
+     - Fund Research Basics for Beginners
+     - Investment Psychology: Avoiding FOMO
+     - Risk Management for New Investors
+   - Keep every blog entry educational, original, and consistent with Rivava’s research-first tone.
+   - Add the Rivava logo to each blog detail page or blog template/header where appropriate.
+
+4. Create multiple individual blog files
+   - Create numerous separate blog detail HTML files, one per topic, instead of sending every card to the same blog-detail.html page.
+   - Each blog page should have a different topic name and content, but the same reusable structure/layout.
+   - Suggested file naming pattern:
+     - blog-stock-research-basics.html
+     - blog-research-report-reading.html
+     - blog-watchlist-thesis.html
+     - blog-sector-trends.html
+     - blog-fund-research-basics.html
+     - blog-investment-psychology.html
+     - blog-risk-management.html
+   - Update blog.html so each blog card links to its matching detail page.
+   - Make sure every redirect/navigation link points to a real page or section with meaningful material. Avoid empty anchors, duplicate placeholder links, or links that all go to one generic article unless intentional.
+
+5. Add a blog rating system
+   - Add a simple user rating system to blog detail pages.
+   - It can be a lightweight front-end-only feature using JavaScript and localStorage.
+   - Let users rate an article from 1 to 5 stars.
+   - Show the selected rating after the user clicks.
+   - Keep the implementation accessible with buttons and ARIA labels.
+   - Reuse the same script/markup pattern across all blog pages.
+
+6. Remove course completion content
+   - Search the site for course completion, completion percentages, learning completion, progress bars, or “course completion” wording.
+   - Remove that section or rewrite it so the site does not show course-completion tracking.
+   - Keep general Learning Center material if it is not framed as course completion.
+
+7. Add a “Rivava Elite” special section
+   - Add a site section called “Rivava Elite”.
+   - Position it where it makes sense, such as the home page premium/advisory area or donation/subscription page.
+   - Copy direction: Rivava Elite is a focused group of 100 elite members who will “play big” with Rivava’s combined research, learning, discipline, and advisor-backed efforts.
+   - Make the section aspirational but responsible. Avoid guaranteed-return language.
+   - Mention limited seats: 100 elite members.
+   - Include a CTA that links to the existing Rivava Elite purchase/subscription area if present, or create a meaningful section anchor if needed.
+
+8. Add this implementation plan to a text file
+   - Keep this prompt or an implementation checklist in a repository text file so future maintainers understand the requested scope.
+   - Suggested filename: jules-rivava-site-update-prompt.txt
+
+Quality requirements
+- Preserve the current visual identity: dark background, green/blue accents, glass panels, and the existing Rivava logo.
+- Use semantic HTML where practical.
+- Keep CSS/JS simple and maintainable because this appears to be a static site.
+- Avoid broken links. Test all new links manually or with a simple script if possible.
+- Do not add investment guarantees or direct buy/sell recommendations.
+- Add/maintain disclaimers for research and PDF-derived content.
+- Make sure pages work without a build step unless the repo already has one.
+
+Suggested checks before finalizing
+- Open index.html, blog.html, each new blog detail page, research.html, and learn.html in a browser.
+- Verify logo images load.
+- Verify every blog card opens the correct page.
+- Verify PDF preview cards show summary info and blurred locked details.
+- Verify the 1–5 star rating stores and displays the selected rating.
+- Verify course-completion content has been removed.
+- Verify the Rivava Elite section is visible and links somewhere meaningful.
