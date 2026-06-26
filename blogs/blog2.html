@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Risk Explained — Rivava Blog</title>
+    <meta name="description" content="A deep dive into the true meaning of risk in portfolio construction and how to mitigate permanent capital loss." />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="../icon_folder/icon-32x32.png" onerror="this.onerror=null;this.src='https://placehold.co/32x32/000000/FFFFFF?text=R';">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #0A0A0A;
+            --text-primary: #FAFAFA;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --transition-medium: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.03), transparent 60%),
+                        radial-gradient(circle at 0% 100%, rgba(0, 112, 243, 0.04), transparent 50%);
+            z-index: -1;
+            pointer-events: none;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(20px);
+            border-radius: 1rem;
+            box-shadow: 0 4px 24px -8px rgba(0,0,0,0.5);
+        }
+        /* Markdown Styles */
+        .prose p { margin-bottom: 1.5rem; color: #9CA3AF; line-height: 1.8; }
+        .prose h2 { font-size: 2rem; font-weight: 800; margin-top: 3rem; margin-bottom: 1.5rem; color: #FFF; }
+        .prose h3 { font-size: 1.5rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: 1rem; color: #FFF; }
+        .prose ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; color: #9CA3AF; }
+        .prose li { margin-bottom: 0.5rem; }
+        .prose strong { color: #FFF; font-weight: 600; }
+        .prose blockquote { border-left: 4px solid white; padding-left: 1rem; margin: 2rem 0; font-style: italic; color: #D1D5DB; }
+    </style>
+</head>
+<body class="relative">
+
+    <div class="sticky top-0 z-[60] flex flex-col w-full shadow-lg bg-[#0A0A0A]/80 backdrop-blur-2xl border-b border-white/5" id="header-wrapper">
+        <header id="header" class="left-0 right-0 z-50">
+            <div class="container mx-auto px-6 lg:px-12">
+                <div class="flex items-center justify-between py-4 h-20">
+                    <a href="../index.html" class="flex items-center gap-3 group">
+                        <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white/10 transition-colors">
+                            <span class="text-xl font-bold">R</span>
+                        </div>
+                        <span class="text-xl font-semibold tracking-tight">Rivava</span>
+                    </a>
+                    <div class="hidden md:flex items-center bg-white/5 rounded-full px-6 py-2 border border-white/5">
+                        <nav class="flex items-center gap-8 text-sm font-medium">
+                            <a href="../index.html" class="text-gray-300 hover:text-white transition-colors">Home</a>
+                            <a href="index.html" class="text-white transition-colors">Blog</a>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <main class="relative overflow-hidden pt-16 pb-20">
+        <article class="container mx-auto px-6 lg:px-12 max-w-4xl">
+            <!-- Hero Section -->
+            <div class="mb-10 text-center">
+                <span class="px-3 py-1 bg-white/10 border border-white/20 rounded-full text-xs font-bold uppercase tracking-wider mb-6 inline-block text-blue-400">Investing</span>
+                <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight">Investment Risk Explained: Beyond Beta and Volatility.</h1>
+                <div class="flex items-center justify-center gap-6 text-sm text-gray-500 font-medium">
+                    <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 rounded-full bg-gray-800 overflow-hidden"><img src="../adarsh.jpeg" alt="Author" class="w-full h-full object-cover grayscale" onerror="this.src='https://placehold.co/100x100/111/FFF?text=AC'"></div>
+                        <span>Adarsh Chandra, CIO</span>
+                    </div>
+                    <span><i class="far fa-calendar mr-2"></i>Oct 25, 2023</span>
+                    <span><i class="far fa-clock mr-2"></i>7 min read</span>
+                </div>
+            </div>
+
+            <div class="aspect-[21/9] w-full rounded-2xl overflow-hidden bg-gray-900 mb-16 border border-white/10">
+                <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2000&auto=format&fit=crop" alt="Hero" class="w-full h-full object-cover grayscale">
+            </div>
+
+            <div class="prose max-w-none">
+                <p>When most people talk about "risk" in finance, they are usually talking about volatility. Academia teaches us that risk equals variance—how much an asset's price bounces around relative to the broader market (measured as Beta). However, for the practical investor, equating volatility with risk is not just incorrect; it is dangerous.</p>
+
+                <h2 id="volatility-is-not-risk">Volatility is Not Risk</h2>
+                <p>Volatility is simply the speed and magnitude of price changes. If a stock drops 20% in a week but the underlying business remains fundamentally sound, that is volatility. If you don't sell, you haven't realized a loss.</p>
+                <blockquote>"Real risk is the probability of a permanent loss of capital."</blockquote>
+                <p>If you invest in a company that goes bankrupt, that capital is gone. It doesn't matter how smooth the price chart looked on the way down to zero. A low-volatility asset can still be incredibly risky if it carries hidden structural flaws (as seen in many collateralized debt obligations during the 2008 financial crisis).</p>
+
+                <h2 id="types-of-risk">The Real Dimensions of Risk</h2>
+                <p>To build a robust portfolio, investors must understand the multi-dimensional nature of risk:</p>
+
+                <h3>1. Valuation Risk</h3>
+                <p>You can buy a phenomenal company, but if you pay too much for it, you will likely suffer poor returns. Buying an asset at 50x earnings assumes flawless execution for years. If growth slows slightly, multiple compression occurs, and the stock price drops even if earnings are growing. Overpaying is a primary source of capital loss.</p>
+
+                <h3>2. Business Risk</h3>
+                <p>This relates to the fundamentals of the company itself. Can it survive an economic downturn? Does it carry too much debt? Is it vulnerable to technological disruption or regulatory changes? This requires deep qualitative research.</p>
+
+                <h3>3. Inflation Risk (Purchasing Power Risk)</h3>
+                <p>Many conservative investors put all their money in cash or low-yield bonds to avoid "risk." However, they are virtually guaranteeing a loss of purchasing power over time due to inflation. Safe assets are often the riskiest when viewed through the lens of long-term wealth preservation.</p>
+
+                <h2 id="managing-risk">How to Manage True Risk</h2>
+                <p>Mitigating permanent capital loss requires a shift in mindset from tracking price movements to tracking business fundamentals. Here is how institutional investors approach it:</p>
+                <ul>
+                    <li><strong>Margin of Safety:</strong> Only buy assets when their market price is significantly below your calculated intrinsic value. This provides a buffer against errors in your models or unforeseen negative events.</li>
+                    <li><strong>Proper Diversification:</strong> Not just holding many stocks, but holding assets that have low correlation to one another.</li>
+                    <li><strong>Continuous Research:</strong> A thesis must be continuously updated. If the facts change, you must change your mind.</li>
+                </ul>
+
+                <p>At Rivava, our research team focuses heavily on evaluating downside risks before analyzing upside potential. By focusing on valuation and business fundamentals rather than just price charts, we aim to protect capital first, and compound it second.</p>
+            </div>
+
+            <div class="mt-20 glass-panel p-10 text-center border-white/20">
+                <h3 class="text-2xl font-bold mb-4">Read our deep-dive research reports.</h3>
+                <p class="text-gray-400 mb-6">See how we evaluate risk in real-world assets. Join Rivava Elite today.</p>
+                <a href="../index.html#pricing" class="inline-block bg-white text-black font-bold px-8 py-3 rounded-xl hover:bg-gray-200 transition-colors">Learn More</a>
+            </div>
+        </article>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/10 bg-[#050505] pt-10 pb-10">
+        <div class="container mx-auto px-6 lg:px-12 text-center text-gray-500 text-sm">
+            &copy; 2023 Rivava. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>
