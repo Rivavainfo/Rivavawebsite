@@ -30,116 +30,46 @@
     </style>
 </head>
 <body class="relative">
-    <header id="header" class="left-0 right-0 z-50">
-            <div class="container mx-auto px-6 lg:px-12">
-                <div class="flex items-center justify-between py-4 transition-all duration-300 h-20">
-                    <a href="#hero" class="flex items-center gap-3 group">
-
-                        <img src="logo.png" alt="Rivava Logo" class="h-8 w-8 object-contain" onerror="this.onerror=null;this.src='https://placehold.co/40x40/000000/FFFFFF?text=R';">
-
-                        <span class="text-xl font-semibold tracking-tight">Rivava</span>
-                    </a>
-
-                    <!-- Desktop Navigation -->
-                    <div class="hidden md:flex items-center bg-white/5 rounded-full px-6 py-2 border border-white/5">
-                        <nav class="flex items-center gap-8 text-sm font-medium">
-                            <a href="#hero" class="text-gray-300 hover:text-white transition-colors">Home</a>
-                            <a href="index.html#habit-tracking" class="text-gray-300 hover:text-white transition-colors">Dashboard</a>
-                            <a href="#portfolio" class="text-gray-300 hover:text-white transition-colors">Portfolio</a>
-                            <a href="#ai" class="text-gray-300 hover:text-white transition-colors">AI</a>
-                            <a href="about.html" class="text-gray-300 hover:text-white transition-colors">About</a>
-                            <a href="blogs/index.html" class="text-gray-300 hover:text-white transition-colors">Blog</a>
-                        </nav>
-                    </div>
-
-                    <div class="hidden md:flex items-center gap-4">
-                        <button id="themeToggle" class="text-gray-300 hover:text-white transition-colors w-8 h-8 flex items-center justify-center rounded-full bg-white/5 border border-white/10" aria-label="Toggle Theme">
-                            <i class="fas fa-moon text-sm"></i>
-                        </button>
-                        <a href="tel:+918881176909" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Talk to Advisor</a>
-                        <a href="contact.html" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Contact</a>
-                        <a href="#pricing" class="bg-white text-black text-sm font-medium px-5 py-2.5 rounded-full hover:bg-gray-200 transition-colors">Get Elite</a>
-                    </div>
-
-                    <!-- Mobile Header Buttons -->
-                    <div class="flex items-center gap-2 md:hidden">
-                        <button id="hambBtn" class="p-2 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm" aria-label="menu">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path d="M4 6h16M4 12h16M4 18h16" stroke-width="2" stroke-linecap="round"/>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- MOBILE MENU -->
-            <div id="mobileMenu" class="hidden md:hidden border-t border-white/10 bg-[color:var(--bg-panel)]/95 backdrop-blur-xl absolute w-full">
-                <div class="container mx-auto px-6 py-6 flex flex-col gap-4 text-base">
-                    <a href="#hero" class="block text-gray-300 hover:text-white transition-colors">Home</a>
-                    <a href="index.html#habit-tracking" class="block text-gray-300 hover:text-white transition-colors">Dashboard</a>
-                    <a href="#portfolio" class="block text-gray-300 hover:text-white transition-colors">Portfolio</a>
-                    <a href="#ai" class="block text-gray-300 hover:text-white transition-colors">AI</a>
-                    <a href="about.html" class="block text-gray-300 hover:text-white transition-colors">About</a>
-                    <a href="blogs/index.html" class="block text-gray-300 hover:text-white transition-colors">Blog</a>
-                    <a href="contact.html" class="block text-gray-300 hover:text-white transition-colors">Contact</a>
-                    <div class="mt-4 pt-4 border-t border-white/10">
-                        <a href="#pricing" class="bg-white text-black w-full text-center py-3 rounded-xl font-medium block">Get Elite</a>
-                    </div>
-                </div>
-            </div>
-        </header>
+    <header id="header" class="left-0 right-0 z-50 py-4 border-b border-white/10 bg-black/50 backdrop-blur-xl">
+        <div class="container mx-auto px-6 flex items-center justify-between">
+            <a href="index.html" class="text-2xl font-extrabold text-white">RIVAVA <span class="text-sm font-normal text-gray-400">| Research</span></a>
+            <nav class="hidden md:flex gap-8">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="learn.html" class="nav-link">Learn</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+            </nav>
+        </div>
+    </header>
 
     <main class="container mx-auto px-6 py-24">
         <h1 class="text-4xl md:text-5xl font-extrabold mb-8 text-center">Research Hub</h1>
         <p class="text-xl text-gray-400 text-center mb-16 max-w-2xl mx-auto">In-depth analysis, investment theses, and market intelligence to guide your decisions.</p>
 
-
         <section class="mb-16">
             <h2 class="text-2xl font-bold mb-6 border-b border-white/10 pb-2">Featured Research</h2>
             <div class="glass-panel">
-                <div class="flex flex-col md:flex-row gap-8">
-                    <div class="md:w-1/3">
-                        <div class="relative rounded-xl overflow-hidden bg-white/5 border border-white/10 aspect-[3/4] flex items-center justify-center group">
-                            <div class="w-full h-full flex flex-col items-center justify-center opacity-80 group-hover:opacity-100 transition-opacity duration-300 bg-gray-900">
-                                <i class="fas fa-file-pdf text-6xl text-[color:var(--accent-primary)] mb-4"></i>
-                                <span class="text-gray-400 text-sm">PDF Preview</span>
-                            </div>
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col justify-end p-6">
-                                <div class="bg-black/80 backdrop-blur-md border border-white/10 rounded-xl p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                                    <div class="flex items-center justify-between mb-2">
-                                        <h4 class="font-bold text-white text-sm">IREDA Equity</h4>
-                                    </div>
-                                    <a href="assets/ireda portfolio 3.0.pdf" target="_blank" class="block text-center w-full py-2 bg-[color:var(--accent-primary)]/20 hover:bg-[color:var(--accent-primary)]/40 text-[color:var(--accent-primary)] rounded text-sm font-medium transition-colors border border-[color:var(--accent-primary)]/30">Read Full PDF</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="md:w-2/3">
-                        <h3 class="text-xl font-bold mb-2">Indian Renewable Energy Development Agency (IREDA)</h3>
-                        <p class="text-gray-400 mb-4">An in-depth look at regulatory tailwinds, portfolio growth, and valuation metrics for IREDA in the renewable sector.</p>
-                        <ul class="list-disc list-inside text-gray-400 ml-4 mb-4 text-sm">
-                            <li>Investment summary and Key thesis</li>
-                            <li>Business overview</li>
-                            <li>Growth drivers and loan book composition</li>
-                            <li>Risks & Valuation</li>
-                        </ul>
-                    </div>
-                </div>
+                <h3 class="text-xl font-bold mb-2">The Future of Renewable Energy Stocks</h3>
+                <p class="text-gray-400 mb-4">An in-depth look at regulatory tailwinds and valuation metrics for top performers in the sector.</p>
+                <ul class="list-disc list-inside text-gray-400 ml-4 mb-4 text-sm">
+                    <li>Investment summary</li>
+                    <li>Key thesis</li>
+                    <li>Business overview</li>
+                    <li>Growth drivers</li>
+                    <li>Risks & Valuation</li>
+                </ul>
+                <a href="#" class="text-green-400 hover:underline">Read Full Report &rarr;</a>
             </div>
         </section>
 
-
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-
             <section>
-                <h2 class="text-2xl font-bold mb-6 border-b border-white/10 pb-2">Defense Sector</h2>
+                <h2 class="text-2xl font-bold mb-6 border-b border-white/10 pb-2">Stock Research</h2>
                 <div class="glass-panel">
-                    <h3 class="text-lg font-bold mb-2">RTX Corporation (RTX)</h3>
-                    <p class="text-gray-400 text-sm mb-4">Analyzing the defense and aerospace segments, margin expansion, and cash flow generation.</p>
-                    <a href="assets/RTX CORP.pdf" target="_blank" class="text-blue-400 hover:underline text-sm"><i class="fas fa-file-pdf mr-1"></i> View Full Report</a>
+                    <h3 class="text-lg font-bold mb-2">Tech Giant Analysis: AAPL vs MSFT</h3>
+                    <p class="text-gray-400 text-sm mb-4">Comparing growth drivers and long-term thesis.</p>
+                    <a href="#" class="text-blue-400 hover:underline text-sm">View Analysis</a>
                 </div>
             </section>
-
 
             <section>
                 <h2 class="text-2xl font-bold mb-6 border-b border-white/10 pb-2">Fund Research</h2>
