@@ -160,13 +160,24 @@
          HERO SECTION
          ============================================== */
         .hero-rivava {
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
-            font-weight: 800;
-            letter-spacing: -0.04em;
-            background: linear-gradient(180deg, #FFFFFF 0%, #A0A0A0 100%);
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            letter-spacing: 0.1em;
+            background: linear-gradient(135deg, var(--accent-primary), white, var(--accent-blue), var(--accent-pink), var(--accent-primary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            display: inline-block;
+            background-size: 400% 400%;
+            animation: gradient-flow 8s ease-in-out infinite, hero-glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes hero-glow {
+            from { filter: drop-shadow(0 0 10px rgba(0, 255, 127, 0.4)); }
+            to { filter: drop-shadow(0 0 25px rgba(0, 163, 255, 0.5)); }
         }
 
         #hero-donation-widget {
@@ -797,9 +808,7 @@
             <div class="container mx-auto px-6 lg:px-12">
                 <div class="flex items-center justify-between py-4 transition-all duration-300 h-20">
                     <a href="#hero" class="flex items-center gap-3 group">
-                        <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white/10 transition-colors">
-                            <span class="text-xl font-bold">R</span>
-                        </div>
+                        <img src="logo.png" alt="Rivava Logo" class="h-10 w-10 object-contain" onerror="this.onerror=null;this.src='https://placehold.co/40x40/000000/FFFFFF?text=R';">
                         <span class="text-xl font-semibold tracking-tight">Rivava</span>
                     </a>
 
@@ -854,85 +863,21 @@
     </div>
 
 
-    <main class="relative overflow-hidden">
-        <!-- HERO -->
+                <!-- HERO -->
         <section id="hero" class="min-h-screen flex items-center justify-center relative z-10 pt-40 pb-20">
-            <div class="container mx-auto px-6 lg:px-12">
-                <div class="flex flex-col lg:flex-row items-center justify-between gap-16">
-                    <div class="lg:w-1/2 text-center lg:text-left">
-                        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8 fade-in-up">
-                            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                            <span class="text-sm font-medium text-gray-300">Be a master of your money</span>
-                        </div>
-                        <h1 class="text-5xl sm:text-6xl md:text-7xl font-extrabold leading-tight tracking-tight mb-6 fade-in-up stagger-1">
-                            Intelligence for<br>
-                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">Your Wealth.</span>
-                        </h1>
-                        <p class="max-w-xl mx-auto lg:mx-0 text-lg md:text-xl text-gray-400 mb-10 fade-in-up stagger-2 leading-relaxed">
-                            Rivava is a premium platform that combines institutional-grade research, AI insights, and advisor guidance to help you build and manage your portfolio with absolute clarity.
-                        </p>
-
-                        <div class="flex flex-col sm:flex-row gap-4 items-center justify-center lg:justify-start fade-in-up stagger-3">
-                            <a href="#pricing" class="btn btn-primary text-base px-8 py-4 w-full sm:w-auto">
-                                Get Started
-                            </a>
-                            <a href="#dashboard" class="btn btn-secondary text-base px-8 py-4 w-full sm:w-auto bg-transparent hover:bg-white/5 border border-white/20">
-                                View Demo
-                            </a>
-                        </div>
-
-                        <div class="mt-12 flex items-center justify-center lg:justify-start gap-8 fade-in-up stagger-4 opacity-60">
-                            <div class="text-sm font-medium tracking-wider uppercase text-gray-500">Trusted by</div>
-                            <div class="flex gap-6 grayscale">
-                                <i class="fab fa-google text-2xl"></i>
-                                <i class="fab fa-amazon text-2xl"></i>
-                            </div>
-                        </div>
+            <div class="container mx-auto px-6 text-center">
+                <div class="flex flex-col items-center justify-center gap-8">
+                    <div>
+                        <div class="hero-rivava fade-in-up inline-block">RIVAVA</div>
+                        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight mt-4 fade-in-up stagger-1">Intelligence for Your Wealth.</h1>
+                        <p class="max-w-xl mx-auto text-lg md:text-xl mt-6 fade-in-up stagger-2">Rivava is a premium platform that combines institutional-grade research, AI insights, and advisor guidance to help you build and manage your portfolio with absolute clarity.</p>
+                        <p class="text-sm uppercase tracking-widest text-[color:var(--accent-primary)] mt-4 font-bold fade-in-up stagger-2">Be a master of your money</p>
                     </div>
 
-                    <div class="lg:w-1/2 w-full max-w-2xl mx-auto fade-in-up stagger-3 relative perspective-1000">
-                        <!-- Hero Dashboard Abstract -->
-                        <div class="glass-panel overflow-hidden border border-white/10 rounded-2xl shadow-2xl transform rotate-y-[-5deg] rotate-x-[5deg] transition-transform duration-700 hover:rotate-y-0 hover:rotate-x-0">
-                            <div class="bg-gradient-to-br from-[#111] to-[#000] p-6">
-                                <!-- Mock UI Header -->
-                                <div class="flex items-center justify-between mb-8 border-b border-white/10 pb-4">
-                                    <div class="flex items-center gap-3">
-                                        <div class="w-8 h-8 rounded bg-white/10 flex items-center justify-center text-xs font-bold">R</div>
-                                        <div class="h-4 w-24 bg-white/20 rounded"></div>
-                                    </div>
-                                    <div class="flex gap-2">
-                                        <div class="w-4 h-4 rounded-full bg-white/10"></div>
-                                        <div class="w-4 h-4 rounded-full bg-white/10"></div>
-                                    </div>
-                                </div>
-
-                                <!-- Mock UI Body -->
-                                <div class="grid grid-cols-2 gap-6">
-                                    <div class="col-span-2 p-6 rounded-xl bg-white/5 border border-white/5">
-                                        <div class="text-gray-500 text-xs font-medium uppercase tracking-wider mb-2">Total Net Worth</div>
-                                        <div class="text-4xl font-bold font-mono tracking-tight">$1,248,500.00</div>
-                                        <div class="mt-4 h-32 w-full bg-gradient-to-t from-green-500/20 to-transparent rounded-lg relative overflow-hidden flex items-end border-b border-green-500/50">
-                                             <svg viewBox="0 0 100 30" class="w-full h-full opacity-50 absolute bottom-0" preserveAspectRatio="none">
-                                                <path d="M0 30 L10 25 L20 28 L30 15 L40 20 L50 10 L60 15 L70 5 L80 10 L90 2 L100 8 L100 30 Z" fill="rgba(0, 255, 127, 0.2)" />
-                                                <path d="M0 30 L10 25 L20 28 L30 15 L40 20 L50 10 L60 15 L70 5 L80 10 L90 2 L100 8" fill="none" stroke="#00FF7F" stroke-width="0.5" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <div class="p-6 rounded-xl bg-white/5 border border-white/5">
-                                        <div class="text-gray-500 text-xs font-medium uppercase tracking-wider mb-2">Monthly Income</div>
-                                        <div class="text-xl font-bold font-mono text-green-400">+$12,450</div>
-                                    </div>
-                                    <div class="p-6 rounded-xl bg-white/5 border border-white/5">
-                                        <div class="text-gray-500 text-xs font-medium uppercase tracking-wider mb-2">Monthly Expenses</div>
-                                        <div class="text-xl font-bold font-mono text-white">-$4,200</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Decorative Glows -->
-                        <div class="absolute -top-20 -right-20 w-64 h-64 bg-white rounded-full blur-[120px] opacity-5 z-[-1]"></div>
-                        <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-blue-500 rounded-full blur-[120px] opacity-10 z-[-1]"></div>
+                    <div class="mt-4 flex flex-col sm:flex-row gap-4 items-center justify-center">
+                        <a href="#portfolio" class="btn btn-primary text-lg px-8 py-4 w-full sm:w-auto fade-in-up stagger-3">
+                            Take the Next Step
+                        </a>
                     </div>
                 </div>
             </div>
@@ -1095,223 +1040,14 @@
     <section id="dashboard" class="py-32 relative z-10 border-t border-white/5 bg-[#050505]">
         <div class="container mx-auto px-6 lg:px-12">
             <div class="text-center mb-20 fade-in-up">
-                <h2 class="text-3xl md:text-5xl font-extrabold mb-6 tracking-tight">Your Financial Command Center.</h2>
-                <p class="text-xl text-gray-400 max-w-3xl mx-auto font-light">Monitor everything from a single, unified interface. Real-time data, predictive AI insights, and institutional-grade tools built for clarity.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
-                <!-- Net Worth & Core Stats -->
-                <div class="glass-panel p-8 fade-in-up stagger-1 md:col-span-3 lg:col-span-2 flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-gray-400 text-sm font-medium uppercase tracking-wider">Total Net Worth</h3>
-                            <span class="px-2 py-1 bg-green-500/10 text-green-400 text-xs rounded-full font-semibold">+12.5% YTD</span>
-                        </div>
-                        <div class="text-5xl font-bold font-mono mb-2">$1,248,500.00</div>
-                        <p class="text-sm text-gray-500">Updated just now</p>
-                    </div>
-                    <div class="mt-8 h-32 w-full relative">
-                        <!-- Abstract Line Chart -->
-                        <svg viewBox="0 0 200 60" class="w-full h-full overflow-visible" preserveAspectRatio="none">
-                            <defs>
-                                <linearGradient id="chartGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                                    <stop offset="0%" stop-color="rgba(255,255,255,0.1)" />
-                                    <stop offset="100%" stop-color="rgba(255,255,255,0)" />
-                                </linearGradient>
-                            </defs>
-                            <path d="M0 60 L10 50 L30 55 L50 30 L70 35 L90 20 L110 25 L130 10 L150 15 L170 5 L190 10 L200 0 L200 60 Z" fill="url(#chartGrad)" />
-                            <path d="M0 60 L10 50 L30 55 L50 30 L70 35 L90 20 L110 25 L130 10 L150 15 L170 5 L190 10 L200 0" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round" />
-                        </svg>
-                    </div>
-                </div>
-
-                <!-- Asset Allocation -->
-                <div class="glass-panel p-8 fade-in-up stagger-2 md:col-span-2 lg:col-span-2">
-                    <h3 class="text-gray-400 text-sm font-medium uppercase tracking-wider mb-6">Asset Allocation</h3>
-                    <div class="space-y-6">
-                        <div>
-                            <div class="flex justify-between text-sm mb-2 font-medium"><span>Equities</span><span>65%</span></div>
-                            <div class="w-full bg-white/5 rounded-full h-2 overflow-hidden"><div class="bg-white h-2 rounded-full" style="width: 65%"></div></div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between text-sm mb-2 font-medium"><span>Fixed Income</span><span>20%</span></div>
-                            <div class="w-full bg-white/5 rounded-full h-2 overflow-hidden"><div class="bg-gray-400 h-2 rounded-full" style="width: 20%"></div></div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between text-sm mb-2 font-medium"><span>Cash & Equivalents</span><span>10%</span></div>
-                            <div class="w-full bg-white/5 rounded-full h-2 overflow-hidden"><div class="bg-gray-600 h-2 rounded-full" style="width: 10%"></div></div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between text-sm mb-2 font-medium"><span>Alternatives</span><span>5%</span></div>
-                            <div class="w-full bg-white/5 rounded-full h-2 overflow-hidden"><div class="bg-gray-700 h-2 rounded-full" style="width: 5%"></div></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Monthly Cashflow -->
-                <div class="glass-panel p-8 fade-in-up stagger-3 lg:col-span-1 md:col-span-1">
-                    <h3 class="text-gray-400 text-sm font-medium uppercase tracking-wider mb-6">Monthly Cashflow</h3>
-                    <div class="space-y-6">
-                        <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 rounded-full bg-green-500/10 flex items-center justify-center text-green-400"><i class="fas fa-arrow-down"></i></div>
-                            <div>
-                                <div class="text-xs text-gray-500 uppercase tracking-wider">Income</div>
-                                <div class="font-mono font-bold">$12,450.00</div>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 rounded-full bg-red-500/10 flex items-center justify-center text-red-400"><i class="fas fa-arrow-up"></i></div>
-                            <div>
-                                <div class="text-xs text-gray-500 uppercase tracking-wider">Expenses</div>
-                                <div class="font-mono font-bold">$4,200.00</div>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-4 pt-4 border-t border-white/10">
-                            <div class="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400"><i class="fas fa-piggy-bank"></i></div>
-                            <div>
-                                <div class="text-xs text-gray-500 uppercase tracking-wider">Savings</div>
-                                <div class="font-mono font-bold">$8,250.00</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Recent Transactions -->
-                <div class="glass-panel p-8 fade-in-up stagger-4 md:col-span-2 lg:col-span-2">
-                    <div class="flex items-center justify-between mb-6">
-                        <h3 class="text-gray-400 text-sm font-medium uppercase tracking-wider">Recent Transactions</h3>
-                        <a href="#" class="text-xs text-white hover:underline">View All</a>
-                    </div>
-                    <div class="space-y-4">
-                        <div class="flex items-center justify-between p-3 hover:bg-white/5 rounded-lg transition-colors cursor-pointer border border-transparent hover:border-white/5">
-                            <div class="flex items-center gap-4">
-                                <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center"><i class="fas fa-microchip text-white"></i></div>
-                                <div><div class="font-medium text-sm">NVIDIA Corp.</div><div class="text-xs text-gray-500">NVDA Dividend</div></div>
-                            </div>
-                            <div class="text-right"><div class="font-mono text-sm text-green-400">+$145.20</div><div class="text-xs text-gray-500">Today</div></div>
-                        </div>
-                        <div class="flex items-center justify-between p-3 hover:bg-white/5 rounded-lg transition-colors cursor-pointer border border-transparent hover:border-white/5">
-                            <div class="flex items-center gap-4">
-                                <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center"><i class="fas fa-bolt text-yellow-400"></i></div>
-                                <div><div class="font-medium text-sm">Tesla, Inc.</div><div class="text-xs text-gray-500">Stock Purchase</div></div>
-                            </div>
-                            <div class="text-right"><div class="font-mono text-sm text-white">-$1,250.00</div><div class="text-xs text-gray-500">Yesterday</div></div>
-                        </div>
-                        <div class="flex items-center justify-between p-3 hover:bg-white/5 rounded-lg transition-colors cursor-pointer border border-transparent hover:border-white/5">
-                            <div class="flex items-center gap-4">
-                                <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center"><i class="fas fa-home text-white"></i></div>
-                                <div><div class="font-medium text-sm">Vanguard Real Estate ETF</div><div class="text-xs text-gray-500">VNQ Dividend</div></div>
-                            </div>
-                            <div class="text-right"><div class="font-mono text-sm text-green-400">+$320.50</div><div class="text-xs text-gray-500">Oct 24</div></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- AI Insights -->
-                <div class="glass-panel p-8 fade-in-up stagger-5 md:col-span-1 lg:col-span-1 bg-gradient-to-br from-white/5 to-transparent relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/20 blur-3xl rounded-full"></div>
-                    <h3 class="text-gray-400 text-sm font-medium uppercase tracking-wider mb-6 flex items-center gap-2">
-                        <i class="fas fa-sparkles text-blue-400"></i> AI Insights
-                    </h3>
-                    <p class="text-sm leading-relaxed mb-6">
-                        Your cash allocation has grown to 10%. Consider deploying $25,000 into the S&P 500 to align with your target allocation.
-                    </p>
-                    <div class="p-4 rounded-lg bg-blue-500/10 border border-blue-500/20 text-sm">
-                        <div class="font-semibold text-blue-400 mb-1">Opportunity Identified</div>
-                        <div class="text-gray-300">Vanguard S&P 500 ETF (VOO) is currently down 2% from its all-time high.</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-<section id="tracking" class="py-24 relative z-10">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16 fade-in-up">
-                <div class="text-sm font-bold uppercase tracking-widest text-green-400 mb-2">Supporting Tools</div>
-                <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Asset Tracking</h2>
-                <p class="text-xl text-gray-400 max-w-2xl mx-auto">Track what you researched. Monitor what you understand.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                <!-- Portfolio Tracking -->
-                <div class="glass-panel hover-lift p-6 fade-in-up stagger-1 lg:col-span-2">
-                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2"><i class="fas fa-chart-line text-green-400"></i> Portfolio Tracking</h3>
-                    <div class="grid grid-cols-2 gap-4 text-sm">
-                        <div class="bg-white/5 p-3 rounded-lg"><span class="block text-gray-400 mb-1">Total Assets</span><span class="font-bold text-white">₹15,00,000</span></div>
-                        <div class="bg-white/5 p-3 rounded-lg"><span class="block text-gray-400 mb-1">Portfolio Return</span><span class="font-bold text-green-400">+12.5% YTD</span></div>
-                        <div class="bg-white/5 p-3 rounded-lg"><span class="block text-gray-400 mb-1">Top Holding</span><span class="font-bold text-white">Index Fund A</span></div>
-                        <div class="bg-white/5 p-3 rounded-lg"><span class="block text-gray-400 mb-1">Risk Profile</span><span class="font-bold text-white">Moderate</span></div>
-                    </div>
-                    <div class="mt-4 pt-4 border-t border-white/10">
-                        <span class="text-gray-400 text-sm">Links tracked assets to related research reports.</span>
-                    </div>
-                </div>
-
-                <!-- Watchlists -->
-                <div class="glass-panel hover-lift p-6 fade-in-up stagger-2 lg:col-span-2">
-                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2"><i class="fas fa-list text-blue-400"></i> Research Watchlists</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <div class="flex justify-between text-sm mb-1"><span>Target Allocation: Equity</span><span class="text-gray-400">60%</span></div>
-                            <div class="w-full bg-gray-800 rounded-full h-1.5"><div class="bg-blue-500 h-1.5 rounded-full" style="width: 60%"></div></div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between text-sm mb-1"><span>Target Allocation: Debt</span><span class="text-gray-400">40%</span></div>
-                            <div class="w-full bg-gray-800 rounded-full h-1.5"><div class="bg-yellow-500 h-1.5 rounded-full" style="width: 40%"></div></div>
-                        </div>
-                        <div class="text-xs text-gray-400 mt-2">Monitor assets you are currently studying.</div>
-                    </div>
-                </div>
-
-                <!-- Research Alerts -->
-                <div class="glass-panel hover-lift p-6 fade-in-up stagger-3 lg:col-span-2">
-                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2"><i class="fas fa-bell text-red-400"></i> Research-Linked Alerts</h3>
-                    <ul class="space-y-3">
-                        <li class="flex justify-between items-center bg-white/5 p-2 rounded">
-                            <div><div class="font-medium">New Report: Banking Sector</div><div class="text-xs text-gray-400">Research Update</div></div>
-                            <div class="text-right"><div class="text-xs text-gray-400">Just now</div></div>
-                        </li>
-                        <li class="flex justify-between items-center bg-white/5 p-2 rounded">
-                            <div><div class="font-medium">Earnings Call Summary</div><div class="text-xs text-gray-400">Holding: Tech ETF</div></div>
-                            <div class="text-right"><div class="text-xs text-gray-400">Yesterday</div></div>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Tracking Insights -->
-                <div class="glass-panel hover-lift p-6 fade-in-up stagger-4 lg:col-span-2">
-                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2"><i class="fas fa-search-dollar text-yellow-400"></i> Portfolio Insights</h3>
-                    <div class="grid grid-cols-2 gap-3">
-                        <div class="bg-yellow-500/10 border border-yellow-500/20 p-3 rounded-lg text-center">
-                            <i class="fas fa-balance-scale text-yellow-400 mb-2"></i>
-                            <div class="text-sm font-bold">Rebalancing Needed</div>
-                        </div>
-                        <div class="bg-blue-500/10 border border-blue-500/20 p-3 rounded-lg text-center">
-                            <i class="fas fa-shield-alt text-blue-400 mb-2"></i>
-                            <div class="text-sm font-bold">Risk Aligned</div>
-                        </div>
-                        <div class="bg-purple-500/10 border border-purple-500/20 p-3 rounded-lg text-center opacity-50 grayscale">
-                            <i class="fas fa-file-invoice-dollar text-purple-400 mb-2"></i>
-                            <div class="text-sm font-bold">Tax Harvesting</div>
-                        </div>
-                        <div class="bg-green-500/10 border border-green-500/20 p-3 rounded-lg text-center">
-                            <i class="fas fa-check-circle text-green-400 mb-2"></i>
-                            <div class="text-sm font-bold">Thesis Intact</div>
-                        </div>
-                    </div>
-                </div>
+                <h2 class="text-3xl md:text-5xl font-extrabold mb-6 tracking-tight">Habit Formation & SMS Tracking</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto font-light">We believe in habit formation and we have SMS tracking that can help you to manage your funds.</p>
             </div>
         </div>
     </section>
 
 
-        <!-- TEAM SECTION -->
-        <section id="team" class="container mx-auto px-6 py-12 md:py-20">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-semibold fade-in-up">Advisor Insights</h2>
-                <p class="max-w-2xl mx-auto mt-4 text-lg fade-in-up stagger-1">Learn from advisor-backed research, not market noise.</p>
-            </div>
+
 
     <!-- TEAM SECTION -->
     <section id="team" class="py-32 relative z-10 border-t border-white/5 bg-[#050505]">
@@ -1326,7 +1062,7 @@
                 <!-- Adarsh Chandra -->
                 <div class="glass-panel group overflow-hidden fade-in-up stagger-1 border border-white/5">
                     <div class="aspect-square overflow-hidden bg-gray-900 relative">
-                        <img loading="lazy" src="adarsh.jpeg" alt="Adarsh Chandra" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 grayscale group-hover:grayscale-0" onerror="this.onerror=null;this.src='https://placehold.co/400x400/111/FFF?text=AC';">
+                        <img loading="lazy" src="adarsh.jpeg" alt="Adarsh Chandra" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.onerror=null;this.src='https://placehold.co/400x400/111/FFF?text=AC';">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
                     <div class="p-6 text-center border-t border-white/5">
@@ -1339,7 +1075,7 @@
                 <!-- Aditya -->
                 <div class="glass-panel group overflow-hidden fade-in-up stagger-2 border border-white/5">
                     <div class="aspect-square overflow-hidden bg-gray-900 relative">
-                        <img loading="lazy" src="aditya.jpeg" alt="Aditya" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 grayscale group-hover:grayscale-0" onerror="this.onerror=null;this.src='https://placehold.co/400x400/111/FFF?text=A';">
+                        <img loading="lazy" src="aditya.jpeg" alt="Aditya" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.onerror=null;this.src='https://placehold.co/400x400/111/FFF?text=A';">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
                     <div class="p-6 text-center border-t border-white/5">
@@ -1352,7 +1088,7 @@
                 <!-- Chittresh -->
                 <div class="glass-panel group overflow-hidden fade-in-up stagger-3 border border-white/5">
                     <div class="aspect-square overflow-hidden bg-gray-900 relative">
-                        <img loading="lazy" src="chittresh.jpeg" alt="Chittresh" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 grayscale group-hover:grayscale-0" onerror="this.onerror=null;this.src='https://placehold.co/400x400/111/FFF?text=CG';">
+                        <img loading="lazy" src="chittresh.jpeg" alt="Chittresh" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.onerror=null;this.src='https://placehold.co/400x400/111/FFF?text=CG';">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
                     <div class="p-6 text-center border-t border-white/5">
@@ -1384,7 +1120,7 @@
                         <span class="text-xs font-bold uppercase tracking-wider text-purple-400 mb-2 block">Market Research</span>
                         <h3 class="text-xl font-bold mb-3">Understanding the Shift in Global Supply Chains</h3>
                         <p class="text-gray-400 text-sm mb-4">An analysis of how macroeconomic factors are reshaping manufacturing hubs and the investment implications.</p>
-                        <div class="read-more font-semibold text-sm">Read Article <i class="fas fa-arrow-right ml-1"></i></div>
+                        <a href="blogs/blog1.html" class="read-more font-semibold text-sm">Read Article <i class="fas fa-arrow-right ml-1"></i></a>
                     </div>
                 </div>
 
@@ -1397,7 +1133,7 @@
                         <span class="text-xs font-bold uppercase tracking-wider text-pink-400 mb-2 block">Investment Psychology</span>
                         <h3 class="text-xl font-bold mb-3">The Cost of FOMO: Why Patience Outperforms Hype</h3>
                         <p class="text-gray-400 text-sm mb-4">A look into behavioral finance and why sticking to a researched thesis beats chasing social media trends.</p>
-                        <div class="read-more font-semibold text-sm">Read Article <i class="fas fa-arrow-right ml-1"></i></div>
+                        <a href="blogs/blog2.html" class="read-more font-semibold text-sm">Read Article <i class="fas fa-arrow-right ml-1"></i></a>
                     </div>
                 </div>
 
@@ -1410,13 +1146,13 @@
                         <span class="text-xs font-bold uppercase tracking-wider text-blue-400 mb-2 block">Mutual Funds</span>
                         <h3 class="text-xl font-bold mb-3">Active vs. Passive: Analyzing Expense Ratios in 2025</h3>
                         <p class="text-gray-400 text-sm mb-4">A deep dive into historical performance data to determine where active management actually adds value.</p>
-                        <div class="read-more font-semibold text-sm">Read Article <i class="fas fa-arrow-right ml-1"></i></div>
+                        <a href="blogs/blog3.html" class="read-more font-semibold text-sm">Read Article <i class="fas fa-arrow-right ml-1"></i></a>
                     </div>
                 </div>
             </div>
 
             <div class="text-center mt-12">
-                <button class="btn btn-secondary">View All Articles</button>
+                <a href="blogs/index.html" class="btn btn-secondary">View All Articles</a>
             </div>
         </div>
     </section>
@@ -1629,9 +1365,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-12 mb-16">
                     <div class="lg:col-span-2">
                         <a href="#hero" class="flex items-center gap-3 mb-6">
-                            <div class="w-8 h-8 rounded bg-white/10 flex items-center justify-center">
-                                <span class="text-white font-bold">R</span>
-                            </div>
+                            <img src="logo.png" alt="Rivava Logo" class="h-8 w-8 object-contain" onerror="this.onerror=null;this.src='https://placehold.co/40x40/000000/FFFFFF?text=R';">
                             <span class="text-xl font-bold">Rivava</span>
                         </a>
                         <p class="text-gray-400 text-sm max-w-sm mb-6 leading-relaxed">
@@ -1677,7 +1411,6 @@
                 </div>
             </div>
         </footer>
-    </main>
 
     <!-- MODALS -->
     <!-- Message Modal -->
