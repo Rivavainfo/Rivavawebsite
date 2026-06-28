@@ -163,10 +163,9 @@
          HERO SECTION
          ============================================== */
 
-        @keyframes text-glow {
-            0%, 100% { text-shadow: 0 0 20px rgba(0, 255, 127, 0.4), 0 0 40px rgba(0, 255, 127, 0.2); }
-            33% { text-shadow: 0 0 20px rgba(255, 51, 102, 0.4), 0 0 40px rgba(255, 51, 102, 0.2); }
-            66% { text-shadow: 0 0 20px rgba(0, 112, 243, 0.4), 0 0 40px rgba(0, 112, 243, 0.2); }
+        @keyframes text-color-cycle {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
         .hero-rivava {
@@ -174,8 +173,12 @@
             font-weight: 800;
             letter-spacing: -0.04em;
             color: transparent;
-            -webkit-text-stroke: 1px #4b5563; /* block thin borders to the text, e.g., tailwind gray-600 */
-            animation: text-glow 8s infinite alternate ease-in-out;
+            background: linear-gradient(90deg, #ff3366, #00ff7f, #0070f3, #ff3366);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: text-color-cycle 8s infinite alternate ease-in-out;
         }
 
 
@@ -760,9 +763,8 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
         body.light-mode .hero-rivava {
-            background: linear-gradient(135deg, #00FF7F, #ffffff);
-            -webkit-background-clip: text;
-            background-size: 300% 300%;
+            color: transparent !important;
+            -webkit-text-fill-color: transparent;
         }
 
         /* Market Ticker */
