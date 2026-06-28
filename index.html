@@ -163,20 +163,22 @@
          HERO SECTION
          ============================================== */
 
-        @keyframes text-glow {
-            0%, 100% { text-shadow: -2px -2px 0 #000000, 0 -2px 0 #000000, 2px -2px 0 #000000, 2px 0 0 #000000, 2px 2px 0 #000000, 0 2px 0 #000000, -2px 2px 0 #000000, -2px 0 0 #000000, 0 0 20px rgba(0, 255, 127, 0.8), 0 0 40px rgba(0, 255, 127, 0.45); }
-            33% { text-shadow: -2px -2px 0 #000000, 0 -2px 0 #000000, 2px -2px 0 #000000, 2px 0 0 #000000, 2px 2px 0 #000000, 0 2px 0 #000000, -2px 2px 0 #000000, -2px 0 0 #000000, 0 0 20px rgba(255, 51, 102, 0.8), 0 0 40px rgba(255, 51, 102, 0.45); }
-            66% { text-shadow: -2px -2px 0 #000000, 0 -2px 0 #000000, 2px -2px 0 #000000, 2px 0 0 #000000, 2px 2px 0 #000000, 0 2px 0 #000000, -2px 2px 0 #000000, -2px 0 0 #000000, 0 0 20px rgba(0, 112, 243, 0.8), 0 0 40px rgba(0, 112, 243, 0.45); }
+        @keyframes text-color-cycle {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
         .hero-rivava {
             font-size: clamp(4rem, 12vw, 7rem);
             font-weight: 800;
             letter-spacing: -0.04em;
-            color: #ffffff;
-            -webkit-text-fill-color: #ffffff;
-            text-shadow: -2px -2px 0 #000000, 0 -2px 0 #000000, 2px -2px 0 #000000, 2px 0 0 #000000, 2px 2px 0 #000000, 0 2px 0 #000000, -2px 2px 0 #000000, -2px 0 0 #000000, 0 0 20px rgba(0, 255, 127, 0.8), 0 0 40px rgba(0, 255, 127, 0.45);
-            animation: text-glow 8s infinite alternate ease-in-out;
+            color: transparent;
+            background: linear-gradient(90deg, #ff3366, #00ff7f, #0070f3, #ff3366);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: text-color-cycle 8s infinite alternate ease-in-out;
         }
 
 
@@ -761,8 +763,8 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
         body.light-mode .hero-rivava {
-            color: #ffffff !important;
-            -webkit-text-fill-color: #ffffff;
+            color: transparent !important;
+            -webkit-text-fill-color: transparent;
         }
 
         /* Market Ticker */
