@@ -32,13 +32,15 @@
             font-family: 'Inter', sans-serif;
             -webkit-font-smoothing: antialiased;
         }
-        body::before {
+                body::before {
             content: '';
             position: fixed;
-            top: 0; left: 0;
-            width: 100vw; height: 100vh;
-            background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.03), transparent 60%),
-                        radial-gradient(circle at 0% 100%, rgba(0, 112, 243, 0.04), transparent 50%);
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle at 15% 20%, rgba(0, 163, 255, 0.08), transparent 40%),
+                        radial-gradient(circle at 85% 80%, rgba(0, 255, 127, 0.08), transparent 40%);
             z-index: -1;
             pointer-events: none;
         }
@@ -86,7 +88,6 @@
                     </div>
 
                     <div class="hidden md:flex items-center gap-4">
-                        </button>
                         <a href="tel:+918881176909" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Talk to Advisor</a>
                         <a href="../contact.html" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Contact</a>
                         <a href="../index.html#pricing" class="bg-white text-black text-sm font-medium px-5 py-2.5 rounded-full hover:bg-gray-200 transition-colors">Get Elite</a>
