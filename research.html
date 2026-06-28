@@ -30,16 +30,66 @@
     </style>
 </head>
 <body class="relative">
-    <header id="header" class="left-0 right-0 z-50 py-4 border-b border-white/10 bg-black/50 backdrop-blur-xl">
-        <div class="container mx-auto px-6 flex items-center justify-between">
-            <a href="index.html" class="text-2xl font-extrabold text-white">RIVAVA <span class="text-sm font-normal text-gray-400">| Research</span></a>
-            <nav class="hidden md:flex gap-8">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="learn.html" class="nav-link">Learn</a>
-                <a href="blog.html" class="nav-link">Blog</a>
-            </nav>
-        </div>
-    </header>
+        <!-- STICKY WRAPPER FOR TICKER AND HEADER -->
+        <!-- STICKY WRAPPER FOR TICKER AND HEADER -->
+    <div class="sticky top-0 z-[60] flex flex-col w-full shadow-lg bg-[color:var(--bg-panel)]/80 backdrop-blur-2xl border-b border-white/5 transition-all duration-300" id="header-wrapper">
+        <header id="header" class="left-0 right-0 z-50">
+            <div class="container mx-auto px-6 lg:px-12">
+                <div class="flex items-center justify-between py-4 transition-all duration-300 h-20">
+                    <a href="index.html#hero" class="flex items-center gap-3 group">
+                        <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white/10 transition-colors">
+                            <span class="text-xl font-bold">R</span>
+                        </div>
+                        <span class="text-xl font-semibold tracking-tight">Rivava</span>
+                    </a>
+
+                    <!-- Desktop Navigation -->
+                    <div class="hidden md:flex items-center bg-white/5 rounded-full px-6 py-2 border border-white/5">
+                        <nav class="flex items-center gap-8 text-sm font-medium">
+                            <a href="index.html#hero" class="text-gray-300 hover:text-white transition-colors">Home</a>
+                            <a href="research.html" class="text-gray-300 hover:text-white transition-colors">Research</a>
+                            <a href="learn.html" class="text-gray-300 hover:text-white transition-colors">Learn</a>
+                            <a href="about.html" class="text-gray-300 hover:text-white transition-colors">About</a>
+                            <a href="blogs/index.html" class="text-gray-300 hover:text-white transition-colors">Blog</a>
+                        </nav>
+                    </div>
+
+                    <div class="hidden md:flex items-center gap-4">
+                        <button id="themeToggle" class="text-gray-300 hover:text-white transition-colors w-8 h-8 flex items-center justify-center rounded-full bg-white/5 border border-white/10" aria-label="Toggle Theme">
+                            <i class="fas fa-moon text-sm"></i>
+                        </button>
+                        <a href="tel:+918881176909" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Talk to Advisor</a>
+                        <a href="contact.html" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Contact</a>
+                        <a href="index.html#pricing" class="bg-white text-black text-sm font-medium px-5 py-2.5 rounded-full hover:bg-gray-200 transition-colors">Get Elite</a>
+                    </div>
+
+                    <!-- Mobile Header Buttons -->
+                    <div class="flex items-center gap-2 md:hidden">
+                        <button id="hambBtn" class="p-2 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm" aria-label="menu">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M4 6h16M4 12h16M4 18h16" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MOBILE MENU -->
+            <div id="mobileMenu" class="hidden md:hidden border-t border-white/10 bg-[color:var(--bg-panel)]/95 backdrop-blur-xl absolute w-full">
+                <div class="container mx-auto px-6 py-6 flex flex-col gap-4 text-base">
+                    <a href="index.html#hero" class="block text-gray-300 hover:text-white transition-colors">Home</a>
+                    <a href="research.html" class="block text-gray-300 hover:text-white transition-colors">Research</a>
+                    <a href="learn.html" class="block text-gray-300 hover:text-white transition-colors">Learn</a>
+                    <a href="about.html" class="block text-gray-300 hover:text-white transition-colors">About</a>
+                    <a href="blogs/index.html" class="block text-gray-300 hover:text-white transition-colors">Blog</a>
+                    <a href="contact.html" class="block text-gray-300 hover:text-white transition-colors">Contact</a>
+                    <div class="mt-4 pt-4 border-t border-white/10">
+                        <a href="index.html#pricing" class="bg-white text-black w-full text-center py-3 rounded-xl font-medium block">Get Elite</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
 
     <main class="container mx-auto px-6 py-24">
         <h1 class="text-4xl md:text-5xl font-extrabold mb-8 text-center">Research Hub</h1>
@@ -57,7 +107,7 @@
                     <li>Growth drivers</li>
                     <li>Risks & Valuation</li>
                 </ul>
-                <a href="#" class="text-green-400 hover:underline">Read Full Report &rarr;</a>
+                <a href="donation.html" class="text-green-400 hover:underline">Read Full Report (IREDA) &rarr;</a>
             </div>
         </section>
 
@@ -65,9 +115,9 @@
             <section>
                 <h2 class="text-2xl font-bold mb-6 border-b border-white/10 pb-2">Stock Research</h2>
                 <div class="glass-panel">
-                    <h3 class="text-lg font-bold mb-2">Tech Giant Analysis: AAPL vs MSFT</h3>
+                    <h3 class="text-lg font-bold mb-2">Defense Sector: RTX Corp</h3>
                     <p class="text-gray-400 text-sm mb-4">Comparing growth drivers and long-term thesis.</p>
-                    <a href="#" class="text-blue-400 hover:underline text-sm">View Analysis</a>
+                    <a href="donation.html" class="text-blue-400 hover:underline text-sm">View Analysis (RTX CORP)</a>
                 </div>
             </section>
 
@@ -76,7 +126,7 @@
                 <div class="glass-panel">
                     <h3 class="text-lg font-bold mb-2">Top 5 Index Funds for Core Portfolio</h3>
                     <p class="text-gray-400 text-sm mb-4">Evaluating expense ratios and tracking errors.</p>
-                    <a href="#" class="text-blue-400 hover:underline text-sm">View Report</a>
+                    <a href="donation.html" class="text-blue-400 hover:underline text-sm">View Report</a>
                 </div>
             </section>
         </div>
