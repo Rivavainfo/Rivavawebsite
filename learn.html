@@ -23,16 +23,66 @@
     </style>
 </head>
 <body class="relative">
-    <header class="left-0 right-0 z-50 py-4 border-b border-white/10 bg-black/50 backdrop-blur-xl">
-        <div class="container mx-auto px-6 flex items-center justify-between">
-            <a href="index.html" class="text-2xl font-extrabold text-white">RIVAVA <span class="text-sm font-normal text-gray-400">| Academy</span></a>
-            <nav class="hidden md:flex gap-8">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="research.html" class="nav-link">Research</a>
-                <a href="blog.html" class="nav-link">Blog</a>
-            </nav>
-        </div>
-    </header>
+        <!-- STICKY WRAPPER FOR TICKER AND HEADER -->
+        <!-- STICKY WRAPPER FOR TICKER AND HEADER -->
+    <div class="sticky top-0 z-[60] flex flex-col w-full shadow-lg bg-[color:var(--bg-panel)]/80 backdrop-blur-2xl border-b border-white/5 transition-all duration-300" id="header-wrapper">
+        <header id="header" class="left-0 right-0 z-50">
+            <div class="container mx-auto px-6 lg:px-12">
+                <div class="flex items-center justify-between py-4 transition-all duration-300 h-20">
+                    <a href="index.html#hero" class="flex items-center gap-3 group">
+                        <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white/10 transition-colors">
+                            <span class="text-xl font-bold">R</span>
+                        </div>
+                        <span class="text-xl font-semibold tracking-tight">Rivava</span>
+                    </a>
+
+                    <!-- Desktop Navigation -->
+                    <div class="hidden md:flex items-center bg-white/5 rounded-full px-6 py-2 border border-white/5">
+                        <nav class="flex items-center gap-8 text-sm font-medium">
+                            <a href="index.html#hero" class="text-gray-300 hover:text-white transition-colors">Home</a>
+                            <a href="research.html" class="text-gray-300 hover:text-white transition-colors">Research</a>
+                            <a href="learn.html" class="text-gray-300 hover:text-white transition-colors">Learn</a>
+                            <a href="about.html" class="text-gray-300 hover:text-white transition-colors">About</a>
+                            <a href="blogs/index.html" class="text-gray-300 hover:text-white transition-colors">Blog</a>
+                        </nav>
+                    </div>
+
+                    <div class="hidden md:flex items-center gap-4">
+                        <button id="themeToggle" class="text-gray-300 hover:text-white transition-colors w-8 h-8 flex items-center justify-center rounded-full bg-white/5 border border-white/10" aria-label="Toggle Theme">
+                            <i class="fas fa-moon text-sm"></i>
+                        </button>
+                        <a href="tel:+918881176909" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Talk to Advisor</a>
+                        <a href="contact.html" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Contact</a>
+                        <a href="index.html#pricing" class="bg-white text-black text-sm font-medium px-5 py-2.5 rounded-full hover:bg-gray-200 transition-colors">Get Elite</a>
+                    </div>
+
+                    <!-- Mobile Header Buttons -->
+                    <div class="flex items-center gap-2 md:hidden">
+                        <button id="hambBtn" class="p-2 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm" aria-label="menu">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M4 6h16M4 12h16M4 18h16" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MOBILE MENU -->
+            <div id="mobileMenu" class="hidden md:hidden border-t border-white/10 bg-[color:var(--bg-panel)]/95 backdrop-blur-xl absolute w-full">
+                <div class="container mx-auto px-6 py-6 flex flex-col gap-4 text-base">
+                    <a href="index.html#hero" class="block text-gray-300 hover:text-white transition-colors">Home</a>
+                    <a href="research.html" class="block text-gray-300 hover:text-white transition-colors">Research</a>
+                    <a href="learn.html" class="block text-gray-300 hover:text-white transition-colors">Learn</a>
+                    <a href="about.html" class="block text-gray-300 hover:text-white transition-colors">About</a>
+                    <a href="blogs/index.html" class="block text-gray-300 hover:text-white transition-colors">Blog</a>
+                    <a href="contact.html" class="block text-gray-300 hover:text-white transition-colors">Contact</a>
+                    <div class="mt-4 pt-4 border-t border-white/10">
+                        <a href="index.html#pricing" class="bg-white text-black w-full text-center py-3 rounded-xl font-medium block">Get Elite</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
 
     <main class="container mx-auto px-6 py-24">
         <h1 class="text-4xl md:text-5xl font-extrabold mb-4 text-center">Learning Center</h1>
@@ -43,42 +93,42 @@
                 <i class="fas fa-graduation-cap text-3xl text-purple-400 mb-4"></i>
                 <h3 class="text-xl font-bold mb-2">Beginner Investment Guides</h3>
                 <p class="text-gray-400 text-sm mb-4">The foundational principles of investing, asset classes, and compound interest.</p>
-                <a href="#" class="text-purple-400 hover:underline text-sm">Start Guide</a>
+                <a href="blogs/blog7.html" class="text-purple-400 hover:underline text-sm">Start Guide</a>
             </div>
 
             <div class="glass-panel">
                 <i class="fas fa-search-dollar text-3xl text-blue-400 mb-4"></i>
                 <h3 class="text-xl font-bold mb-2">How to Research a Stock</h3>
                 <p class="text-gray-400 text-sm mb-4">Learn how to read financial statements, evaluate management, and understand competitive moats.</p>
-                <a href="#" class="text-blue-400 hover:underline text-sm">Read Lesson</a>
+                <a href="blogs/blog1.html" class="text-blue-400 hover:underline text-sm">Read Lesson</a>
             </div>
 
             <div class="glass-panel">
                 <i class="fas fa-file-invoice-dollar text-3xl text-green-400 mb-4"></i>
                 <h3 class="text-xl font-bold mb-2">How to Read a Research Report</h3>
                 <p class="text-gray-400 text-sm mb-4">Decode the jargon and understand the structure of professional analyst reports.</p>
-                <a href="#" class="text-green-400 hover:underline text-sm">Read Lesson</a>
+                <a href="blogs/blog4.html" class="text-green-400 hover:underline text-sm">Read Lesson</a>
             </div>
 
             <div class="glass-panel">
                 <i class="fas fa-brain text-3xl text-yellow-400 mb-4"></i>
                 <h3 class="text-xl font-bold mb-2">Investment Mindset</h3>
                 <p class="text-gray-400 text-sm mb-4">Mastering your psychology: Avoiding FOMO, hype-driven decisions, and emotional biases.</p>
-                <a href="#" class="text-yellow-400 hover:underline text-sm">Read Lesson</a>
+                <a href="blogs/blog2.html" class="text-yellow-400 hover:underline text-sm">Read Lesson</a>
             </div>
 
             <div class="glass-panel">
                 <i class="fas fa-shield-alt text-3xl text-red-400 mb-4"></i>
                 <h3 class="text-xl font-bold mb-2">Risk Management</h3>
                 <p class="text-gray-400 text-sm mb-4">Position sizing, portfolio diversification, and understanding downside protection.</p>
-                <a href="#" class="text-red-400 hover:underline text-sm">Read Lesson</a>
+                <a href="blogs/blog5.html" class="text-red-400 hover:underline text-sm">Read Lesson</a>
             </div>
 
             <div class="glass-panel">
                 <i class="fas fa-briefcase text-3xl text-pink-400 mb-4"></i>
                 <h3 class="text-xl font-bold mb-2">Case Studies</h3>
                 <p class="text-gray-400 text-sm mb-4">Real-world examples of research-driven investing successes and failures.</p>
-                <a href="#" class="text-pink-400 hover:underline text-sm">View Cases</a>
+                <a href="blogs/blog6.html" class="text-pink-400 hover:underline text-sm">View Cases</a>
             </div>
         </div>
     </main>
