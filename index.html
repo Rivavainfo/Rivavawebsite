@@ -81,8 +81,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: radial-gradient(circle at 50% 0%, rgba(0, 255, 127, 0.1), transparent 60%),
-                        radial-gradient(circle at 0% 100%, rgba(0, 255, 127, 0.05), transparent 50%);
+            background: radial-gradient(circle at 0% 100%, rgba(0, 255, 127, 0.05), transparent 50%);
             z-index: -1;
             pointer-events: none;
         }
@@ -166,19 +165,10 @@
             font-size: clamp(4rem, 12vw, 7rem);
             font-weight: 800;
             letter-spacing: -0.04em;
-            background: linear-gradient(135deg, #00FF7F, #FF3366, #0070F3);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.5);
-            background-size: 400% 400%;
-            animation: gradient-flow 8s ease-in-out infinite;
+            color: transparent;
+            -webkit-text-stroke: 1px #4b5563; /* block thin borders to the text, e.g., tailwind gray-600 */
         }
 
-        @keyframes gradient-flow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
 
         #hero-donation-widget {
             width: 100%;
@@ -823,13 +813,11 @@
                             <a href="learn.html" class="text-gray-300 hover:text-white transition-colors">Learn</a>
                             <a href="about.html" class="text-gray-300 hover:text-white transition-colors">About</a>
                             <a href="blogs/index.html" class="text-gray-300 hover:text-white transition-colors">Blog</a>
+                            <a href="#" id="openAppModalBtn" class="text-gray-300 hover:text-white transition-colors">Web Apps</a>
                         </nav>
                     </div>
 
                     <div class="hidden md:flex items-center gap-4">
-                        <button id="themeToggle" class="text-gray-300 hover:text-white transition-colors w-8 h-8 flex items-center justify-center rounded-full bg-white/5 border border-white/10" aria-label="Toggle Theme">
-                            <i class="fas fa-moon text-sm"></i>
-                        </button>
                         <a href="tel:+918881176909" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Talk to Advisor</a>
                         <a href="contact.html" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Contact</a>
                         <a href="#pricing" class="bg-white text-black text-sm font-medium px-5 py-2.5 rounded-full hover:bg-gray-200 transition-colors">Get Elite</a>
@@ -854,6 +842,7 @@
                     <a href="learn.html" class="block text-gray-300 hover:text-white transition-colors">Learn</a>
                     <a href="about.html" class="block text-gray-300 hover:text-white transition-colors">About</a>
                     <a href="blogs/index.html" class="block text-gray-300 hover:text-white transition-colors">Blog</a>
+                    <a href="#" id="openAppModalBtnMobile" class="block text-gray-300 hover:text-white transition-colors">Web Apps</a>
                     <a href="contact.html" class="block text-gray-300 hover:text-white transition-colors">Contact</a>
                     <div class="mt-4 pt-4 border-t border-white/10">
                         <a href="#pricing" class="bg-white text-black w-full text-center py-3 rounded-xl font-medium block">Get Elite</a>
@@ -1164,7 +1153,7 @@
             <div class="text-center mb-20 fade-in-up">
                 <div class="text-sm font-bold uppercase tracking-widest text-blue-500 mb-4">Leadership</div>
                 <h2 class="text-3xl md:text-5xl font-extrabold mb-6 tracking-tight">The Minds Behind Rivava.</h2>
-                <p class="text-xl text-gray-400 max-w-2xl mx-auto font-light">Built by veterans in finance and technology, dedicated to bringing clarity to your wealth building journey.</p>
+                <p class="text-xl text-gray-400 max-w-2xl mx-auto font-light">Built by enthusiasts in finance and technology, dedicated to bringing clarity to your wealth building journey.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -1633,16 +1622,6 @@
             });
 
 
-            // --- Theme Toggle Logic ---
-            const themeToggleBtn = document.getElementById('themeToggle');
-            const toggleTheme = () => {
-                document.body.classList.toggle('light-mode');
-                const isLight = document.body.classList.contains('light-mode');
-                themeToggleBtn.innerHTML = isLight ? '<i class="fas fa-sun text-lg text-yellow-500"></i>' : '<i class="fas fa-moon text-lg"></i>';
-                localStorage.setItem('theme', isLight ? 'light' : 'dark');
-            };
-            themeToggleBtn.addEventListener('click', toggleTheme);
-            if (localStorage.getItem('theme') === 'light') toggleTheme();
 
             // --- Command Palette Logic ---
             const cmdBtn = document.getElementById('cmdPaletteBtn');

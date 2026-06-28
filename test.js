@@ -69,15 +69,5 @@ const { chromium } = require('playwright');
       process.exit(1);
   }
 
-  // Test Light Mode
-  await page.click('#themeToggle');
-  const isLightMode = await page.evaluate(() => document.body.classList.contains('light-mode'));
-  if (isLightMode) {
-      console.log("SUCCESS: Light mode activated.");
-  } else {
-      console.log("ERROR: Light mode did not activate.");
-      process.exit(1);
-  }
-
   await browser.close();
 })();
