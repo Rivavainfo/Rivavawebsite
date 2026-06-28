@@ -164,17 +164,18 @@
          ============================================== */
 
         @keyframes text-glow {
-            0%, 100% { text-shadow: 0 0 20px rgba(0, 255, 127, 0.4), 0 0 40px rgba(0, 255, 127, 0.2); }
-            33% { text-shadow: 0 0 20px rgba(255, 51, 102, 0.4), 0 0 40px rgba(255, 51, 102, 0.2); }
-            66% { text-shadow: 0 0 20px rgba(0, 112, 243, 0.4), 0 0 40px rgba(0, 112, 243, 0.2); }
+            0%, 100% { text-shadow: -2px -2px 0 #000000, 0 -2px 0 #000000, 2px -2px 0 #000000, 2px 0 0 #000000, 2px 2px 0 #000000, 0 2px 0 #000000, -2px 2px 0 #000000, -2px 0 0 #000000, 0 0 20px rgba(0, 255, 127, 0.8), 0 0 40px rgba(0, 255, 127, 0.45); }
+            33% { text-shadow: -2px -2px 0 #000000, 0 -2px 0 #000000, 2px -2px 0 #000000, 2px 0 0 #000000, 2px 2px 0 #000000, 0 2px 0 #000000, -2px 2px 0 #000000, -2px 0 0 #000000, 0 0 20px rgba(255, 51, 102, 0.8), 0 0 40px rgba(255, 51, 102, 0.45); }
+            66% { text-shadow: -2px -2px 0 #000000, 0 -2px 0 #000000, 2px -2px 0 #000000, 2px 0 0 #000000, 2px 2px 0 #000000, 0 2px 0 #000000, -2px 2px 0 #000000, -2px 0 0 #000000, 0 0 20px rgba(0, 112, 243, 0.8), 0 0 40px rgba(0, 112, 243, 0.45); }
         }
 
         .hero-rivava {
             font-size: clamp(4rem, 12vw, 7rem);
             font-weight: 800;
             letter-spacing: -0.04em;
-            color: transparent;
-            -webkit-text-stroke: 1px #4b5563; /* block thin borders to the text, e.g., tailwind gray-600 */
+            color: #ffffff;
+            -webkit-text-fill-color: #ffffff;
+            text-shadow: -2px -2px 0 #000000, 0 -2px 0 #000000, 2px -2px 0 #000000, 2px 0 0 #000000, 2px 2px 0 #000000, 0 2px 0 #000000, -2px 2px 0 #000000, -2px 0 0 #000000, 0 0 20px rgba(0, 255, 127, 0.8), 0 0 40px rgba(0, 255, 127, 0.45);
             animation: text-glow 8s infinite alternate ease-in-out;
         }
 
@@ -760,9 +761,8 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
         body.light-mode .hero-rivava {
-            background: linear-gradient(135deg, #00FF7F, #ffffff);
-            -webkit-background-clip: text;
-            background-size: 300% 300%;
+            color: #ffffff !important;
+            -webkit-text-fill-color: #ffffff;
         }
 
         /* Market Ticker */
