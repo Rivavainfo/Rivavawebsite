@@ -22,6 +22,16 @@
 
     <style>
         :root {
+            --accent-pink: #FF3366;
+            --accent-blue: #0070F3;
+            --accent-lime: #00E676;
+        }
+        h1, h2, h3 {
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue), var(--accent-lime));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        :root {
             --bg-dark: #000000;
             --bg-panel: #111111;
             --text-primary: #FFFFFF;
@@ -47,6 +57,9 @@
             pointer-events: none;
         }
         h1, h2, h3 {
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue), var(--accent-lime));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             font-weight: 700;
             letter-spacing: -0.025em;
             color: var(--text-primary);
