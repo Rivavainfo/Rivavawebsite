@@ -73,6 +73,10 @@
             opacity: 0;
         }
 
+        body.page-restored {
+            opacity: 1;
+        }
+
         /* Dynamic background gradient */
                 body::before {
             content: '';
@@ -1586,7 +1590,18 @@
     </div>
 
     <script>
+        const restorePageVisibility = () => {
+            document.body.classList.remove('fade-out');
+            document.body.classList.add('page-restored');
+            window.setTimeout(() => document.body.classList.remove('page-restored'), 50);
+        };
+
+        window.addEventListener('pageshow', restorePageVisibility);
+        window.addEventListener('pagehide', restorePageVisibility);
+        window.addEventListener('popstate', restorePageVisibility);
+
         document.addEventListener('DOMContentLoaded', () => {
+            restorePageVisibility();
             // --- Global Elements ---
             const header = document.getElementById('header');
             const mobileMenu = document.getElementById('mobileMenu');
@@ -1656,28 +1671,35 @@
             // --- Copyright Year ---
             document.getElementById('year').textContent = new Date().getFullYear();
 
-            // --- Page Transition for External Links ---
-            document.querySelectorAll('a:not([href^="#"]):not([href="challenge.html"])').forEach(link => {
-                if(link.target === '_blank' || link.classList.contains('external-link')) {
-                    link.addEventListener('click', function (e) {
-                        e.preventDefault();
-                        const targetUrl = this.href;
-                        document.body.classList.add('fade-out');
-                        setTimeout(() => {
-                            window.open(targetUrl, '_blank');
-                            setTimeout(() => document.body.classList.remove('fade-out'), 200);
-                        }, 500);
-                    });
-                } else if (link.href && !link.href.includes('javascript:')) {
-                     link.addEventListener('click', function (e) {
-                        e.preventDefault();
-                        const targetUrl = this.href;
-                        document.body.classList.add('fade-out');
-                        setTimeout(() => {
-                            window.location.href = targetUrl;
-                        }, 500);
-                    });
-                }
+            // --- Page Transition for Internal Links ---
+            const samePageUrl = (url) => (
+                url.origin === window.location.origin
+                && url.pathname === window.location.pathname
+                && url.search === window.location.search
+            );
+
+            document.querySelectorAll('a[href]').forEach(link => {
+                link.addEventListener('click', function (e) {
+                    if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+
+                    const rawHref = this.getAttribute('href');
+                    if (!rawHref || rawHref.startsWith('#') || rawHref.startsWith('javascript:')) return;
+                    if (this.hasAttribute('download') || this.target === '_blank' || this.classList.contains('external-link')) return;
+
+                    const targetUrl = new URL(rawHref, window.location.href);
+                    if (!['http:', 'https:'].includes(targetUrl.protocol)) return;
+                    if (targetUrl.origin !== window.location.origin || samePageUrl(targetUrl)) return;
+
+                    e.preventDefault();
+                    document.body.classList.add('fade-out');
+                    window.setTimeout(() => {
+                        window.location.assign(targetUrl.href);
+                    }, 220);
+                });
+            });
+
+            document.addEventListener('visibilitychange', () => {
+                if (!document.hidden) restorePageVisibility();
             });
 
 
