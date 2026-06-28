@@ -166,21 +166,18 @@
             font-size: clamp(4rem, 12vw, 7rem);
             font-weight: 800;
             letter-spacing: -0.04em;
-            background: linear-gradient(135deg, #00FF7F, #0A0A0A);
+            background: linear-gradient(135deg, #00FF7F, #FF3366, #0070F3);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.5);
             background-size: 400% 400%;
-            animation: gradient-flow 8s ease-in-out infinite, hero-glow 3s ease-in-out infinite alternate;
+            animation: gradient-flow 8s ease-in-out infinite;
         }
 
         @keyframes gradient-flow {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
-        }
-        @keyframes hero-glow {
-            from { filter: drop-shadow(0 0 10px rgba(0, 255, 127, 0.4)); }
-            to { filter: drop-shadow(0 0 25px rgba(0, 163, 255, 0.5)); }
         }
 
         #hero-donation-widget {
@@ -886,7 +883,7 @@
                     </div>
 
                     <div class="mt-2 flex flex-col sm:flex-row gap-4 items-center justify-center">
-                        <a href="research.html" class="btn btn-primary text-lg fade-in-up stagger-3">
+                        <a href="research.html" class="btn bg-[#00FF7F] text-black hover:bg-[#00E676] text-lg fade-in-up stagger-3">
                             Take the next step
                         </a>
                     </div>
@@ -1464,7 +1461,7 @@
                     <textarea id="message" name="message" class="form-control" rows="4"></textarea>
                 </div>
                 <div class="mt-8 text-center">
-                    <button type="submit" class="btn btn-primary btn-lg text-lg">
+                    <button type="submit" class="btn bg-[#00FF7F] text-black hover:bg-[#00E676] btn-lg text-lg">
                         <i class="fas fa-paper-plane mr-2 icon-animate-plane"></i> Request Call
                     </button>
                 </div>
