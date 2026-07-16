@@ -277,13 +277,17 @@
         <div class="bg-white p-6 rounded-xl relative text-black flex flex-col items-center">
             <span id="closeQr" class="absolute top-2 right-3 cursor-pointer text-gray-600 text-2xl font-bold">&times;</span>
             <h3 id="qrModalTitle" class="text-center font-bold mb-4 text-lg">Scan to Pay</h3>
-            <div id="qrcode" class="mx-auto mb-4"></div>
 
-            <div id="verificationSection" class="flex flex-col items-center w-full">
-                <p class="text-sm text-gray-600 mb-2 text-center">Enter the verification key provided after payment</p>
+            <div id="paymentStepSection" class="flex flex-col items-center w-full">
+                <div id="qrcode" class="mx-auto mb-4"></div>
+                <button id="iHavePaidBtn" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors mt-2 w-full font-bold">I Have Paid</button>
+            </div>
+
+            <div id="verificationSection" class="hidden flex-col items-center w-full">
+                <p class="text-sm text-gray-600 mb-2 text-center">Please <a href="contact.html" class="text-blue-500 underline font-bold">contact us</a> to receive your verification key.</p>
                 <input type="text" id="paymentKeyInput" placeholder="rivrubi@12345" class="border border-gray-300 rounded-lg px-3 py-2 mb-2 w-full text-center focus:outline-none focus:ring-2 focus:ring-green-500">
                 <p id="paymentError" class="text-red-500 text-sm hidden mb-2 font-medium">Invalid key format. Expected: rivrubi@XXXXX</p>
-                <button id="verifyPaymentBtn" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors mt-2 w-full">Verify Payment</button>
+                <button id="verifyPaymentBtn" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors mt-2 w-full">Verify Key</button>
             </div>
 
             <div id="downloadSection" class="hidden flex-col gap-3 mt-4 w-full">
@@ -329,6 +333,8 @@
         const qrModal = document.getElementById('qrModal');
         const closeQr = document.getElementById('closeQr');
         const qrCodeDiv = document.getElementById('qrcode');
+        const paymentStepSection = document.getElementById('paymentStepSection');
+        const iHavePaidBtn = document.getElementById('iHavePaidBtn');
         const verifyPaymentBtn = document.getElementById('verifyPaymentBtn');
         const downloadSection = document.getElementById('downloadSection');
         const verificationSection = document.getElementById('verificationSection');
@@ -349,9 +355,10 @@
                     });
 
                     // Reset modal state
-                    qrCodeDiv.classList.remove('hidden');
-                    verificationSection.classList.remove('hidden');
-                    verificationSection.classList.add('flex');
+                    paymentStepSection.classList.remove('hidden');
+                    paymentStepSection.classList.add('flex');
+                    verificationSection.classList.add('hidden');
+                    verificationSection.classList.remove('flex');
                     downloadSection.classList.add('hidden');
                     downloadSection.classList.remove('flex');
                     paymentKeyInput.value = "";
@@ -363,12 +370,19 @@
             });
         });
 
+        iHavePaidBtn.addEventListener('click', () => {
+            paymentStepSection.classList.add('hidden');
+            paymentStepSection.classList.remove('flex');
+            verificationSection.classList.remove('hidden');
+            verificationSection.classList.add('flex');
+            qrModalTitle.textContent = "Verify Payment";
+        });
+
         verifyPaymentBtn.addEventListener('click', () => {
             const key = paymentKeyInput.value.trim();
             const isValid = /^rivrubi@\d{5}$/.test(key);
 
             if (isValid) {
-                qrCodeDiv.classList.add('hidden');
                 verificationSection.classList.add('hidden');
                 verificationSection.classList.remove('flex');
                 downloadSection.classList.remove('hidden');
