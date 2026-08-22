@@ -819,6 +819,10 @@
                         </div>
                         <span class="text-xl font-semibold tracking-tight">Rivava</span>
                     </a>
+                    <button id="openFoundersModalBtn" class="flex items-center gap-2 px-3 py-1.5 text-xs font-semibold rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 hover:text-white transition-all ml-2" title="Founders Info & Story">
+                        <i class="fas fa-users text-[color:var(--accent-primary)]"></i>
+                        <span class="hidden sm:inline">Founders Info</span>
+                    </button>
 
                     <!-- Desktop Navigation -->
                     <div class="hidden md:flex items-center bg-white/5 rounded-full px-6 py-2 border border-white/5">
@@ -833,6 +837,9 @@
                     </div>
 
                     <div class="hidden md:flex items-center gap-4">
+                        <a href="https://wa.me/918881176909?text=Hello%2C%20I%20would%20like%20to%20chat%20with%20an%20advisor." target="_blank" rel="noopener noreferrer" id="chatWithAdvisorBtn" class="bg-green-500 hover:bg-green-600 text-black text-sm font-bold px-4 py-2 rounded-full transition-all flex items-center gap-2 shadow-[0_0_15px_rgba(34,197,94,0.3)]">
+                            <i class="fab fa-whatsapp text-lg"></i> Chat with Advisor
+                        </a>
                         <a href="tel:+91-8881176909" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Talk to Advisor</a>
                         <a href="contact.html" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Contact</a>
                         <a href="#pricing" class="bg-white text-black text-sm font-medium px-5 py-2.5 rounded-full hover:bg-gray-200 transition-colors">Get Elite</a>
@@ -857,9 +864,13 @@
                     <a href="learn.html" class="block text-gray-300 hover:text-white transition-colors">Learn</a>
                     <a href="about.html" class="block text-gray-300 hover:text-white transition-colors">About</a>
                     <a href="blogs/index.html" class="block text-gray-300 hover:text-white transition-colors">Blog</a>
+                    <a href="#" id="openFoundersModalBtnMobile" class="block text-gray-300 hover:text-white transition-colors flex items-center gap-2"><i class="fas fa-users text-[color:var(--accent-primary)]"></i> Founders Info</a>
                     <a href="#" id="openAppModalBtnMobile" class="block text-gray-300 hover:text-white transition-colors">Web Apps</a>
                     <a href="contact.html" class="block text-gray-300 hover:text-white transition-colors">Contact</a>
-                    <div class="mt-4 pt-4 border-t border-white/10">
+                    <div class="mt-4 pt-4 border-t border-white/10 flex flex-col gap-3">
+                        <a href="https://wa.me/918881176909?text=Hello%2C%20I%20would%20like%20to%20chat%20with%20an%20advisor." target="_blank" rel="noopener noreferrer" class="bg-green-500 hover:bg-green-600 text-black font-bold w-full text-center py-3 rounded-xl block flex items-center justify-center gap-2">
+                            <i class="fab fa-whatsapp text-lg"></i> Chat with Advisor
+                        </a>
                         <a href="#pricing" class="bg-white text-black w-full text-center py-3 rounded-xl font-medium block">Get Elite</a>
                     </div>
                 </div>
@@ -1555,6 +1566,47 @@
         </div>
     </div>
 
+    <!-- Founders Info Modal -->
+    <div id="foundersModal" class="modal">
+        <div class="modal-content max-w-3xl relative">
+            <button class="modal-close" data-modal-close="foundersModal"><i class="fas fa-times"></i></button>
+            <div class="text-center mb-6">
+                <div class="text-xs font-bold uppercase tracking-widest text-blue-400 mb-1">Meet The Leadership</div>
+                <h3 class="text-2xl md:text-3xl font-extrabold text-white">Founders & Leadership Team</h3>
+                <p class="text-gray-400 text-sm mt-1 max-w-lg mx-auto">The visionaries and builders behind Rivava, bringing clarity, research, and technical innovation to your financial journey.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Adarsh Chandra -->
+                <div class="glass-panel p-5 text-center flex flex-col items-center">
+                    <img src="adarsh.jpeg" alt="Adarsh Chandra" class="w-24 h-24 rounded-2xl object-cover mb-3 border border-white/10 shadow-md" onerror="this.onerror=null;this.src='https://placehold.co/150x150/111/FFF?text=AC';">
+                    <h4 class="font-bold text-lg text-white">Adarsh Chandra</h4>
+                    <p class="text-xs text-[color:var(--accent-primary)] font-medium mb-2">Chief Analytics Officer (CAO)</p>
+                    <p class="text-xs text-gray-400 leading-relaxed mb-3">Spearheads institutional-grade financial analytics and data-driven investment strategies.</p>
+                    <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white text-xs inline-flex items-center gap-1 mt-auto bg-white/5 px-3 py-1.5 rounded-full border border-white/5"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                </div>
+                <!-- Aditya -->
+                <div class="glass-panel p-5 text-center flex flex-col items-center">
+                    <img src="aditya.jpeg" alt="Aditya" class="w-24 h-24 rounded-2xl object-cover mb-3 border border-white/10 shadow-md" onerror="this.onerror=null;this.src='https://placehold.co/150x150/111/FFF?text=A';">
+                    <h4 class="font-bold text-lg text-white">Aditya</h4>
+                    <p class="text-xs text-[color:var(--accent-primary)] font-medium mb-2">Chief Technology Officer (CTO)</p>
+                    <p class="text-xs text-gray-400 leading-relaxed mb-3">Architects scalable platform engineering, AI insights engines, and real-time tracking architecture.</p>
+                    <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white text-xs inline-flex items-center gap-1 mt-auto bg-white/5 px-3 py-1.5 rounded-full border border-white/5"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                </div>
+                <!-- Chittresh -->
+                <div class="glass-panel p-5 text-center flex flex-col items-center">
+                    <img src="chittresh.jpeg" alt="Chittresh" class="w-24 h-24 rounded-2xl object-cover mb-3 border border-white/10 shadow-md" onerror="this.onerror=null;this.src='https://placehold.co/150x150/111/FFF?text=CG';">
+                    <h4 class="font-bold text-lg text-white">Chittresh</h4>
+                    <p class="text-xs text-[color:var(--accent-primary)] font-medium mb-2">Chief Marketing Officer (CMO)</p>
+                    <p class="text-xs text-gray-400 leading-relaxed mb-3">Drives growth, investor education initiatives, and brand positioning across global markets.</p>
+                    <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white text-xs inline-flex items-center gap-1 mt-auto bg-white/5 px-3 py-1.5 rounded-full border border-white/5"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                </div>
+            </div>
+            <div class="mt-6 text-center pt-4 border-t border-white/10">
+                <a href="about.html" class="btn btn-secondary text-sm py-2 px-6">Learn More About Rivava</a>
+            </div>
+        </div>
+    </div>
+
     <!-- Web App Selection Modal -->
     <div id="appModal" class="modal">
         <div class="modal-content max-w-2xl relative">
@@ -1613,7 +1665,7 @@
             mobileMenu.querySelectorAll('a, button').forEach(link => {
                 link.addEventListener('click', () => {
                     // Don't hide if it's the modal button itself
-                    if(link.id !== 'openAppModalBtnMobile') {
+                    if(link.id !== 'openAppModalBtnMobile' && link.id !== 'openFoundersModalBtnMobile') {
                         mobileMenu.classList.add('hidden');
                     }
                 });
@@ -1763,6 +1815,11 @@
         });
 
         // Open specific modals
+        const openFoundersBtn = document.getElementById('openFoundersModalBtn');
+        const openFoundersBtnMobile = document.getElementById('openFoundersModalBtnMobile');
+        if (openFoundersBtn) openFoundersBtn.addEventListener('click', (e) => { e.preventDefault(); openModal('foundersModal'); });
+        if (openFoundersBtnMobile) openFoundersBtnMobile.addEventListener('click', (e) => { e.preventDefault(); openModal('foundersModal'); });
+
         document.getElementById('openAppModalBtn').addEventListener('click', (e) => { e.preventDefault(); openModal('appModal'); });
         document.getElementById('openAppModalBtnMobile').addEventListener('click', (e) => { e.preventDefault(); openModal('appModal'); });
 
