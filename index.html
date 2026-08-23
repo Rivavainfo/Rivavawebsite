@@ -1682,11 +1682,11 @@
                 mobileMenu.classList.toggle('hidden');
             });
             mobileMenu.querySelectorAll('a, button').forEach(link => {
-                link.addEventListener('click', () => {
-                    // Don't hide if it's the modal button itself
-                    if(link.id !== 'openAppModalBtnMobile' && link.id !== 'openFoundersModalBtnMobile') {
-                        mobileMenu.classList.add('hidden');
+                link.addEventListener('click', (e) => {
+                    if (link.id === 'chatWithAdvisorBtnMobile' || link.closest('#mobileAdvisorDropdownWrapper')) {
+                        return;
                     }
+                    mobileMenu.classList.add('hidden');
                 });
             });
 
@@ -1887,6 +1887,7 @@
         if (openFoundersBtnMobile) openFoundersBtnMobile.addEventListener('click', (e) => {
             e.preventDefault();
             if (mobileAdvisorDropdownMenu) mobileAdvisorDropdownMenu.classList.add('hidden');
+            if (mobileMenu) mobileMenu.classList.add('hidden');
             openModal('foundersModal');
         });
 
@@ -1900,6 +1901,7 @@
         if (openAppModalBtnMobile) openAppModalBtnMobile.addEventListener('click', (e) => {
             e.preventDefault();
             if (mobileAdvisorDropdownMenu) mobileAdvisorDropdownMenu.classList.add('hidden');
+            if (mobileMenu) mobileMenu.classList.add('hidden');
             openModal('appModal');
         });
 
