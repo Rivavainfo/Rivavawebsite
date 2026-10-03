@@ -1,339 +1,251 @@
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Institutional Research Hub — Rivava</title>
-    <meta name="description" content="In-depth, data-driven equity research reports, valuation theses, and DCF models deconstructed for clarity." />
-    
-    <link rel="icon" type="image/png" sizes="32x32" href="icon_folder/icon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="icon_folder/icon-96x96.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="icon_folder/icon-180x180.png">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-
+    <title>Rivava — Research Hub</title>
+    <meta name="description" content="Rivava Research Hub - Deep dives, investment theses, and market intelligence." />
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/rivava.css">
-</head>
-<body class="apple-theme bg-white text-slate-900 selection:bg-[#00C076] selection:text-white">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Display"', '"SF Pro Text"', '"SF Pro"', '"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Apple SF Pro Font -->
+    <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/sf-pro-display">
+    <style>
+        :root {
+            --apple-font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "SF Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            --accent-pink: #FF3366;
+            --accent-blue: #0070F3;
+            --accent-lime: #00E676;
+            --bg-panel: #141414;
+        }
 
-    <!-- ==============================================
-         APPLE FLOATING STICKY HEADER & PILL NAVIGATION
-         ============================================== -->
-    <div class="site-header-wrapper" id="header-wrapper">
-        <header id="header" class="w-full bg-white/80 backdrop-blur-xl border-b border-gray-100 transition-all">
-            <div class="container mx-auto px-6 lg:px-12 max-w-7xl">
-                <div class="flex items-center justify-between py-4 h-20">
-                    <!-- Brand Logo -->
-                    <a href="index.html#hero" class="flex items-center gap-3.5 group">
-                        <div class="w-10 h-10 rounded-2xl bg-white border border-gray-200 flex items-center justify-center p-1.5 shadow-sm group-hover:scale-105 transition-transform">
-                            <img src="assets/logo.png" alt="Rivava Logo" class="h-full w-full object-contain">
+        body {
+            background-color: #0A0A0A;
+            color: #FFFFFF;
+            font-family: var(--apple-font);
+            font-weight: 450;
+            letter-spacing: -0.012em;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+        h1, h2, h3, h4 {
+            font-family: var(--apple-font);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+        .font-extrabold, .font-black {
+            font-weight: 650 !important;
+        }
+        .font-bold {
+            font-weight: 600 !important;
+        }
+        .font-semibold {
+            font-weight: 550 !important;
+        }
+        .font-medium {
+            font-weight: 500 !important;
+        }
+        .nav-link { color: #A0AEC0; }
+        .nav-link:hover { color: #FFFFFF; }
+        .glass-panel {
+            background: linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(16px) saturate(1.2);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: 
+                radial-gradient(circle at 18% 18%, rgba(255, 51, 102, 0.16), transparent 45%),
+                radial-gradient(circle at 82% 20%, rgba(0, 112, 243, 0.16), transparent 45%),
+                radial-gradient(circle at 50% 85%, rgba(0, 255, 127, 0.10), transparent 50%),
+                radial-gradient(circle at 85% 75%, rgba(255, 51, 102, 0.08), transparent 40%),
+                radial-gradient(circle at 15% 80%, rgba(0, 112, 243, 0.10), transparent 40%);
+            z-index: -1;
+            pointer-events: none;
+        }
+        .rivava-text {
+            font-weight: 800;
+            text-shadow: 0 0 25px rgba(0, 255, 127, 0.3);
+            animation: glow 4s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 5px rgba(0, 255, 127, 0.3)); }
+            to { filter: drop-shadow(0 0 15px rgba(0, 255, 127, 0.7)); }
+        }
+    </style>
+</head>
+<body class="relative">
+    <!-- STICKY WRAPPER FOR TICKER AND HEADER -->
+    <div class="sticky top-0 z-[60] flex flex-col w-full shadow-lg bg-[color:var(--bg-panel)]/80 backdrop-blur-2xl border-b border-white/5 transition-all duration-300" id="header-wrapper">
+        <header id="header" class="left-0 right-0 z-50">
+            <div class="container mx-auto px-6 lg:px-12">
+                <div class="flex items-center justify-between py-3 transition-all duration-300 h-16">
+                    <a href="index.html#hero" class="flex items-center gap-3 group">
+                        <div class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white/10 transition-colors shadow-[0_0_12px_rgba(0,255,127,0.2)]">
+                            <img src="assets/logo.png" alt="Rivava Logo" class="h-9 w-9 object-contain">
                         </div>
-                        <div class="flex flex-col">
-                            <span class="text-xl font-bold tracking-tight text-gray-900 rivava-text">Rivava</span>
-                            <span class="text-[9px] tracking-widest uppercase font-semibold text-gray-400">Research Hub</span>
-                        </div>
+                        <span class="text-xl font-bold tracking-tight rivava-text">Rivava</span>
                     </a>
 
-                    <!-- Center Pill Navigation Capsule -->
-                    <nav class="hidden lg:flex items-center apple-pill-nav shadow-sm">
-                        <a href="index.html#hero" class="apple-pill-link">Home</a>
-                        <a href="research.html" class="apple-pill-link is-active">Research Hub</a>
-                        <a href="learn.html" class="apple-pill-link">Learn</a>
-                        <a href="about.html" class="apple-pill-link">About Us</a>
-                        <a href="blogs/index.html" class="apple-pill-link">Blog</a>
-                        <a href="challenge.html" class="apple-pill-link accent-green font-semibold">7-Day Challenge</a>
-                    </nav>
+                    <!-- Desktop Navigation -->
+                    <div class="hidden md:flex items-center bg-white/5 rounded-full px-5 py-1.5 border border-white/5">
+                        <nav class="flex items-center gap-7 text-sm font-medium">
+                            <a href="index.html#hero" class="text-gray-300 hover:text-white transition-colors">Home</a>
+                            <a href="research.html" class="text-white hover:text-white transition-colors font-semibold">Research</a>
+                            <a href="learn.html" class="text-gray-300 hover:text-white transition-colors">Learn</a>
+                            <a href="about.html" class="text-gray-300 hover:text-white transition-colors">About</a>
+                            <a href="blogs/index.html" class="text-gray-300 hover:text-white transition-colors">Blog</a>
+                            <a href="challenge.html" class="text-[#00FF7F] hover:text-[#00E676] transition-colors font-semibold">7-Day Challenge</a>
+                        </nav>
+                    </div>
 
-                    <!-- Desktop Right CTAs -->
-                    <div class="hidden md:flex items-center gap-3.5">
-                        <a href="tel:+91-8881176909" class="btn-apple-advisor">
-                            <i class="fab fa-whatsapp text-[#00C076] text-base"></i>
-                            <span>Talk to Advisor</span>
+                    <div class="hidden md:flex items-center gap-3">
+                        <a href="tel:+91-8881176909" class="h-9 px-3.5 bg-[#22c55e] hover:bg-[#16a34a] text-black font-bold text-xs rounded-full transition-all flex items-center justify-center gap-1.5 shadow-[0_0_12px_rgba(34,197,94,0.35)]">
+                            <i class="fab fa-whatsapp text-base"></i>
+                            <span>Chat with Advisor</span>
                         </a>
-                        <a href="donation.html" class="btn-apple-dark text-xs py-2.5 px-5">
-                            <i class="fas fa-crown text-amber-400 text-xs"></i>
-                            <span>Unlock Research</span>
+                        <a href="contact.html" class="text-xs font-medium text-gray-300 hover:text-white transition-colors">Contact</a>
+                        <a href="index.html#pricing" class="h-9 px-4 bg-white text-black text-xs font-semibold rounded-full hover:bg-gray-200 transition-colors flex items-center gap-1.5 shadow-md">
+                            <i class="fas fa-crown text-amber-500 text-xs"></i>
+                            <span>Get Elite</span>
                         </a>
                     </div>
 
-                    <!-- Mobile Menu Hamburger -->
-                    <div class="flex items-center gap-3 md:hidden">
-                        <a href="tel:+91-8881176909" class="p-2.5 rounded-full border border-gray-200 bg-gray-50 text-gray-700">
-                            <i class="fas fa-phone-alt text-sm"></i>
-                        </a>
-                        <button id="hambBtn" class="p-2.5 rounded-xl border border-gray-200 bg-white text-gray-800 shadow-sm" aria-label="Toggle navigation">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    <!-- Mobile Header Buttons -->
+                    <div class="flex items-center gap-2 md:hidden">
+                        <button id="hambBtn" class="p-2 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm text-white" aria-label="menu">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M4 6h16M4 12h16M4 18h16" stroke-width="2" stroke-linecap="round"/>
                             </svg>
                         </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Mobile Navigation Drawer -->
-            <div id="mobileMenu" class="hidden md:hidden border-t border-gray-100 bg-white/95 backdrop-blur-2xl px-6 py-6 shadow-xl transition-all">
-                <nav class="flex flex-col gap-3 text-base">
-                    <a href="index.html#hero" class="px-4 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50">Home</a>
-                    <a href="research.html" class="px-4 py-2.5 rounded-xl bg-gray-100 text-gray-900 font-bold">Research Hub</a>
-                    <a href="learn.html" class="px-4 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50">Learning Center</a>
-                    <a href="about.html" class="px-4 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50">About Us</a>
-                    <a href="blogs/index.html" class="px-4 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50">Blog</a>
-                    <a href="challenge.html" class="px-4 py-2.5 rounded-xl text-[#00C076] hover:bg-emerald-50 font-bold">7-Day Challenge</a>
-                    <a href="contact.html" class="px-4 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50">Contact</a>
-                    <div class="pt-4 border-t border-gray-100 flex flex-col gap-3">
-                        <a href="tel:+91-8881176909" class="w-full py-3 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-200 text-center font-bold flex items-center justify-center gap-2">
-                            <i class="fab fa-whatsapp text-[#00C076]"></i> Talk to Advisor
+            <!-- MOBILE MENU -->
+            <div id="mobileMenu" class="hidden md:hidden border-t border-white/10 bg-black absolute w-full">
+                <div class="container mx-auto px-6 py-6 flex flex-col gap-4 text-base">
+                    <a href="index.html#hero" class="block text-gray-300 hover:text-white transition-colors">Home</a>
+                    <a href="research.html" class="block text-white hover:text-white transition-colors font-semibold">Research</a>
+                    <a href="learn.html" class="block text-gray-300 hover:text-white transition-colors">Learn</a>
+                    <a href="about.html" class="block text-gray-300 hover:text-white transition-colors">About</a>
+                    <a href="blogs/index.html" class="block text-gray-300 hover:text-white transition-colors">Blog</a>
+                    <a href="challenge.html" class="block text-[#00FF7F] hover:text-[#00E676] transition-colors font-semibold">7-Day Challenge</a>
+                    <a href="contact.html" class="block text-gray-300 hover:text-white transition-colors">Contact</a>
+                    <div class="mt-4 pt-4 border-t border-white/10 flex flex-col gap-3">
+                        <a href="tel:+91-8881176909" class="bg-green-500 hover:bg-green-600 text-black font-bold w-full text-center py-3 rounded-xl flex items-center justify-center gap-2 transition-all shadow-[0_0_15px_rgba(34,197,94,0.3)]">
+                            <i class="fab fa-whatsapp text-lg"></i> Chat with Advisor
                         </a>
-                        <a href="donation.html" class="btn-apple-dark w-full text-center">
-                            Unlock Full Reports
-                        </a>
+                        <a href="index.html#pricing" class="bg-white text-black w-full text-center py-3 rounded-xl font-medium block">Get Elite</a>
                     </div>
-                </nav>
+                </div>
             </div>
         </header>
     </div>
 
-    <!-- ==============================================
-         RESEARCH HERO
-         ============================================== -->
-    <main class="relative overflow-hidden pt-12 pb-24">
-        <div class="container mx-auto px-6 lg:px-12 max-w-7xl">
-            
-            <div class="max-w-4xl mx-auto text-center mb-16">
-                <div class="reveal-on-scroll badge-apple mb-4">
-                    <i class="fas fa-microscope text-xs"></i> Institutional Due Diligence
-                </div>
-                <h1 class="cuberto-reveal text-4xl sm:text-5xl lg:text-6xl font-semibold mb-6 tracking-tight text-gray-900 leading-[1.15]">
-                    <span class="cuberto-line-wrap"><span class="cuberto-inner">Institutional-Grade Research.</span></span>
-                    <span class="cuberto-line-wrap"><span class="cuberto-inner text-[#00C076]">Built on Hard Financial Models.</span></span>
-                </h1>
-                <p class="reveal-on-scroll stagger-2 text-base sm:text-lg text-gray-600 max-w-2xl mx-auto font-normal leading-relaxed">
-                    We eliminate promotional hype and social media noise. Access transparent DCF models, sensitivity matrices, debt covenants, and long-term sector theses.
-                </p>
-                <div class="reveal-on-scroll stagger-3 mt-8 flex flex-wrap justify-center gap-4">
-                    <a href="#featured-reports" class="btn-apple-dark text-sm">
-                        <span>Browse Featured Reports</span>
-                        <i class="fas fa-arrow-down text-xs"></i>
-                    </a>
-                    <a href="donation.html" class="btn-apple-white text-sm">
-                        <i class="fas fa-file-pdf text-[#00C076]"></i>
-                        <span>Unlock Full PDF Access</span>
-                    </a>
-                </div>
+    <main class="container mx-auto px-6 py-24">
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-8 text-center">Research Hub</h1>
+        <p class="text-xl text-gray-400 text-center mb-16 max-w-2xl mx-auto">In-depth analysis, investment theses, and market intelligence to guide your decisions.</p>
+
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold mb-6 border-b border-white/10 pb-2">Featured Research</h2>
+            <div class="glass-panel">
+                <h3 class="text-xl font-bold mb-2">The Future of Renewable Energy Stocks</h3>
+                <p class="text-gray-400 mb-4">An in-depth look at regulatory tailwinds and valuation metrics for top performers in the sector.</p>
+                <ul class="list-disc list-inside text-gray-400 ml-4 mb-4 text-sm">
+                    <li>Investment summary</li>
+                    <li>Key thesis</li>
+                    <li>Business overview</li>
+                    <li>Growth drivers</li>
+                    <li>Risks & Valuation</li>
+                </ul>
+                <a href="donation.html" class="text-green-400 hover:underline">Read Full Report (IREDA) &rarr;</a>
             </div>
+        </section>
 
-            <!-- Visual Feature Showcase -->
-            <div class="reveal-on-scroll stagger-4 max-w-5xl mx-auto mb-24 rounded-3xl overflow-hidden border border-gray-200 shadow-xl relative bg-white">
-                <img src="assets/research-analytics.jpg" alt="Institutional Financial Analyst Terminal" class="w-full h-auto object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex flex-col justify-end p-8 sm:p-12">
-                    <div class="badge-apple mb-3 w-fit text-xs bg-white/95 text-emerald-800 border-none shadow-sm">Proprietary Evaluation Engine</div>
-                    <h3 class="text-2xl sm:text-3xl font-semibold text-white">How We Evaluate Conviction</h3>
-                    <p class="text-xs sm:text-sm text-gray-200 max-w-xl mt-2 font-normal">Every research note undergoes multi-step sensitivity stress tests across cost-of-capital fluctuations and terminal growth parameters.</p>
-                </div>
-            </div>
-
-            <!-- ==============================================
-                 FEATURED RESEARCH REPORTS (Prompt #1, #2)
-                 ============================================== -->
-            <section id="featured-reports" class="mb-24">
-                <div class="text-center mb-14">
-                    <div class="badge-apple mb-2 text-xs">Core Active Coverage</div>
-                    <h2 class="text-3xl sm:text-4xl font-semibold text-gray-900 tracking-tight">Active PDF Reports & Educational Previews</h2>
-                    <p class="text-sm text-gray-600 mt-2 font-normal">Summarized insights extracted from source material assets.</p>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-                    
-                    <!-- Report 1: IREDA Renewable Energy -->
-                    <div class="glass-panel hover-lift overflow-hidden border border-gray-200/80 bg-white flex flex-col shadow-sm">
-                        <div class="relative h-64 overflow-hidden bg-gray-100">
-                            <img src="assets/ireda-energy.jpg" alt="IREDA Renewable Energy Infrastructure" class="w-full h-full object-cover">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
-                            <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold uppercase bg-white/90 backdrop-blur-md text-emerald-700 border border-emerald-200/80 shadow-sm">Clean Energy Sector</span>
-                        </div>
-                        <div class="p-8 flex-1 flex flex-col">
-                            <div class="flex items-center justify-between mb-2">
-                                <h3 class="text-2xl font-semibold text-gray-900">Indian Renewable Energy Dev. Agency</h3>
-                                <span class="text-xs font-mono text-gray-500 font-semibold bg-gray-100 px-2 py-0.5 rounded">IREDA 3.0</span>
-                            </div>
-                            <p class="text-xs text-gray-600 mb-6 font-normal leading-relaxed">
-                                <strong>Educational Summary:</strong> Evaluates India's rapid solar & wind installation targets, green financing spread dynamics, and sovereign cost of debt protections.
-                            </p>
-
-                            <!-- Headline Fields -->
-                            <div class="grid grid-cols-3 gap-3 mb-6 p-4 rounded-2xl bg-gray-50 border border-gray-100 text-center">
-                                <div>
-                                    <div class="text-[10px] text-gray-500 uppercase font-semibold">Sector</div>
-                                    <div class="text-xs font-semibold text-gray-900 mt-1">Green PSU</div>
-                                </div>
-                                <div>
-                                    <div class="text-[10px] text-gray-500 uppercase font-semibold">Spread Margin</div>
-                                    <div class="text-xs font-semibold text-[#00C076] mt-1">~185 bps</div>
-                                </div>
-                                <div>
-                                    <div class="text-[10px] text-gray-500 uppercase font-semibold">Horizon</div>
-                                    <div class="text-xs font-semibold text-sky-600 mt-1">Multi-Year</div>
-                                </div>
-                            </div>
-
-                            <!-- PDF Preview & Locked Overlay -->
-                            <div class="pdf-preview-container mb-6 relative">
-                                <div class="p-4 pdf-blurred-content space-y-2 text-xs text-gray-400">
-                                    <div class="font-semibold text-gray-800">WACC & DCF Sensitivity Model:</div>
-                                    <p>Base case scenario models loan book expansion at 22% CAGR through FY28, with credit provisioning normalization...</p>
-                                    <p>Stress testing capital adequacy under adverse monetary tightening reveals Tier-1 buffer of 18.6%...</p>
-                                </div>
-                                <div class="pdf-lock-overlay">
-                                    <div class="w-10 h-10 rounded-full bg-emerald-50 text-[#00C076] border border-emerald-200 flex items-center justify-center text-sm mb-2 shadow-sm">
-                                        <i class="fas fa-lock"></i>
-                                    </div>
-                                    <h4 class="font-semibold text-gray-900 text-sm mb-1">Full Research PDF Gated</h4>
-                                    <p class="text-[11px] text-gray-500 max-w-xs mb-3 font-normal">Gain instant access to unredacted charts, spreadsheets, and download links.</p>
-                                    <a href="donation.html" class="btn-apple-dark text-xs py-2 px-5">
-                                        Unlock Full Research &rarr;
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="mt-auto pt-4 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
-                                <span><i class="fas fa-shield-alt text-[#00C076] mr-1"></i> Educational Only</span>
-                                <a href="donation.html" class="text-emerald-700 font-semibold hover:underline">Download PDF (IREDA) &rarr;</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Report 2: RTX Corp Aerospace Defense -->
-                    <div class="glass-panel hover-lift overflow-hidden border border-gray-200/80 bg-white flex flex-col shadow-sm">
-                        <div class="relative h-64 overflow-hidden bg-gray-100">
-                            <img src="assets/rtx-defense.jpg" alt="RTX Corp Aerospace & Defense Technology" class="w-full h-full object-cover">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
-                            <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold uppercase bg-white/90 backdrop-blur-md text-sky-700 border border-sky-200/80 shadow-sm">Aerospace Defense</span>
-                        </div>
-                        <div class="p-8 flex-1 flex flex-col">
-                            <div class="flex items-center justify-between mb-2">
-                                <h3 class="text-2xl font-semibold text-gray-900">RTX Corporation Valuation</h3>
-                                <span class="text-xs font-mono text-gray-500 font-semibold bg-gray-100 px-2 py-0.5 rounded">RTX CORP</span>
-                            </div>
-                            <p class="text-xs text-gray-600 mb-6 font-normal leading-relaxed">
-                                <strong>Educational Summary:</strong> Deep evaluation of commercial avionics backlogs, defense procurement visibility, and resolution of powder metal turbine inspections.
-                            </p>
-
-                            <!-- Headline Fields -->
-                            <div class="grid grid-cols-3 gap-3 mb-6 p-4 rounded-2xl bg-gray-50 border border-gray-100 text-center">
-                                <div>
-                                    <div class="text-[10px] text-gray-500 uppercase font-semibold">Sector</div>
-                                    <div class="text-xs font-semibold text-gray-900 mt-1">Defense Tech</div>
-                                </div>
-                                <div>
-                                    <div class="text-[10px] text-gray-500 uppercase font-semibold">Order Backlog</div>
-                                    <div class="text-xs font-semibold text-sky-600 mt-1">$206 Billion</div>
-                                </div>
-                                <div>
-                                    <div class="text-[10px] text-gray-500 uppercase font-semibold">Dividend Track</div>
-                                    <div class="text-xs font-semibold text-[#00C076] mt-1">30+ Yrs</div>
-                                </div>
-                            </div>
-
-                            <!-- PDF Preview & Locked Overlay -->
-                            <div class="pdf-preview-container mb-6 relative">
-                                <div class="p-4 pdf-blurred-content space-y-2 text-xs text-gray-400">
-                                    <div class="font-semibold text-gray-800">Free Cashflow Projection & Moat Defense:</div>
-                                    <p>Propulsion segment recovery to drive operating margins from 11.2% to 14.8% by 2027...</p>
-                                    <p>Sustained geopolitical restocking ensures missile defense backlog duration exceeds 3.5 years...</p>
-                                </div>
-                                <div class="pdf-lock-overlay">
-                                    <div class="w-12 h-12 rounded-full bg-sky-50 text-sky-600 border border-sky-200 flex items-center justify-center text-sm mb-2 shadow-sm">
-                                        <i class="fas fa-lock"></i>
-                                    </div>
-                                    <h4 class="font-semibold text-gray-900 text-sm mb-1">Defense Valuation Locked</h4>
-                                    <p class="text-[11px] text-gray-500 max-w-xs mb-3 font-normal">Unlock complete analyst models, peer comparison charts, and risk factors.</p>
-                                    <a href="donation.html" class="btn-apple-dark text-xs py-2 px-5">
-                                        Unlock Full Research &rarr;
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="mt-auto pt-4 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
-                                <span><i class="fas fa-shield-alt text-sky-600 mr-1"></i> Educational Only</span>
-                                <a href="donation.html" class="text-sky-700 font-semibold hover:underline">Download PDF (RTX) &rarr;</a>
-                            </div>
-                        </div>
-                    </div>
-
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <section>
+                <h2 class="text-2xl font-bold mb-6 border-b border-white/10 pb-2">Stock Research</h2>
+                <div class="glass-panel">
+                    <h3 class="text-lg font-bold mb-2">Defense Sector: RTX Corp</h3>
+                    <p class="text-gray-400 text-sm mb-4">Comparing growth drivers and long-term thesis.</p>
+                    <a href="donation.html" class="text-blue-400 hover:underline text-sm">View Analysis (RTX CORP)</a>
                 </div>
             </section>
 
-            <!-- ==============================================
-                 RESEARCH METHODOLOGY FRAMEWORK
-                 ============================================== -->
-            <section class="mb-24 max-w-5xl mx-auto">
-                <div class="glass-panel p-8 sm:p-12 border border-gray-200/80 bg-[#F8FAFC] shadow-sm">
-                    <div class="badge-apple mb-3 text-xs">Our Framework</div>
-                    <h2 class="text-2xl sm:text-3xl font-semibold text-gray-900 mb-4 tracking-tight">Rigorous, Peer-Reviewed Methodology</h2>
-                    <p class="text-sm text-gray-600 leading-relaxed mb-8 font-normal">
-                        Our research is grounded in fundamental analysis, long-term macroeconomic trends, and strict risk assessment. We do not rely on momentum trading, technical breakout hype, or social media sentiment.
-                    </p>
-
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div class="p-5 rounded-2xl bg-white border border-gray-200/80 shadow-sm">
-                            <i class="fas fa-database text-[#00C076] text-xl mb-3"></i>
-                            <h4 class="font-semibold text-gray-900 text-base mb-1">Audited Financials</h4>
-                            <p class="text-xs text-gray-500 leading-relaxed font-normal">Extracted directly from annual reports, MCA filings, and statutory disclosures.</p>
-                        </div>
-
-                        <div class="p-5 rounded-2xl bg-white border border-gray-200/80 shadow-sm">
-                            <i class="fas fa-balance-scale text-sky-600 text-xl mb-3"></i>
-                            <h4 class="font-semibold text-gray-900 text-base mb-1">DCF & Multiples</h4>
-                            <p class="text-xs text-gray-500 leading-relaxed font-normal">Valuations modeled under conservative, base, and aggressive hurdle rate scenarios.</p>
-                        </div>
-
-                        <div class="p-5 rounded-2xl bg-white border border-gray-200/80 shadow-sm">
-                            <i class="fas fa-user-check text-amber-600 text-xl mb-3"></i>
-                            <h4 class="font-semibold text-gray-900 text-base mb-1">Lead Advisor Signoff</h4>
-                            <p class="text-xs text-gray-500 leading-relaxed font-normal">Every thesis is reviewed by senior advisors before being summarized for members.</p>
-                        </div>
-                    </div>
+            <section>
+                <h2 class="text-2xl font-bold mb-6 border-b border-white/10 pb-2">Fund Research</h2>
+                <div class="glass-panel">
+                    <h3 class="text-lg font-bold mb-2">Top 5 Index Funds for Core Portfolio</h3>
+                    <p class="text-gray-400 text-sm mb-4">Evaluating expense ratios and tracking errors.</p>
+                    <a href="donation.html" class="text-blue-400 hover:underline text-sm">View Report</a>
                 </div>
             </section>
-
-            <!-- Advisor Commentary -->
-            <section class="max-w-4xl mx-auto text-center mb-16">
-                <div class="glass-panel p-8 border border-gray-200/80 bg-white shadow-sm relative">
-                    <i class="fas fa-quote-left text-3xl text-emerald-500/20 mb-4"></i>
-                    <p class="text-base sm:text-lg text-gray-700 italic font-normal leading-relaxed mb-4">
-                        "Market volatility is not an enemy to be feared; it is the exact mechanism that prices exceptional businesses at generational discounts. When your thesis is grounded in verifiable cashflows, corrections become opportunities."
-                    </p>
-                    <div class="font-semibold text-gray-900 text-sm">Adarsh Chandra</div>
-                    <div class="text-xs text-[#00C076] font-semibold">Chief Analytics Officer, Rivava</div>
-                </div>
-            </section>
-
         </div>
+
+        <section class="mt-16">
+            <h2 class="text-2xl font-bold mb-6 border-b border-white/10 pb-2">Advisor Commentary</h2>
+            <div class="glass-panel">
+                <p class="italic text-gray-300">"Current market volatility presents a unique opportunity for long-term investors focused on fundamentals, rather than short-term price action." - Anjali Sharma, Lead Advisor</p>
+            </div>
+        </section>
+
+        <section class="mt-16">
+            <h2 class="text-2xl font-bold mb-6 border-b border-white/10 pb-2">Research Methodology</h2>
+            <div class="glass-panel">
+                <p class="text-gray-400">Our research is grounded in fundamental analysis, long-term macroeconomic trends, and strict risk assessment. We do not rely on momentum trading or social media sentiment.</p>
+            </div>
+        </section>
+
     </main>
 
-    <!-- Footer -->
-    <footer class="border-t border-gray-200 bg-[#F8FAFC] py-12 text-center text-xs text-gray-500">
-        <div class="container mx-auto px-6 max-w-7xl">
-            <p>&copy; <span id="year"></span> Rivava. Research and educational purposes only. Not investment advice.</p>
-            <div class="flex justify-center gap-6 mt-4">
-                <a href="index.html#hero" class="hover:text-gray-900">Home</a>
-                <a href="learn.html" class="hover:text-gray-900">Learning Center</a>
-                <a href="about.html" class="hover:text-gray-900">About Us</a>
-                <a href="donation.html" class="hover:text-gray-900">Unlock Research</a>
-                <a href="contact.html" class="hover:text-gray-900">Contact</a>
-            </div>
-        </div>
+    <footer class="border-t border-white/10 mt-20 py-8 text-center text-gray-400 text-sm">
+        <p>&copy; 2026 Rivava. Research and educational purposes only.</p>
     </footer>
 
-    <!-- Motion & Smooth Scroll Stack: GSAP 3 + ScrollTrigger + Lenis -->
-    <script src="assets/js/vendor/gsap.min.js"></script>
-    <script src="assets/js/vendor/ScrollTrigger.min.js"></script>
-    <script src="assets/js/vendor/lenis.min.js"></script>
-    <script src="assets/js/rivava.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hambBtn = document.getElementById('hambBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (hambBtn && mobileMenu) {
+                hambBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+                mobileMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        if(link.id !== 'openAppModalBtnMobile') {
+                            mobileMenu.classList.add('hidden');
+                        }
+                    });
+                });
+            }
+        });
+    </script>
 </body>
+
 </html>

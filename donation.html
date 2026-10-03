@@ -1,273 +1,410 @@
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unlock Premium Research & Rivava Elite — Rivava</title>
-    <meta name="description" content="Choose your Rivava subscription. Access institutional equity research reports, curated portfolios, and dedicated advisor support." />
-    
-    <link rel="icon" type="image/png" sizes="32x32" href="icon_folder/icon-32x32.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="icon_folder/icon-180x180.png">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>Take the Next Step — Rivava</title>
+    <meta name="description" content="Take the next step in your financial journey. Choose the Rivava Portfolio or Rivava Elite subscription to unlock premium features and dedicated support." />
+    <!-- Favicon -->
+    <link rel="icon" href="logo.png" type="image/png">
+       <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Display"', '"SF Pro Text"', '"SF Pro"', '"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/rivava.css">
-</head>
-<body class="apple-theme bg-white text-slate-900 selection:bg-[#00C076] selection:text-white">
+    <!-- Apple SF Pro Font -->
+    <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/sf-pro-display">
 
-    <!-- ==============================================
-         STICKY HEADER WITH HARDWARE ACCELERATED PILL NAV
-         ============================================== -->
-    <div class="site-header-wrapper" id="header-wrapper">
-        <header id="header" class="w-full bg-white/80 backdrop-blur-xl border-b border-gray-100 transition-all">
-            <div class="container mx-auto px-6 lg:px-12 max-w-7xl">
-                <div class="flex items-center justify-between py-4 h-20">
-                    <a href="index.html#hero" class="flex items-center gap-3.5 group">
-                        <div class="w-10 h-10 rounded-2xl bg-white border border-gray-200 flex items-center justify-center p-1.5 shadow-sm group-hover:scale-105 transition-transform">
-                            <img src="assets/logo.png" alt="Rivava Logo" class="h-full w-full object-contain">
+    <style>
+        :root {
+            --apple-font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "SF Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            --accent-pink: #FF3366;
+            --accent-blue: #0070F3;
+            --accent-lime: #00E676;
+            --bg-dark: #0A0A0A;
+            --bg-panel: #111111;
+            --text-primary: #FAFAFA;
+            --text-muted: #A0AEC0;
+            --accent-primary: #FFFFFF;
+            --accent-green: #00FF7F;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --shadow-glow: 0 0 60px rgba(255, 255, 255, 0.1);
+            --transition-fast: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --transition-medium: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body { 
+            background-color: var(--bg-dark);
+            color: var(--text-primary); 
+            font-family: var(--apple-font);
+            font-weight: 450;
+            letter-spacing: -0.012em;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: 
+                radial-gradient(circle at 18% 18%, rgba(255, 51, 102, 0.16), transparent 45%),
+                radial-gradient(circle at 82% 20%, rgba(0, 112, 243, 0.16), transparent 45%),
+                radial-gradient(circle at 50% 85%, rgba(0, 255, 127, 0.10), transparent 50%),
+                radial-gradient(circle at 85% 75%, rgba(255, 51, 102, 0.08), transparent 40%),
+                radial-gradient(circle at 15% 80%, rgba(0, 112, 243, 0.10), transparent 40%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--apple-font);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+        .font-extrabold, .font-black {
+            font-weight: 650 !important;
+        }
+        .font-bold {
+            font-weight: 600 !important;
+        }
+        .font-semibold {
+            font-weight: 550 !important;
+        }
+        .font-medium {
+            font-weight: 500 !important;
+        }
+        
+        .rivava-text {
+            font-weight: 800;
+            text-shadow: 0 0 25px rgba(0, 255, 127, 0.3);
+            animation: glow 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 5px rgba(0, 255, 127, 0.3)); }
+            to { filter: drop-shadow(0 0 15px rgba(0, 255, 127, 0.7)); }
+        }
+
+        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.85rem 2rem; border-radius: 999px; font-weight: 600; transition: var(--transition-fast); cursor: pointer; }
+        
+        .btn-primary { 
+            background-color: var(--accent-primary); 
+            color: var(--bg-dark); 
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.15); 
+        }
+        .btn-primary:hover { 
+            transform: translateY(-2px); 
+            background-color: #e5e5e5;
+            box-shadow: 0 12px 35px rgba(255, 255, 255, 0.2); 
+        }
+
+        .glass-panel { 
+            background: rgba(255, 255, 255, 0.02); 
+            border: 1px solid var(--border-color); 
+            backdrop-filter: blur(20px);
+            border-radius: 1.5rem; 
+            transition: var(--transition-medium);
+        }
+        .glass-panel:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+        .popular-card { 
+            border-color: rgba(255, 255, 255, 0.35); 
+            box-shadow: 0 0 40px rgba(0, 255, 127, 0.1);
+        }
+        .custom-badge { 
+            background-color: var(--accent-green); 
+            color: var(--bg-dark); 
+            text-transform: uppercase; 
+            letter-spacing: 0.05em; 
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body class="relative">
+    <!-- STICKY WRAPPER FOR TICKER AND HEADER -->
+    <div class="sticky top-0 z-[60] flex flex-col w-full shadow-lg bg-[color:var(--bg-panel)]/80 backdrop-blur-2xl border-b border-white/5 transition-all duration-300" id="header-wrapper">
+        <header id="header" class="left-0 right-0 z-50">
+            <div class="container mx-auto px-6 lg:px-12">
+                <div class="flex items-center justify-between py-3 transition-all duration-300 h-16">
+                    <a href="index.html#hero" class="flex items-center gap-3 group">
+                        <div class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white/10 transition-colors shadow-[0_0_12px_rgba(0,255,127,0.2)]">
+                            <img src="assets/logo.png" alt="Rivava Logo" class="h-9 w-9 object-contain">
                         </div>
-                        <div class="flex flex-col">
-                            <span class="text-xl font-semibold tracking-tight text-gray-900 rivava-text">Rivava</span>
-                            <span class="text-[9px] tracking-widest uppercase font-semibold text-gray-400">Membership</span>
-                        </div>
+                        <span class="text-xl font-bold tracking-tight rivava-text">Rivava</span>
                     </a>
 
-                    <!-- Center Pill Navigation Capsule -->
-                    <nav class="hidden lg:flex items-center apple-pill-nav shadow-sm">
-                        <a href="index.html#hero" class="apple-pill-link">Home</a>
-                        <a href="research.html" class="apple-pill-link">Research Hub</a>
-                        <a href="learn.html" class="apple-pill-link">Learn</a>
-                        <a href="about.html" class="apple-pill-link">About Us</a>
-                        <a href="blogs/index.html" class="apple-pill-link">Blog</a>
-                        <a href="challenge.html" class="apple-pill-link accent-green font-semibold">7-Day Challenge</a>
-                    </nav>
+                    <!-- Desktop Navigation -->
+                    <div class="hidden md:flex items-center bg-white/5 rounded-full px-5 py-1.5 border border-white/5">
+                        <nav class="flex items-center gap-7 text-sm font-medium">
+                            <a href="index.html#hero" class="text-gray-300 hover:text-white transition-colors">Home</a>
+                            <a href="research.html" class="text-gray-300 hover:text-white transition-colors">Research</a>
+                            <a href="learn.html" class="text-gray-300 hover:text-white transition-colors">Learn</a>
+                            <a href="about.html" class="text-gray-300 hover:text-white transition-colors">About</a>
+                            <a href="blogs/index.html" class="text-gray-300 hover:text-white transition-colors">Blog</a>
+                            <a href="challenge.html" class="text-[#00FF7F] hover:text-[#00E676] transition-colors font-semibold">7-Day Challenge</a>
+                        </nav>
+                    </div>
 
-                    <!-- Desktop Right CTAs -->
-                    <div class="hidden md:flex items-center gap-3.5">
-                        <a href="tel:+91-8881176909" class="btn-apple-advisor">
-                            <i class="fab fa-whatsapp text-[#00C076] text-base"></i>
-                            <span>Talk to Advisor</span>
+                    <div class="hidden md:flex items-center gap-3">
+                        <a href="tel:+91-8881176909" class="h-9 px-3.5 bg-[#22c55e] hover:bg-[#16a34a] text-black font-bold text-xs rounded-full transition-all flex items-center justify-center gap-1.5 shadow-[0_0_12px_rgba(34,197,94,0.35)]">
+                            <i class="fab fa-whatsapp text-base"></i>
+                            <span>Chat with Advisor</span>
                         </a>
-                        <a href="whatsapp.html" class="btn-apple-white text-xs py-2 px-4">
-                            <i class="fab fa-whatsapp text-[#00C076] mr-1"></i> WhatsApp Desk
+                        <a href="contact.html" class="text-xs font-medium text-gray-300 hover:text-white transition-colors">Contact</a>
+                        <a href="index.html#pricing" class="h-9 px-4 bg-white text-black text-xs font-semibold rounded-full hover:bg-gray-200 transition-colors flex items-center gap-1.5 shadow-md">
+                            <i class="fas fa-crown text-amber-500 text-xs"></i>
+                            <span>Get Elite</span>
                         </a>
                     </div>
 
-                    <!-- Mobile Menu Hamburger -->
-                    <div class="flex items-center gap-3 md:hidden">
-                        <a href="tel:+91-8881176909" class="p-2.5 rounded-full border border-gray-200 bg-gray-50 text-gray-700">
-                            <i class="fas fa-phone-alt text-sm"></i>
-                        </a>
-                        <button id="hambBtn" class="p-2.5 rounded-xl border border-gray-200 bg-white text-gray-800 shadow-sm" aria-label="Toggle navigation">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    <!-- Mobile Header Buttons -->
+                    <div class="flex items-center gap-2 md:hidden">
+                        <button id="hambBtn" class="p-2 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm text-white" aria-label="menu">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M4 6h16M4 12h16M4 18h16" stroke-width="2" stroke-linecap="round"/>
                             </svg>
                         </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Mobile Navigation Drawer -->
-            <div id="mobileMenu" class="hidden md:hidden border-t border-gray-100 bg-white/95 backdrop-blur-2xl px-6 py-6 shadow-xl transition-all">
-                <nav class="flex flex-col gap-3 text-base">
-                    <a href="index.html#hero" class="px-4 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50">Home</a>
-                    <a href="research.html" class="px-4 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50">Research Hub</a>
-                    <a href="learn.html" class="px-4 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50">Learning Center</a>
-                    <a href="about.html" class="px-4 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50">About Us</a>
-                    <a href="blogs/index.html" class="px-4 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50">Blog</a>
-                    <a href="challenge.html" class="px-4 py-2.5 rounded-xl text-[#00C076] hover:bg-emerald-50 font-semibold">7-Day Challenge</a>
-                </nav>
+            <!-- MOBILE MENU -->
+            <div id="mobileMenu" class="hidden md:hidden border-t border-white/10 bg-black absolute w-full">
+                <div class="container mx-auto px-6 py-6 flex flex-col gap-4 text-base">
+                    <a href="index.html#hero" class="block text-gray-300 hover:text-white transition-colors">Home</a>
+                    <a href="research.html" class="block text-gray-300 hover:text-white transition-colors">Research</a>
+                    <a href="learn.html" class="block text-gray-300 hover:text-white transition-colors">Learn</a>
+                    <a href="about.html" class="block text-gray-300 hover:text-white transition-colors">About</a>
+                    <a href="blogs/index.html" class="block text-gray-300 hover:text-white transition-colors">Blog</a>
+                    <a href="challenge.html" class="block text-[#00FF7F] hover:text-[#00E676] transition-colors font-semibold">7-Day Challenge</a>
+                    <a href="contact.html" class="block text-gray-300 hover:text-white transition-colors">Contact</a>
+                    <div class="mt-4 pt-4 border-t border-white/10 flex flex-col gap-3">
+                        <a href="tel:+91-8881176909" class="bg-green-500 hover:bg-green-600 text-black font-bold w-full text-center py-3 rounded-xl flex items-center justify-center gap-2 transition-all shadow-[0_0_15px_rgba(34,197,94,0.3)]">
+                            <i class="fab fa-whatsapp text-lg"></i> Chat with Advisor
+                        </a>
+                        <a href="index.html#pricing" class="bg-white text-black w-full text-center py-3 rounded-xl font-medium block">Get Elite</a>
+                    </div>
+                </div>
             </div>
         </header>
     </div>
 
-    <!-- ==============================================
-         PRICING / RESEARCH UNLOCK HERO
-         ============================================== -->
-    <main class="relative overflow-hidden pt-12 pb-24">
-        <div class="container mx-auto px-6 lg:px-12 max-w-7xl">
-            
-            <div class="max-w-4xl mx-auto text-center mb-16">
-                <div class="reveal-on-scroll badge-apple mb-4">
-                    <i class="fas fa-key text-xs"></i> Institutional Access
+    <main>
+        <!-- DONATION SECTION -->
+        <section id="donate" class="min-h-screen flex items-center pt-32 sm:pt-36 pb-16 sm:pb-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight">
+                        Unlock Premium Research
+                    </h2>
+                    <p class="text-center text-lg sm:text-xl max-w-3xl mx-auto mt-6">
+                        Get the right data analyzed by experts, learn from advisor-backed explanations, and build the confidence to become a master of your money.
+                    </p>
                 </div>
-                <h1 class="cuberto-reveal text-4xl sm:text-5xl lg:text-6xl font-semibold mb-6 tracking-tight leading-tight text-gray-900">
-                    <span class="cuberto-line-wrap"><span class="cuberto-inner">Unlock Premium Research &</span></span>
-                    <span class="cuberto-line-wrap"><span class="cuberto-inner text-[#B45309]">Rivava Elite Membership.</span></span>
-                </h1>
-                <p class="reveal-on-scroll stagger-2 text-base sm:text-lg text-gray-600 max-w-2xl mx-auto font-normal leading-relaxed">
-                    Gain unredacted access to institutional DCF valuation models, PDF research downloads, and dedicated 1-on-1 advisor counseling sessions.
-                </p>
+
+                <!-- Support Options -->
+                <p class="text-center text-gray-400 mb-8">Choose your subscription option:</p>
+                <div class="space-y-6 max-w-3xl mx-auto">
+                    
+                    <!-- Option 1: Rivava Portfolio -->
+                    <div class="glass-panel flex flex-col sm:flex-row items-center justify-between p-5 sm:p-6 relative">
+                        <span class="custom-badge absolute -top-3 right-6 text-xs font-bold px-4 py-1 rounded-full">Premium</span>
+                        <div class="flex-1 text-center sm:text-left mb-4 sm:mb-0">
+                            <h3 class="font-bold text-2xl">Rivava Portfolio</h3>
+                            <h3 class="font-bold text-xl text-green-400">₹400</h3>
+                            <p class="text-sm text-muted mt-2">Unlock premium reports, curated portfolios, market insights, expert-reviewed data lessons, and advisor support.</p>
+                        </div>
+                        <a href="upi://pay?pa=8881176909@kotakbank&pn=Rivava&am=400&cu=INR&tn=Rivava%20Portfolio%20Subscription" data-plan="Rivava Portfolio" class="btn btn-primary w-full sm:w-auto">
+                            Pay ₹400
+                        </a>
+                    </div>
+
+                    <!-- Option 2: Rivava Elite -->
+                    <div class="glass-panel popular-card flex flex-col sm:flex-row items-center justify-between p-5 sm:p-6 relative">
+                        <span class="custom-badge absolute -top-3 right-6 text-xs font-bold px-4 py-1 rounded-full">Elite Access</span>
+                        <div class="flex-1 text-center sm:text-left mb-4 sm:mb-0">
+                            <h3 class="font-bold text-2xl">Rivava Elite</h3>
+                            <h3 class="font-bold text-xl text-green-400">₹399 + Free 1st session</h3>
+                            <p class="text-sm text-muted mt-2">Unlock premium reports, curated portfolios, market insights, expert-reviewed data lessons, and advisor support.</p>
+                        </div>
+                        <a href="upi://pay?pa=8881176909@kotakbank&pn=Rivava&am=399&cu=INR&tn=Rivava%20Elite%20Subscription" data-plan="Rivava Elite" class="btn btn-primary w-full sm:w-auto">
+                            Pay ₹399 + Free 1st session
+                        </a>
+                    </div>
+                </div>
             </div>
-
-            <!-- Pricing Options Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-20">
-                
-                <!-- Option 1: Rivava Portfolio -->
-                <div class="reveal-on-scroll stagger-1 glass-panel p-8 sm:p-10 border border-gray-200/80 bg-white flex flex-col justify-between relative overflow-hidden shadow-sm">
-                    <div class="absolute -top-3 right-6 text-xs font-semibold uppercase tracking-wider bg-gray-100 border border-gray-200 text-gray-700 px-3 py-1 rounded-full">
-                        Standard Access
-                    </div>
-                    <div>
-                        <div class="w-12 h-12 rounded-2xl bg-sky-50 text-sky-600 flex items-center justify-center text-xl mb-6 shadow-sm">
-                            <i class="fas fa-chart-pie"></i>
-                        </div>
-                        <h3 class="text-2xl font-semibold text-gray-900 mb-1">Rivava Portfolio</h3>
-                        <div class="text-3xl font-semibold text-[#00C076] font-mono my-4">₹400</div>
-                        <p class="text-xs sm:text-sm text-gray-600 leading-relaxed mb-6 font-normal">
-                            Unlock premium equity research reports (IREDA & RTX), curated core portfolio benchmarks, and market insight memos.
-                        </p>
-                        
-                        <div class="space-y-3 mb-8 border-t border-gray-100 pt-6 text-xs sm:text-sm text-gray-600">
-                            <div class="flex items-center gap-3">
-                                <i class="fas fa-check text-[#00C076]"></i>
-                                <span>Download IREDA & RTX Full PDF Reports</span>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <i class="fas fa-check text-[#00C076]"></i>
-                                <span>Unredacted DCF Valuation Spreadsheets</span>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <i class="fas fa-check text-[#00C076]"></i>
-                                <span>Monthly Market Intelligence Memos</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <a href="upi://pay?pa=8881176909@kotakbank&pn=Rivava&am=400&cu=INR&tn=Rivava%20Portfolio%20Subscription" data-plan="Rivava Portfolio" class="qr-pay-btn btn-apple-dark w-full text-center text-sm py-3.5">
-                        <i class="fas fa-qrcode text-emerald-400"></i>
-                        <span>Subscribe for ₹400</span>
-                    </a>
-                </div>
-
-                <!-- Option 2: Rivava Elite -->
-                <div class="reveal-on-scroll stagger-2 glass-panel p-8 sm:p-10 border-2 border-amber-200/90 bg-white flex flex-col justify-between relative overflow-hidden shadow-md">
-                    <div class="absolute -top-3 right-6 text-xs font-semibold uppercase tracking-wider bg-amber-400 text-gray-950 px-3.5 py-1 rounded-full shadow-sm">
-                        100 Seats Capped
-                    </div>
-                    <div>
-                        <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center text-xl mb-6 shadow-sm">
-                            <i class="fas fa-crown"></i>
-                        </div>
-                        <h3 class="text-2xl font-semibold text-gray-900 mb-1">Rivava Elite</h3>
-                        <div class="text-3xl font-semibold text-[#B45309] font-mono my-4">₹399 <span class="text-xs text-gray-500 font-normal">+ Free 1st session</span></div>
-                        <p class="text-xs sm:text-sm text-gray-600 leading-relaxed mb-6 font-normal">
-                            Exclusive VIP circle limited strictly to 100 high-conviction members. Combines institutional research with personalized advisor sessions.
-                        </p>
-                        
-                        <div class="space-y-3 mb-8 border-t border-gray-100 pt-6 text-xs sm:text-sm text-gray-700">
-                            <div class="flex items-center gap-3">
-                                <i class="fas fa-check text-amber-600"></i>
-                                <span>Includes Free 1st Advisor Consultation Session</span>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <i class="fas fa-check text-amber-600"></i>
-                                <span>Quarterly 1-on-1 Portfolio Reviews</span>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <i class="fas fa-check text-amber-600"></i>
-                                <span>Institutional PDF Downloads (All Assets)</span>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <i class="fas fa-check text-amber-600"></i>
-                                <span>Direct Priority WhatsApp & Video Support</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <a href="upi://pay?pa=8881176909@kotakbank&pn=Rivava&am=399&cu=INR&tn=Rivava%20Elite%20Subscription" data-plan="Rivava Elite" class="qr-pay-btn btn-apple-dark w-full text-center text-sm py-3.5">
-                        <i class="fas fa-gem text-amber-400"></i>
-                        <span>Join Rivava Elite (₹399)</span>
-                    </a>
-                </div>
-
-            </div>
-
-            <!-- Instant Verification & Download Guide -->
-            <section class="max-w-4xl mx-auto glass-panel p-8 sm:p-10 border border-gray-200/80 bg-white mb-16 text-center shadow-sm">
-                <i class="fas fa-shield-check text-3xl text-[#00C076] mb-3"></i>
-                <h3 class="text-xl font-semibold text-gray-900 mb-2">How Instant Access Works</h3>
-                <p class="text-xs sm:text-sm text-gray-600 max-w-xl mx-auto mb-6 font-normal">
-                    1. Tap or scan the QR code to complete payment via UPI. <br />
-                    2. Click "I Have Paid" to message our verification desk on WhatsApp (+91 88811 76909). <br />
-                    3. Receive your secret unlock key and instantly download the research reports.
-                </p>
-                <div class="flex justify-center gap-4">
-                    <a href="https://wa.me/918881176909?text=Hello%20Rivava,%20I%20have%20a%20question%20regarding%20subscription%20plans." target="_blank" class="text-xs text-[#00C076] font-semibold hover:underline flex items-center gap-1.5">
-                        <i class="fab fa-whatsapp"></i> Chat with Support on WhatsApp
-                    </a>
-                </div>
-            </section>
-
-        </div>
+        </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="border-t border-gray-200 bg-white py-12 text-center text-xs text-gray-500">
-        <div class="container mx-auto px-6">
-            <p>&copy; <span id="year"></span> Rivava. Educational & research subscriptions. Not investment advice.</p>
-            <div class="flex justify-center gap-6 mt-4">
-                <a href="index.html#hero" class="hover:text-gray-900">Home</a>
-                <a href="research.html" class="hover:text-gray-900">Research Hub</a>
-                <a href="learn.html" class="hover:text-gray-900">Learning Center</a>
-                <a href="about.html" class="hover:text-gray-900">About Us</a>
-                <a href="contact.html" class="hover:text-gray-900">Contact</a>
-            </div>
+    <!-- FOOTER -->
+    <footer class="border-t border-white/10 mt-20">
+        <div class="container mx-auto px-6 py-8 text-center text-sm text-gray-400">
+            <p>&copy; <span id="year"></span> Rivava. Made with ❤️ in India.</p>
         </div>
     </footer>
 
-    <!-- QR Code UPI Modal -->
-    <div id="qrModal" class="fixed inset-0 bg-black/40 backdrop-blur-md hidden items-center justify-center z-[100] p-4">
-        <div class="bg-white border border-gray-200 w-full max-w-md rounded-3xl p-6 sm:p-8 relative text-center shadow-2xl text-gray-900">
-            <button id="closeQr" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 text-xl">
-                <i class="fas fa-times"></i>
-            </button>
-
-            <h3 id="qrModalTitle" class="text-xl font-semibold text-gray-900 mb-2">Scan to Subscribe</h3>
-            <p class="text-xs text-gray-500 mb-6 font-normal">Scan with Google Pay, PhonePe, Paytm, or any UPI App</p>
+    <!-- QR Code Modal -->
+    <div id="qrModal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center hidden z-50">
+        <div class="bg-white p-6 rounded-xl relative text-black flex flex-col items-center">
+            <span id="closeQr" class="absolute top-2 right-3 cursor-pointer text-gray-600 text-2xl font-bold">&times;</span>
+            <h3 id="qrModalTitle" class="text-center font-bold mb-4 text-lg">Scan to Pay</h3>
 
             <div id="paymentStepSection" class="flex flex-col items-center w-full">
-                <div class="p-3 bg-white border border-gray-200 rounded-2xl mb-4 shadow-sm inline-block">
-                    <div id="qrcode" class="mx-auto"></div>
-                </div>
-                <div class="text-xs font-mono text-gray-700 mb-4 bg-gray-50 px-3 py-1.5 rounded-lg border border-gray-200">
-                    UPI ID: 8881176909@kotakbank
-                </div>
-                <button id="iHavePaidBtn" class="btn-apple-dark w-full text-sm py-3">
-                    <i class="fas fa-check-circle mr-1"></i>
-                    <span>I Have Paid</span>
-                </button>
+                <div id="qrcode" class="mx-auto mb-4"></div>
+                <button id="iHavePaidBtn" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors mt-2 w-full font-bold">I Have Paid</button>
             </div>
 
             <div id="verificationSection" class="hidden flex-col items-center w-full">
-                <p class="text-xs text-gray-600 mb-3 text-center font-normal">
-                    Please <a id="whatsappContactLink" href="#" target="_blank" class="text-[#00C076] underline font-semibold">contact us on WhatsApp</a> to receive your verified access key instantly.
-                </p>
-                <input type="text" id="paymentKeyInput" placeholder="Enter Secret Key (e.g. rivrubi@12345)" class="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-900 text-sm text-center mb-3 focus:outline-none focus:border-[#00C076]">
-                <p id="paymentError" class="text-red-500 text-xs hidden mb-3 font-medium">Invalid verification key. Please check WhatsApp.</p>
-                <button id="verifyPaymentBtn" class="btn-apple-dark w-full text-sm py-3">Verify Key</button>
+                <p class="text-sm text-gray-600 mb-2 text-center">Please <a id="whatsappContactLink" href="#" target="_blank" class="text-green-500 underline font-bold">contact us on WhatsApp</a> to receive your verification key.</p>
+                <input type="text" id="paymentKeyInput" placeholder="Secret Key" class="border border-gray-300 rounded-lg px-3 py-2 mb-2 w-full text-center focus:outline-none focus:ring-2 focus:ring-green-500">
+                <p id="paymentError" class="text-red-500 text-sm hidden mb-2 font-medium">Invalid key </p>
+                <button id="verifyPaymentBtn" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors mt-2 w-full">Verify Key</button>
             </div>
 
             <div id="downloadSection" class="hidden flex-col gap-3 mt-4 w-full">
-                <p class="text-[#00C076] font-semibold text-sm mb-1">Access Verified Successfully!</p>
-                <a href="assets/ireda%20portfolio%203.0.pdf" download class="btn-apple-dark text-xs py-2.5">
-                    <i class="fas fa-file-pdf"></i> Download IREDA Portfolio Report
-                </a>
-                <a href="assets/RTX%20CORP.pdf" download class="btn-apple-white text-xs py-2.5">
-                    <i class="fas fa-file-pdf"></i> Download RTX CORP Defense Report
-                </a>
+                <p class="text-green-600 font-bold text-center mb-2">Payment Verified Successfully!</p>
+                <a href="assets/ireda%20portfolio%203.0.pdf" download class="bg-blue-500 text-white text-center px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors w-full">Download IREDA Portfolio</a>
+                <a href="assets/RTX%20CORP.pdf" download class="bg-blue-500 text-white text-center px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors w-full">Download RTX CORP</a>
             </div>
         </div>
     </div>
 
+    <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-    <!-- Motion & Smooth Scroll Stack: GSAP 3 + ScrollTrigger + Lenis -->
-    <script src="assets/js/vendor/gsap.min.js"></script>
-    <script src="assets/js/vendor/ScrollTrigger.min.js"></script>
-    <script src="assets/js/vendor/lenis.min.js"></script>
-    <script src="assets/js/rivava.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // --- Mobile Menu Toggle ---
+            const hambBtn = document.getElementById('hambBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            hambBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+            });
+
+            // --- Header Scroll Effect ---
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+        });
+
+        // Function to detect if the user is on a desktop device
+        function isDesktop() {
+            return !(/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent));
+        }
+
+        const qrModal = document.getElementById('qrModal');
+        const closeQr = document.getElementById('closeQr');
+        const qrCodeDiv = document.getElementById('qrcode');
+        const paymentStepSection = document.getElementById('paymentStepSection');
+        const iHavePaidBtn = document.getElementById('iHavePaidBtn');
+        const verifyPaymentBtn = document.getElementById('verifyPaymentBtn');
+        const downloadSection = document.getElementById('downloadSection');
+        const verificationSection = document.getElementById('verificationSection');
+        const paymentKeyInput = document.getElementById('paymentKeyInput');
+        const paymentError = document.getElementById('paymentError');
+        const qrModalTitle = document.getElementById('qrModalTitle');
+        const whatsappContactLink = document.getElementById('whatsappContactLink');
+        let selectedPlan = "";
+
+        // Add click listeners to all primary payment buttons
+        document.querySelectorAll('.btn-primary').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                if (isDesktop()) {
+                    e.preventDefault();
+                    qrCodeDiv.innerHTML = "";
+                    new QRCode(qrCodeDiv, {
+                        text: this.href,
+                        width: 200,
+                        height: 200,
+                    });
+
+                    selectedPlan = this.getAttribute('data-plan') || "Rivava Subscription";
+
+                    // Reset modal state
+                    paymentStepSection.classList.remove('hidden');
+                    paymentStepSection.classList.add('flex');
+                    verificationSection.classList.add('hidden');
+                    verificationSection.classList.remove('flex');
+                    downloadSection.classList.add('hidden');
+                    downloadSection.classList.remove('flex');
+                    paymentKeyInput.value = "";
+                    paymentError.classList.add('hidden');
+                    qrModalTitle.textContent = "Scan to Pay";
+
+                    qrModal.classList.remove('hidden');
+                } else {
+                     selectedPlan = this.getAttribute('data-plan') || "Rivava Subscription";
+                }
+            });
+        });
+
+        iHavePaidBtn.addEventListener('click', () => {
+            paymentStepSection.classList.add('hidden');
+            paymentStepSection.classList.remove('flex');
+            verificationSection.classList.remove('hidden');
+            verificationSection.classList.add('flex');
+            qrModalTitle.textContent = "Verify Payment";
+
+            const phoneNumber = "918881176909";
+            const message = encodeURIComponent(`Hello, I have paid for ${selectedPlan}. Please provide my verification key.`);
+            whatsappContactLink.href = `https://wa.me/${phoneNumber}?text=${message}`;
+        });
+
+        verifyPaymentBtn.addEventListener('click', () => {
+            const key = paymentKeyInput.value.trim();
+            const isValid = /^rivrubi@\d{5}$/.test(key);
+
+            if (isValid) {
+                verificationSection.classList.add('hidden');
+                verificationSection.classList.remove('flex');
+                downloadSection.classList.remove('hidden');
+                downloadSection.classList.add('flex');
+                qrModalTitle.textContent = "Download Premium Research";
+                paymentError.classList.add('hidden');
+            } else {
+                paymentError.classList.remove('hidden');
+            }
+        });
+
+        // Close the modal when the 'x' is clicked
+        closeQr.addEventListener('click', () => {
+            qrModal.classList.add('hidden');
+        });
+
+        // Close the modal if the user clicks on the background overlay
+        qrModal.addEventListener('click', (e) => {
+            if (e.target === qrModal) {
+                qrModal.classList.add('hidden');
+            }
+        });
+    </script>
 </body>
 </html>
+

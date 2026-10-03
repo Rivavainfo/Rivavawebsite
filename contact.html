@@ -1,257 +1,344 @@
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us — Rivava | Advisor Inquiries & Support</title>
-    <meta name="description" content="Get in touch with the Rivava research team and credentialed advisors. Direct WhatsApp desk, email support, and consultation requests." />
-    
-    <link rel="icon" type="image/png" sizes="32x32" href="icon_folder/icon-32x32.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="icon_folder/icon-180x180.png">
+    <title>Contact Us — Rivava</title>
+    <meta name="description" content="Get in touch with the Rivava team for support, elite inquiries, and general questions." />
 
+    <link rel="icon" type="image/png" sizes="32x32" href="icon_folder/icon-32x32.png" onerror="this.onerror=null;this.src='https://placehold.co/32x32/000000/FFFFFF?text=R';">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Display"', '"SF Pro Text"', '"SF Pro"', '"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/rivava.css">
-</head>
-<body class="apple-theme bg-white text-slate-900 selection:bg-[#00C076] selection:text-white">
+    <!-- Apple SF Pro Font -->
+    <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/sf-pro-display">
 
-    <!-- ==============================================
-         STICKY HEADER WITH HARDWARE ACCELERATED PILL NAV
-         ============================================== -->
-    <div class="site-header-wrapper" id="header-wrapper">
-        <header id="header" class="w-full bg-white/80 backdrop-blur-xl border-b border-gray-100 transition-all">
-            <div class="container mx-auto px-6 lg:px-12 max-w-7xl">
-                <div class="flex items-center justify-between py-4 h-20">
-                    <a href="index.html#hero" class="flex items-center gap-3.5 group">
-                        <div class="w-10 h-10 rounded-2xl bg-white border border-gray-200 flex items-center justify-center p-1.5 shadow-sm group-hover:scale-105 transition-transform">
-                            <img src="assets/logo.png" alt="Rivava Logo" class="h-full w-full object-contain">
+    <style>
+        :root {
+            --apple-font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "SF Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            --accent-pink: #FF3366;
+            --accent-blue: #0070F3;
+            --accent-lime: #00E676;
+        }
+
+        :root {
+            --bg-dark: #0A0A0A;
+            --text-primary: #FAFAFA;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --transition-medium: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            font-family: var(--apple-font);
+            font-weight: 450;
+            letter-spacing: -0.012em;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+        h1, h2, h3, h4 {
+            font-family: var(--apple-font);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+        .font-extrabold, .font-black {
+            font-weight: 650 !important;
+        }
+        .font-bold {
+            font-weight: 600 !important;
+        }
+        .font-semibold {
+            font-weight: 550 !important;
+        }
+        .font-medium {
+            font-weight: 500 !important;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: 
+                radial-gradient(circle at 18% 18%, rgba(255, 51, 102, 0.16), transparent 45%),
+                radial-gradient(circle at 82% 20%, rgba(0, 112, 243, 0.16), transparent 45%),
+                radial-gradient(circle at 50% 85%, rgba(0, 255, 127, 0.10), transparent 50%),
+                radial-gradient(circle at 85% 75%, rgba(255, 51, 102, 0.08), transparent 40%),
+                radial-gradient(circle at 15% 80%, rgba(0, 112, 243, 0.10), transparent 40%);
+            z-index: -1;
+            pointer-events: none;
+        }
+        .rivava-text {
+            font-weight: 800;
+            text-shadow: 0 0 25px rgba(0, 255, 127, 0.3);
+            animation: glow 4s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 5px rgba(0, 255, 127, 0.3)); }
+            to { filter: drop-shadow(0 0 15px rgba(0, 255, 127, 0.7)); }
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(20px);
+            border-radius: 1rem;
+            transition: var(--transition-medium);
+            box-shadow: 0 4px 24px -8px rgba(0,0,0,0.5);
+        }
+        .glass-panel:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+        .form-input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            color: white;
+            transition: all 0.2s ease;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #FFFFFF;
+            background: rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body class="relative">
+
+    <!-- Header -->
+    <!-- STICKY WRAPPER FOR TICKER AND HEADER -->
+    <div class="sticky top-0 z-[60] flex flex-col w-full shadow-lg bg-[color:var(--bg-panel)]/80 backdrop-blur-2xl border-b border-white/5 transition-all duration-300" id="header-wrapper">
+        <header id="header" class="left-0 right-0 z-50">
+            <div class="container mx-auto px-6 lg:px-12">
+                <div class="flex items-center justify-between py-3 transition-all duration-300 h-16">
+                    <a href="index.html#hero" class="flex items-center gap-3 group">
+                        <div class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white/10 transition-colors shadow-[0_0_12px_rgba(0,255,127,0.2)]">
+                            <img src="assets/logo.png" alt="Rivava Logo" class="h-9 w-9 object-contain">
                         </div>
-                        <div class="flex flex-col">
-                            <span class="text-xl font-semibold tracking-tight text-gray-900 rivava-text">Rivava</span>
-                            <span class="text-[9px] tracking-widest uppercase font-semibold text-gray-400">Concierge Desk</span>
-                        </div>
+                        <span class="text-xl font-bold tracking-tight rivava-text">Rivava</span>
                     </a>
 
-                    <!-- Center Pill Navigation Capsule -->
-                    <nav class="hidden lg:flex items-center apple-pill-nav shadow-sm">
-                        <a href="index.html#hero" class="apple-pill-link">Home</a>
-                        <a href="research.html" class="apple-pill-link">Research Hub</a>
-                        <a href="learn.html" class="apple-pill-link">Learn</a>
-                        <a href="about.html" class="apple-pill-link">About Us</a>
-                        <a href="blogs/index.html" class="apple-pill-link">Blog</a>
-                        <a href="challenge.html" class="apple-pill-link accent-green font-semibold">7-Day Challenge</a>
-                    </nav>
+                    <!-- Desktop Navigation -->
+                    <div class="hidden md:flex items-center bg-white/5 rounded-full px-5 py-1.5 border border-white/5">
+                        <nav class="flex items-center gap-7 text-sm font-medium">
+                            <a href="index.html#hero" class="text-gray-300 hover:text-white transition-colors">Home</a>
+                            <a href="research.html" class="text-gray-300 hover:text-white transition-colors">Research</a>
+                            <a href="learn.html" class="text-gray-300 hover:text-white transition-colors">Learn</a>
+                            <a href="about.html" class="text-gray-300 hover:text-white transition-colors">About</a>
+                            <a href="blogs/index.html" class="text-gray-300 hover:text-white transition-colors">Blog</a>
+                            <a href="challenge.html" class="text-[#00FF7F] hover:text-[#00E676] transition-colors font-semibold">7-Day Challenge</a>
+                        </nav>
+                    </div>
 
-                    <!-- Desktop Right CTAs -->
-                    <div class="hidden md:flex items-center gap-3.5">
-                        <a href="tel:+91-8881176909" class="btn-apple-advisor">
-                            <i class="fab fa-whatsapp text-[#00C076] text-base"></i>
-                            <span>Talk to Advisor</span>
+                    <div class="hidden md:flex items-center gap-3">
+                        <a href="tel:+91-8881176909" class="h-9 px-3.5 bg-[#22c55e] hover:bg-[#16a34a] text-black font-bold text-xs rounded-full transition-all flex items-center justify-center gap-1.5 shadow-[0_0_12px_rgba(34,197,94,0.35)]">
+                            <i class="fab fa-whatsapp text-base"></i>
+                            <span>Chat with Advisor</span>
                         </a>
-                        <a href="index.html#pricing" class="btn-apple-dark text-xs py-2.5 px-5">
-                            <i class="fas fa-crown text-amber-400 text-xs"></i>
+                        <a href="contact.html" class="text-xs font-semibold text-white transition-colors">Contact</a>
+                        <a href="index.html#pricing" class="h-9 px-4 bg-white text-black text-xs font-semibold rounded-full hover:bg-gray-200 transition-colors flex items-center gap-1.5 shadow-md">
+                            <i class="fas fa-crown text-amber-500 text-xs"></i>
                             <span>Get Elite</span>
                         </a>
                     </div>
 
-                    <!-- Mobile Menu Hamburger -->
-                    <div class="flex items-center gap-3 md:hidden">
-                        <a href="tel:+91-8881176909" class="p-2.5 rounded-full border border-gray-200 bg-gray-50 text-gray-700">
-                            <i class="fas fa-phone-alt text-sm"></i>
-                        </a>
-                        <button id="hambBtn" class="p-2.5 rounded-xl border border-gray-200 bg-white text-gray-800 shadow-sm" aria-label="Toggle navigation">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    <!-- Mobile Header Buttons -->
+                    <div class="flex items-center gap-2 md:hidden">
+                        <button id="hambBtn" class="p-2 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm text-white" aria-label="menu">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M4 6h16M4 12h16M4 18h16" stroke-width="2" stroke-linecap="round"/>
                             </svg>
                         </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Mobile Navigation Drawer -->
-            <div id="mobileMenu" class="hidden md:hidden border-t border-gray-100 bg-white/95 backdrop-blur-2xl px-6 py-6 shadow-xl transition-all">
-                <nav class="flex flex-col gap-3 text-base">
-                    <a href="index.html#hero" class="px-4 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50">Home</a>
-                    <a href="research.html" class="px-4 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50">Research Hub</a>
-                    <a href="learn.html" class="px-4 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50">Learning Center</a>
-                    <a href="about.html" class="px-4 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50">About Us</a>
-                    <a href="blogs/index.html" class="px-4 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50">Blog</a>
-                    <a href="challenge.html" class="px-4 py-2.5 rounded-xl text-[#00C076] hover:bg-emerald-50 font-semibold">7-Day Challenge</a>
-                    <a href="contact.html" class="px-4 py-2.5 rounded-xl bg-gray-100 text-gray-900 font-semibold">Contact</a>
-                </nav>
+            <!-- MOBILE MENU -->
+            <div id="mobileMenu" class="hidden md:hidden border-t border-white/10 bg-black absolute w-full">
+                <div class="container mx-auto px-6 py-6 flex flex-col gap-4 text-base">
+                    <a href="index.html#hero" class="block text-gray-300 hover:text-white transition-colors">Home</a>
+                    <a href="research.html" class="block text-gray-300 hover:text-white transition-colors">Research</a>
+                    <a href="learn.html" class="block text-gray-300 hover:text-white transition-colors">Learn</a>
+                    <a href="about.html" class="block text-gray-300 hover:text-white transition-colors">About</a>
+                    <a href="blogs/index.html" class="block text-gray-300 hover:text-white transition-colors">Blog</a>
+                    <a href="challenge.html" class="block text-[#00FF7F] hover:text-[#00E676] transition-colors font-semibold">7-Day Challenge</a>
+                    <a href="contact.html" class="block text-white hover:text-white transition-colors font-semibold">Contact</a>
+                    <div class="mt-4 pt-4 border-t border-white/10 flex flex-col gap-3">
+                        <a href="tel:+91-8881176909" class="bg-green-500 hover:bg-green-600 text-black font-bold w-full text-center py-3 rounded-xl flex items-center justify-center gap-2 transition-all shadow-[0_0_15px_rgba(34,197,94,0.3)]">
+                            <i class="fab fa-whatsapp text-lg"></i> Chat with Advisor
+                        </a>
+                        <a href="index.html#pricing" class="bg-white text-black w-full text-center py-3 rounded-xl font-medium block">Get Elite</a>
+                    </div>
+                </div>
             </div>
         </header>
     </div>
 
-    <!-- ==============================================
-         CONTACT HERO
-         ============================================== -->
-    <main class="relative overflow-hidden pt-12 pb-24">
-        <div class="container mx-auto px-6 lg:px-12 max-w-7xl">
-            
-            <div class="max-w-4xl mx-auto text-center mb-16">
-                <div class="reveal-on-scroll badge-apple mb-4">
-                    <i class="fas fa-headset text-xs"></i> Advisory & Support
-                </div>
-                <h1 class="cuberto-reveal text-4xl sm:text-5xl lg:text-6xl font-semibold mb-6 tracking-tight leading-tight text-gray-900">
-                    <span class="cuberto-line-wrap"><span class="cuberto-inner">Get in Touch with</span></span>
-                    <span class="cuberto-line-wrap"><span class="cuberto-inner text-[#00C076]">Our Advisory Desk.</span></span>
-                </h1>
-                <p class="reveal-on-scroll stagger-2 text-base sm:text-lg text-gray-600 max-w-2xl mx-auto font-normal leading-relaxed">
-                    Have questions regarding Rivava Elite? Looking for customized research commentary? Reach out directly to our lead analysts.
+    <main class="relative overflow-hidden pt-32 pb-20">
+        <div class="container mx-auto px-6 lg:px-12">
+            <!-- Header -->
+            <div class="text-center max-w-4xl mx-auto mb-20">
+                <h1 class="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight">Contact Us.</h1>
+                <p class="text-xl text-gray-400 leading-relaxed font-light">
+                    Have questions about Rivava Elite? Need support with your account? Our team is here to help.
                 </p>
             </div>
 
-            <!-- Concierge Visual Feature -->
-            <div class="reveal-on-scroll stagger-3 max-w-5xl mx-auto mb-20 rounded-3xl overflow-hidden border border-gray-200 shadow-xl relative bg-white">
-                <img src="assets/contact-concierge.jpg" alt="Rivava Advisory Lounge" class="w-full h-auto object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-8 sm:p-12">
-                    <div class="badge-apple mb-3 w-fit text-xs bg-white/95 text-emerald-800 border-none shadow-sm">Direct Access</div>
-                    <h3 class="text-2xl sm:text-3xl font-semibold text-white">Private Wealth & Institutional Consultation</h3>
-                    <p class="text-xs sm:text-sm text-gray-200 max-w-xl mt-2 font-normal">Connect with credentialed professionals who speak in terms of hurdle rates, cash flow yields, and balance sheet protection.</p>
-                </div>
-            </div>
-
-            <!-- Contact Channels Grid & Form -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 max-w-6xl mx-auto mb-24">
-                
-                <!-- Left Channels & FAQs -->
-                <div class="lg:col-span-5 space-y-6">
-                    <div class="glass-panel p-6 border border-gray-200/80 bg-white shadow-sm">
-                        <div class="w-10 h-10 rounded-xl bg-emerald-50 text-[#00C076] flex items-center justify-center text-lg mb-3 shadow-sm">
-                            <i class="fab fa-whatsapp"></i>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
+                <!-- Contact Information -->
+                <div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
+                        <div class="glass-panel p-6">
+                            <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center mb-4"><i class="fas fa-envelope"></i></div>
+                            <h4 class="font-bold text-white mb-1">Email Support</h4>
+                            <p class="text-sm text-gray-400 mb-2">Typically replies in 24h</p>
+                            <a href="mailto:support@rivava.com" class="text-sm text-white font-medium hover:underline">support@rivava.com</a>
                         </div>
-                        <h4 class="font-semibold text-gray-900 text-base mb-1">Priority WhatsApp Desk</h4>
-                        <p class="text-xs text-gray-600 mb-3 font-normal">Instant advisory inquiries & verification support.</p>
-                        <a href="https://wa.me/918881176909?text=Hello%20Rivava,%20I%20have%20an%20advisory%20inquiry." target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-[#00C076] hover:underline flex items-center gap-1.5">
-                            <span>+91 88811 76909</span> <i class="fas fa-external-link-alt text-[10px]"></i>
-                        </a>
-                    </div>
 
-                    <div class="glass-panel p-6 border border-gray-200/80 bg-white shadow-sm">
-                        <div class="w-10 h-10 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center text-lg mb-3 shadow-sm">
-                            <i class="fas fa-envelope"></i>
+                        <div class="glass-panel p-6">
+                            <div class="w-10 h-10 rounded-full bg-green-500/10 flex items-center justify-center mb-4"><i class="fab fa-whatsapp text-green-500"></i></div>
+                            <h4 class="font-bold text-white mb-1">WhatsApp</h4>
+                            <p class="text-sm text-gray-400 mb-2">Priority support line</p>
+                            <a href="https://wa.me/918881176909" class="text-sm text-white font-medium hover:underline">+91 88811 76909</a>
                         </div>
-                        <h4 class="font-semibold text-gray-900 text-base mb-1">Email Support</h4>
-                        <p class="text-xs text-gray-600 mb-3 font-normal">Institutional research inquiries and partner desks.</p>
-                        <a href="mailto:support@rivava.com" class="text-xs font-semibold text-sky-600 hover:underline">
-                            support@rivava.com
-                        </a>
-                    </div>
 
-                    <div class="glass-panel p-6 border border-gray-200/80 bg-white shadow-sm">
-                        <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-lg mb-3 shadow-sm">
-                            <i class="fas fa-clock"></i>
+                        <div class="glass-panel p-6 sm:col-span-2">
+                            <div class="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center mb-4"><i class="fas fa-clock text-blue-400"></i></div>
+                            <h4 class="font-bold text-white mb-1">Office Hours</h4>
+                            <p class="text-sm text-gray-400">Monday - Friday: 9:00 AM - 6:00 PM (IST)</p>
+                            <p class="text-sm text-gray-400">Saturday - Sunday: Closed</p>
                         </div>
-                        <h4 class="font-semibold text-gray-900 text-base mb-1">Operating Hours</h4>
-                        <p class="text-xs text-gray-600 font-normal">Monday - Friday: 9:00 AM - 6:00 PM (IST)</p>
-                        <p class="text-xs text-gray-500 mt-1 font-normal">Saturday - Sunday: Dedicated Elite Client Desk Only</p>
                     </div>
 
                     <!-- FAQs -->
-                    <div class="pt-4">
-                        <h4 class="font-semibold text-gray-900 text-lg mb-4">Frequently Asked Questions</h4>
-                        <div class="space-y-3">
-                            <div class="glass-panel p-4 border border-gray-200/80 bg-white shadow-sm">
-                                <h5 class="text-xs font-semibold text-gray-900 mb-1">Where is the mobile app available?</h5>
-                                <p class="text-[11px] text-gray-600 leading-relaxed font-normal">
-                                    The Rivava app is available on the Google Play Store for Android devices.
-                                </p>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-6">Frequently Asked Questions</h3>
+                        <div class="space-y-4">
+                            <div class="glass-panel p-6">
+                                <h4 class="font-bold text-white mb-2">Is the mobile app available on iOS?</h4>
+                                <p class="text-sm text-gray-400">Currently, the Rivava app is exclusively available on the Google Play Store for Android devices.</p>
                             </div>
-                            <div class="glass-panel p-4 border border-gray-200/80 bg-white shadow-sm">
-                                <h5 class="text-xs font-semibold text-gray-900 mb-1">How do I access the locked PDF research?</h5>
-                                <p class="text-[11px] text-gray-600 leading-relaxed font-normal">
-                                    Subscribe via UPI on the Membership page and submit your secret key to unlock instant PDF downloads.
-                                </p>
+                            <div class="glass-panel p-6">
+                                <h4 class="font-bold text-white mb-2">How do I access premium research?</h4>
+                                <p class="text-sm text-gray-400">Premium research reports are available to Rivava Elite members. You can apply for Elite status via the Pricing section.</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Right Form -->
-                <div class="lg:col-span-7">
-                    <div class="glass-panel p-8 sm:p-10 border border-gray-200/80 bg-white relative overflow-hidden shadow-sm">
-                        <h3 class="text-2xl font-semibold text-gray-900 mb-2 tracking-tight">Send an Inquiry to Lead Advisors</h3>
-                        <p class="text-xs text-gray-600 mb-8 font-normal">We will review your inquiry and reach back within 24 business hours.</p>
-
-                        <form id="contactPageForm" class="space-y-5">
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <!-- Contact Form -->
+                <div>
+                    <div class="glass-panel p-8 md:p-10 relative overflow-hidden">
+                        <div class="absolute -right-20 -top-20 w-64 h-64 bg-white/5 blur-[100px] rounded-full"></div>
+                        <h3 class="text-2xl font-bold mb-6 relative z-10">Send us a message</h3>
+                        <form class="space-y-6 relative z-10" id="contactForm">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                 <div>
-                                    <label class="block text-xs font-medium text-gray-700 uppercase tracking-wider mb-2">First Name</label>
-                                    <input type="text" id="cp-fname" required placeholder="John" class="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-900 text-sm focus:outline-none focus:border-[#00C076] placeholder-gray-400">
+                                    <label class="block text-sm font-medium text-gray-400 mb-2">First Name</label>
+                                    <input type="text" class="form-input" required>
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-medium text-gray-700 uppercase tracking-wider mb-2">Last Name</label>
-                                    <input type="text" id="cp-lname" required placeholder="Doe" class="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-900 text-sm focus:outline-none focus:border-[#00C076] placeholder-gray-400">
+                                    <label class="block text-sm font-medium text-gray-400 mb-2">Last Name</label>
+                                    <input type="text" class="form-input" required>
                                 </div>
                             </div>
-
                             <div>
-                                <label class="block text-xs font-medium text-gray-700 uppercase tracking-wider mb-2">Email Address</label>
-                                <input type="email" id="cp-email" required placeholder="john@example.com" class="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-900 text-sm focus:outline-none focus:border-[#00C076] placeholder-gray-400">
+                                <label class="block text-sm font-medium text-gray-400 mb-2">Email Address</label>
+                                <input type="email" class="form-input" required>
                             </div>
-
                             <div>
-                                <label class="block text-xs font-medium text-gray-700 uppercase tracking-wider mb-2">Topic of Consultation</label>
-                                <select id="cp-category" class="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-900 text-sm focus:outline-none focus:border-[#00C076]">
-                                    <option>Rivava Elite Membership (100 Seats)</option>
-                                    <option>IREDA / RTX PDF Research Queries</option>
-                                    <option>General Wealth Planning Consultation</option>
-                                    <option>Technical / Android App Support</option>
+                                <label class="block text-sm font-medium text-gray-400 mb-2">Support Category</label>
+                                <select class="form-input appearance-none">
+                                    <option class="bg-[#111]">General Inquiry</option>
+                                    <option class="bg-[#111]">Technical Support</option>
+                                    <option class="bg-[#111]">Rivava Elite Application</option>
+                                    <option class="bg-[#111]">Feedback</option>
                                 </select>
                             </div>
-
                             <div>
-                                <label class="block text-xs font-medium text-gray-700 uppercase tracking-wider mb-2">Your Message</label>
-                                <textarea id="cp-message" rows="4" required placeholder="Describe your question or portfolio thesis..." class="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-900 text-sm focus:outline-none focus:border-[#00C076] placeholder-gray-400 resize-none"></textarea>
+                                <label class="block text-sm font-medium text-gray-400 mb-2">Message</label>
+                                <textarea class="form-input h-32 resize-none" required></textarea>
                             </div>
-
-                            <button type="submit" class="btn-apple-dark w-full text-sm py-3.5">
-                                <i class="fas fa-paper-plane mr-2 text-xs"></i>
-                                <span>Submit Message</span>
+                            <button type="submit" class="w-full bg-white text-black font-bold py-4 rounded-xl hover:bg-gray-200 transition-colors">
+                                Send Message
                             </button>
                         </form>
                     </div>
                 </div>
-
             </div>
 
+            <!-- Map Placeholder -->
+            <div class="mt-24 max-w-6xl mx-auto">
+                <div class="glass-panel p-2 rounded-2xl">
+                    <div class="w-full h-96 bg-[#111] rounded-xl border border-white/5 flex flex-col items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(rgba(255,255,255,0.2) 1px, transparent 1px); background-size: 20px 20px;"></div>
+                        <i class="fas fa-map-marker-alt text-4xl text-gray-600 mb-4 relative z-10"></i>
+                        <h4 class="font-bold text-gray-400 relative z-10">Global Headquarters</h4>
+                        <p class="text-sm text-gray-500 mt-2 relative z-10">Mumbai, India</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="border-t border-gray-200 bg-white py-12 text-center text-xs text-gray-500">
-        <div class="container mx-auto px-6">
-            <p>&copy; <span id="year"></span> Rivava. All rights reserved. Made with ❤️ in India.</p>
-            <div class="flex justify-center gap-6 mt-4">
-                <a href="index.html#hero" class="hover:text-gray-900">Home</a>
-                <a href="research.html" class="hover:text-gray-900">Research Hub</a>
-                <a href="learn.html" class="hover:text-gray-900">Learning Center</a>
-                <a href="about.html" class="hover:text-gray-900">About Us</a>
+    <!-- FOOTER -->
+    <footer class="border-t border-white/10 bg-[#050505] pt-20 pb-10">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-500 text-sm">&copy; <span id="year"></span> Rivava. All rights reserved.</p>
             </div>
         </div>
     </footer>
-
-    <!-- Motion & Smooth Scroll Stack: GSAP 3 + ScrollTrigger + Lenis -->
-    <script src="assets/js/vendor/gsap.min.js"></script>
-    <script src="assets/js/vendor/ScrollTrigger.min.js"></script>
-    <script src="assets/js/vendor/lenis.min.js"></script>
-    <script src="assets/js/rivava.js"></script>
     <script>
-        document.getElementById('contactPageForm')?.addEventListener('submit', function(e) {
+        document.getElementById('year').textContent = new Date().getFullYear();
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
             e.preventDefault();
-            const fn = document.getElementById('cp-fname').value;
-            const ln = document.getElementById('cp-lname').value;
-            const email = document.getElementById('cp-email').value;
-            const cat = document.getElementById('cp-category').value;
-            const msg = document.getElementById('cp-message').value;
+            const btn = e.target.querySelector('button');
+            const ogText = btn.textContent;
+            btn.textContent = 'Message Sent!';
+            btn.classList.add('bg-green-500', 'text-white');
+            setTimeout(() => {
+                btn.textContent = ogText;
+                btn.classList.remove('bg-green-500', 'text-white');
+                e.target.reset();
+            }, 3000);
+        });
+    </script>
 
-            const text = `Hello Rivava Advisory Desk,\nName: ${fn} ${ln}\nEmail: ${email}\nCategory: ${cat}\nMessage: ${msg}`;
-            window.open(`https://wa.me/918881176909?text=${encodeURIComponent(text)}`, '_blank');
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hambBtn = document.getElementById('hambBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (hambBtn && mobileMenu) {
+                hambBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+                mobileMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        if(link.id !== 'openAppModalBtnMobile') {
+                            mobileMenu.classList.add('hidden');
+                        }
+                    });
+                });
+            }
         });
     </script>
 </body>
+
 </html>

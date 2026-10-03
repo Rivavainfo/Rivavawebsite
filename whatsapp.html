@@ -1,211 +1,364 @@
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WhatsApp Advisor Desk — Rivava | Instant 1-on-1 Guidance</title>
-    <meta name="description" content="Connect directly with Rivava financial advisors and research analysts on WhatsApp. Fast responses, portfolio consultations, and research unlocks." />
-    
-    <link rel="icon" type="image/png" sizes="32x32" href="icon_folder/icon-32x32.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="icon_folder/icon-180x180.png">
+    <title>Chat with Advisor — Rivava</title>
+    <meta name="description" content="Connect directly with Rivava financial advisors via WhatsApp for personal research, portfolio guidance, and support." />
 
+    <link rel="icon" type="image/png" sizes="32x32" href="icon_folder/icon-32x32.png" onerror="this.onerror=null;this.src='https://placehold.co/32x32/000000/FFFFFF?text=R';">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Display"', '"SF Pro Text"', '"SF Pro"', '"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/rivava.css">
-</head>
-<body class="apple-theme bg-white text-slate-900 selection:bg-[#00C076] selection:text-white">
+    <!-- Apple SF Pro Font -->
+    <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/sf-pro-display">
 
-    <!-- ==============================================
-         STICKY HEADER WITH HARDWARE ACCELERATED PILL NAV
-         ============================================== -->
-    <div class="site-header-wrapper" id="header-wrapper">
-        <header id="header" class="w-full bg-white/80 backdrop-blur-xl border-b border-gray-100 transition-all">
-            <div class="container mx-auto px-6 lg:px-12 max-w-7xl">
-                <div class="flex items-center justify-between py-4 h-20">
-                    <a href="index.html#hero" class="flex items-center gap-3.5 group">
-                        <div class="w-10 h-10 rounded-2xl bg-white border border-gray-200 flex items-center justify-center p-1.5 shadow-sm group-hover:scale-105 transition-transform">
-                            <img src="assets/logo.png" alt="Rivava Logo" class="h-full w-full object-contain">
+    <style>
+        :root {
+            --apple-font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "SF Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            --accent-pink: #FF3366;
+            --accent-blue: #0070F3;
+            --accent-lime: #00E676;
+            --bg-dark: #0A0A0A;
+            --bg-panel: #111111;
+            --text-primary: #FAFAFA;
+            --text-muted: #888888;
+            --accent-primary: #00FF7F;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --transition-medium: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            font-family: var(--apple-font);
+            font-weight: 450;
+            letter-spacing: -0.012em;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+        h1, h2, h3, h4 {
+            font-family: var(--apple-font);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+        .font-extrabold, .font-black {
+            font-weight: 650 !important;
+        }
+        .font-bold {
+            font-weight: 600 !important;
+        }
+        .font-semibold {
+            font-weight: 550 !important;
+        }
+        .font-medium {
+            font-weight: 500 !important;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: 
+                radial-gradient(circle at 18% 18%, rgba(255, 51, 102, 0.16), transparent 45%),
+                radial-gradient(circle at 82% 20%, rgba(0, 112, 243, 0.16), transparent 45%),
+                radial-gradient(circle at 50% 85%, rgba(0, 255, 127, 0.10), transparent 50%),
+                radial-gradient(circle at 85% 75%, rgba(255, 51, 102, 0.08), transparent 40%),
+                radial-gradient(circle at 15% 80%, rgba(0, 112, 243, 0.10), transparent 40%);
+            z-index: -1;
+            pointer-events: none;
+        }
+        .rivava-text {
+            font-weight: 800;
+            text-shadow: 0 0 25px rgba(0, 255, 127, 0.3);
+            animation: glow 4s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 5px rgba(0, 255, 127, 0.3)); }
+            to { filter: drop-shadow(0 0 15px rgba(0, 255, 127, 0.7)); }
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(20px);
+            border-radius: 1.5rem;
+            transition: var(--transition-medium);
+            box-shadow: 0 4px 24px -8px rgba(0,0,0,0.5);
+        }
+        .glass-panel:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+        .whatsapp-pulse {
+            animation: pulse-glow 2s infinite;
+        }
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6); }
+            70% { box-shadow: 0 0 0 20px rgba(34, 197, 94, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
+    </style>
+</head>
+<body class="relative min-h-screen flex flex-col justify-between">
+
+    <!-- Header -->
+    <div class="sticky top-0 z-[60] flex flex-col w-full shadow-lg bg-[color:var(--bg-panel)]/80 backdrop-blur-2xl border-b border-white/5 transition-all duration-300">
+        <header id="header" class="left-0 right-0 z-50">
+            <div class="container mx-auto px-6 lg:px-12">
+                <div class="flex items-center justify-between py-3 transition-all duration-300 h-16">
+                    <a href="index.html#hero" class="flex items-center gap-3 group">
+                        <div class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white/10 transition-colors shadow-[0_0_12px_rgba(0,255,127,0.2)]">
+                            <img src="assets/logo.png" alt="Rivava Logo" class="h-9 w-9 object-contain">
                         </div>
-                        <div class="flex flex-col">
-                            <span class="text-xl font-semibold tracking-tight text-gray-900 rivava-text">Rivava</span>
-                            <span class="text-[9px] tracking-widest uppercase font-semibold text-[#00C076]">Advisor Desk</span>
-                        </div>
+                        <span class="text-xl font-bold tracking-tight rivava-text">Rivava</span>
                     </a>
 
-                    <!-- Center Pill Navigation Capsule -->
-                    <nav class="hidden lg:flex items-center apple-pill-nav shadow-sm">
-                        <a href="index.html#hero" class="apple-pill-link">Home</a>
-                        <a href="research.html" class="apple-pill-link">Research Hub</a>
-                        <a href="learn.html" class="apple-pill-link">Learn</a>
-                        <a href="about.html" class="apple-pill-link">About Us</a>
-                        <a href="blogs/index.html" class="apple-pill-link">Blog</a>
-                        <a href="challenge.html" class="apple-pill-link accent-green font-semibold">7-Day Challenge</a>
-                    </nav>
+                    <!-- Desktop Navigation -->
+                    <div class="hidden md:flex items-center bg-white/5 rounded-full px-5 py-1.5 border border-white/5">
+                        <nav class="flex items-center gap-7 text-sm font-medium">
+                            <a href="index.html#hero" class="text-gray-300 hover:text-white transition-colors">Home</a>
+                            <a href="research.html" class="text-gray-300 hover:text-white transition-colors">Research</a>
+                            <a href="learn.html" class="text-gray-300 hover:text-white transition-colors">Learn</a>
+                            <a href="about.html" class="text-gray-300 hover:text-white transition-colors">About</a>
+                            <a href="blogs/index.html" class="text-gray-300 hover:text-white transition-colors">Blog</a>
+                            <a href="challenge.html" class="text-[#00FF7F] hover:text-[#00E676] transition-colors font-semibold">7-Day Challenge</a>
+                        </nav>
+                    </div>
 
-                    <!-- Desktop Right CTAs -->
-                    <div class="hidden md:flex items-center gap-3.5">
-                        <a href="tel:+91-8881176909" class="btn-apple-advisor">
-                            <i class="fas fa-phone-alt text-[#00C076] text-xs"></i>
-                            <span>+91 88811 76909</span>
+                    <div class="hidden md:flex items-center gap-3">
+                        <a href="tel:+91-8881176909" class="h-9 px-3.5 bg-[#22c55e] hover:bg-[#16a34a] text-black font-bold text-xs rounded-full transition-all flex items-center justify-center gap-1.5 shadow-[0_0_12px_rgba(34,197,94,0.35)]">
+                            <i class="fab fa-whatsapp text-base"></i>
+                            <span>Chat with Advisor</span>
                         </a>
-                        <a href="index.html#pricing" class="btn-apple-dark text-xs py-2.5 px-5">
-                            <i class="fas fa-crown text-amber-400 text-xs"></i>
+                        <a href="contact.html" class="text-xs font-medium text-gray-300 hover:text-white transition-colors">Contact</a>
+                        <a href="index.html#pricing" class="h-9 px-4 bg-white text-black text-xs font-semibold rounded-full hover:bg-gray-200 transition-colors flex items-center gap-1.5 shadow-md">
+                            <i class="fas fa-crown text-amber-500 text-xs"></i>
                             <span>Get Elite</span>
                         </a>
                     </div>
 
-                    <!-- Mobile Menu Hamburger -->
-                    <div class="flex items-center gap-3 md:hidden">
-                        <a href="tel:+91-8881176909" class="p-2.5 rounded-full border border-gray-200 bg-gray-50 text-gray-700">
-                            <i class="fas fa-phone-alt text-sm"></i>
-                        </a>
-                        <button id="hambBtn" class="p-2.5 rounded-xl border border-gray-200 bg-white text-gray-800 shadow-sm" aria-label="Toggle navigation">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    <!-- Mobile Header Buttons -->
+                    <div class="flex items-center gap-2 md:hidden">
+                        <button id="hambBtn" class="p-2 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm text-white" aria-label="menu">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M4 6h16M4 12h16M4 18h16" stroke-width="2" stroke-linecap="round"/>
                             </svg>
                         </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Mobile Navigation Drawer -->
-            <div id="mobileMenu" class="hidden md:hidden border-t border-gray-100 bg-white/95 backdrop-blur-2xl px-6 py-6 shadow-xl transition-all">
-                <nav class="flex flex-col gap-3 text-base">
-                    <a href="index.html#hero" class="px-4 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50">Home</a>
-                    <a href="research.html" class="px-4 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50">Research Hub</a>
-                    <a href="learn.html" class="px-4 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50">Learning Center</a>
-                    <a href="about.html" class="px-4 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50">About Us</a>
-                    <a href="challenge.html" class="px-4 py-2.5 rounded-xl text-[#00C076] hover:bg-emerald-50 font-semibold">7-Day Challenge</a>
-                </nav>
+            <!-- MOBILE MENU -->
+            <div id="mobileMenu" class="hidden md:hidden border-t border-white/10 bg-black absolute w-full z-50">
+                <div class="container mx-auto px-6 py-6 flex flex-col gap-4 text-base">
+                    <a href="index.html#hero" class="block text-gray-300 hover:text-white transition-colors">Home</a>
+                    <a href="research.html" class="block text-gray-300 hover:text-white transition-colors">Research</a>
+                    <a href="learn.html" class="block text-gray-300 hover:text-white transition-colors">Learn</a>
+                    <a href="about.html" class="block text-gray-300 hover:text-white transition-colors">About</a>
+                    <a href="blogs/index.html" class="block text-gray-300 hover:text-white transition-colors">Blog</a>
+                    <a href="challenge.html" class="block text-[#00FF7F] hover:text-[#00E676] transition-colors font-semibold">7-Day Challenge</a>
+                    <a href="contact.html" class="block text-gray-300 hover:text-white transition-colors">Contact</a>
+                    <div class="mt-4 pt-4 border-t border-white/10 flex flex-col gap-3">
+                        <a href="tel:+91-8881176909" class="bg-green-500 hover:bg-green-600 text-black font-bold w-full text-center py-3 rounded-xl flex items-center justify-center gap-2 transition-all shadow-[0_0_15px_rgba(34,197,94,0.3)]">
+                            <i class="fab fa-whatsapp text-lg"></i> Chat with Advisor
+                        </a>
+                        <a href="index.html#pricing" class="bg-white text-black w-full text-center py-3 rounded-xl font-medium block">Get Elite</a>
+                    </div>
+                </div>
             </div>
         </header>
     </div>
 
-    <!-- ==============================================
-         WHATSAPP DESK HERO
-         ============================================== -->
-    <main class="relative overflow-hidden pt-12 pb-24">
-        <div class="container mx-auto px-6 lg:px-12 max-w-4xl">
-            
-            <div class="text-center mb-16">
-                <!-- Live Pulse Indicator -->
-                <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-xs font-medium text-emerald-800 mb-6 shadow-sm">
-                    <span class="w-2 h-2 rounded-full bg-[#00C076] animate-pulse"></span>
-                    <span>Advisors Online & Available (Average Reply: &lt; 15 mins)</span>
-                </div>
 
-                <h1 class="cuberto-reveal text-4xl sm:text-5xl lg:text-6xl font-semibold mb-6 tracking-tight leading-tight text-gray-900">
-                    <span class="cuberto-line-wrap"><span class="cuberto-inner">Instant Advisor Guidance</span></span>
-                    <span class="cuberto-line-wrap"><span class="cuberto-inner text-[#00C076]">Direct on WhatsApp.</span></span>
-                </h1>
-                <p class="text-base sm:text-lg text-gray-600 max-w-xl mx-auto font-normal leading-relaxed mb-8">
-                    Choose a pre-filled prompt below to begin chatting immediately with our research analysts regarding your portfolio, research unlocks, or membership.
+    <!-- MAIN CONTENT -->
+    <main class="py-16 container mx-auto px-6 lg:px-12 flex-grow">
+        <!-- TOP HERO & CTA SECTION -->
+        <div class="max-w-4xl mx-auto text-center mb-10">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 mb-6 text-sm font-bold">
+                <i class="fab fa-whatsapp text-lg"></i> Direct Advisor Support
+            </div>
+            <h1 class="text-4xl sm:text-6xl font-extrabold mb-6 tracking-tight">Connect with a Rivava Advisor on WhatsApp</h1>
+            <p class="text-xl text-gray-400 max-w-2xl mx-auto font-light">
+                Get direct answers to your financial research, portfolio questions, and investment queries in real-time from certified advisors.
+            </p>
+        </div>
+
+        <!-- WATCH & LEARN INSTAGRAM REELS VIDEO SECTION (AT TOP) -->
+        <div class="max-w-6xl mx-auto mb-16">
+            <div class="text-center mb-10">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 mb-4 text-xs font-bold uppercase tracking-wider">
+                    <i class="fab fa-instagram text-base"></i> Featured Video Breakdown & Benefits
+                </div>
+                <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4">Watch & Learn with Rivava</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto text-base sm:text-lg font-light">
+                    Watch short reel breakdowns detailing how 1-on-1 advisor support, institutional research, and expense tracking accelerate your wealth building.
                 </p>
+            </div>
 
-                <div class="flex justify-center gap-4">
-                    <a href="https://wa.me/918881176909?text=Hello%20Rivava,%20I'd%20like%20to%20connect%20with%20an%20advisor." target="_blank" rel="noopener noreferrer" class="btn-apple-dark text-base px-8 py-3.5">
-                        <i class="fab fa-whatsapp text-lg text-[#00C076] mr-1"></i>
-                        <span>Open WhatsApp Direct Chat</span>
-                    </a>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Reel 1 -->
+                <div class="glass-panel p-6 flex flex-col justify-between overflow-hidden group hover:border-green-500/40 transition-all">
+                    <div class="mb-4 relative rounded-xl overflow-hidden bg-black/50 border border-white/10 flex justify-center items-center" style="min-height: 480px;">
+                        <iframe src="https://www.instagram.com/reel/DdriSp4Tcr1/embed" class="w-full h-[480px] rounded-xl border-0" frameborder="0" scrolling="no" allowtransparency="true" allow="encrypted-media"></iframe>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2 text-xs font-bold text-green-400 uppercase tracking-wider mb-2">
+                            <i class="fas fa-chart-line"></i> Strategic Growth
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Smart Wealth & Expense Discipline</h3>
+                        <p class="text-xs text-gray-300 leading-relaxed mb-4">
+                            Discover how automated tracking paired with direct WhatsApp guidance helps you build consistent investing habits and eliminate unnecessary financial leaks.
+                        </p>
+                        <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs text-gray-400">
+                            <span><i class="fas fa-play text-green-400 mr-1"></i> Preview Reel</span>
+                            <a href="https://www.instagram.com/reel/DdriSp4Tcr1/?stkn=MTlwaTFuc2EwdGpxaw==" target="_blank" rel="noopener noreferrer" class="text-green-400 hover:underline font-semibold flex items-center gap-1">Watch on Instagram <i class="fas fa-external-link-alt text-[10px]"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reel 2 -->
+                <div class="glass-panel p-6 flex flex-col justify-between overflow-hidden group hover:border-green-500/40 transition-all">
+                    <div class="mb-4 relative rounded-xl overflow-hidden bg-black/50 border border-white/10 flex justify-center items-center" style="min-height: 480px;">
+                        <iframe src="https://www.instagram.com/reel/DduJjSYz7_G/embed" class="w-full h-[480px] rounded-xl border-0" frameborder="0" scrolling="no" allowtransparency="true" allow="encrypted-media"></iframe>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2 text-xs font-bold text-blue-400 uppercase tracking-wider mb-2">
+                            <i class="fas fa-microscope"></i> Equity Intelligence
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Institutional DCF Analysis</h3>
+                        <p class="text-xs text-gray-300 leading-relaxed mb-4">
+                            See how Rivava's institutional-grade equity valuation reports give you actionable insights on high-conviction market opportunities straight to your WhatsApp.
+                        </p>
+                        <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs text-gray-400">
+                            <span><i class="fas fa-play text-green-400 mr-1"></i> Preview Reel</span>
+                            <a href="https://www.instagram.com/reel/DduJjSYz7_G/?stkn=aHlncnlvN3htbHc=" target="_blank" rel="noopener noreferrer" class="text-green-400 hover:underline font-semibold flex items-center gap-1">Watch on Instagram <i class="fas fa-external-link-alt text-[10px]"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reel 3 -->
+                <div class="glass-panel p-6 flex flex-col justify-between overflow-hidden group hover:border-green-500/40 transition-all">
+                    <div class="mb-4 relative rounded-xl overflow-hidden bg-black/50 border border-white/10 flex justify-center items-center" style="min-height: 480px;">
+                        <iframe src="https://www.instagram.com/reel/Ddlbv2AK9U5/embed" class="w-full h-[480px] rounded-xl border-0" frameborder="0" scrolling="no" allowtransparency="true" allow="encrypted-media"></iframe>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2 text-xs font-bold text-purple-400 uppercase tracking-wider mb-2">
+                            <i class="fas fa-user-shield"></i> Direct Mentorship
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">1-on-1 Advisor Guidance</h3>
+                        <p class="text-xs text-gray-300 leading-relaxed mb-4">
+                            Get real-time feedback on asset allocation, portfolio rebalancing, and risk protection anytime from our chief analysis advisors.
+                        </p>
+                        <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs text-gray-400">
+                            <span><i class="fas fa-play text-green-400 mr-1"></i> Preview Reel</span>
+                            <a href="https://www.instagram.com/reel/Ddlbv2AK9U5/?stkn=NmQzZ3dmYXhidW5i" target="_blank" rel="noopener noreferrer" class="text-green-400 hover:underline font-semibold flex items-center gap-1">Watch on Instagram <i class="fas fa-external-link-alt text-[10px]"></i></a>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Quick Inquiry Templates -->
-            <div class="space-y-4 mb-16">
-                <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                    <i class="fas fa-bolt text-amber-500"></i> One-Tap Inquiry Templates
-                </h3>
-
-                <!-- Template 1: Portfolio Review -->
-                <a href="https://wa.me/918881176909?text=Hello%20Rivava,%20I%20would%20like%20to%20request%20a%20free%2015-minute%20portfolio%20diagnostic%20session." target="_blank" rel="noopener noreferrer" class="glass-panel hover-lift p-5 border border-gray-200/80 bg-white flex items-center justify-between shadow-sm group">
-                    <div class="flex items-center gap-4">
-                        <div class="w-10 h-10 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center shrink-0 shadow-sm">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-gray-900 text-sm group-hover:text-[#00C076] transition-colors">Request Portfolio Review Consultation</h4>
-                            <p class="text-xs text-gray-500 font-normal">Discuss asset allocation, expense ratios, and risk posture with lead analysts.</p>
-                        </div>
-                    </div>
-                    <i class="fab fa-whatsapp text-xl text-[#00C076] shrink-0 ml-4"></i>
-                </a>
-
-                <!-- Template 2: Unlock IREDA & RTX Research -->
-                <a href="https://wa.me/918881176909?text=Hello%20Rivava,%20I%20have%20completed%20the%20UPI%20subscription%20and%20need%20my%20PDF%20research%20unlock%20key." target="_blank" rel="noopener noreferrer" class="glass-panel hover-lift p-5 border border-gray-200/80 bg-white flex items-center justify-between shadow-sm group">
-                    <div class="flex items-center gap-4">
-                        <div class="w-10 h-10 rounded-xl bg-emerald-50 text-[#00C076] flex items-center justify-center shrink-0 shadow-sm">
-                            <i class="fas fa-file-invoice"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-gray-900 text-sm group-hover:text-[#00C076] transition-colors">Unlock Full PDF Research Reports</h4>
-                            <p class="text-xs text-gray-500 font-normal">Submit your transaction details to receive instant verification keys for IREDA & RTX.</p>
-                        </div>
-                    </div>
-                    <i class="fab fa-whatsapp text-xl text-[#00C076] shrink-0 ml-4"></i>
-                </a>
-
-                <!-- Template 3: Rivava Elite -->
-                <a href="https://wa.me/918881176909?text=Hello%20Rivava,%20I%20would%20like%20to%20apply%20for%20one%20of%20the%20100%20Rivava%20Elite%20membership%20seats." target="_blank" rel="noopener noreferrer" class="glass-panel hover-lift p-5 border-2 border-amber-200/80 bg-white flex items-center justify-between shadow-sm group">
-                    <div class="flex items-center gap-4">
-                        <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0 shadow-sm">
-                            <i class="fas fa-crown"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-gray-900 text-sm group-hover:text-[#B45309] transition-colors">Apply for Rivava Elite (100 Capped Seats)</h4>
-                            <p class="text-xs text-gray-500 font-normal">Inquire about quarterly 1-on-1 advisor sessions, bespoke DCF models, and VIP privileges.</p>
-                        </div>
-                    </div>
-                    <i class="fab fa-whatsapp text-xl text-amber-500 shrink-0 ml-4"></i>
-                </a>
-
-                <!-- Template 4: 7-Day Challenge -->
-                <a href="https://wa.me/918881176909?text=Hello%20Rivava,%20I%20have%20completed%20my%207-day%20habit%20challenge%20and%20want%20to%20book%20my%20free%20session." target="_blank" rel="noopener noreferrer" class="glass-panel hover-lift p-5 border border-gray-200/80 bg-white flex items-center justify-between shadow-sm group">
-                    <div class="flex items-center gap-4">
-                        <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center shrink-0 shadow-sm">
-                            <i class="fas fa-award"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-gray-900 text-sm group-hover:text-[#00C076] transition-colors">Claim 7-Day Challenge Reward Session</h4>
-                            <p class="text-xs text-gray-500 font-normal">Finished your tracking streak? Redeem your free advisor counseling session here.</p>
-                        </div>
-                    </div>
-                    <i class="fab fa-whatsapp text-xl text-[#00C076] shrink-0 ml-4"></i>
-                </a>
+        <!-- BIG WHATSAPP CTA PANEL -->
+        <div class="max-w-3xl mx-auto glass-panel p-8 sm:p-12 text-center relative overflow-hidden mb-16 border border-green-500/30">
+            <div class="w-20 h-20 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center mx-auto mb-6 text-4xl shadow-[0_0_30px_rgba(34,197,94,0.3)]">
+                <i class="fab fa-whatsapp"></i>
             </div>
+            <h2 class="text-3xl font-extrabold mb-3">Official Advisor WhatsApp</h2>
+            <p class="text-gray-300 font-mono text-lg mb-8">+91 88811 76909</p>
 
-            <!-- Direct Call & Location Card -->
-            <div class="glass-panel p-8 border border-gray-200/80 bg-white text-center shadow-sm">
-                <h4 class="text-lg font-semibold text-gray-900 mb-2">Prefer Voice or Video?</h4>
-                <p class="text-xs text-gray-600 mb-6 font-normal">Call our direct headquarters advisory line during standard IST business hours.</p>
-                <a href="tel:+91-8881176909" class="btn-apple-white text-sm">
-                    <i class="fas fa-phone-alt text-[#00C076] mr-1.5"></i>
-                    <span>Call +91 88811 76909</span>
-                </a>
+            <a href="https://wa.me/918881176909?text=Hello%2C%20I%20would%20like%20to%20chat%20with%20an%20advisor" target="_blank" rel="noopener noreferrer" class="whatsapp-pulse inline-flex items-center justify-center gap-4 bg-green-500 hover:bg-green-400 text-black font-extrabold text-xl px-10 py-5 rounded-full transition-all transform hover:-translate-y-1 shadow-[0_10px_40px_rgba(34,197,94,0.4)] w-full sm:w-auto">
+                <i class="fab fa-whatsapp text-3xl"></i> Start WhatsApp Chat Now
+            </a>
+
+            <div class="mt-8 flex items-center justify-center gap-6 text-xs text-gray-400">
+                <span class="flex items-center gap-1.5"><i class="fas fa-bolt text-green-400"></i> Instant automated response</span>
+                <span class="flex items-center gap-1.5"><i class="fas fa-shield-alt text-green-400"></i> Encrypted & Confidential</span>
             </div>
+        </div>
 
+        <!-- FEATURES GRID -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto pt-8 border-t border-white/10">
+            <div class="glass-panel p-6 text-center">
+                <i class="fas fa-file-invoice text-3xl text-blue-400 mb-4"></i>
+                <h3 class="font-bold text-lg mb-2">Research Clarification</h3>
+                <p class="text-xs text-gray-400">Ask questions about Rivava DCF models, equity reports, or sector analyses.</p>
+            </div>
+            <div class="glass-panel p-6 text-center">
+                <i class="fas fa-chart-pie text-3xl text-purple-400 mb-4"></i>
+                <h3 class="font-bold text-lg mb-2">Portfolio Guidance</h3>
+                <p class="text-xs text-gray-400">Discuss asset allocation, rebalancing, and risk profiles with an expert.</p>
+            </div>
+            <div class="glass-panel p-6 text-center">
+                <i class="fas fa-crown text-3xl text-yellow-400 mb-4"></i>
+                <h3 class="font-bold text-lg mb-2">Rivava Elite Inquiries</h3>
+                <p class="text-xs text-gray-400">Inquire about 1-on-1 membership benefits, private research, and custom advisory.</p>
+            </div>
         </div>
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-gray-200 bg-white py-12 text-center text-xs text-gray-500">
-        <div class="container mx-auto px-6">
-            <p>&copy; <span id="year"></span> Rivava. All rights reserved. Made with ❤️ in India.</p>
-            <div class="flex justify-center gap-6 mt-4">
-                <a href="index.html#hero" class="hover:text-gray-900">Home</a>
-                <a href="research.html" class="hover:text-gray-900">Research Hub</a>
-                <a href="learn.html" class="hover:text-gray-900">Learning Center</a>
-                <a href="about.html" class="hover:text-gray-900">About Us</a>
-            </div>
+    <footer class="border-t border-white/10 bg-[#050505] pt-12 pb-8">
+        <div class="container mx-auto px-6 lg:px-12 text-center text-gray-500 text-sm">
+            <p>&copy; <span id="year"></span> Rivava. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Motion & Smooth Scroll Stack: GSAP 3 + ScrollTrigger + Lenis -->
-    <script src="assets/js/vendor/gsap.min.js"></script>
-    <script src="assets/js/vendor/ScrollTrigger.min.js"></script>
-    <script src="assets/js/vendor/lenis.min.js"></script>
-    <script src="assets/js/rivava.js"></script>
+    <script async src="https://www.instagram.com/embed.js"></script>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+        document.getElementById('hambBtn')?.addEventListener('click', () => {
+            document.getElementById('mobileMenu')?.classList.toggle('hidden');
+        });
+
+        // Advisor dropdown toggle script
+        const advisorBtn = document.getElementById('advisorDropdownBtn');
+        const advisorMenu = document.getElementById('advisorDropdownMenu');
+        const advisorWrapper = document.getElementById('advisorDropdownWrapper');
+
+        const chatWithAdvisorBtnMobile = document.getElementById('chatWithAdvisorBtnMobile');
+        const mobileAdvisorDropdownMenu = document.getElementById('mobileAdvisorDropdownMenu');
+        const mobileAdvisorDropdownChevron = document.getElementById('mobileAdvisorDropdownChevron');
+
+        if (advisorBtn && advisorMenu) {
+            advisorBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                advisorMenu.classList.toggle('hidden');
+            });
+        }
+
+        if (chatWithAdvisorBtnMobile && mobileAdvisorDropdownMenu) {
+            chatWithAdvisorBtnMobile.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isHidden = mobileAdvisorDropdownMenu.classList.contains('hidden');
+                mobileAdvisorDropdownMenu.classList.toggle('hidden');
+                if (mobileAdvisorDropdownChevron) {
+                    mobileAdvisorDropdownChevron.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
+                }
+            });
+        }
+
+        document.addEventListener('click', (e) => {
+            if (advisorWrapper && !advisorWrapper.contains(e.target) && e.target !== advisorBtn) {
+                advisorMenu.classList.add('hidden');
+            }
+            if (mobileAdvisorDropdownMenu && !mobileAdvisorDropdownMenu.contains(e.target) && e.target !== chatWithAdvisorBtnMobile) {
+                mobileAdvisorDropdownMenu.classList.add('hidden');
+                if (mobileAdvisorDropdownChevron) mobileAdvisorDropdownChevron.style.transform = 'rotate(0deg)';
+            }
+        });
+    </script>
 </body>
 </html>
