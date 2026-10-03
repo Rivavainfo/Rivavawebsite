@@ -427,32 +427,137 @@ function initMobileNavigation() {
 }
 
 /* ==========================================================================
-   9. ADVISOR DROPDOWNS
+   9. ADVISOR DROPDOWNS & MODALS (FOUNDERS INFO & WEB APPS)
    ========================================================================== */
 function initAdvisorDropdowns() {
-  const advisorBtn = document.getElementById('advisorDropdownBtn');
-  const advisorMenu = document.getElementById('advisorDropdownMenu');
-  if (advisorBtn && advisorMenu) {
-    advisorBtn.addEventListener('click', (e) => {
+  const desktopBtn = document.getElementById('chatWithAdvisorBtn') || document.getElementById('advisorDropdownBtn');
+  const desktopMenu = document.getElementById('advisorDropdownMenu');
+  const desktopChevron = document.getElementById('advisorDropdownChevron');
+
+  if (desktopBtn && desktopMenu) {
+    desktopBtn.addEventListener('click', (e) => {
       e.stopPropagation();
-      advisorMenu.classList.toggle('hidden');
-    });
-    document.addEventListener('click', (e) => {
-      if (!advisorMenu.contains(e.target) && !advisorBtn.contains(e.target)) {
-        advisorMenu.classList.add('hidden');
+      const isHidden = desktopMenu.classList.contains('hidden');
+      desktopMenu.classList.toggle('hidden');
+      if (desktopChevron) {
+        desktopChevron.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
       }
     });
   }
 
   const mobileAdvisorBtn = document.getElementById('chatWithAdvisorBtnMobile');
   const mobileAdvisorMenu = document.getElementById('mobileAdvisorDropdownMenu');
+  const mobileAdvisorChevron = document.getElementById('mobileAdvisorDropdownChevron');
+
   if (mobileAdvisorBtn && mobileAdvisorMenu) {
     mobileAdvisorBtn.addEventListener('click', (e) => {
       e.stopPropagation();
+      const isHidden = mobileAdvisorMenu.classList.contains('hidden');
       mobileAdvisorMenu.classList.toggle('hidden');
+      if (mobileAdvisorChevron) {
+        mobileAdvisorChevron.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
+      }
     });
   }
+
+  // Close dropdowns when clicking outside
+  document.addEventListener('click', (e) => {
+    if (desktopMenu && !desktopMenu.contains(e.target) && desktopBtn && !desktopBtn.contains(e.target)) {
+      desktopMenu.classList.add('hidden');
+      if (desktopChevron) desktopChevron.style.transform = 'rotate(0deg)';
+    }
+    if (mobileAdvisorMenu && !mobileAdvisorMenu.contains(e.target) && mobileAdvisorBtn && !mobileAdvisorBtn.contains(e.target)) {
+      mobileAdvisorMenu.classList.add('hidden');
+      if (mobileAdvisorChevron) mobileAdvisorChevron.style.transform = 'rotate(0deg)';
+    }
+  });
+
+  // Modal helper functions
+  const openModal = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }
+  };
+
+  const closeModal = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.classList.remove('show');
+      document.body.style.overflow = 'auto';
+    }
+  };
+
+  // Wire up Founders Info modal triggers
+  const openFoundersBtn = document.getElementById('openFoundersModalBtn');
+  const openFoundersBtnMobile = document.getElementById('openFoundersModalBtnMobile');
+  if (openFoundersBtn) {
+    openFoundersBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (desktopMenu) desktopMenu.classList.add('hidden');
+      if (desktopChevron) desktopChevron.style.transform = 'rotate(0deg)';
+      openModal('foundersModal');
+    });
+  }
+  if (openFoundersBtnMobile) {
+    openFoundersBtnMobile.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (mobileAdvisorMenu) mobileAdvisorMenu.classList.add('hidden');
+      if (mobileAdvisorChevron) mobileAdvisorChevron.style.transform = 'rotate(0deg)';
+      const mobileMenu = document.getElementById('mobileMenu');
+      if (mobileMenu) mobileMenu.classList.add('hidden');
+      openModal('foundersModal');
+    });
+  }
+
+  // Wire up Web Apps modal triggers
+  const openAppBtn = document.getElementById('openAppModalBtn');
+  const openAppBtnMobile = document.getElementById('openAppModalBtnMobile');
+  if (openAppBtn) {
+    openAppBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (desktopMenu) desktopMenu.classList.add('hidden');
+      if (desktopChevron) desktopChevron.style.transform = 'rotate(0deg)';
+      openModal('appModal');
+    });
+  }
+  if (openAppBtnMobile) {
+    openAppBtnMobile.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (mobileAdvisorMenu) mobileAdvisorMenu.classList.add('hidden');
+      if (mobileAdvisorChevron) mobileAdvisorChevron.style.transform = 'rotate(0deg)';
+      const mobileMenu = document.getElementById('mobileMenu');
+      if (mobileMenu) mobileMenu.classList.add('hidden');
+      openModal('appModal');
+    });
+  }
+
+  // Close modals on clicking [data-modal-close] or backdrop
+  document.addEventListener('click', (e) => {
+    const closeBtn = e.target.closest('[data-modal-close]');
+    if (closeBtn) {
+      closeModal(closeBtn.getAttribute('data-modal-close'));
+    } else {
+      const activeModal = e.target.closest('.modal.show');
+      if (activeModal && e.target === activeModal) {
+        closeModal(activeModal.id);
+      }
+    }
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      ['foundersModal', 'appModal'].forEach(id => closeModal(id));
+      if (desktopMenu) desktopMenu.classList.add('hidden');
+      if (desktopChevron) desktopChevron.style.transform = 'rotate(0deg)';
+      if (mobileAdvisorMenu) mobileAdvisorMenu.classList.add('hidden');
+      if (mobileAdvisorChevron) mobileAdvisorChevron.style.transform = 'rotate(0deg)';
+    }
+  });
 }
+
 
 /* ==========================================================================
    10. INTERACTIVE STAR RATING SYSTEM (BLOG DETAIL PAGES)

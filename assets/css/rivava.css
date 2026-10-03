@@ -1,15 +1,15 @@
 /* ==========================================================================
-   RIVAVA MASTER DESIGN SYSTEM - APPLE LIGHT LUXURY
+   RIVAVA MASTER DESIGN SYSTEM - PURE WHITE LUXURY & GLOWING ACCENTS
    Pure White Aesthetic • Medium/Light Boldness • Apple San Francisco Typography
-   Accent: Emerald Mint (#00C076) • Silky Lenis & GSAP Transitions
+   Signature Emerald Glow • Silky Lenis & Snappy GSAP Micro-interactions
    ========================================================================== */
 
 @import url('https://fonts.cdnfonts.com/css/sf-pro-display');
 
 :root {
   /* Typography - Apple San Francisco Font System */
-  --apple-font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --apple-font-text: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --apple-font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro", "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --apple-font-text: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "Inter", -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
   --apple-font-mono: ui-monospace, "SF Mono", Monaco, Menlo, Consolas, "Liberation Mono", "Courier New", monospace;
 
   /* Pure White Surface Tokens - 100% White Theme */
@@ -25,7 +25,7 @@
   --text-muted: #64748B;
   --text-light: #94A3B8;
 
-  /* Brand Accents (Exact match to User Screenshot) */
+  /* Brand Accents */
   --accent-green: #00C076;
   --accent-green-rgb: 0, 192, 118;
   --accent-green-light: #E8F8F1;
@@ -98,6 +98,27 @@ body {
   position: relative;
   min-height: 100vh;
 }
+
+/* Signature Glowing Logo Styles */
+.rivava-text {
+  font-weight: 800;
+  color: #0F172A;
+  text-shadow: 0 0 18px rgba(0, 192, 118, 0.4);
+  animation: glow-emerald 3.5s ease-in-out infinite alternate;
+}
+
+@keyframes glow-emerald {
+  from {
+    filter: drop-shadow(0 0 3px rgba(0, 192, 118, 0.25));
+    text-shadow: 0 0 8px rgba(0, 192, 118, 0.25);
+  }
+  to {
+    filter: drop-shadow(0 0 12px rgba(0, 192, 118, 0.6));
+    text-shadow: 0 0 20px rgba(0, 192, 118, 0.5);
+  }
+}
+
+
 
 /* Apple Typography Hierarchy - Clean, Medium & Light Boldness */
 h1, h2, h3, h4, h5, h6, .hero-title, .font-heading {
@@ -299,7 +320,6 @@ code, kbd, samp, pre {
 
 /* ==========================================================================
    APPLE PILL NAVIGATION & TABS (Hardware Accelerated Transitions)
-   Uses translate3d, will-change, GPU compositing layer, and Apple bezier easing
    ========================================================================== */
 .apple-pill-nav, .tab-nav-container {
   position: relative;
@@ -311,7 +331,6 @@ code, kbd, samp, pre {
   border-radius: 9999px;
   padding: 0.35rem 0.5rem;
   isolation: isolate;
-  /* Hardware acceleration trigger */
   transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
@@ -329,7 +348,6 @@ code, kbd, samp, pre {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
   pointer-events: none;
   z-index: 1;
-  /* Hardware Acceleration */
   transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
   will-change: transform, width;
@@ -354,8 +372,6 @@ code, kbd, samp, pre {
   border: none;
   background: transparent;
   user-select: none;
-  
-  /* Hardware Acceleration Transitions */
   transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
@@ -384,7 +400,6 @@ code, kbd, samp, pre {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
-/* When hardware indicator is active, remove individual pill background */
 .has-glider .apple-pill-link.is-active {
   background: transparent;
   box-shadow: none;
@@ -609,6 +624,75 @@ code, kbd, samp, pre {
   transform: translateX(3px);
 }
 
+
+/* ==============================================
+   MODAL STYLES (OPTIMIZED & MOBILE-FIRST)
+   ============================================== */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 100;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  padding: 1rem;
+}
+
+.modal.show {
+  display: flex;
+  opacity: 1;
+}
+
+.modal-content {
+  background: #141414;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  width: 100%;
+  max-width: 680px;
+  transform: scale(0.95);
+  transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  color: #FAFAFA;
+}
+
+.modal.show .modal-content {
+  transform: scale(1);
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #94A3B8;
+  transition: var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.modal-close:hover {
+  background: var(--accent-green);
+  color: #000000;
+  transform: rotate(90deg);
+}
+
+
 /* Trust Bar */
 .trust-bar-divider {
   display: flex;
@@ -646,13 +730,13 @@ code, kbd, samp, pre {
 }
 
 /* ==========================================================================
-   PDF PREVIEW CARD & RESEARCH LOCKED OVERLAY (Clean Light Mode)
+   PDF PREVIEW CARD & RESEARCH LOCKED OVERLAY (Dark Glass Mode)
    ========================================================================== */
 .pdf-preview-container {
   position: relative;
   border-radius: 1.25rem;
   overflow: hidden;
-  background: #F8FAFC;
+  background: #141414;
   border: 1px solid var(--border-card);
 }
 
@@ -661,15 +745,15 @@ code, kbd, samp, pre {
   user-select: none;
   pointer-events: none;
   opacity: 0.55;
-  color: #64748B;
+  color: #94A3B8;
 }
 
 .pdf-lock-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.65) 0%, rgba(255, 255, 255, 0.98) 75%);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  background: linear-gradient(180deg, rgba(10, 10, 10, 0.7) 0%, rgba(20, 20, 20, 0.98) 75%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -680,19 +764,19 @@ code, kbd, samp, pre {
 }
 
 .pdf-lock-overlay h4 {
-  color: #0F172A;
+  color: #FAFAFA;
   font-weight: 600;
 }
 
 .pdf-lock-overlay p {
-  color: #64748B;
+  color: #94A3B8;
 }
 
 /* ==========================================================================
    BLOG STAR RATING COMPONENT
    ========================================================================== */
 .blog-rating-widget {
-  background: #F8FAFC;
+  background: #141414;
   border: 1px solid var(--border-card);
   border-radius: 1.25rem;
   padding: 1.5rem;
