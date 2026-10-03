@@ -23,7 +23,26 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Apple SF Pro Font -->
     <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/sf-pro-display">
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+
     <style>
+        /* Lenis Smooth Scroll Recommended CSS */
+        html.lenis, html.lenis body { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+        .lenis.lenis-stopped { overflow: hidden; }
+        .lenis.lenis-smooth iframe { pointer-events: none; }
+
+        /* Cuberto-Style Reveals & Cursor */
+        .cuberto-reveal-container { overflow: hidden; display: block; }
+        .cuberto-reveal-inner { display: block; transform: translateY(110%) skewY(1.5deg); opacity: 0; transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1); will-change: transform, opacity; }
+        .cuberto-reveal-inner.revealed, .cuberto-in-view .cuberto-reveal-inner { transform: translateY(0) skewY(0deg); opacity: 1; }
+        .cuberto-cursor-aura { position: fixed; top: -40px; left: -40px; width: 80px; height: 80px; border-radius: 50%; background: radial-gradient(circle, rgba(0, 255, 127, 0.22), rgba(0, 112, 243, 0.15) 55%, transparent 80%); pointer-events: none; z-index: 99999; mix-blend-mode: screen; transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1), height 0.35s cubic-bezier(0.16, 1, 0.3, 1); transform: translate3d(-100px, -100px, 0); will-change: transform; filter: blur(8px); }
+        .cuberto-cursor-aura.cursor-active { width: 130px; height: 130px; top: -65px; left: -65px; background: radial-gradient(circle, rgba(0, 255, 127, 0.35), rgba(255, 51, 102, 0.22) 60%, transparent 85%); filter: blur(12px); }
+        .cuberto-cursor-dot { position: fixed; top: -3px; left: -3px; width: 6px; height: 6px; border-radius: 50%; background: #00FF7F; box-shadow: 0 0 10px #00FF7F; pointer-events: none; z-index: 100000; transform: translate3d(-100px, -100px, 0); will-change: transform; }
+        @media (pointer: coarse) { .cuberto-cursor-aura, .cuberto-cursor-dot { display: none !important; } }
+
         :root {
             --apple-font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "SF Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
             --accent-pink: #FF3366;
@@ -237,6 +256,7 @@
             }
         });
     </script>
+    <!-- Rivava Motion Engine (Lenis Smooth Scrolling + Cuberto Reveals & Magnetic Follower) -->
+    <script src="assets/rivava-motion.js"></script>
 </body>
-
 </html>
