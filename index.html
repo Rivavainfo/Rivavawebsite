@@ -36,15 +36,15 @@
     <div class="site-header-wrapper" id="header-wrapper">
         <header id="header" class="w-full bg-white/80 backdrop-blur-xl border-b border-gray-100 transition-all">
             <div class="container mx-auto px-6 lg:px-12 max-w-7xl">
-                <div class="flex items-center justify-between py-4 h-20">
+                <div class="flex items-center justify-between py-3 h-16">
                     <!-- Glowing Brand Logo -->
-                    <a href="index.html#hero" class="flex items-center gap-3.5 group">
-                        <div class="w-10 h-10 rounded-2xl bg-white border border-emerald-500/30 flex items-center justify-center p-1.5 shadow-[0_0_15px_rgba(0,192,118,0.25)] group-hover:scale-105 transition-transform">
+                    <a href="index.html#hero" class="flex items-center gap-3 group">
+                        <div class="w-9 h-9 rounded-xl bg-white border border-emerald-500/30 flex items-center justify-center p-1.5 shadow-[0_0_12px_rgba(0,192,118,0.2)] group-hover:scale-105 transition-transform">
                             <img src="assets/logo.png" alt="Rivava Logo" class="h-full w-full object-contain">
                         </div>
                         <div class="flex flex-col">
-                            <span class="text-xl font-bold tracking-tight text-gray-900 rivava-text">Rivava</span>
-                            <span class="text-[9px] tracking-widest uppercase font-semibold text-emerald-600">Research First</span>
+                            <span class="text-lg font-bold tracking-tight text-gray-900 rivava-text">Rivava</span>
+                            <span class="text-[8px] tracking-widest uppercase font-semibold text-emerald-600">Research First</span>
                         </div>
                     </a>
 
@@ -58,56 +58,54 @@
                         <a href="challenge.html" class="apple-pill-link accent-green font-semibold">7-Day Challenge</a>
                     </nav>
 
-                    <!-- Desktop Right CTAs (With Chat with Advisor Dropdown) -->
-                    <div class="hidden md:flex items-center gap-3.5">
+                    <!-- Desktop Right CTAs -->
+                    <div class="hidden md:flex items-center gap-3">
                         <!-- Search Button -->
-                        <a href="research.html" class="w-10 h-10 rounded-full border border-gray-200 text-gray-500 hover:text-gray-900 hover:bg-gray-50 flex items-center justify-center transition-colors" title="Search Research">
-                            <i class="fas fa-search text-sm"></i>
+                        <a href="research.html" class="w-9 h-9 rounded-full border border-gray-200 text-gray-400 hover:text-gray-900 hover:bg-gray-50 flex items-center justify-center transition-colors" title="Search Research">
+                            <i class="fas fa-search text-xs"></i>
                         </a>
 
-                        <!-- Chat with Advisor Dropdown (From User Screenshot) -->
+                        <!-- Chat with Advisor Dropdown -->
                         <div class="relative inline-block text-left" id="advisorDropdownWrapper">
-                            <button id="chatWithAdvisorBtn" class="h-10 px-4 bg-[#22c55e] hover:bg-[#16a34a] text-black font-bold text-sm rounded-full transition-all flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(34,197,94,0.35)]" title="Chat with Advisor">
-                                <i class="fab fa-whatsapp text-lg"></i>
+                            <button id="chatWithAdvisorBtn" class="h-9 px-3.5 bg-[#22c55e] hover:bg-[#16a34a] text-black font-bold text-xs rounded-full transition-all flex items-center justify-center gap-1.5 shadow-[0_0_12px_rgba(34,197,94,0.3)]" title="Chat with Advisor">
+                                <i class="fab fa-whatsapp text-sm"></i>
                                 <span>Chat with Advisor</span>
-                                <i class="fas fa-chevron-down text-xs transition-transform duration-200" id="advisorDropdownChevron"></i>
+                                <i class="fas fa-chevron-down text-[10px] transition-transform duration-200" id="advisorDropdownChevron"></i>
                             </button>
-                            <div id="advisorDropdownMenu" class="hidden absolute right-0 mt-2 w-56 rounded-2xl bg-[#141414] border border-white/10 shadow-2xl py-2 z-50">
-                                <a href="whatsapp.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-200 hover:bg-white/10 hover:text-white transition-colors">
-                                    <i class="fab fa-whatsapp text-[#22c55e] text-base w-5 text-center"></i>
+                            <div id="advisorDropdownMenu" class="hidden absolute right-0 mt-2 w-52 rounded-2xl bg-[#141414] border border-white/10 shadow-2xl py-2 z-50">
+                                <a href="whatsapp.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-200 hover:bg-white/10 hover:text-white transition-colors rounded-xl mx-1">
+                                    <i class="fab fa-whatsapp text-[#22c55e] text-sm w-4 text-center"></i>
                                     <span>WhatsApp Page</span>
                                 </a>
-                                <a href="#" id="openFoundersModalBtn" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-200 hover:bg-white/10 hover:text-white transition-colors">
-                                    <i class="fas fa-users text-[#00FF7F] text-base w-5 text-center"></i>
+                                <a href="tel:+91-8881176909" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-200 hover:bg-white/10 hover:text-white transition-colors rounded-xl mx-1">
+                                    <i class="fas fa-phone-alt text-[#00C076] text-sm w-4 text-center"></i>
+                                    <span>Talk to Advisor</span>
+                                </a>
+                                <a href="#" id="openFoundersModalBtn" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-200 hover:bg-white/10 hover:text-white transition-colors rounded-xl mx-1">
+                                    <i class="fas fa-users text-[#00FF7F] text-sm w-4 text-center"></i>
                                     <span>Founders Info</span>
                                 </a>
-                                <a href="#" id="openAppModalBtn" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-200 hover:bg-white/10 hover:text-white transition-colors">
-                                    <i class="fas fa-th text-[#38bdf8] text-base w-5 text-center"></i>
+                                <a href="#" id="openAppModalBtn" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-200 hover:bg-white/10 hover:text-white transition-colors rounded-xl mx-1">
+                                    <i class="fas fa-th text-[#38bdf8] text-sm w-4 text-center"></i>
                                     <span>Web Apps</span>
                                 </a>
                             </div>
                         </div>
 
-                        <!-- Talk to Advisor tel link (Required by test.js) -->
-                        <a href="tel:+91-8881176909" class="btn-apple-advisor">
-                            <i class="fas fa-phone-alt text-[#00C076] text-xs"></i>
-                            <span>Talk to Advisor</span>
-                        </a>
-
                         <!-- Get Elite Button -->
-                        <a href="#pricing" class="btn-apple-dark text-xs py-2.5 px-5">
+                        <a href="#pricing" class="btn-apple-dark text-xs py-2 px-4">
                             <i class="fas fa-crown text-amber-400 text-xs"></i>
                             <span>Get Elite</span>
                         </a>
                     </div>
 
                     <!-- Mobile Menu Hamburger -->
-                    <div class="flex items-center gap-3 md:hidden">
-                        <a href="tel:+91-8881176909" class="p-2.5 rounded-full border border-gray-200 bg-gray-50 text-gray-700">
-                            <i class="fas fa-phone-alt text-sm"></i>
+                    <div class="flex items-center gap-2 md:hidden">
+                        <a href="tel:+91-8881176909" class="p-2 rounded-full border border-gray-200 bg-gray-50 text-gray-700">
+                            <i class="fas fa-phone-alt text-xs"></i>
                         </a>
-                        <button id="hambBtn" class="p-2.5 rounded-xl border border-gray-200 bg-white text-gray-800 shadow-sm" aria-label="Toggle navigation">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <button id="hambBtn" class="p-2 rounded-xl border border-gray-200 bg-white text-gray-800 shadow-sm" aria-label="Toggle navigation">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                             </svg>
                         </button>
