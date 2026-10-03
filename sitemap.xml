@@ -1,16 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
-
-<url>
-  <loc>https://www.rivava.in/</loc>
-  <lastmod>2025-08-20T12:48:04+00:00</lastmod>
-</url>
-
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://www.rivava.in/</loc>
+    <lastmod>2026-10-03</lastmod>
+    <priority>1.00</priority>
+  </url>
+  <url>
+    <loc>https://www.rivava.in/about.html</loc>
+    <lastmod>2026-10-03</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.rivava.in/research.html</loc>
+    <lastmod>2026-10-03</lastmod>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://www.rivava.in/learn.html</loc>
+    <lastmod>2026-10-03</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.rivava.in/challenge.html</loc>
+    <lastmod>2026-10-03</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.rivava.in/donation.html</loc>
+    <lastmod>2026-10-03</lastmod>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.rivava.in/contact.html</loc>
+    <lastmod>2026-10-03</lastmod>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.rivava.in/whatsapp.html</loc>
+    <lastmod>2026-10-03</lastmod>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.rivava.in/blogs/index.html</loc>
+    <lastmod>2026-10-03</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.rivava.in/blogs/blog1.html</loc>
+    <lastmod>2026-10-03</lastmod>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.rivava.in/blogs/blog2.html</loc>
+    <lastmod>2026-10-03</lastmod>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.rivava.in/blogs/blog3.html</loc>
+    <lastmod>2026-10-03</lastmod>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.rivava.in/blogs/blog4.html</loc>
+    <lastmod>2026-10-03</lastmod>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.rivava.in/blogs/blog5.html</loc>
+    <lastmod>2026-10-03</lastmod>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.rivava.in/blogs/blog6.html</loc>
+    <lastmod>2026-10-03</lastmod>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.rivava.in/blogs/blog7.html</loc>
+    <lastmod>2026-10-03</lastmod>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.rivava.in/privacy-policy.html</loc>
+    <lastmod>2026-10-03</lastmod>
+    <priority>0.50</priority>
+  </url>
+  <url>
+    <loc>https://www.rivava.in/terms-of-service.html</loc>
+    <lastmod>2026-10-03</lastmod>
+    <priority>0.50</priority>
+  </url>
 </urlset>

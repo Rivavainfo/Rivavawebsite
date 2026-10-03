@@ -1,165 +1,132 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy — Rivava</title>
-    <meta name="description" content="Privacy Policy for Rivava." />
-    <!-- Favicon and mobile-friendly icons -->
-    <link rel="icon" href="https://placehold.co/32x32/000000/FFFFFF?text=R" type="image/png">
-    <link rel="apple-touch-icon" href="https://placehold.co/180x180/000000/FFFFFF?text=R">
+    <meta name="description" content="Privacy Policy for Rivava. Learn how we protect your personal and financial information with bank-level encryption." />
     
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <!-- Google Fonts: Inter -->
+    <link rel="icon" type="image/png" sizes="32x32" href="icon_folder/icon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="icon_folder/icon-180x180.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            --accent-pink: #FF3366;
-            --accent-blue: #0070F3;
-            --accent-lime: #00E676;
-        }
-
-        :root {
-            --bg-dark: #000000;
-            --bg-panel: #111111;
-            --text-primary: #FFFFFF;
-            --text-muted: #A0AEC0;
-            --accent-primary: #00FF7F;
-            --border-color: rgba(255, 255, 255, 0.1);
-        }
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-primary);
-            font-family: 'Inter', sans-serif;
-        }
-                body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: radial-gradient(circle at 15% 20%, rgba(0, 163, 255, 0.08), transparent 40%),
-                        radial-gradient(circle at 85% 80%, rgba(0, 255, 127, 0.08), transparent 40%);
-            z-index: -1;
-            pointer-events: none;
-        }
-        h1, h2, h3 {
-            font-weight: 700;
-            letter-spacing: -0.025em;
-            color: var(--text-primary);
-        }
-        p, li {
-            line-height: 1.7;
-            color: var(--text-muted);
-        }
-        a {
-            color: var(--accent-primary);
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .policy-content ul {
-            list-style-type: disc;
-            padding-left: 1.5rem;
-        }
-        .policy-content h2 {
-            margin-top: 2.5rem;
-            margin-bottom: 1rem;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 0.5rem;
-        }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/rivava.css">
 </head>
-<body class="py-16">
+<body class="apple-theme bg-white text-slate-900 selection:bg-[#00C076] selection:text-white">
 
-    <main class="container mx-auto px-6 max-w-4xl">
-        <div class="text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-extrabold">Privacy Policy</h1>
-            <p class="mt-2 text-lg">Last updated: August 26, 2025</p>
-        </div>
+    <!-- Header -->
+    <div class="site-header-wrapper" id="header-wrapper">
+        <header id="header" class="w-full bg-white/80 backdrop-blur-xl border-b border-gray-100 transition-all">
+            <div class="container mx-auto px-6 lg:px-12 max-w-7xl">
+                <div class="flex items-center justify-between py-4 h-20">
+                    <a href="index.html#hero" class="flex items-center gap-3.5 group">
+                        <div class="w-10 h-10 rounded-2xl bg-white border border-gray-200 flex items-center justify-center p-1.5 shadow-sm group-hover:scale-105 transition-transform">
+                            <img src="assets/logo.png" alt="Rivava Logo" class="h-full w-full object-contain">
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="text-xl font-semibold tracking-tight text-gray-900">Rivava</span>
+                            <span class="text-[9px] tracking-widest uppercase font-semibold text-gray-400">Legal</span>
+                        </div>
+                    </a>
 
-        <div class="policy-content bg-[color:var(--bg-panel)] border border-[color:var(--border-color)] rounded-2xl p-8 md:p-12">
-            <p>Welcome to Rivava. We are committed to protecting your privacy and handling your data in an open and transparent manner. This privacy policy sets out how we collect, use, and safeguard your information when you use our services.</p>
+                    <!-- Center Pill Navigation Capsule -->
+                    <nav class="hidden lg:flex items-center apple-pill-nav shadow-sm">
+                        <a href="index.html#hero" class="apple-pill-link">Home</a>
+                        <a href="research.html" class="apple-pill-link">Research Hub</a>
+                        <a href="learn.html" class="apple-pill-link">Learn</a>
+                        <a href="about.html" class="apple-pill-link">About Us</a>
+                        <a href="blogs/index.html" class="apple-pill-link">Blog</a>
+                        <a href="challenge.html" class="apple-pill-link accent-green font-semibold">7-Day Challenge</a>
+                    </nav>
 
-            <h2 class="text-2xl font-bold">1. Information We Collect</h2>
-            <p>We collect information that is essential for providing our financial advisory services. This may include:</p>
-            <ul class="space-y-2 mt-4">
-                <li><strong>Personal Identification Information:</strong> Name, email address, phone number.</li>
-                <li><strong>Financial Information:</strong> Income, expenses, financial goals, loan details, and investment information that you voluntarily provide for analysis.</li>
-                <li><strong>Usage Data:</strong> Information on how you interact with our website and tools, collected through cookies and similar technologies.</li>
-            </ul>
+                    <div class="hidden md:flex items-center gap-4">
+                        <a href="contact.html" class="text-sm font-semibold text-gray-700 hover:text-gray-900 transition-colors">Contact</a>
+                        <a href="index.html#pricing" class="btn-apple-dark text-xs py-2 px-5">Get Elite</a>
+                    </div>
 
-            <h2 class="text-2xl font-bold">2. How We Use Your Information</h2>
-            <p>Your information is used solely for the following purposes:</p>
-            <ul class="space-y-2 mt-4">
-                <li>To provide and personalize our financial management and advisory services.</li>
-                <li>To communicate with you, including sending updates, reports, and responding to your inquiries.</li>
-                <li>To improve our website, services, and user experience.</li>
-                <li>To create anonymized, aggregated reports for internal analysis and to showcase community impact, ensuring no individual can be identified.</li>
-            </ul>
+                    <div class="flex items-center gap-2 md:hidden">
+                        <button id="hambBtn" class="p-2.5 rounded-xl border border-gray-200 bg-white text-gray-800 shadow-sm" aria-label="Toggle navigation">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
 
-            <h2 class="text-2xl font-bold">3. Data Sharing and Disclosure</h2>
-            <p>We do not sell, trade, or rent your personal identification information to others. Your data will not be shared with third parties, except in the following situations:</p>
-            <ul class="space-y-2 mt-4">
-                <li>With your explicit consent.</li>
-                <li>To comply with a legal obligation or a request from law enforcement.</li>
-                <li>To protect our rights, property, or safety, and that of our users.</li>
-            </ul>
-            <p class="mt-4">Our fund managers and advisors are bound by strict confidentiality agreements to protect your data.</p>
+            <!-- Mobile Drawer -->
+            <div id="mobileMenu" class="hidden md:hidden border-t border-gray-100 bg-white/95 backdrop-blur-2xl px-6 py-6 shadow-xl transition-all">
+                <nav class="flex flex-col gap-3 text-base">
+                    <a href="index.html#hero" class="px-4 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50">Home</a>
+                    <a href="research.html" class="px-4 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50">Research Hub</a>
+                    <a href="learn.html" class="px-4 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50">Learning Center</a>
+                    <a href="about.html" class="px-4 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50">About Us</a>
+                    <a href="contact.html" class="px-4 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50">Contact</a>
+                </nav>
+            </div>
+        </header>
+    </div>
 
-            <h2 class="text-2xl font-bold">4. Data Security</h2>
-            <p>We implement robust security measures to protect your data from unauthorized access, alteration, or disclosure. All sensitive information is secured using Google Firebase's robust security features. While we strive to use commercially acceptable means to protect your Personal Data, no method of transmission over the Internet is 100% secure.</p>
+    <main class="py-16 md:py-24">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="text-center mb-12">
+                <div class="badge-apple mb-3 text-xs">Security & Transparency</div>
+                <h1 class="text-4xl md:text-5xl font-semibold text-gray-900 cuberto-reveal tracking-tight">Privacy Policy</h1>
+                <p class="mt-2 text-sm text-gray-500 font-normal">Last updated: 2026 • Rivava Financial Technologies</p>
+            </div>
 
-            <h2 class="text-2xl font-bold">5. Your Data Rights</h2>
-            <p>You have full control over your personal data. You have the right to:</p>
-            <ul class="space-y-2 mt-4">
-                <li>Access the personal information we hold about you.</li>
-                <li>Request corrections to any inaccurate or incomplete data.</li>
-                <li>Request the deletion of your personal data.</li>
-                <li>Opt-out of data collection or specific communications at any time.</li>
-            </ul>
+            <div class="glass-panel p-8 md:p-12 border border-gray-200/80 bg-white space-y-8 text-sm text-gray-600 leading-relaxed shadow-sm">
+                <div>
+                    <h2 class="text-xl font-semibold text-gray-900 mb-3">1. Executive Overview</h2>
+                    <p class="font-normal">At Rivava, we treat financial privacy as a fundamental human right. We are dedicated to providing research, learning, and tracking tools with transparent data handling practices. We do not sell your personal data or financial logs to advertising brokers or credit agencies.</p>
+                </div>
 
-            <h2 class="text-2xl font-bold">6. Changes to This Privacy Policy</h2>
-            <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last updated" date. You are advised to review this Privacy Policy periodically for any changes.</p>
+                <div>
+                    <h2 class="text-xl font-semibold text-gray-900 mb-3">2. Information We Collect</h2>
+                    <ul class="list-disc list-inside space-y-2 pl-2 text-gray-600 font-normal">
+                        <li><strong class="text-gray-900 font-semibold">Account Identification:</strong> Name, verified email address, and phone number for WhatsApp advisory routing.</li>
+                        <li><strong class="text-gray-900 font-semibold">User-Provided Data:</strong> Voluntary financial allocations, watchlists, savings goals, and transaction categories submitted through our tracking calculators or challenge forms.</li>
+                        <li><strong class="text-gray-900 font-semibold">Technical Metadata:</strong> Anonymized telemetry to optimize application performance, prevent malicious scraping of research reports, and maintain uptime.</li>
+                    </ul>
+                </div>
 
-            <h2 class="text-2xl font-bold">7. Contact Us</h2>
-            <p>If you have any questions about this Privacy Policy, please contact us through the contact form on our main page.</p>
-        </div>
-        
-        <div class="text-center mt-12">
-            <a href="index.html" class="text-lg font-semibold">&larr; Back to Home</a>
+                <div>
+                    <h2 class="text-xl font-semibold text-gray-900 mb-3">3. Cryptographic Data Security</h2>
+                    <p class="font-normal">All sensitive information stored within Rivava's infrastructure is protected via industry-standard AES-256 encryption at rest and TLS 1.3 encryption in transit. Financial APIs utilized for tracking operate under strict read-only protocols.</p>
+                </div>
+
+                <div>
+                    <h2 class="text-xl font-semibold text-gray-900 mb-3">4. Advisory Communications</h2>
+                    <p class="font-normal">When you initiate conversation with our advisors via WhatsApp or phone, communications are conducted directly through verified business channels. You may request deletion of past advisory conversation logs at any time by emailing <a href="mailto:support@rivava.com" class="text-[#00C076] font-semibold underline">support@rivava.com</a>.</p>
+                </div>
+
+                <div>
+                    <h2 class="text-xl font-semibold text-gray-900 mb-3">5. Regulatory & Financial Disclaimer</h2>
+                    <p class="font-normal">Rivava provides educational content and market research models. We are not a portfolio management service (PMS) or broker. Past performance of any company covered does not guarantee future results.</p>
+                </div>
+            </div>
         </div>
     </main>
 
+    <footer class="border-t border-gray-200 bg-white py-12 text-center text-xs text-gray-500">
+        <div class="container mx-auto px-6">
+            <p>&copy; <span id="year"></span> Rivava. All rights reserved. Made with ❤️ in India.</p>
+            <div class="flex justify-center gap-6 mt-4">
+                <a href="index.html#hero" class="hover:text-gray-900">Home</a>
+                <a href="terms-of-service.html" class="hover:text-gray-900">Terms of Service</a>
+                <a href="contact.html" class="hover:text-gray-900">Contact</a>
+            </div>
+        </div>
+    </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const hambBtn = document.getElementById('hambBtn');
-            const mobileMenu = document.getElementById('mobileMenu');
-            if (hambBtn && mobileMenu) {
-                hambBtn.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
-                });
-                mobileMenu.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', () => {
-                        if(link.id !== 'openAppModalBtnMobile') {
-                            mobileMenu.classList.add('hidden');
-                        }
-                    });
-                });
-            }
-        });
-    </script>
+    <!-- Motion & Smooth Scroll Stack: GSAP 3 + ScrollTrigger + Lenis -->
+    <script src="assets/js/vendor/gsap.min.js"></script>
+    <script src="assets/js/vendor/ScrollTrigger.min.js"></script>
+    <script src="assets/js/vendor/lenis.min.js"></script>
+    <script src="assets/js/rivava.js"></script>
 </body>
-
 </html>

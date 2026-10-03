@@ -1,271 +1,333 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us — Rivava</title>
-    <meta name="description" content="Learn about Rivava's mission, vision, and the team behind the research-first investment platform." />
+    <title>About Us — Rivava | Mission, Leadership & Technology</title>
+    <meta name="description" content="Learn about Rivava's mission, values, engineering architecture, and the leadership team bringing clarity to wealth." />
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="icon_folder/icon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="icon_folder/icon-180x180.png">
 
-    <link rel="icon" type="image/png" sizes="32x32" href="icon_folder/icon-32x32.png" onerror="this.onerror=null;this.src='https://placehold.co/32x32/000000/FFFFFF?text=R';">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            --accent-pink: #FF3366;
-            --accent-blue: #0070F3;
-            --accent-lime: #00E676;
-        }
-
-        :root {
-            --bg-dark: #0A0A0A;
-            --text-primary: #FAFAFA;
-            --border-color: rgba(255, 255, 255, 0.08);
-            --transition-medium: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-primary);
-            font-family: 'Inter', sans-serif;
-            -webkit-font-smoothing: antialiased;
-        }
-                body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: radial-gradient(circle at 15% 20%, rgba(0, 163, 255, 0.08), transparent 40%),
-                        radial-gradient(circle at 85% 80%, rgba(0, 255, 127, 0.08), transparent 40%);
-            z-index: -1;
-            pointer-events: none;
-        }
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--border-color);
-            backdrop-filter: blur(20px);
-            border-radius: 1rem;
-            transition: var(--transition-medium);
-            box-shadow: 0 4px 24px -8px rgba(0,0,0,0.5);
-        }
-        .glass-panel:hover {
-            border-color: rgba(255, 255, 255, 0.15);
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/rivava.css">
 </head>
-<body class="relative">
+<body class="apple-theme bg-white text-slate-900 selection:bg-[#00C076] selection:text-white">
 
-    <!-- Header -->
-        <!-- STICKY WRAPPER FOR TICKER AND HEADER -->
-    <div class="sticky top-0 z-[60] flex flex-col w-full shadow-lg bg-[color:var(--bg-panel)]/80 backdrop-blur-2xl border-b border-white/5 transition-all duration-300" id="header-wrapper">
-        <header id="header" class="left-0 right-0 z-50">
-            <div class="container mx-auto px-6 lg:px-12">
-                <div class="flex items-center justify-between py-4 transition-all duration-300 h-20">
-                    <a href="index.html#hero" class="flex items-center gap-3 group">
-                        <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white/10 transition-colors">
-                            <img src="assets/logo.png" alt="Rivava Logo" class="h-10 w-10">
+    <!-- ==============================================
+         STICKY HEADER WITH HARDWARE ACCELERATED PILL NAV
+         ============================================== -->
+    <div class="site-header-wrapper" id="header-wrapper">
+        <header id="header" class="w-full bg-white/80 backdrop-blur-xl border-b border-gray-100 transition-all">
+            <div class="container mx-auto px-6 lg:px-12 max-w-7xl">
+                <div class="flex items-center justify-between py-4 h-20">
+                    <a href="index.html#hero" class="flex items-center gap-3.5 group">
+                        <div class="w-10 h-10 rounded-2xl bg-white border border-gray-200 flex items-center justify-center p-1.5 shadow-sm group-hover:scale-105 transition-transform">
+                            <img src="assets/logo.png" alt="Rivava Logo" class="h-full w-full object-contain">
                         </div>
-                        <span class="text-xl font-semibold tracking-tight">Rivava</span>
+                        <div class="flex flex-col">
+                            <span class="text-xl font-semibold tracking-tight text-gray-900">Rivava</span>
+                            <span class="text-[9px] tracking-widest uppercase font-semibold text-gray-400">About Us</span>
+                        </div>
                     </a>
 
-                    <!-- Desktop Navigation -->
-                    <div class="hidden md:flex items-center bg-white/5 rounded-full px-6 py-2 border border-white/5">
-                        <nav class="flex items-center gap-8 text-sm font-medium">
-                            <a href="index.html#hero" class="text-gray-300 hover:text-white transition-colors">Home</a>
-                            <a href="research.html" class="text-gray-300 hover:text-white transition-colors">Research</a>
-                            <a href="learn.html" class="text-gray-300 hover:text-white transition-colors">Learn</a>
-                            <a href="about.html" class="text-gray-300 hover:text-white transition-colors">About</a>
-                            <a href="blogs/index.html" class="text-gray-300 hover:text-white transition-colors">Blog</a>
-                        </nav>
+                    <!-- Center Pill Navigation Capsule -->
+                    <nav class="hidden lg:flex items-center apple-pill-nav shadow-sm">
+                        <a href="index.html#hero" class="apple-pill-link">Home</a>
+                        <a href="research.html" class="apple-pill-link">Research Hub</a>
+                        <a href="learn.html" class="apple-pill-link">Learn</a>
+                        <a href="about.html" class="apple-pill-link is-active">About Us</a>
+                        <a href="blogs/index.html" class="apple-pill-link">Blog</a>
+                        <a href="challenge.html" class="apple-pill-link accent-green font-semibold">7-Day Challenge</a>
+                    </nav>
+
+                    <!-- Desktop Right CTAs -->
+                    <div class="hidden md:flex items-center gap-3.5">
+                        <a href="tel:+91-8881176909" class="btn-apple-advisor">
+                            <i class="fab fa-whatsapp text-[#00C076] text-base"></i>
+                            <span>Talk to Advisor</span>
+                        </a>
+                        <a href="index.html#pricing" class="btn-apple-dark text-xs py-2.5 px-5">
+                            <i class="fas fa-crown text-amber-400 text-xs"></i>
+                            <span>Get Elite</span>
+                        </a>
                     </div>
 
-                    <div class="hidden md:flex items-center gap-4">
-                        <a href="tel:+91-8881176909" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Talk to Advisor</a>
-                        <a href="contact.html" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Contact</a>
-                        <a href="index.html#pricing" class="bg-white text-black text-sm font-medium px-5 py-2.5 rounded-full hover:bg-gray-200 transition-colors">Get Elite</a>
-                    </div>
-
-                    <!-- Mobile Header Buttons -->
-                    <div class="flex items-center gap-2 md:hidden">
-                        <button id="hambBtn" class="p-2 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm" aria-label="menu">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path d="M4 6h16M4 12h16M4 18h16" stroke-width="2" stroke-linecap="round"/>
+                    <!-- Mobile Menu Hamburger -->
+                    <div class="flex items-center gap-3 md:hidden">
+                        <a href="tel:+91-8881176909" class="p-2.5 rounded-full border border-gray-200 bg-gray-50 text-gray-700">
+                            <i class="fas fa-phone-alt text-sm"></i>
+                        </a>
+                        <button id="hambBtn" class="p-2.5 rounded-xl border border-gray-200 bg-white text-gray-800 shadow-sm" aria-label="Toggle navigation">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                             </svg>
                         </button>
                     </div>
                 </div>
             </div>
 
-            <!-- MOBILE MENU -->
-            <div id="mobileMenu" class="hidden md:hidden border-t border-white/10 bg-black absolute w-full">
-                <div class="container mx-auto px-6 py-6 flex flex-col gap-4 text-base">
-                    <a href="index.html#hero" class="block text-gray-300 hover:text-white transition-colors">Home</a>
-                    <a href="research.html" class="block text-gray-300 hover:text-white transition-colors">Research</a>
-                    <a href="learn.html" class="block text-gray-300 hover:text-white transition-colors">Learn</a>
-                    <a href="about.html" class="block text-gray-300 hover:text-white transition-colors">About</a>
-                    <a href="blogs/index.html" class="block text-gray-300 hover:text-white transition-colors">Blog</a>
-                    <a href="contact.html" class="block text-gray-300 hover:text-white transition-colors">Contact</a>
-                    <div class="mt-4 pt-4 border-t border-white/10">
-                        <a href="index.html#pricing" class="bg-white text-black w-full text-center py-3 rounded-xl font-medium block">Get Elite</a>
+            <!-- Mobile Navigation Drawer -->
+            <div id="mobileMenu" class="hidden md:hidden border-t border-gray-100 bg-white/95 backdrop-blur-2xl px-6 py-6 shadow-xl transition-all">
+                <nav class="flex flex-col gap-3 text-base">
+                    <a href="index.html#hero" class="px-4 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50">Home</a>
+                    <a href="research.html" class="px-4 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50">Research Hub</a>
+                    <a href="learn.html" class="px-4 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50">Learning Center</a>
+                    <a href="about.html" class="px-4 py-2.5 rounded-xl bg-gray-100 text-gray-900 font-semibold">About Us</a>
+                    <a href="blogs/index.html" class="px-4 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50">Blog</a>
+                    <a href="challenge.html" class="px-4 py-2.5 rounded-xl text-[#00C076] hover:bg-emerald-50 font-semibold">7-Day Challenge</a>
+                    <div class="pt-4 border-t border-gray-100 flex flex-col gap-3">
+                        <a href="tel:+91-8881176909" class="w-full py-3 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-200 text-center font-semibold flex items-center justify-center gap-2">
+                            <i class="fab fa-whatsapp text-[#00C076]"></i> Talk to Advisor
+                        </a>
+                        <a href="index.html#pricing" class="btn-apple-dark w-full text-center">
+                            Get Rivava Elite
+                        </a>
                     </div>
-                </div>
+                </nav>
             </div>
         </header>
     </div>
 
-    <main class="relative overflow-hidden pt-32 pb-20">
-        <div class="container mx-auto px-6 lg:px-12">
-            <!-- Hero -->
-            <div class="text-center max-w-4xl mx-auto mb-32">
-                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8">
-                    <span class="text-sm font-medium text-gray-300">Our Story</span>
+    <!-- ==============================================
+         ABOUT HERO
+         ============================================== -->
+    <main class="relative overflow-hidden pt-12 pb-24">
+        <div class="container mx-auto px-6 lg:px-12 max-w-7xl">
+            
+            <div class="max-w-4xl mx-auto text-center mb-20">
+                <div class="reveal-on-scroll badge-apple mb-4">
+                    <i class="fas fa-compass text-xs"></i> Our Purpose & Story
                 </div>
-                <h1 class="text-5xl md:text-7xl font-extrabold mb-8 tracking-tight">Bringing clarity to wealth.</h1>
-                <p class="text-xl text-gray-400 leading-relaxed font-light">
-                    Rivava was founded on a simple principle: investors deserve institutional-grade research, intuitive tools, and unbiased education. We are removing the noise from personal finance.
+                <h1 class="cuberto-reveal text-4xl sm:text-5xl lg:text-6xl font-semibold mb-6 tracking-tight leading-tight text-gray-900">
+                    <span class="cuberto-line-wrap"><span class="cuberto-inner">Bringing Clarity to Wealth.</span></span>
+                    <span class="cuberto-line-wrap"><span class="cuberto-inner text-[#00C076]">Zero Hype. Pure Evidence.</span></span>
+                </h1>
+                <p class="reveal-on-scroll stagger-2 text-base sm:text-lg text-gray-600 max-w-2xl mx-auto font-normal leading-relaxed">
+                    Rivava was founded on a simple principle: retail investors deserve institutional-grade research, intuitive habit tools, and unbiased education. We are systematically removing the noise from personal finance.
                 </p>
             </div>
 
-            <!-- Mission & Vision -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-32">
-                <div class="glass-panel p-10 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 blur-[100px] rounded-full"></div>
-                    <i class="fas fa-bullseye text-3xl text-blue-400 mb-6 relative z-10"></i>
-                    <h3 class="text-2xl font-bold mb-4 relative z-10">Our Mission</h3>
-                    <p class="text-gray-400 leading-relaxed relative z-10">
-                        To empower every investor with the data, insights, and education needed to make confident, research-driven financial decisions. We aim to replace FOMO with facts.
+            <!-- Mission & Vision Dual Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24 max-w-5xl mx-auto">
+                <div class="glass-panel p-8 sm:p-10 relative overflow-hidden border border-gray-200/80 bg-white shadow-sm">
+                    <div class="w-12 h-12 rounded-2xl bg-sky-50 text-sky-600 flex items-center justify-center text-xl mb-6 shadow-sm">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-3">Our Mission</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed font-normal">
+                        To empower every individual with data-backed financial research, transparent valuation models, and disciplined habit systems. We aim to permanently replace speculative FOMO with rational, evidence-driven investing.
                     </p>
                 </div>
 
-                <div class="glass-panel p-10 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-64 h-64 bg-green-500/10 blur-[100px] rounded-full"></div>
-                    <i class="fas fa-eye text-3xl text-green-400 mb-6 relative z-10"></i>
-                    <h3 class="text-2xl font-bold mb-4 relative z-10">Our Vision</h3>
-                    <p class="text-gray-400 leading-relaxed relative z-10">
-                        A world where wealth creation is accessible, transparent, and guided by expert analysis rather than market hype. A future where financial literacy is the standard.
+                <div class="glass-panel p-8 sm:p-10 relative overflow-hidden border border-gray-200/80 bg-white shadow-sm">
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-[#00C076] flex items-center justify-center text-xl mb-6 shadow-sm">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-3">Our Vision</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed font-normal">
+                        A financial ecosystem where wealth creation is accessible, demystified, and guided by institutional analytics rather than market sentiment or misleading promotional tips.
                     </p>
                 </div>
             </div>
 
             <!-- Core Values -->
-            <div class="mb-32">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl font-bold">Core Values</h2>
+            <section class="mb-24 max-w-5xl mx-auto">
+                <div class="text-center mb-12">
+                    <div class="badge-apple mb-2 text-xs">Foundation</div>
+                    <h2 class="text-3xl font-semibold text-gray-900 tracking-tight">Our Guiding Pillars</h2>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="glass-panel p-8">
-                        <h4 class="font-bold text-lg mb-3">Radical Transparency</h4>
-                        <p class="text-sm text-gray-400">We show you the models, the risks, and the reasoning behind every insight. No black boxes.</p>
+                    <div class="glass-panel p-8 border border-gray-200/80 bg-white text-center shadow-sm">
+                        <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-[#00C076] flex items-center justify-center text-xl mx-auto mb-4 shadow-sm">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h4 class="font-semibold text-gray-900 text-lg mb-2">Radical Transparency</h4>
+                        <p class="text-xs text-gray-600 leading-relaxed font-normal">We show you the formulas, DCF hurdles, balance sheet vulnerabilities, and risk ratings. No black-box algorithms.</p>
                     </div>
-                    <div class="glass-panel p-8">
-                        <h4 class="font-bold text-lg mb-3">Education First</h4>
-                        <p class="text-sm text-gray-400">We believe in teaching you how to fish. Every feature is designed to make you a smarter investor.</p>
+
+                    <div class="glass-panel p-8 border border-gray-200/80 bg-white text-center shadow-sm">
+                        <div class="w-12 h-12 rounded-2xl bg-sky-50 text-sky-600 flex items-center justify-center text-xl mx-auto mb-4 shadow-sm">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h4 class="font-semibold text-gray-900 text-lg mb-2">Education First</h4>
+                        <p class="text-xs text-gray-600 leading-relaxed font-normal">We believe in teaching you how to evaluate assets independently. Every tool is architected to make you a more discerning investor.</p>
                     </div>
-                    <div class="glass-panel p-8">
-                        <h4 class="font-bold text-lg mb-3">Security by Design</h4>
-                        <p class="text-sm text-gray-400">Your financial data is yours. We employ bank-level encryption and strict privacy controls.</p>
+
+                    <div class="glass-panel p-8 border border-gray-200/80 bg-white text-center shadow-sm">
+                        <div class="w-12 h-12 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center text-xl mx-auto mb-4 shadow-sm">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4 class="font-semibold text-gray-900 text-lg mb-2">Security by Design</h4>
+                        <p class="text-xs text-gray-600 leading-relaxed font-normal">Your financial data is sovereign. We enforce bank-level AES-256 encryption and read-only protocol standards.</p>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <!-- Technology & Innovation -->
-            <div class="glass-panel p-12 mb-32 border border-white/10 bg-gradient-to-br from-white/5 to-transparent">
-                <div class="max-w-3xl">
-                    <h2 class="text-3xl font-bold mb-6">Technology & Security</h2>
-                    <p class="text-gray-400 mb-8 leading-relaxed">
-                        Rivava is built on a modern, secure technology stack. We leverage advanced machine learning models for budget forecasting and natural language processing to make financial queries intuitive. All user data is secured using AES-256 encryption, and we enforce strict read-only access to financial institutions.
-                    </p>
-                    <div class="flex flex-wrap gap-4">
-                        <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm font-medium">AES-256 Encryption</span>
-                        <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm font-medium">SOC2 Compliant Infrastructure</span>
-                        <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm font-medium">Read-Only APIs</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Timeline -->
-            <div class="mb-32">
+            <!-- ==============================================
+                 FOUNDERS & LEADERSHIP SHOWCASE (All Team Images)
+                 ============================================== -->
+            <section id="founders" class="mb-24 max-w-6xl mx-auto">
                 <div class="text-center mb-16">
-                    <h2 class="text-3xl font-bold">Our Journey</h2>
+                    <div class="badge-apple mb-2 text-xs">The Builders</div>
+                    <h2 class="text-3xl sm:text-4xl font-semibold text-gray-900 tracking-tight">Leadership & Advisory Board</h2>
+                    <p class="text-sm text-gray-600 mt-2 max-w-xl mx-auto font-normal">Cross-functional team blending institutional quant research, software engineering, and community advocacy.</p>
                 </div>
-                <div class="max-w-3xl mx-auto space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-white/20 before:to-transparent">
 
-                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-                        <div class="flex items-center justify-center w-10 h-10 rounded-full border border-white/20 bg-[#0A0A0A] text-white shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-[0_0_15px_rgba(255,255,255,0.1)] z-10">
-                            <i class="fas fa-rocket text-sm"></i>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Adarsh Chandra -->
+                    <div class="glass-panel hover-lift overflow-hidden border border-gray-200/80 bg-white text-center flex flex-col shadow-sm group">
+                        <div class="aspect-square overflow-hidden bg-gray-100 relative">
+                            <img src="adarsh.jpeg" alt="Adarsh Chandra" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                         </div>
-                        <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-panel p-6">
-                            <div class="flex items-center justify-between mb-2">
-                                <h4 class="font-bold text-white">The Genesis</h4>
-                                <span class="text-xs font-mono text-gray-500">2022</span>
+                        <div class="p-6 flex-1 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-900 mb-1">Adarsh Chandra</h3>
+                                <p class="text-xs font-semibold text-[#00C076] uppercase tracking-wider mb-3">Chief Analytics Officer (CAO)</p>
+                                <p class="text-xs text-gray-600 leading-relaxed mb-4 font-normal">
+                                    Directs fundamental valuation frameworks, DCF modeling, and sector risk assessments across Indian PSU and global defense equities.
+                                </p>
                             </div>
-                            <p class="text-sm text-gray-400">Rivava was conceptualized to solve the lack of accessible, high-quality research for retail investors.</p>
+                            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1.5 text-xs text-gray-700 hover:text-gray-950 bg-gray-50 hover:bg-gray-100 py-2.5 rounded-xl border border-gray-200 transition-colors font-medium">
+                                <i class="fab fa-linkedin text-blue-600"></i> Connect on LinkedIn
+                            </a>
                         </div>
                     </div>
 
-                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-                        <div class="flex items-center justify-center w-10 h-10 rounded-full border border-white/20 bg-[#0A0A0A] text-white shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-[0_0_15px_rgba(255,255,255,0.1)] z-10">
-                            <i class="fas fa-code text-sm"></i>
+                    <!-- Aditya -->
+                    <div class="glass-panel hover-lift overflow-hidden border border-gray-200/80 bg-white text-center flex flex-col shadow-sm group">
+                        <div class="aspect-square overflow-hidden bg-gray-100 relative">
+                            <img src="aditya.jpeg" alt="Aditya" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                         </div>
-                        <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-panel p-6">
-                            <div class="flex items-center justify-between mb-2">
-                                <h4 class="font-bold text-white">Platform Beta</h4>
-                                <span class="text-xs font-mono text-gray-500">2023</span>
+                        <div class="p-6 flex-1 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-900 mb-1">Aditya</h3>
+                                <p class="text-xs font-semibold text-sky-600 uppercase tracking-wider mb-3">Chief Technology Officer (CTO)</p>
+                                <p class="text-xs text-gray-600 leading-relaxed mb-4 font-normal">
+                                    Architects real-time platform infrastructure, neural forecasting engines, AES-256 financial security, and automated tracking workflows.
+                                </p>
                             </div>
-                            <p class="text-sm text-gray-400">Launched our proprietary portfolio tracking tools and initial AI forecasting models to early adopters.</p>
+                            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1.5 text-xs text-gray-700 hover:text-gray-950 bg-gray-50 hover:bg-gray-100 py-2.5 rounded-xl border border-gray-200 transition-colors font-medium">
+                                <i class="fab fa-linkedin text-blue-600"></i> Connect on LinkedIn
+                            </a>
                         </div>
                     </div>
 
-                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-                        <div class="flex items-center justify-center w-10 h-10 rounded-full border border-white/20 bg-[#0A0A0A] text-[color:var(--accent-lime)] shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-[0_0_15px_rgba(0,230,118,0.2)] z-10">
-                            <i class="fas fa-star text-sm"></i>
+                    <!-- Chittresh -->
+                    <div class="glass-panel hover-lift overflow-hidden border border-gray-200/80 bg-white text-center flex flex-col shadow-sm group">
+                        <div class="aspect-square overflow-hidden bg-gray-100 relative">
+                            <img src="chittresh.jpeg" alt="Chittresh" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                         </div>
-                        <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-panel p-6 border-[color:var(--accent-lime)]/30">
-                            <div class="flex items-center justify-between mb-2">
-                                <h4 class="font-bold text-white">Rivava Elite Launch</h4>
-                                <span class="text-xs font-mono text-[color:var(--accent-lime)]">Present</span>
+                        <div class="p-6 flex-1 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-900 mb-1">Chittresh</h3>
+                                <p class="text-xs font-semibold text-amber-600 uppercase tracking-wider mb-3">Chief Marketing Officer (CMO)</p>
+                                <p class="text-xs text-gray-600 leading-relaxed mb-4 font-normal">
+                                    Leads user community acquisition, the 7-day money challenge initiative, and institutional partnerships across global retail investor networks.
+                                </p>
                             </div>
-                            <p class="text-sm text-gray-400">Introduced institutional research access and 1-on-1 advisor sessions to scale our impact.</p>
+                            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1.5 text-xs text-gray-700 hover:text-gray-950 bg-gray-50 hover:bg-gray-100 py-2.5 rounded-xl border border-gray-200 transition-colors font-medium">
+                                <i class="fab fa-linkedin text-blue-600"></i> Connect on LinkedIn
+                            </a>
                         </div>
+                    </div>
+
+
+                </div>
+            </section>
+
+            <!-- Technology & Architecture -->
+            <section class="max-w-5xl mx-auto glass-panel p-8 sm:p-12 border border-gray-200/80 bg-white shadow-sm mb-24">
+                <div class="max-w-3xl">
+                    <div class="badge-apple mb-3 text-xs">Security Standards</div>
+                    <h2 class="text-2xl sm:text-3xl font-semibold text-gray-900 mb-4 tracking-tight">Institutional Security & Privacy</h2>
+                    <p class="text-sm text-gray-600 leading-relaxed mb-6 font-normal">
+                        Rivava employs cryptographic security standards. We enforce strict read-only account aggregation protocols, SOC2-aligned infrastructure safeguards, and client isolation.
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-4 py-2 rounded-full bg-gray-50 border border-gray-200 text-xs font-medium text-gray-700">AES-256 At-Rest Encryption</span>
+                        <span class="px-4 py-2 rounded-full bg-gray-50 border border-gray-200 text-xs font-medium text-gray-700">SOC2 Compliant Cloud Architecture</span>
+                        <span class="px-4 py-2 rounded-full bg-gray-50 border border-gray-200 text-xs font-medium text-gray-700">Read-Only Financial APIs</span>
+                        <span class="px-4 py-2 rounded-full bg-gray-50 border border-gray-200 text-xs font-medium text-gray-700">Zero Third-Party Data Selling</span>
                     </div>
                 </div>
-            </div>
+            </section>
+
+            <!-- Company Timeline -->
+            <section class="max-w-3xl mx-auto mb-20">
+                <div class="text-center mb-12">
+                    <div class="badge-apple mb-2 text-xs">Milestones</div>
+                    <h2 class="text-3xl font-semibold text-gray-900 tracking-tight">Our Journey</h2>
+                </div>
+                <div class="space-y-8 relative before:absolute before:inset-0 before:left-5 md:before:left-1/2 before:w-0.5 before:bg-gray-200">
+                    
+                    <div class="relative flex items-center md:justify-between group">
+                        <div class="flex items-center justify-center w-10 h-10 rounded-full border border-gray-200 bg-white text-gray-900 shadow-sm shrink-0 z-10 md:order-1 md:translate-x-[-50%]">
+                            <i class="fas fa-lightbulb text-xs text-[#00C076]"></i>
+                        </div>
+                        <div class="w-[calc(100%-4rem)] md:w-[45%] glass-panel p-6 border border-gray-200/80 bg-white shadow-sm">
+                            <div class="flex justify-between items-center mb-2">
+                                <h4 class="font-semibold text-gray-900">The Genesis</h4>
+                                <span class="text-xs font-mono text-[#00C076] font-medium">2022</span>
+                            </div>
+                            <p class="text-xs text-gray-600 font-normal">Conceptualized to address the lack of institutional DCF research and disciplined frameworks for retail investors.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative flex items-center md:justify-between md:flex-row-reverse group">
+                        <div class="flex items-center justify-center w-10 h-10 rounded-full border border-gray-200 bg-white text-gray-900 shadow-sm shrink-0 z-10 md:order-1 md:translate-x-[50%]">
+                            <i class="fas fa-code text-xs text-sky-600"></i>
+                        </div>
+                        <div class="w-[calc(100%-4rem)] md:w-[45%] glass-panel p-6 border border-gray-200/80 bg-white shadow-sm">
+                            <div class="flex justify-between items-center mb-2">
+                                <h4 class="font-semibold text-gray-900">Platform Beta Launch</h4>
+                                <span class="text-xs font-mono text-sky-600 font-medium">2023</span>
+                            </div>
+                            <p class="text-xs text-gray-600 font-normal">Introduced daily expense habit tracking tools, SMS logging engines, and first-generation valuation calculators.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative flex items-center md:justify-between group">
+                        <div class="flex items-center justify-center w-10 h-10 rounded-full border border-gray-200 bg-white text-gray-900 shadow-sm shrink-0 z-10 md:order-1 md:translate-x-[-50%]">
+                            <i class="fas fa-crown text-xs text-amber-600"></i>
+                        </div>
+                        <div class="w-[calc(100%-4rem)] md:w-[45%] glass-panel p-6 border border-amber-200 bg-white shadow-sm">
+                            <div class="flex justify-between items-center mb-2">
+                                <h4 class="font-semibold text-gray-900">Rivava Elite Launch</h4>
+                                <span class="text-xs font-mono text-amber-600 font-medium">Present</span>
+                            </div>
+                            <p class="text-xs text-gray-600 font-normal">Expanded institutional coverage (IREDA & RTX), dedicated advisor desks, and capped 100-seat private membership.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
 
         </div>
     </main>
 
-    <!-- FOOTER -->
-    <footer class="border-t border-white/10 bg-[#050505] pt-20 pb-10">
-        <div class="container mx-auto px-6 lg:px-12">
-            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-gray-500 text-sm">&copy; <span id="year"></span> Rivava. All rights reserved.</p>
+    <!-- Footer -->
+    <footer class="border-t border-gray-200 bg-white py-12 text-center text-xs text-gray-500">
+        <div class="container mx-auto px-6">
+            <p>&copy; <span id="year"></span> Rivava. All rights reserved. Made with ❤️ in India.</p>
+            <div class="flex justify-center gap-6 mt-4">
+                <a href="index.html#hero" class="hover:text-gray-900">Home</a>
+                <a href="research.html" class="hover:text-gray-900">Research Hub</a>
+                <a href="learn.html" class="hover:text-gray-900">Learning Center</a>
+                <a href="contact.html" class="hover:text-gray-900">Contact</a>
             </div>
         </div>
     </footer>
-    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const hambBtn = document.getElementById('hambBtn');
-            const mobileMenu = document.getElementById('mobileMenu');
-            if (hambBtn && mobileMenu) {
-                hambBtn.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
-                });
-                mobileMenu.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', () => {
-                        if(link.id !== 'openAppModalBtnMobile') {
-                            mobileMenu.classList.add('hidden');
-                        }
-                    });
-                });
-            }
-        });
-    </script>
+    <!-- Motion & Smooth Scroll Stack: GSAP 3 + ScrollTrigger + Lenis -->
+    <script src="assets/js/vendor/gsap.min.js"></script>
+    <script src="assets/js/vendor/ScrollTrigger.min.js"></script>
+    <script src="assets/js/vendor/lenis.min.js"></script>
+    <script src="assets/js/rivava.js"></script>
 </body>
-
 </html>
