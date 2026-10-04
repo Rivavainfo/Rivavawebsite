@@ -219,6 +219,41 @@
             transform-origin: left;
         }
 
+        /* Interactive Compounding Wealth Calculator Slider */
+        .calc-input-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 6px;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.15);
+            outline: none;
+            transition: all 0.2s;
+        }
+        .calc-input-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #00FF7F;
+            cursor: pointer;
+            box-shadow: 0 0 14px rgba(0, 255, 127, 0.85);
+            transition: transform 0.15s ease;
+        }
+        .calc-input-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.25);
+        }
+        .calc-input-slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #00FF7F;
+            cursor: pointer;
+            box-shadow: 0 0 14px rgba(0, 255, 127, 0.85);
+            border: none;
+        }
+
         /* ==============================================
          HERO SECTION
          ============================================== */
@@ -839,10 +874,28 @@
         /* ==============================================
            HARDWARE-ACCELERATED ULTRA-MODERN NAVBAR
            ============================================== */
+        
+        /* Dedicated Opaque Mobile Navigation Drawer */
+        .mobile-menu-drawer {
+            position: absolute !important;
+            top: 100% !important;
+            left: 0 !important;
+            right: 0 !important;
+            width: 100% !important;
+            background-color: #08080a !important;
+            background: #08080a !important;
+            -webkit-backdrop-filter: blur(30px) !important;
+            backdrop-filter: blur(30px) !important;
+            border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.14) !important;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.98), 0 20px 40px rgba(0, 0, 0, 0.85) !important;
+            z-index: 999999 !important;
+        }
+
         .hw-nav-wrapper {
             position: sticky;
             top: 0;
-            z-index: 60;
+            z-index: 99999;
             width: 100%;
             -webkit-transform: translate3d(0, 0, 0);
             transform: translate3d(0, 0, 0);
@@ -851,8 +904,8 @@
             -webkit-perspective: 1000px;
             perspective: 1000px;
             will-change: transform, backdrop-filter;
-            contain: layout style;
-            background: rgba(10, 10, 10, 0.78);
+            
+            background: rgba(10, 10, 10, 0.88);
             -webkit-backdrop-filter: blur(28px) saturate(190%);
             backdrop-filter: blur(28px) saturate(190%);
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -1096,7 +1149,7 @@
             </div>
 
             <!-- Mobile Navigation Overlay -->
-            <div id="mobileMenu" class="hidden lg:hidden border-t border-white/10 bg-[#0A0A0A]/95 backdrop-blur-2xl absolute w-full left-0 right-0 shadow-2xl">
+            <div id="mobileMenu" class="mobile-menu-drawer hidden lg:hidden transition-all duration-300" style="background-color: #08080a !important; background: #08080a !important; position: absolute !important; top: 100% !important; left: 0 !important; right: 0 !important; width: 100% !important; z-index: 999999 !important;">
                 <div class="container mx-auto px-6 py-6 flex flex-col gap-3 text-sm font-medium">
                     <a href="#hero" class="block px-3 py-2 rounded-lg text-white bg-white/10">Home</a>
                     <a href="research.html" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition-colors">Research</a>
@@ -1142,15 +1195,7 @@
         <section id="hero" class="min-h-screen flex items-center justify-center relative z-10 pt-16 sm:pt-20 pb-12">
             <div class="container mx-auto px-6 text-center">
                 <div class="flex flex-col items-center justify-center gap-4 sm:gap-5 max-w-5xl mx-auto">
-                    <!-- GLOWING BIG LOGO EMBLEM -->
-                    <div class="relative mb-1 inline-flex items-center justify-center fade-in-up">
-                        <div class="absolute -inset-6 rounded-full bg-gradient-to-r from-[#ff3366] via-[#00ff7f] to-[#0070f3] opacity-40 blur-2xl animate-pulse"></div>
-                        <div class="relative w-24 h-24 sm:w-28 sm:h-28 rounded-3xl bg-black/70 border border-white/20 backdrop-blur-xl flex items-center justify-center shadow-[0_0_50px_rgba(0,255,127,0.35)] p-4 hover:scale-105 transition-transform duration-300">
-                            <img src="assets/logo.png" alt="Rivava Logo" class="w-full h-full object-contain filter drop-shadow-[0_0_20px_rgba(0,255,127,0.8)]">
-                        </div>
-                    </div>
-
-                    <div>
+                    <div class="text-center">
                         <div class="hero-rivava fade-in-up">RIVAVA</div>
                         <h1 class="text-3xl sm:text-5xl md:text-6xl font-extrabold leading-tight mt-3 fade-in-up stagger-1 text-white">Invest only after you understand the research.</h1>
                         <p class="max-w-xl mx-auto text-base sm:text-lg md:text-xl mt-4 fade-in-up stagger-2 text-gray-300 font-normal">Rivava is a research-first investment platform that helps you study stocks, funds, market trends, and advisor-backed insights before you invest and track your portfolio.</p>
@@ -1421,10 +1466,83 @@
     </section>
 
 
-        <!-- SERVICES -->
+        <!-- ==============================================
+             INTERACTIVE WEALTH & ASSET COMPOUNDING SIMULATOR
+             ============================================== -->
+        <section id="simulator" class="py-28 relative border-t border-white/5 bg-[#050505] z-10">
+            <div class="container mx-auto px-6 lg:px-12 max-w-5xl">
+                <div class="text-center mb-14 fade-in-up">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-bold uppercase tracking-widest text-[#00FF7F] mb-3">
+                        <i class="fas fa-calculator text-xs"></i> Interactive Asset Tool
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-4 tracking-tight">
+                        Visualize Your <span class="text-[#00FF7F]">Compounding Horizon.</span>
+                    </h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto text-base font-light">
+                        Simulate the power of disciplined monthly investing paired with institutional asset allocation.
+                    </p>
+                </div>
 
+                <div class="glass-panel p-8 sm:p-10 border border-white/10 rounded-3xl shadow-2xl fade-in-up stagger-1" id="wealth-growth-calc">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                        
+                        <!-- Inputs -->
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <label class="text-sm font-semibold text-gray-300">Monthly Contribution (₹)</label>
+                                    <span id="calc-monthly-label" class="text-base font-bold text-[#00FF7F]">₹5,000</span>
+                                </div>
+                                <input type="range" id="calc-monthly-amount" min="1000" max="100000" step="1000" value="5000" class="calc-input-slider">
+                            </div>
 
-    <!-- TRACKING SECTION -->
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <label class="text-sm font-semibold text-gray-300">Investment Horizon</label>
+                                    <span id="calc-years-label" class="text-base font-bold text-sky-400">10 Years</span>
+                                </div>
+                                <input type="range" id="calc-years" min="1" max="30" step="1" value="10" class="calc-input-slider">
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <label class="text-sm font-semibold text-gray-300">Expected Annual Return (%)</label>
+                                    <span id="calc-rate-label" class="text-base font-bold text-amber-400">14%</span>
+                                </div>
+                                <input type="range" id="calc-return-rate" min="6" max="25" step="0.5" value="14" class="calc-input-slider">
+                            </div>
+
+                            <p class="text-xs text-gray-400 italic">
+                                *Projections are illustrative and assume monthly compounding. Actual market returns fluctuate with underlying assets.
+                            </p>
+                        </div>
+
+                        <!-- Results Dashboard -->
+                        <div class="p-6 sm:p-8 rounded-2xl bg-white/[0.03] border border-white/10 flex flex-col justify-between shadow-xl">
+                            <div class="space-y-4 mb-6">
+                                <div class="flex justify-between items-center pb-3 border-b border-white/10">
+                                    <span class="text-xs text-gray-400 uppercase tracking-wider font-semibold">Total Invested</span>
+                                    <span id="calc-total-invested" class="text-lg font-bold text-white font-mono">₹6,00,000</span>
+                                </div>
+                                <div class="flex justify-between items-center pb-3 border-b border-white/10">
+                                    <span class="text-xs text-gray-400 uppercase tracking-wider font-semibold">Est. Wealth Gain</span>
+                                    <span id="calc-est-returns" class="text-lg font-bold text-[#00FF7F] font-mono">₹7,61,600</span>
+                                </div>
+                                <div class="flex justify-between items-center pt-2">
+                                    <span class="text-sm text-gray-300 uppercase tracking-wider font-semibold">Total Maturity Wealth</span>
+                                    <span id="calc-total-wealth" class="text-2xl sm:text-3xl font-extrabold text-white font-mono">₹13,61,600</span>
+                                </div>
+                            </div>
+
+                            <a href="challenge.html" class="w-full text-center text-sm py-3.5 rounded-xl font-bold bg-[#00FF7F] text-black hover:bg-[#00E676] transition-all shadow-[0_0_20px_rgba(0,255,127,0.35)] block">
+                                Start 7-Day Habit Challenge
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- DASHBOARD PREVIEW -->
     <section id="dashboard" class="py-32 relative z-10 border-t border-white/5 bg-[#050505]">
@@ -1538,13 +1656,6 @@
         </div>
     </section>
 
-
-        <!-- TEAM SECTION -->
-        <section id="team" class="container mx-auto px-6 py-12 md:py-20">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-semibold fade-in-up">Advisor Insights</h2>
-                <p class="max-w-2xl mx-auto mt-4 text-lg fade-in-up stagger-1">Learn from advisor-backed research, not market noise.</p>
-            </div>
 
     <!-- TEAM SECTION -->
     <section id="team" class="py-32 relative z-10 border-t border-white/5 bg-[#050505]">
@@ -2530,6 +2641,60 @@
                         qrModal.classList.add('hidden');
                     }
                 });
+                // Initialize Interactive Wealth SIP Calculator
+                function initInteractiveCalculator() {
+                    const calcContainer = document.getElementById('wealth-growth-calc');
+                    if (!calcContainer) return;
+
+                    const monthlyInput = document.getElementById('calc-monthly-amount');
+                    const yearsInput = document.getElementById('calc-years');
+                    const returnInput = document.getElementById('calc-return-rate');
+
+                    const investedDisplay = document.getElementById('calc-total-invested');
+                    const estReturnDisplay = document.getElementById('calc-est-returns');
+                    const totalWealthDisplay = document.getElementById('calc-total-wealth');
+
+                    const monthlyValLabel = document.getElementById('calc-monthly-label');
+                    const yearsValLabel = document.getElementById('calc-years-label');
+                    const rateValLabel = document.getElementById('calc-rate-label');
+
+                    const updateCalculation = () => {
+                        if (!monthlyInput || !yearsInput || !returnInput) return;
+                        const P = parseFloat(monthlyInput.value) || 5000;
+                        const t = parseFloat(yearsInput.value) || 10;
+                        const annualRate = parseFloat(returnInput.value) || 14;
+
+                        const r = (annualRate / 100) / 12;
+                        const n = t * 12;
+
+                        // SIP Future Value formula = P * [((1 + r)^n - 1) / r] * (1 + r)
+                        const futureValue = P * ((Math.pow(1 + r, n) - 1) / r) * (1 + r);
+                        const totalInvested = P * n;
+                        const wealthGain = Math.max(0, futureValue - totalInvested);
+
+                        const inrFormatter = new Intl.NumberFormat('en-IN', {
+                            style: 'currency',
+                            currency: 'INR',
+                            maximumFractionDigits: 0
+                        });
+
+                        if (investedDisplay) investedDisplay.textContent = inrFormatter.format(totalInvested);
+                        if (estReturnDisplay) estReturnDisplay.textContent = inrFormatter.format(wealthGain);
+                        if (totalWealthDisplay) totalWealthDisplay.textContent = inrFormatter.format(futureValue);
+
+                        if (monthlyValLabel) monthlyValLabel.textContent = inrFormatter.format(P);
+                        if (yearsValLabel) yearsValLabel.textContent = `${t} Years`;
+                        if (rateValLabel) rateValLabel.textContent = `${annualRate}%`;
+                    };
+
+                    [monthlyInput, yearsInput, returnInput].forEach(slider => {
+                        if (slider) {
+                            slider.addEventListener('input', updateCalculation);
+                        }
+                    });
+                    updateCalculation();
+                }
+                initInteractiveCalculator();
             }
         });
     </script>

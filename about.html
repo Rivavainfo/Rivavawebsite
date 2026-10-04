@@ -39,10 +39,28 @@
         /* ==============================================
            HARDWARE-ACCELERATED ULTRA-MODERN NAVBAR
            ============================================== */
+        
+        /* Dedicated Opaque Mobile Navigation Drawer */
+        .mobile-menu-drawer {
+            position: absolute !important;
+            top: 100% !important;
+            left: 0 !important;
+            right: 0 !important;
+            width: 100% !important;
+            background-color: #08080a !important;
+            background: #08080a !important;
+            -webkit-backdrop-filter: blur(30px) !important;
+            backdrop-filter: blur(30px) !important;
+            border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.14) !important;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.98), 0 20px 40px rgba(0, 0, 0, 0.85) !important;
+            z-index: 999999 !important;
+        }
+
         .hw-nav-wrapper {
             position: sticky;
             top: 0;
-            z-index: 60;
+            z-index: 99999;
             width: 100%;
             -webkit-transform: translate3d(0, 0, 0);
             transform: translate3d(0, 0, 0);
@@ -51,8 +69,8 @@
             -webkit-perspective: 1000px;
             perspective: 1000px;
             will-change: transform, backdrop-filter;
-            contain: layout style;
-            background: rgba(10, 10, 10, 0.78);
+            
+            background: rgba(10, 10, 10, 0.88);
             -webkit-backdrop-filter: blur(28px) saturate(190%);
             backdrop-filter: blur(28px) saturate(190%);
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -258,7 +276,7 @@
             </div>
 
             <!-- MOBILE MENU -->
-            <div id="mobileMenu" class="hidden lg:hidden border-t border-white/10 bg-[#0c0c0c]/98 backdrop-blur-3xl absolute w-full left-0 transition-all duration-300 shadow-2xl">
+            <div id="mobileMenu" class="mobile-menu-drawer hidden lg:hidden transition-all duration-300" style="background-color: #08080a !important; background: #08080a !important; position: absolute !important; top: 100% !important; left: 0 !important; right: 0 !important; width: 100% !important; z-index: 999999 !important;">
                 <div class="container mx-auto px-6 py-6 flex flex-col gap-3 text-base">
                     <a href="index.html#hero" class="px-4 py-2.5 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition-colors">Home</a>
                     <a href="research.html" class="px-4 py-2.5 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition-colors">Research</a>
@@ -281,151 +299,219 @@
         </header>
     </div>
 
-    <main class="relative overflow-hidden pt-20 pb-20">
-        <div class="container mx-auto px-6 lg:px-12">
+    <main class="relative overflow-hidden pt-16 pb-24">
+        <div class="container mx-auto px-6 lg:px-12 max-w-6xl">
             <!-- Hero -->
-            <div class="text-center max-w-4xl mx-auto mb-20">
+            <div class="text-center max-w-4xl mx-auto mb-20 fade-in-up">
                 <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 mb-6">
-                    <span class="text-xs font-semibold text-gray-300 uppercase tracking-wider">Our Story</span>
+                    <span class="text-xs font-semibold text-gray-300 uppercase tracking-wider">Our Purpose & Story</span>
                 </div>
-                <h1 class="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight">Bringing clarity to wealth.</h1>
-                <p class="text-xl text-gray-300 leading-relaxed font-normal max-w-3xl mx-auto">
-                    Rivava was founded on a simple principle: investors deserve institutional-grade research, intuitive tools, and unbiased education. We are removing the noise from personal finance.
+                <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold mb-6 tracking-tight text-white leading-tight">
+                    Bringing clarity to wealth. <br>
+                    <span class="text-[#00FF7F]">Zero Hype. Pure Evidence.</span>
+                </h1>
+                <p class="text-lg sm:text-xl text-gray-300 leading-relaxed font-normal max-w-3xl mx-auto">
+                    Rivava was founded on a simple principle: retail investors deserve institutional-grade research, intuitive habit tools, and unbiased education. We are systematically removing the noise from personal finance.
                 </p>
             </div>
 
-            <!-- Story Visual Showcase Card -->
-            <div class="max-w-5xl mx-auto mb-28">
-                <div class="rounded-3xl overflow-hidden border border-white/15 bg-gradient-to-b from-white/[0.08] to-white/[0.02] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] p-2 md:p-3">
-                    <div class="relative rounded-2xl overflow-hidden aspect-[21/9] bg-black">
-                        <img src="assets/story-1.jpg" alt="Rivava Mission & Global Financial Research" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
-                        <div class="absolute bottom-6 left-6 right-6 p-4 md:p-6 rounded-2xl bg-black/60 backdrop-blur-xl border border-white/15 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                            <div>
-                                <span class="text-xs font-semibold text-[#00FF7F] uppercase tracking-wider">Institutional Standard</span>
-                                <h3 class="text-lg md:text-xl font-bold text-white mt-0.5">Democratizing Financial Intelligence</h3>
-                                <p class="text-xs text-gray-300 mt-1 max-w-2xl">Equipping modern investors with the analytical rigor previously reserved for Wall Street desks.</p>
-                            </div>
-                            <div class="flex items-center gap-3 shrink-0">
-                                <a href="research.html" class="px-5 py-2.5 bg-white text-black font-semibold text-xs rounded-full hover:bg-gray-200 transition-colors">Explore Research</a>
-                            </div>
-                        </div>
+            <!-- Mission & Vision Dual Cards (Clean, No image clutter) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24 max-w-5xl mx-auto">
+                <div class="glass-panel p-8 sm:p-10 relative overflow-hidden border border-white/10 hover-lift fade-in-up stagger-1">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 blur-[100px] rounded-full pointer-events-none"></div>
+                    <div class="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-6 text-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.2)]">
+                        <i class="fas fa-bullseye text-2xl"></i>
                     </div>
+                    <h3 class="text-2xl font-bold mb-3 text-white">Our Mission</h3>
+                    <p class="text-gray-300 leading-relaxed text-sm">
+                        To empower every investor with the data, insights, and education needed to make confident, research-driven financial decisions. We aim to replace FOMO with facts, emotional speculation with mathematical discipline, and scattered tips with institutional rigor.
+                    </p>
+                </div>
+
+                <div class="glass-panel p-8 sm:p-10 relative overflow-hidden border border-white/10 hover-lift fade-in-up stagger-2">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 blur-[100px] rounded-full pointer-events-none"></div>
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-6 text-[#00FF7F] shadow-[0_0_15px_rgba(0,255,127,0.2)]">
+                        <i class="fas fa-eye text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-white">Our Vision</h3>
+                    <p class="text-gray-300 leading-relaxed text-sm">
+                        A world where wealth creation is accessible, transparent, and guided by institutional analysis rather than social media hype. A future where financial literacy and long-term compounding discipline are the standard for every household.
+                    </p>
                 </div>
             </div>
 
-            <!-- Mission & Vision with Visual Artifacts -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-32 max-w-5xl mx-auto">
-                <div class="glass-panel p-8 md:p-10 relative overflow-hidden flex flex-col justify-between">
-                    <div class="relative z-10">
-                        <div class="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-6 text-blue-400">
-                            <i class="fas fa-bullseye text-2xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-3 text-white">Our Mission</h3>
-                        <p class="text-gray-300 leading-relaxed text-sm mb-6">
-                            To empower every investor with the data, insights, and education needed to make confident, research-driven financial decisions. We aim to replace FOMO with facts.
-                        </p>
+            <!-- Guiding Pillars / Core Values -->
+            <div class="mb-24">
+                <div class="text-center mb-14 fade-in-up">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-bold uppercase tracking-widest text-gray-300 mb-3">
+                        Foundational Principles
                     </div>
-                    <div class="relative rounded-2xl overflow-hidden aspect-[16/9] border border-white/10 mt-4">
-                        <img src="assets/mission-1.jpg" alt="Rivava Mission" class="w-full h-full object-cover">
-                    </div>
-                </div>
-
-                <div class="glass-panel p-8 md:p-10 relative overflow-hidden flex flex-col justify-between">
-                    <div class="relative z-10">
-                        <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-6 text-[#00FF7F]">
-                            <i class="fas fa-eye text-2xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-3 text-white">Our Vision</h3>
-                        <p class="text-gray-300 leading-relaxed text-sm mb-6">
-                            A world where wealth creation is accessible, transparent, and guided by expert analysis rather than market hype. A future where financial literacy is the standard.
-                        </p>
-                    </div>
-                    <div class="relative rounded-2xl overflow-hidden aspect-[16/9] border border-white/10 mt-4">
-                        <img src="assets/mission-2.jpg" alt="Rivava Vision" class="w-full h-full object-cover">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Core Values -->
-            <div class="mb-32">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl font-bold">Core Values</h2>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Our Guiding Pillars</h2>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="glass-panel p-8">
-                        <h4 class="font-bold text-lg mb-3">Radical Transparency</h4>
-                        <p class="text-sm text-gray-400">We show you the models, the risks, and the reasoning behind every insight. No black boxes.</p>
+                    <div class="glass-panel p-8 border border-white/10 hover-lift fade-in-up stagger-1">
+                        <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 mb-5">
+                            <i class="fas fa-shield-alt text-lg"></i>
+                        </div>
+                        <h4 class="font-bold text-lg mb-2 text-white">Radical Transparency</h4>
+                        <p class="text-sm text-gray-400 leading-relaxed">We show you the valuation models, the downside risks, and the empirical math behind every insight. No black boxes, zero paid stock promotions.</p>
                     </div>
-                    <div class="glass-panel p-8">
-                        <h4 class="font-bold text-lg mb-3">Education First</h4>
-                        <p class="text-sm text-gray-400">We believe in teaching you how to fish. Every feature is designed to make you a smarter investor.</p>
+                    <div class="glass-panel p-8 border border-white/10 hover-lift fade-in-up stagger-2">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-[#00FF7F] mb-5">
+                            <i class="fas fa-graduation-cap text-lg"></i>
+                        </div>
+                        <h4 class="font-bold text-lg mb-2 text-white">Education First</h4>
+                        <p class="text-sm text-gray-400 leading-relaxed">We believe in teaching you how to analyze. Every research report and tool is crafted to make you an independent, self-reliant investor.</p>
                     </div>
-                    <div class="glass-panel p-8">
-                        <h4 class="font-bold text-lg mb-3">Security by Design</h4>
-                        <p class="text-sm text-gray-400">Your financial data is yours. We employ bank-level encryption and strict privacy controls.</p>
+                    <div class="glass-panel p-8 border border-white/10 hover-lift fade-in-up stagger-3">
+                        <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 mb-5">
+                            <i class="fas fa-lock text-lg"></i>
+                        </div>
+                        <h4 class="font-bold text-lg mb-2 text-white">Security by Design</h4>
+                        <p class="text-sm text-gray-400 leading-relaxed">Your financial data belongs exclusively to you. We employ military-grade encryption, zero data-selling policies, and read-only banking architecture.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Technology & Innovation -->
-            <div class="glass-panel p-12 mb-32 border border-white/10 bg-gradient-to-br from-white/5 to-transparent">
-                <div class="max-w-3xl">
-                    <h2 class="text-3xl font-bold mb-6">Technology & Security</h2>
-                    <p class="text-gray-400 mb-8 leading-relaxed">
-                        Rivava is built on a modern, secure technology stack. We leverage advanced machine learning models for budget forecasting and natural language processing to make financial queries intuitive. All user data is secured using AES-256 encryption, and we enforce strict read-only access to financial institutions.
+            <!-- Leadership & Advisory Board (Founders: Adarsh, Aditya, Chittresh) -->
+            <div id="founders" class="mb-24">
+                <div class="text-center mb-14 fade-in-up">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-bold uppercase tracking-widest text-blue-400 mb-3">
+                        <i class="fas fa-users text-xs"></i> Executive Team
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Leadership & Advisory Board</h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base mt-2">
+                        Built by practitioners at the intersection of quantitative finance, scalable software engineering, and community wealth building.
                     </p>
-                    <div class="flex flex-wrap gap-4">
-                        <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm font-medium">AES-256 Encryption</span>
-                        <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm font-medium">SOC2 Compliant Infrastructure</span>
-                        <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm font-medium">Read-Only APIs</span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                    <!-- Adarsh Chandra -->
+                    <div class="glass-panel overflow-hidden border border-white/10 hover-lift flex flex-col fade-in-up stagger-1 group">
+                        <div class="aspect-square overflow-hidden bg-black/60 relative">
+                            <img src="adarsh.jpeg" alt="Adarsh Chandra" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.onerror=null;this.src='https://placehold.co/400x400/111/FFF?text=AC';">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60"></div>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col justify-between border-t border-white/10 text-center">
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-1">Adarsh Chandra</h3>
+                                <p class="text-xs font-bold text-[#00FF7F] uppercase tracking-wider mb-3">Chief Analytics Officer (CAO)</p>
+                                <p class="text-xs text-gray-400 leading-relaxed mb-4 font-normal">
+                                    Directs institutional equity research, discounted cash flow (DCF) valuation models, and quantitative macro risk frameworks.
+                                </p>
+                            </div>
+                            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 text-xs text-gray-300 hover:text-white bg-white/5 hover:bg-white/10 py-2.5 rounded-xl border border-white/10 transition-colors font-medium">
+                                <i class="fab fa-linkedin text-blue-400"></i> Connect on LinkedIn
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Aditya -->
+                    <div class="glass-panel overflow-hidden border border-white/10 hover-lift flex flex-col fade-in-up stagger-2 group">
+                        <div class="aspect-square overflow-hidden bg-black/60 relative">
+                            <img src="aditya.jpeg" alt="Aditya" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.onerror=null;this.src='https://placehold.co/400x400/111/FFF?text=A';">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60"></div>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col justify-between border-t border-white/10 text-center">
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-1">Aditya</h3>
+                                <p class="text-xs font-bold text-sky-400 uppercase tracking-wider mb-3">Chief Technology Officer (CTO)</p>
+                                <p class="text-xs text-gray-400 leading-relaxed mb-4 font-normal">
+                                    Architects real-time platform infrastructure, neural forecasting engines, AES-256 financial security, and automated tracking workflows.
+                                </p>
+                            </div>
+                            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 text-xs text-gray-300 hover:text-white bg-white/5 hover:bg-white/10 py-2.5 rounded-xl border border-white/10 transition-colors font-medium">
+                                <i class="fab fa-linkedin text-blue-400"></i> Connect on LinkedIn
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Chittresh -->
+                    <div class="glass-panel overflow-hidden border border-white/10 hover-lift flex flex-col fade-in-up stagger-3 group">
+                        <div class="aspect-square overflow-hidden bg-black/60 relative">
+                            <img src="chittresh.jpeg" alt="Chittresh" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.onerror=null;this.src='https://placehold.co/400x400/111/FFF?text=CG';">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60"></div>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col justify-between border-t border-white/10 text-center">
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-1">Chittresh</h3>
+                                <p class="text-xs font-bold text-amber-400 uppercase tracking-wider mb-3">Chief Marketing Officer (CMO)</p>
+                                <p class="text-xs text-gray-400 leading-relaxed mb-4 font-normal">
+                                    Leads user community acquisition, the 7-day money challenge initiative, and institutional partnerships across global retail investor networks.
+                                </p>
+                            </div>
+                            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 text-xs text-gray-300 hover:text-white bg-white/5 hover:bg-white/10 py-2.5 rounded-xl border border-white/10 transition-colors font-medium">
+                                <i class="fab fa-linkedin text-blue-400"></i> Connect on LinkedIn
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Timeline -->
-            <div class="mb-32">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl font-bold">Our Journey</h2>
+            <!-- Technology & Security Standards -->
+            <div class="glass-panel p-8 sm:p-12 mb-24 border border-white/10 bg-gradient-to-br from-white/[0.04] to-transparent rounded-3xl fade-in-up">
+                <div class="max-w-3xl mx-auto text-center">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-bold uppercase tracking-widest text-[#00FF7F] mb-4">
+                        <i class="fas fa-lock text-xs"></i> Security Standards
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white mb-4 tracking-tight">Institutional Security & Privacy</h2>
+                    <p class="text-sm text-gray-400 leading-relaxed mb-8 font-normal">
+                        Rivava employs cryptographic security standards. We enforce strict read-only account aggregation protocols, SOC2-aligned infrastructure safeguards, client isolation, and AES-256 encryption at rest.
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-gray-200">AES-256 At-Rest Encryption</span>
+                        <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-gray-200">SOC2 Compliant Cloud Architecture</span>
+                        <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-gray-200">Read-Only Financial APIs</span>
+                        <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-gray-200">Zero Third-Party Data Selling</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Milestones Journey -->
+            <div class="mb-24">
+                <div class="text-center mb-14 fade-in-up">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-bold uppercase tracking-widest text-gray-300 mb-3">
+                        Milestones
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Our Journey</h2>
                 </div>
                 <div class="max-w-3xl mx-auto space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-white/20 before:to-transparent">
 
-                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active fade-in-up stagger-1">
                         <div class="flex items-center justify-center w-10 h-10 rounded-full border border-white/20 bg-[#0A0A0A] text-white shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-[0_0_15px_rgba(255,255,255,0.1)] z-10">
-                            <i class="fas fa-rocket text-sm"></i>
+                            <i class="fas fa-lightbulb text-sm text-[#00FF7F]"></i>
                         </div>
-                        <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-panel p-6">
+                        <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-panel p-6 border border-white/10">
                             <div class="flex items-center justify-between mb-2">
                                 <h4 class="font-bold text-white">The Genesis</h4>
-                                <span class="text-xs font-mono text-gray-500">2022</span>
+                                <span class="text-xs font-mono text-[#00FF7F] font-bold">2022</span>
                             </div>
-                            <p class="text-sm text-gray-400">Rivava was conceptualized to solve the lack of accessible, high-quality research for retail investors.</p>
+                            <p class="text-sm text-gray-400">Conceptualized to address the lack of institutional DCF research and disciplined frameworks for retail investors.</p>
                         </div>
                     </div>
 
-                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active fade-in-up stagger-2">
                         <div class="flex items-center justify-center w-10 h-10 rounded-full border border-white/20 bg-[#0A0A0A] text-white shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-[0_0_15px_rgba(255,255,255,0.1)] z-10">
-                            <i class="fas fa-code text-sm"></i>
+                            <i class="fas fa-code text-sm text-sky-400"></i>
                         </div>
-                        <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-panel p-6">
+                        <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-panel p-6 border border-white/10">
                             <div class="flex items-center justify-between mb-2">
-                                <h4 class="font-bold text-white">Platform Beta</h4>
-                                <span class="text-xs font-mono text-gray-500">2023</span>
+                                <h4 class="font-bold text-white">Platform Beta Launch</h4>
+                                <span class="text-xs font-mono text-sky-400 font-bold">2023</span>
                             </div>
-                            <p class="text-sm text-gray-400">Launched our proprietary portfolio tracking tools and initial AI forecasting models to early adopters.</p>
+                            <p class="text-sm text-gray-400">Introduced daily expense habit tracking tools, SMS logging engines, and first-generation valuation calculators to early adopters.</p>
                         </div>
                     </div>
 
-                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-                        <div class="flex items-center justify-center w-10 h-10 rounded-full border border-white/20 bg-[#0A0A0A] text-[color:var(--accent-lime)] shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-[0_0_15px_rgba(0,230,118,0.2)] z-10">
-                            <i class="fas fa-star text-sm"></i>
+                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active fade-in-up stagger-3">
+                        <div class="flex items-center justify-center w-10 h-10 rounded-full border border-amber-400/40 bg-[#0A0A0A] text-amber-400 shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-[0_0_15px_rgba(251,191,36,0.3)] z-10">
+                            <i class="fas fa-crown text-sm"></i>
                         </div>
-                        <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-panel p-6 border-[color:var(--accent-lime)]/30">
+                        <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-panel p-6 border-amber-400/30">
                             <div class="flex items-center justify-between mb-2">
                                 <h4 class="font-bold text-white">Rivava Elite Launch</h4>
-                                <span class="text-xs font-mono text-[color:var(--accent-lime)]">Present</span>
+                                <span class="text-xs font-mono text-amber-400 font-bold">Present</span>
                             </div>
-                            <p class="text-sm text-gray-400">Introduced institutional research access and 1-on-1 advisor sessions to scale our impact.</p>
+                            <p class="text-sm text-gray-400">Expanded institutional coverage, dedicated advisor desks, and capped 100-seat private membership.</p>
                         </div>
                     </div>
                 </div>
