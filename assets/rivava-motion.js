@@ -133,67 +133,12 @@
         });
     }
 
-    // 3. CUBERTO AMBIENT CURSOR & GLOW FOLLOWER (Desktop only)
-    function initCubertoCursor() {
-        // Do not init on touch devices
-        if (window.matchMedia('(pointer: coarse)').matches) return;
-
-        let cursorAura = document.getElementById('cuberto-cursor-aura');
-        let cursorDot = document.getElementById('cuberto-cursor-dot');
-
-        if (!cursorAura) {
-            cursorAura = document.createElement('div');
-            cursorAura.id = 'cuberto-cursor-aura';
-            cursorAura.className = 'cuberto-cursor-aura';
-            document.body.appendChild(cursorAura);
-        }
-
-        if (!cursorDot) {
-            cursorDot = document.createElement('div');
-            cursorDot.id = 'cuberto-cursor-dot';
-            cursorDot.className = 'cuberto-cursor-dot';
-            document.body.appendChild(cursorDot);
-        }
-
-        let mouseX = -100;
-        let mouseY = -100;
-        let auraX = -100;
-        let auraY = -100;
-        let isHovering = false;
-
-        window.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            cursorDot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
-        }, { passive: true });
-
-        // Smooth lerp loop
-        function renderAura() {
-            auraX += (mouseX - auraX) * 0.16;
-            auraY += (mouseY - auraY) * 0.16;
-
-            const scale = isHovering ? 1.5 : 1;
-            cursorAura.style.transform = `translate3d(${auraX}px, ${auraY}px, 0) scale(${scale})`;
-
-            requestAnimationFrame(renderAura);
-        }
-        requestAnimationFrame(renderAura);
-
-        // Interactive hover states on links, buttons, and cards
-        const hoverTargets = document.querySelectorAll(
-            'a, button, .btn, .glass-panel, input, textarea, select, .interactive-card, .logo-badge-container'
-        );
-
-        hoverTargets.forEach((target) => {
-            target.addEventListener('mouseenter', () => {
-                isHovering = true;
-                cursorAura.classList.add('cursor-active');
-            });
-            target.addEventListener('mouseleave', () => {
-                isHovering = false;
-                cursorAura.classList.remove('cursor-active');
-            });
-        });
+    // 3. REMOVE ANY LEGACY CUSTOM CURSOR DOM ELEMENTS (User requested removal)
+    function cleanupLegacyCursor() {
+        const aura = document.getElementById('cuberto-cursor-aura');
+        if (aura) aura.remove();
+        const dot = document.getElementById('cuberto-cursor-dot');
+        if (dot) dot.remove();
     }
 
     // 4. CUBERTO MAGNETIC ELEMENTS
@@ -238,9 +183,9 @@
 
     // 6. INITIALIZATION
     function start() {
+        cleanupLegacyCursor();
         initLenis();
         initCubertoReveals();
-        initCubertoCursor();
         initCubertoMagnetic();
         initSpotlightCards();
     }

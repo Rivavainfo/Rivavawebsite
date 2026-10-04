@@ -36,14 +36,51 @@
         .lenis.lenis-stopped { overflow: hidden; }
         .lenis.lenis-smooth iframe { pointer-events: none; }
 
-        /* Cuberto-Style Reveals & Cursor */
+        /* Cuberto-Style Reveals */
         .cuberto-reveal-container { overflow: hidden; display: block; }
         .cuberto-reveal-inner { display: block; transform: translateY(110%) skewY(1.5deg); opacity: 0; transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1); will-change: transform, opacity; }
         .cuberto-reveal-inner.revealed, .cuberto-in-view .cuberto-reveal-inner { transform: translateY(0) skewY(0deg); opacity: 1; }
-        .cuberto-cursor-aura { position: fixed; top: -40px; left: -40px; width: 80px; height: 80px; border-radius: 50%; background: radial-gradient(circle, rgba(0, 255, 127, 0.22), rgba(0, 112, 243, 0.15) 55%, transparent 80%); pointer-events: none; z-index: 99999; mix-blend-mode: screen; transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1), height 0.35s cubic-bezier(0.16, 1, 0.3, 1); transform: translate3d(-100px, -100px, 0); will-change: transform; filter: blur(8px); }
-        .cuberto-cursor-aura.cursor-active { width: 130px; height: 130px; top: -65px; left: -65px; background: radial-gradient(circle, rgba(0, 255, 127, 0.35), rgba(255, 51, 102, 0.22) 60%, transparent 85%); filter: blur(12px); }
-        .cuberto-cursor-dot { position: fixed; top: -3px; left: -3px; width: 6px; height: 6px; border-radius: 50%; background: #00FF7F; box-shadow: 0 0 10px #00FF7F; pointer-events: none; z-index: 100000; transform: translate3d(-100px, -100px, 0); will-change: transform; }
-        @media (pointer: coarse) { .cuberto-cursor-aura, .cuberto-cursor-dot { display: none !important; } }
+
+        /* Hardware-Accelerated Ultra-Modern Navbar */
+        .hw-nav-wrapper {
+            position: sticky;
+            top: 0;
+            z-index: 60;
+            width: 100%;
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            will-change: transform, backdrop-filter;
+            contain: layout style;
+            background: rgba(10, 10, 10, 0.78);
+            -webkit-backdrop-filter: blur(28px) saturate(190%);
+            backdrop-filter: blur(28px) saturate(190%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.7), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+        }
+        .nav-capsule {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .nav-pill-item {
+            position: relative;
+            padding: 6px 14px;
+            font-size: 13.5px;
+            font-weight: 500;
+            color: #d1d5db;
+            border-radius: 9999px;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            display: inline-flex;
+            align-items: center;
+        }
+        .nav-pill-item:hover { color: #ffffff; background: rgba(255, 255, 255, 0.08); }
+        .nav-pill-item.active { color: #ffffff; background: rgba(255, 255, 255, 0.12); font-weight: 550; }
+        .nav-pill-item.challenge-pill { color: #00FF7F; font-weight: 600; }
+        .nav-pill-item.challenge-pill:hover { color: #00E676; background: rgba(0, 255, 127, 0.1); }
 
         :root {
             --apple-font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "SF Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -119,45 +156,50 @@
     </style>
 </head>
 <body class="relative">
-    <!-- STICKY WRAPPER FOR TICKER AND HEADER -->
-    <div class="sticky top-0 z-[60] flex flex-col w-full shadow-lg bg-[color:var(--bg-panel)]/80 backdrop-blur-2xl border-b border-white/5 transition-all duration-300" id="header-wrapper">
-        <header id="header" class="left-0 right-0 z-50">
+    <!-- HARDWARE-ACCELERATED STICKY HEADER -->
+    <div class="hw-nav-wrapper" id="header-wrapper">
+        <header id="header" class="w-full">
             <div class="container mx-auto px-6 lg:px-12">
-                <div class="flex items-center justify-between py-3 transition-all duration-300 h-16">
+                <div class="flex items-center justify-between py-3 h-16 transition-all duration-300">
                     <a href="index.html#hero" class="flex items-center gap-3 group">
-                        <div class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white/10 transition-colors shadow-[0_0_12px_rgba(0,255,127,0.2)]">
-                            <img src="assets/logo.png" alt="Rivava Logo" class="h-9 w-9 object-contain">
+                        <div class="w-9 h-9 rounded-xl bg-white/[0.06] border border-white/10 flex items-center justify-center group-hover:border-[#00FF7F]/40 group-hover:bg-[#00FF7F]/10 transition-all duration-300 shadow-[0_0_15px_rgba(0,255,127,0.15)]">
+                            <img src="assets/logo.png" alt="Rivava Logo" class="h-6 w-6 object-contain group-hover:scale-105 transition-transform duration-300">
                         </div>
-                        <span class="text-xl font-bold tracking-tight rivava-text">Rivava</span>
+                        <span class="text-xl font-bold tracking-tight text-white group-hover:text-[#00FF7F] transition-colors duration-300 flex items-center gap-1.5">
+                            Rivava
+                            <span class="w-1.5 h-1.5 rounded-full bg-[#00FF7F] shadow-[0_0_8px_#00FF7F]"></span>
+                        </span>
                     </a>
 
-                    <!-- Desktop Navigation -->
-                    <div class="hidden md:flex items-center bg-white/5 rounded-full px-5 py-1.5 border border-white/5">
-                        <nav class="flex items-center gap-7 text-sm font-medium">
-                            <a href="index.html#hero" class="text-gray-300 hover:text-white transition-colors">Home</a>
-                            <a href="research.html" class="text-white hover:text-white transition-colors font-semibold">Research</a>
-                            <a href="learn.html" class="text-gray-300 hover:text-white transition-colors">Learn</a>
-                            <a href="about.html" class="text-gray-300 hover:text-white transition-colors">About</a>
-                            <a href="blogs/index.html" class="text-gray-300 hover:text-white transition-colors">Blog</a>
-                            <a href="challenge.html" class="text-[#00FF7F] hover:text-[#00E676] transition-colors font-semibold">7-Day Challenge</a>
+                    <!-- Desktop Navigation Capsule -->
+                    <div class="hidden lg:flex items-center nav-capsule rounded-full px-2 py-1">
+                        <nav class="flex items-center gap-1">
+                            <a href="index.html#hero" class="nav-pill-item">Home</a>
+                            <a href="research.html" class="nav-pill-item active">Research</a>
+                            <a href="learn.html" class="nav-pill-item">Learn</a>
+                            <a href="about.html" class="nav-pill-item">About</a>
+                            <a href="blogs/index.html" class="nav-pill-item">Blog</a>
+                            <a href="challenge.html" class="nav-pill-item challenge-pill">
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#00FF7F] animate-pulse mr-1.5"></span>
+                                7-Day Challenge
+                            </a>
                         </nav>
                     </div>
 
                     <div class="hidden md:flex items-center gap-3">
-                        <a href="tel:+91-8881176909" class="h-9 px-3.5 bg-[#22c55e] hover:bg-[#16a34a] text-black font-bold text-xs rounded-full transition-all flex items-center justify-center gap-1.5 shadow-[0_0_12px_rgba(34,197,94,0.35)]">
-                            <i class="fab fa-whatsapp text-base"></i>
+                        <a href="tel:+91-8881176909" class="h-9 px-4 bg-gradient-to-r from-[#10b981] to-[#059669] hover:from-[#059669] hover:to-[#047857] text-white font-semibold text-xs rounded-full transition-all flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(16,185,129,0.35)] border border-emerald-400/30">
+                            <i class="fab fa-whatsapp text-sm"></i>
                             <span>Chat with Advisor</span>
                         </a>
-                        <a href="contact.html" class="text-xs font-medium text-gray-300 hover:text-white transition-colors">Contact</a>
-                        <a href="index.html#pricing" class="h-9 px-4 bg-white text-black text-xs font-semibold rounded-full hover:bg-gray-200 transition-colors flex items-center gap-1.5 shadow-md">
+                        <a href="contact.html" class="text-xs font-medium text-gray-300 hover:text-white transition-colors px-2 py-1">Contact</a>
+                        <a href="index.html#pricing" class="h-9 px-4 bg-white text-black text-xs font-bold rounded-full hover:bg-gray-200 transition-colors flex items-center gap-1.5 shadow-md">
                             <i class="fas fa-crown text-amber-500 text-xs"></i>
                             <span>Get Elite</span>
                         </a>
                     </div>
 
-                    <!-- Mobile Header Buttons -->
-                    <div class="flex items-center gap-2 md:hidden">
-                        <button id="hambBtn" class="p-2 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm text-white" aria-label="menu">
+                    <div class="flex items-center gap-2 lg:hidden">
+                        <button id="hambBtn" class="p-2 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md text-white" aria-label="menu">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path d="M4 6h16M4 12h16M4 18h16" stroke-width="2" stroke-linecap="round"/>
                             </svg>
@@ -166,81 +208,164 @@
                 </div>
             </div>
 
-            <!-- MOBILE MENU -->
-            <div id="mobileMenu" class="hidden md:hidden border-t border-white/10 bg-black absolute w-full">
-                <div class="container mx-auto px-6 py-6 flex flex-col gap-4 text-base">
-                    <a href="index.html#hero" class="block text-gray-300 hover:text-white transition-colors">Home</a>
-                    <a href="research.html" class="block text-white hover:text-white transition-colors font-semibold">Research</a>
-                    <a href="learn.html" class="block text-gray-300 hover:text-white transition-colors">Learn</a>
-                    <a href="about.html" class="block text-gray-300 hover:text-white transition-colors">About</a>
-                    <a href="blogs/index.html" class="block text-gray-300 hover:text-white transition-colors">Blog</a>
-                    <a href="challenge.html" class="block text-[#00FF7F] hover:text-[#00E676] transition-colors font-semibold">7-Day Challenge</a>
-                    <a href="contact.html" class="block text-gray-300 hover:text-white transition-colors">Contact</a>
+            <div id="mobileMenu" class="hidden lg:hidden border-t border-white/10 bg-[#0A0A0A]/95 backdrop-blur-2xl absolute w-full left-0 right-0 shadow-2xl">
+                <div class="container mx-auto px-6 py-6 flex flex-col gap-3 text-sm font-medium">
+                    <a href="index.html#hero" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition-colors">Home</a>
+                    <a href="research.html" class="block px-3 py-2 rounded-lg text-white bg-white/10 font-semibold">Research</a>
+                    <a href="learn.html" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition-colors">Learn</a>
+                    <a href="about.html" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition-colors">About</a>
+                    <a href="blogs/index.html" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition-colors">Blog</a>
+                    <a href="challenge.html" class="block px-3 py-2 rounded-lg text-[#00FF7F] font-semibold bg-[#00FF7F]/10 border border-[#00FF7F]/20">7-Day Challenge</a>
+                    <a href="contact.html" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition-colors">Contact</a>
                     <div class="mt-4 pt-4 border-t border-white/10 flex flex-col gap-3">
-                        <a href="tel:+91-8881176909" class="bg-green-500 hover:bg-green-600 text-black font-bold w-full text-center py-3 rounded-xl flex items-center justify-center gap-2 transition-all shadow-[0_0_15px_rgba(34,197,94,0.3)]">
+                        <a href="tel:+91-8881176909" class="bg-gradient-to-r from-[#10b981] to-[#059669] text-white font-bold w-full text-center py-3 rounded-xl flex items-center justify-center gap-2">
                             <i class="fab fa-whatsapp text-lg"></i> Chat with Advisor
                         </a>
-                        <a href="index.html#pricing" class="bg-white text-black w-full text-center py-3 rounded-xl font-medium block">Get Elite</a>
+                        <a href="index.html#pricing" class="bg-white text-black w-full text-center py-3 rounded-xl font-bold block">Get Elite</a>
                     </div>
                 </div>
             </div>
         </header>
     </div>
 
-    <main class="container mx-auto px-6 py-24">
-        <h1 class="text-4xl md:text-5xl font-extrabold mb-8 text-center">Research Hub</h1>
-        <p class="text-xl text-gray-400 text-center mb-16 max-w-2xl mx-auto">In-depth analysis, investment theses, and market intelligence to guide your decisions.</p>
+    <main class="container mx-auto px-6 lg:px-12 py-20 max-w-6xl">
+        <div class="text-center mb-16 fade-in-up">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-bold uppercase tracking-widest text-blue-400 mb-4">
+                <i class="fas fa-chart-pie text-xs"></i> Institutional Intelligence Hub
+            </div>
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight text-white">Research Hub</h1>
+            <p class="text-xl text-gray-400 max-w-2xl mx-auto font-light leading-relaxed">
+                Objective financial models, discounted cash flow valuations, and sector rotational deep dives to protect and grow your capital.
+            </p>
+        </div>
 
-        <section class="mb-16">
-            <h2 class="text-2xl font-bold mb-6 border-b border-white/10 pb-2">Featured Research</h2>
-            <div class="glass-panel">
-                <h3 class="text-xl font-bold mb-2">The Future of Renewable Energy Stocks</h3>
-                <p class="text-gray-400 mb-4">An in-depth look at regulatory tailwinds and valuation metrics for top performers in the sector.</p>
-                <ul class="list-disc list-inside text-gray-400 ml-4 mb-4 text-sm">
-                    <li>Investment summary</li>
-                    <li>Key thesis</li>
-                    <li>Business overview</li>
-                    <li>Growth drivers</li>
-                    <li>Risks & Valuation</li>
-                </ul>
-                <a href="donation.html" class="text-green-400 hover:underline">Read Full Report (IREDA) &rarr;</a>
+        <!-- FEATURED REPORT: IREDA -->
+        <section class="mb-20 fade-in-up stagger-1">
+            <h2 class="text-2xl font-bold mb-8 border-b border-white/10 pb-3 flex items-center gap-2.5 text-white">
+                <i class="fas fa-star text-amber-400 text-lg"></i> Flagship Sector Report
+            </h2>
+            <div class="glass-panel overflow-hidden rounded-3xl border border-white/15 grid grid-cols-1 lg:grid-cols-12 gap-0 shadow-2xl">
+                <div class="lg:col-span-5 relative aspect-[16/10] lg:aspect-auto overflow-hidden bg-black">
+                    <img src="assets/ireda-energy.jpg" alt="IREDA Clean Energy Research" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-transparent to-[#141414]/90"></div>
+                    <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500 text-black shadow-md uppercase tracking-wider">
+                        High Conviction
+                    </span>
+                </div>
+                <div class="lg:col-span-7 p-8 lg:p-10 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs uppercase font-mono text-emerald-400 font-bold">Renewable Finance &bull; India</span>
+                            <span class="text-xs text-gray-500 font-mono">Q3 Valuation</span>
+                        </div>
+                        <h3 class="text-2xl lg:text-3xl font-bold mb-3 text-white">The Future of Renewable Energy Stocks: IREDA Deep Dive</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6 font-light">
+                            An exhaustive examination of India's green infrastructure financing ecosystem. Explores asset quality ratios, sovereign backing, spread dynamics, and long-range DCF sensitivity for the 2026-2030 capex cycle.
+                        </p>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+                            <div class="bg-white/5 border border-white/10 p-3 rounded-xl">
+                                <span class="text-[10px] text-gray-500 uppercase block font-mono">Loan Growth</span>
+                                <span class="text-sm font-bold text-emerald-400">+26.8% YoY</span>
+                            </div>
+                            <div class="bg-white/5 border border-white/10 p-3 rounded-xl">
+                                <span class="text-[10px] text-gray-500 uppercase block font-mono">NIM Spread</span>
+                                <span class="text-sm font-bold text-white">3.45%</span>
+                            </div>
+                            <div class="bg-white/5 border border-white/10 p-3 rounded-xl">
+                                <span class="text-[10px] text-gray-500 uppercase block font-mono">Gross NPA</span>
+                                <span class="text-sm font-bold text-white">2.98%</span>
+                            </div>
+                            <div class="bg-white/5 border border-white/10 p-3 rounded-xl">
+                                <span class="text-[10px] text-gray-500 uppercase block font-mono">Thesis State</span>
+                                <span class="text-sm font-bold text-emerald-400">Intact</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 pt-4 border-t border-white/10">
+                        <a href="donation.html" class="btn btn-primary px-6 py-2.5 text-xs font-bold rounded-xl shadow-lg">Download PDF Research &rarr;</a>
+                        <span class="text-xs text-gray-500 font-mono">Includes DCF Model Sheet</span>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <section>
-                <h2 class="text-2xl font-bold mb-6 border-b border-white/10 pb-2">Stock Research</h2>
-                <div class="glass-panel">
-                    <h3 class="text-lg font-bold mb-2">Defense Sector: RTX Corp</h3>
-                    <p class="text-gray-400 text-sm mb-4">Comparing growth drivers and long-term thesis.</p>
-                    <a href="donation.html" class="text-blue-400 hover:underline text-sm">View Analysis (RTX CORP)</a>
+        <!-- SECTOR & QUANT GRID -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
+            <!-- Stock Research: RTX -->
+            <section class="fade-in-up stagger-2">
+                <h2 class="text-2xl font-bold mb-6 border-b border-white/10 pb-3 text-white flex items-center gap-2">
+                    <i class="fas fa-fighter-jet text-purple-400 text-base"></i> Defense Sector
+                </h2>
+                <div class="glass-panel overflow-hidden rounded-3xl border border-white/10 group">
+                    <div class="relative aspect-[16/9] overflow-hidden bg-black">
+                        <img src="assets/rtx-defense.jpg" alt="RTX Corp Defense Analysis" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#141414] via-transparent to-transparent"></div>
+                        <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[11px] font-bold bg-purple-500 text-white shadow-md uppercase tracking-wider">
+                            Global Aerospace
+                        </span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-white">RTX Corp: Geopolitical Moats & Backlog Analysis</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-4 font-light">
+                            Assessing commercial aftermarket resilience alongside unprecedented defense order backlogs ($196B) and engine warranty mitigation timelines.
+                        </p>
+                        <a href="donation.html" class="inline-flex items-center gap-2 text-xs font-semibold text-purple-400 hover:text-white transition-colors">
+                            <span>Open RTX Valuation Analysis</span> <i class="fas fa-arrow-right text-[10px]"></i>
+                        </a>
+                    </div>
                 </div>
             </section>
 
-            <section>
-                <h2 class="text-2xl font-bold mb-6 border-b border-white/10 pb-2">Fund Research</h2>
-                <div class="glass-panel">
-                    <h3 class="text-lg font-bold mb-2">Top 5 Index Funds for Core Portfolio</h3>
-                    <p class="text-gray-400 text-sm mb-4">Evaluating expense ratios and tracking errors.</p>
-                    <a href="donation.html" class="text-blue-400 hover:underline text-sm">View Report</a>
+            <!-- Quant Analytics: Index & Funds -->
+            <section class="fade-in-up stagger-3">
+                <h2 class="text-2xl font-bold mb-6 border-b border-white/10 pb-3 text-white flex items-center gap-2">
+                    <i class="fas fa-cubes text-blue-400 text-base"></i> Portfolio Allocation
+                </h2>
+                <div class="glass-panel overflow-hidden rounded-3xl border border-white/10 group">
+                    <div class="relative aspect-[16/9] overflow-hidden bg-black">
+                        <img src="assets/research-analytics.jpg" alt="Fund Research Analytics" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#141414] via-transparent to-transparent"></div>
+                        <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[11px] font-bold bg-blue-500 text-white shadow-md uppercase tracking-wider">
+                            Index Core
+                        </span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-white">Expense Drag & Core Multi-Factor Index Selection</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-4 font-light">
+                            Simulating the 20-year drag of active fund expense ratios versus low-cost smart beta replication strategies for multi-generational wealth.
+                        </p>
+                        <a href="donation.html" class="inline-flex items-center gap-2 text-xs font-semibold text-blue-400 hover:text-white transition-colors">
+                            <span>Explore Fund Research</span> <i class="fas fa-arrow-right text-[10px]"></i>
+                        </a>
+                    </div>
                 </div>
             </section>
         </div>
 
-        <section class="mt-16">
-            <h2 class="text-2xl font-bold mb-6 border-b border-white/10 pb-2">Advisor Commentary</h2>
-            <div class="glass-panel">
-                <p class="italic text-gray-300">"Current market volatility presents a unique opportunity for long-term investors focused on fundamentals, rather than short-term price action." - Anjali Sharma, Lead Advisor</p>
+        <!-- RISK & METHODOLOGY WITH SHIELD ASSET -->
+        <section class="glass-panel p-8 sm:p-12 rounded-3xl border border-white/15 relative overflow-hidden fade-in-up stagger-3 mb-16">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                <div class="md:col-span-8">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-bold uppercase tracking-wider text-emerald-400 mb-4">
+                        <i class="fas fa-shield-alt text-xs"></i> Risk Governance
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold mb-4 text-white">Strict Research Methodology & Downside Shielding</h2>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6 font-light">
+                        Our research is grounded in verified balance sheets, free cash flow conversion rates, and non-linear risk simulation. We never publish speculative rumors or momentum hype. Every thesis must pass rigorous downside testing before publication.
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-gray-300 font-mono">10-K Forensic Dissection</span>
+                        <span class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-gray-300 font-mono">Monte Carlo Drawdowns</span>
+                        <span class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-gray-300 font-mono">Independent Peer Review</span>
+                    </div>
+                </div>
+                <div class="md:col-span-4 flex justify-center">
+                    <div class="w-44 h-44 sm:w-52 sm:h-52 rounded-3xl overflow-hidden border border-emerald-400/30 shadow-[0_0_40px_rgba(0,255,127,0.2)] bg-black/60">
+                        <img src="assets/risk-shield.jpg" alt="Rivava Risk Management Shield" class="w-full h-full object-cover">
+                    </div>
+                </div>
             </div>
         </section>
-
-        <section class="mt-16">
-            <h2 class="text-2xl font-bold mb-6 border-b border-white/10 pb-2">Research Methodology</h2>
-            <div class="glass-panel">
-                <p class="text-gray-400">Our research is grounded in fundamental analysis, long-term macroeconomic trends, and strict risk assessment. We do not rely on momentum trading or social media sentiment.</p>
-            </div>
-        </section>
-
     </main>
 
     <footer class="border-t border-white/10 mt-20 py-8 text-center text-gray-400 text-sm">

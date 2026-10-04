@@ -836,49 +836,83 @@
         .stagger-5 { transition-delay: 0.25s; }
         .stagger-6 { transition-delay: 0.30s; }
 
-        /* Cuberto Ambient Cursor Follower & Dot */
-        .cuberto-cursor-aura {
-            position: fixed;
-            top: -40px;
-            left: -40px;
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(0, 255, 127, 0.22), rgba(0, 112, 243, 0.15) 55%, transparent 80%);
-            pointer-events: none;
-            z-index: 99999;
-            mix-blend-mode: screen;
-            transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1), height 0.35s cubic-bezier(0.16, 1, 0.3, 1), background 0.35s ease, filter 0.35s ease;
-            transform: translate3d(-100px, -100px, 0);
-            will-change: transform;
-            filter: blur(8px);
+        /* ==============================================
+           HARDWARE-ACCELERATED ULTRA-MODERN NAVBAR
+           ============================================== */
+        .hw-nav-wrapper {
+            position: sticky;
+            top: 0;
+            z-index: 60;
+            width: 100%;
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -webkit-perspective: 1000px;
+            perspective: 1000px;
+            will-change: transform, backdrop-filter;
+            contain: layout style;
+            background: rgba(10, 10, 10, 0.78);
+            -webkit-backdrop-filter: blur(28px) saturate(190%);
+            backdrop-filter: blur(28px) saturate(190%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.7), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+            transition: background 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
         }
-        .cuberto-cursor-aura.cursor-active {
-            width: 130px;
-            height: 130px;
-            top: -65px;
-            left: -65px;
-            background: radial-gradient(circle, rgba(0, 255, 127, 0.35), rgba(255, 51, 102, 0.22) 60%, transparent 85%);
-            filter: blur(12px);
+
+        .hw-nav-wrapper.nav-scrolled {
+            background: rgba(8, 8, 8, 0.90);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.85), inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
         }
-        .cuberto-cursor-dot {
-            position: fixed;
-            top: -3px;
-            left: -3px;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #00FF7F;
-            box-shadow: 0 0 10px #00FF7F, 0 0 20px #00FF7F;
-            pointer-events: none;
-            z-index: 100000;
-            transform: translate3d(-100px, -100px, 0);
-            will-change: transform;
+
+        .nav-capsule {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.06), 0 4px 20px rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        @media (pointer: coarse) {
-            .cuberto-cursor-aura, .cuberto-cursor-dot {
-                display: none !important;
-            }
+
+        .nav-capsule:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1), 0 6px 25px rgba(0, 0, 0, 0.35);
+        }
+
+        .nav-pill-item {
+            position: relative;
+            padding: 6px 14px;
+            font-size: 13.5px;
+            font-weight: 500;
+            color: #d1d5db;
+            border-radius: 9999px;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            letter-spacing: -0.01em;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .nav-pill-item:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .nav-pill-item.active {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.12);
+            font-weight: 550;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+
+        .nav-pill-item.challenge-pill {
+            color: #00FF7F;
+            font-weight: 600;
+        }
+
+        .nav-pill-item.challenge-pill:hover {
+            color: #00E676;
+            background: rgba(0, 255, 127, 0.1);
         }
 
         /* Glass Panel Specular Spotlight Hover */
@@ -978,64 +1012,81 @@
 
 
 
-        <!-- STICKY WRAPPER FOR TICKER AND HEADER -->
-        <!-- STICKY WRAPPER FOR TICKER AND HEADER -->
-    <div class="sticky top-0 z-[60] flex flex-col w-full shadow-lg bg-[color:var(--bg-panel)]/80 backdrop-blur-2xl border-b border-white/5 transition-all duration-300" id="header-wrapper">
-        <header id="header" class="left-0 right-0 z-50">
+    <!-- HARDWARE-ACCELERATED ULTRA-MODERN STICKY HEADER -->
+    <div class="hw-nav-wrapper" id="header-wrapper">
+        <header id="header" class="w-full">
             <div class="container mx-auto px-6 lg:px-12">
-                <div class="flex items-center justify-between py-3 transition-all duration-300 h-16">
+                <div class="flex items-center justify-between py-3 h-16 transition-all duration-300">
+                    <!-- Brand Logo -->
                     <a href="#hero" class="flex items-center gap-3 group">
-                        <div class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white/10 transition-colors shadow-[0_0_12px_rgba(0,255,127,0.2)]">
-                            <img src="assets/logo.png" alt="Rivava Logo" class="h-9 w-9 object-contain">
+                        <div class="w-9 h-9 rounded-xl bg-white/[0.06] border border-white/10 flex items-center justify-center group-hover:border-[#00FF7F]/40 group-hover:bg-[#00FF7F]/10 transition-all duration-300 shadow-[0_0_15px_rgba(0,255,127,0.15)] group-hover:shadow-[0_0_20px_rgba(0,255,127,0.35)]">
+                            <img src="assets/logo.png" alt="Rivava Logo" class="h-6 w-6 object-contain group-hover:scale-105 transition-transform duration-300">
                         </div>
-                        <span class="text-xl font-bold tracking-tight rivava-text">Rivava</span>
+                        <span class="text-xl font-bold tracking-tight text-white group-hover:text-[#00FF7F] transition-colors duration-300 flex items-center gap-1.5">
+                            Rivava
+                            <span class="w-1.5 h-1.5 rounded-full bg-[#00FF7F] shadow-[0_0_8px_#00FF7F]"></span>
+                        </span>
                     </a>
 
-                    <!-- Desktop Navigation -->
-                    <div class="hidden md:flex items-center bg-white/5 rounded-full px-5 py-1.5 border border-white/5">
-                        <nav class="flex items-center gap-7 text-sm font-medium">
-                            <a href="#hero" class="text-white hover:text-white transition-colors font-semibold">Home</a>
-                            <a href="research.html" class="text-gray-300 hover:text-white transition-colors">Research</a>
-                            <a href="learn.html" class="text-gray-300 hover:text-white transition-colors">Learn</a>
-                            <a href="about.html" class="text-gray-300 hover:text-white transition-colors">About</a>
-                            <a href="blogs/index.html" class="text-gray-300 hover:text-white transition-colors">Blog</a>
-                            <a href="challenge.html" class="text-[#00FF7F] hover:text-[#00E676] transition-colors font-semibold">7-Day Challenge</a>
+                    <!-- Desktop Navigation (Hardware-Accelerated Floating Capsule) -->
+                    <div class="hidden lg:flex items-center nav-capsule rounded-full px-2 py-1">
+                        <nav class="flex items-center gap-1">
+                            <a href="#hero" class="nav-pill-item active">Home</a>
+                            <a href="research.html" class="nav-pill-item">Research</a>
+                            <a href="learn.html" class="nav-pill-item">Learn</a>
+                            <a href="about.html" class="nav-pill-item">About</a>
+                            <a href="blogs/index.html" class="nav-pill-item">Blog</a>
+                            <a href="challenge.html" class="nav-pill-item challenge-pill">
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#00FF7F] animate-pulse mr-1.5"></span>
+                                7-Day Challenge
+                            </a>
                         </nav>
                     </div>
 
+                    <!-- Right Action CTAs -->
                     <div class="hidden md:flex items-center gap-3">
                         <!-- Chat with Advisor Dropdown -->
                         <div class="relative inline-block text-left" id="advisorDropdownWrapper">
-                            <button id="chatWithAdvisorBtn" class="h-9 px-3.5 bg-[#22c55e] hover:bg-[#16a34a] text-black font-bold text-xs rounded-full transition-all flex items-center justify-center gap-1.5 shadow-[0_0_15px_rgba(34,197,94,0.35)]" title="Chat with Advisor">
-                                <i class="fab fa-whatsapp text-base"></i>
+                            <button id="chatWithAdvisorBtn" class="h-9 px-4 bg-gradient-to-r from-[#10b981] to-[#059669] hover:from-[#059669] hover:to-[#047857] text-white font-semibold text-xs rounded-full transition-all flex items-center justify-center gap-2 shadow-[0_0_18px_rgba(16,185,129,0.35)] border border-emerald-400/30 hover:scale-[1.02]" title="Chat with Advisor">
+                                <span class="relative flex h-2 w-2">
+                                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                                    <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                                </span>
+                                <i class="fab fa-whatsapp text-sm"></i>
                                 <span>Chat with Advisor</span>
-                                <i class="fas fa-chevron-down text-[10px] ml-0.5 transition-transform" id="advisorDropdownChevron"></i>
+                                <i class="fas fa-chevron-down text-[9px] transition-transform" id="advisorDropdownChevron"></i>
                             </button>
-                            <div id="advisorDropdownMenu" class="hidden absolute right-0 mt-2 w-56 rounded-2xl bg-[#141414] border border-white/10 shadow-2xl py-2 z-50">
-                                <a href="whatsapp.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-200 hover:bg-white/10 hover:text-white transition-colors">
-                                    <i class="fab fa-whatsapp text-green-400 text-base"></i> WhatsApp Page
+                            <div id="advisorDropdownMenu" class="hidden absolute right-0 mt-2.5 w-60 rounded-2xl bg-[#121212]/95 border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.8)] backdrop-blur-2xl py-2 z-50">
+                                <a href="whatsapp.html" class="flex items-center gap-3 px-4 py-2.5 text-xs font-medium text-gray-200 hover:bg-white/10 hover:text-white transition-colors">
+                                    <div class="w-7 h-7 rounded-lg bg-green-500/20 text-green-400 flex items-center justify-center"><i class="fab fa-whatsapp text-sm"></i></div>
+                                    <span>WhatsApp Direct</span>
                                 </a>
-                                <a href="tel:+91-8881176909" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-200 hover:bg-white/10 hover:text-white transition-colors">
-                                    <i class="fas fa-phone-alt text-[#00FF7F] text-base"></i> Talk to Advisor
+                                <a href="tel:+91-8881176909" class="flex items-center gap-3 px-4 py-2.5 text-xs font-medium text-gray-200 hover:bg-white/10 hover:text-white transition-colors">
+                                    <div class="w-7 h-7 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center"><i class="fas fa-phone-alt text-xs"></i></div>
+                                    <span>Direct Line Call</span>
                                 </a>
-                                <a href="#" id="openFoundersModalBtn" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-200 hover:bg-white/10 hover:text-white transition-colors">
-                                    <i class="fas fa-users text-[color:var(--accent-primary)] text-base"></i> Founders Info
+                                <a href="#" id="openFoundersModalBtn" class="flex items-center gap-3 px-4 py-2.5 text-xs font-medium text-gray-200 hover:bg-white/10 hover:text-white transition-colors">
+                                    <div class="w-7 h-7 rounded-lg bg-purple-500/20 text-purple-400 flex items-center justify-center"><i class="fas fa-users text-xs"></i></div>
+                                    <span>Leadership Team</span>
                                 </a>
-                                <a href="#" id="openAppModalBtn" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-200 hover:bg-white/10 hover:text-white transition-colors">
-                                    <i class="fas fa-th text-blue-400 text-base"></i> Web Apps
+                                <a href="#" id="openAppModalBtn" class="flex items-center gap-3 px-4 py-2.5 text-xs font-medium text-gray-200 hover:bg-white/10 hover:text-white transition-colors">
+                                    <div class="w-7 h-7 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center"><i class="fas fa-th text-xs"></i></div>
+                                    <span>Web Applications</span>
                                 </a>
                             </div>
                         </div>
-                        <a href="contact.html" class="text-xs font-medium text-gray-300 hover:text-white transition-colors">Contact</a>
-                        <a href="#pricing" class="h-9 px-4 bg-white text-black text-xs font-semibold rounded-full hover:bg-gray-200 transition-colors flex items-center gap-1.5 shadow-md">
+
+                        <a href="contact.html" class="text-xs font-medium text-gray-300 hover:text-white transition-colors px-2 py-1">Contact</a>
+
+                        <a href="#pricing" class="h-9 px-4 bg-gradient-to-r from-white to-gray-200 text-black text-xs font-bold rounded-full hover:bg-white transition-all flex items-center gap-1.5 shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:scale-[1.02]">
                             <i class="fas fa-crown text-amber-500 text-xs"></i>
                             <span>Get Elite</span>
                         </a>
                     </div>
 
-                    <!-- Mobile Header Buttons -->
-                    <div class="flex items-center gap-2 md:hidden">
-                        <button id="hambBtn" class="p-2 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm text-white" aria-label="menu">
+                    <!-- Mobile Menu Trigger -->
+                    <div class="flex items-center gap-2 lg:hidden">
+                        <button id="hambBtn" class="p-2 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md text-white hover:bg-white/10 transition-colors" aria-label="menu">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path d="M4 6h16M4 12h16M4 18h16" stroke-width="2" stroke-linecap="round"/>
                             </svg>
@@ -1044,37 +1095,41 @@
                 </div>
             </div>
 
-            <!-- MOBILE MENU -->
-            <div id="mobileMenu" class="hidden md:hidden border-t border-white/10 bg-black absolute w-full">
-                <div class="container mx-auto px-6 py-6 flex flex-col gap-4 text-base">
-                    <a href="#hero" class="block text-gray-300 hover:text-white transition-colors">Home</a>
-                    <a href="research.html" class="block text-gray-300 hover:text-white transition-colors">Research</a>
-                    <a href="learn.html" class="block text-gray-300 hover:text-white transition-colors">Learn</a>
-                    <a href="about.html" class="block text-gray-300 hover:text-white transition-colors">About</a>
-                    <a href="blogs/index.html" class="block text-gray-300 hover:text-white transition-colors">Blog</a>
-                    <a href="challenge.html" class="block text-[#00FF7F] hover:text-[#00E676] transition-colors font-semibold">7-Day Challenge</a>
-                    <a href="contact.html" class="block text-gray-300 hover:text-white transition-colors">Contact</a>
+            <!-- Mobile Navigation Overlay -->
+            <div id="mobileMenu" class="hidden lg:hidden border-t border-white/10 bg-[#0A0A0A]/95 backdrop-blur-2xl absolute w-full left-0 right-0 shadow-2xl">
+                <div class="container mx-auto px-6 py-6 flex flex-col gap-3 text-sm font-medium">
+                    <a href="#hero" class="block px-3 py-2 rounded-lg text-white bg-white/10">Home</a>
+                    <a href="research.html" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition-colors">Research</a>
+                    <a href="learn.html" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition-colors">Learn</a>
+                    <a href="about.html" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition-colors">About</a>
+                    <a href="blogs/index.html" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition-colors">Blog</a>
+                    <a href="challenge.html" class="block px-3 py-2 rounded-lg text-[#00FF7F] font-semibold bg-[#00FF7F]/10 border border-[#00FF7F]/20">
+                        <span class="w-2 h-2 inline-block rounded-full bg-[#00FF7F] mr-2"></span>
+                        7-Day Challenge
+                    </a>
+                    <a href="contact.html" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition-colors">Contact</a>
+
                     <div class="mt-4 pt-4 border-t border-white/10 flex flex-col gap-3">
                         <div class="relative w-full" id="mobileAdvisorDropdownWrapper">
-                            <button id="chatWithAdvisorBtnMobile" class="bg-green-500 hover:bg-green-600 text-black font-bold w-full text-center py-3 rounded-xl flex items-center justify-center gap-2 transition-all shadow-[0_0_15px_rgba(34,197,94,0.3)]">
-                                <i class="fab fa-whatsapp text-lg"></i> Chat with Advisor <i class="fas fa-chevron-down text-xs ml-1 transition-transform" id="mobileAdvisorDropdownChevron"></i>
+                            <button id="chatWithAdvisorBtnMobile" class="bg-gradient-to-r from-[#10b981] to-[#059669] text-white font-bold w-full text-center py-3 rounded-xl flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(16,185,129,0.3)]">
+                                <i class="fab fa-whatsapp text-lg"></i> Chat with Advisor <i class="fas fa-chevron-down text-xs ml-1" id="mobileAdvisorDropdownChevron"></i>
                             </button>
                             <div id="mobileAdvisorDropdownMenu" class="hidden mt-2 w-full rounded-xl bg-[#141414] border border-white/10 shadow-xl py-2">
-                                <a href="whatsapp.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-200 hover:bg-white/10 hover:text-white transition-colors">
-                                    <i class="fab fa-whatsapp text-green-400 text-base"></i> WhatsApp Page
+                                <a href="whatsapp.html" class="flex items-center gap-3 px-4 py-2.5 text-xs text-gray-200 hover:bg-white/10 hover:text-white transition-colors">
+                                    <i class="fab fa-whatsapp text-green-400 text-sm"></i> WhatsApp Direct
                                 </a>
-                                <a href="tel:+91-8881176909" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-200 hover:bg-white/10 hover:text-white transition-colors">
-                                    <i class="fas fa-phone-alt text-[#00FF7F] text-base"></i> Talk to Advisor
+                                <a href="tel:+91-8881176909" class="flex items-center gap-3 px-4 py-2.5 text-xs text-gray-200 hover:bg-white/10 hover:text-white transition-colors">
+                                    <i class="fas fa-phone-alt text-[#00FF7F] text-xs"></i> Direct Call
                                 </a>
-                                <a href="#" id="openFoundersModalBtnMobile" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-200 hover:bg-white/10 hover:text-white transition-colors">
-                                    <i class="fas fa-users text-[color:var(--accent-primary)] text-base"></i> Founders Info
+                                <a href="#" id="openFoundersModalBtnMobile" class="flex items-center gap-3 px-4 py-2.5 text-xs text-gray-200 hover:bg-white/10 hover:text-white transition-colors">
+                                    <i class="fas fa-users text-purple-400 text-xs"></i> Leadership Team
                                 </a>
-                                <a href="#" id="openAppModalBtnMobile" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-200 hover:bg-white/10 hover:text-white transition-colors">
-                                    <i class="fas fa-th text-blue-400 text-base"></i> Web Apps
+                                <a href="#" id="openAppModalBtnMobile" class="flex items-center gap-3 px-4 py-2.5 text-xs text-gray-200 hover:bg-white/10 hover:text-white transition-colors">
+                                    <i class="fas fa-th text-blue-400 text-xs"></i> Web Apps
                                 </a>
                             </div>
                         </div>
-                        <a href="#pricing" class="bg-white text-black w-full text-center py-3 rounded-xl font-medium block">Get Elite</a>
+                        <a href="#pricing" class="bg-white text-black text-center py-3 rounded-xl font-bold shadow-md block">Get Elite</a>
                     </div>
                 </div>
             </div>
@@ -1086,7 +1141,7 @@
         <!-- HERO SECTION WITH GLOWING BIG LOGO -->
         <section id="hero" class="min-h-screen flex items-center justify-center relative z-10 pt-16 sm:pt-20 pb-12">
             <div class="container mx-auto px-6 text-center">
-                <div class="flex flex-col items-center justify-center gap-4 sm:gap-5 max-w-4xl mx-auto">
+                <div class="flex flex-col items-center justify-center gap-4 sm:gap-5 max-w-5xl mx-auto">
                     <!-- GLOWING BIG LOGO EMBLEM -->
                     <div class="relative mb-1 inline-flex items-center justify-center fade-in-up">
                         <div class="absolute -inset-6 rounded-full bg-gradient-to-r from-[#ff3366] via-[#00ff7f] to-[#0070f3] opacity-40 blur-2xl animate-pulse"></div>
@@ -1116,71 +1171,168 @@
                             7-Day Challenge
                         </a>
                     </div>
+
+                    <!-- FLOATING PLATFORM TERMINAL PREVIEW (Generated Institutional Asset) -->
+                    <div class="mt-12 w-full max-w-4xl mx-auto fade-in-up stagger-4">
+                        <div class="relative group rounded-2xl md:rounded-3xl p-1 md:p-1.5 bg-gradient-to-b from-white/20 via-white/5 to-transparent border border-white/15 shadow-[0_20px_70px_rgba(0,0,0,0.8),0_0_40px_rgba(0,255,127,0.12)] overflow-hidden">
+                            <!-- Terminal Top Bar -->
+                            <div class="flex items-center justify-between px-4 py-2.5 bg-[#0d0d0d]/90 border-b border-white/10 rounded-t-[14px] md:rounded-t-[22px] backdrop-blur-md">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-3 h-3 rounded-full bg-[#ff5f56] opacity-80"></div>
+                                    <div class="w-3 h-3 rounded-full bg-[#ffbd2e] opacity-80"></div>
+                                    <div class="w-3 h-3 rounded-full bg-[#27c93f] opacity-80"></div>
+                                    <span class="ml-2 text-xs font-mono text-gray-400 hidden sm:inline-block">rivava-terminal://intelligence.v3</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                                        LIVE QUANT RESEARCH
+                                    </span>
+                                    <span class="text-[11px] font-mono text-gray-500 hidden md:inline-block">DCF &bull; 94% ACCURACY</span>
+                                </div>
+                            </div>
+                            <!-- Terminal Visual -->
+                            <div class="relative overflow-hidden rounded-b-[14px] md:rounded-b-[22px] bg-black aspect-[16/9] sm:aspect-[21/9]">
+                                <img src="assets/hero-terminal.jpg" alt="Rivava Institutional Financial Terminal Preview" class="w-full h-full object-cover object-top filter brightness-[0.95] contrast-[1.05] group-hover:scale-[1.01] transition-transform duration-700">
+                                <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-transparent opacity-60"></div>
+                                <div class="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 flex flex-wrap items-center justify-between gap-3 pointer-events-none">
+                                    <div class="bg-black/80 backdrop-blur-md border border-white/15 px-4 py-2 rounded-xl text-left pointer-events-auto">
+                                        <div class="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Algorithmic Valuation</div>
+                                        <div class="text-sm font-bold text-white flex items-center gap-2">Automated DCF + Sector Multiples <span class="text-xs text-emerald-400 font-mono">+18.4% Alpha</span></div>
+                                    </div>
+                                    <a href="research.html" class="pointer-events-auto px-4 py-2 rounded-xl bg-white text-black text-xs font-bold hover:bg-gray-200 transition-colors shadow-lg flex items-center gap-1.5">
+                                        <span>Explore Terminal</span> <i class="fas fa-arrow-right text-[10px]"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- RESEARCH HUB PREVIEW SECTION -->
+        <!-- RESEARCH HUB PREVIEW SECTION (Redesigned with Generated Assets) -->
         <section id="research-preview" class="py-24 relative z-10 bg-black/40">
-            <div class="container mx-auto px-6">
+            <div class="container mx-auto px-6 lg:px-12">
                 <div class="text-center mb-16 fade-in-up">
-                    <div class="text-sm font-bold uppercase tracking-widest text-blue-400 mb-2">Research Hub</div>
-                    <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Make Informed Decisions</h2>
-                    <p class="text-xl text-gray-400 max-w-2xl mx-auto">Access premium research, market intelligence, and investment theses to guide your portfolio.</p>
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-bold uppercase tracking-widest text-blue-400 mb-3">
+                        <i class="fas fa-microchip text-xs"></i> Research Intelligence
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-extrabold mb-4 text-white">Make Informed, Research-Backed Decisions</h2>
+                    <p class="text-lg text-gray-400 max-w-2xl mx-auto font-light">Access institutional-grade models, high-conviction sector deep dives, and DCF forecasts before allocating capital.</p>
                 </div>
+
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="glass-panel hover-lift p-8 fade-in-up stagger-1 text-center">
-                        <i class="fas fa-file-alt text-4xl text-blue-400 mb-4"></i>
-                        <h3 class="text-2xl font-bold mb-2">Featured Research</h3>
-                        <p class="text-gray-400 text-sm">Deep dives into high-conviction investment opportunities.</p>
+                    <!-- Card 1: Quant Models -->
+                    <div class="glass-panel group overflow-hidden rounded-2xl border border-white/10 hover:border-blue-500/40 transition-all duration-500 fade-in-up stagger-1">
+                        <div class="relative aspect-[16/10] overflow-hidden bg-black/50">
+                            <img src="assets/research-analytics.jpg" alt="Quantitative DCF Analytics" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#141414] via-transparent to-transparent"></div>
+                            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[11px] font-bold bg-blue-500/80 text-white backdrop-blur-md shadow-md uppercase tracking-wider">
+                                DCF Models
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 text-white group-hover:text-blue-400 transition-colors">Institutional Valuation Models</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-4">Discounted cash flow, margin of safety calculations, and sensitivity tables engineered for long-term compounders.</p>
+                            <a href="research.html" class="inline-flex items-center gap-2 text-xs font-semibold text-blue-400 group-hover:text-white transition-colors">
+                                <span>Explore Quant Models</span> <i class="fas fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
                     </div>
-                    <div class="glass-panel hover-lift p-8 fade-in-up stagger-2 text-center">
-                        <i class="fas fa-chart-line text-4xl text-green-400 mb-4"></i>
-                        <h3 class="text-2xl font-bold mb-2">Market Intelligence</h3>
-                        <p class="text-gray-400 text-sm">Stay updated with the latest trends and macroeconomic shifts.</p>
+
+                    <!-- Card 2: Green Energy / IREDA -->
+                    <div class="glass-panel group overflow-hidden rounded-2xl border border-white/10 hover:border-emerald-500/40 transition-all duration-500 fade-in-up stagger-2">
+                        <div class="relative aspect-[16/10] overflow-hidden bg-black/50">
+                            <img src="assets/ireda-energy.jpg" alt="IREDA Clean Energy Research" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#141414] via-transparent to-transparent"></div>
+                            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-500/80 text-white backdrop-blur-md shadow-md uppercase tracking-wider">
+                                Clean Energy
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 text-white group-hover:text-emerald-400 transition-colors">Green Energy & Infra Research</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-4">Deep dive into India's renewable transition, loan book expansion, and balance-sheet durability of public green lenders.</p>
+                            <a href="donation.html" class="inline-flex items-center gap-2 text-xs font-semibold text-emerald-400 group-hover:text-white transition-colors">
+                                <span>Read IREDA Thesis</span> <i class="fas fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
                     </div>
-                    <div class="glass-panel hover-lift p-8 fade-in-up stagger-3 text-center">
-                        <i class="fas fa-lightbulb text-4xl text-yellow-500 mb-4"></i>
-                        <h3 class="text-2xl font-bold mb-2">Investment Theses</h3>
-                        <p class="text-gray-400 text-sm">Clear, evidence-based reasoning behind every asset we cover.</p>
+
+                    <!-- Card 3: Defense RTX -->
+                    <div class="glass-panel group overflow-hidden rounded-2xl border border-white/10 hover:border-purple-500/40 transition-all duration-500 fade-in-up stagger-3">
+                        <div class="relative aspect-[16/10] overflow-hidden bg-black/50">
+                            <img src="assets/rtx-defense.jpg" alt="RTX Aerospace & Defense Report" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#141414] via-transparent to-transparent"></div>
+                            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[11px] font-bold bg-purple-500/80 text-white backdrop-blur-md shadow-md uppercase tracking-wider">
+                                Aerospace
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 text-white group-hover:text-purple-400 transition-colors">High-Conviction Sector Rotations</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-4">Global defense backlogs, commercial aviation tailwinds, and valuation multiples across premier engineering monopolies.</p>
+                            <a href="research.html" class="inline-flex items-center gap-2 text-xs font-semibold text-purple-400 group-hover:text-white transition-colors">
+                                <span>View Sector Analysis</span> <i class="fas fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <div class="mt-12 text-center">
-                    <a href="research.html" class="btn btn-primary">Go to Research Hub</a>
+
+                <div class="mt-12 text-center fade-in-up stagger-3">
+                    <a href="research.html" class="btn btn-primary magnetic-elem px-8 py-3 font-bold text-sm shadow-[0_0_20px_rgba(0,255,127,0.3)]">
+                        Explore All Research Reports &rarr;
+                    </a>
                 </div>
             </div>
         </section>
 
-        <!-- LEARNING CENTER PREVIEW SECTION -->
+        <!-- LEARNING CENTER PREVIEW SECTION (Redesigned with Generated Assets) -->
         <section id="learn-preview" class="py-24 relative z-10">
-            <div class="container mx-auto px-6">
+            <div class="container mx-auto px-6 lg:px-12">
                 <div class="text-center mb-16 fade-in-up">
-                    <div class="text-sm font-bold uppercase tracking-widest text-[color:var(--accent-primary)] mb-2">Learning Center</div>
-                    <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Learn before you invest.</h2>
-                    <p class="text-xl text-gray-400 max-w-2xl mx-auto">Build the mindset, process, and discipline of a research-driven investor.</p>
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-bold uppercase tracking-widest text-[#00FF7F] mb-3">
+                        <i class="fas fa-graduation-cap text-xs"></i> Investor Academy
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-extrabold mb-4 text-white">Learn before you invest.</h2>
+                    <p class="text-lg text-gray-400 max-w-2xl mx-auto font-light">Build the mindset, process, and emotional discipline of an institutional-grade allocator.</p>
                 </div>
+
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="glass-panel hover-lift p-8 fade-in-up stagger-1 flex items-center gap-6">
-                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center shrink-0">
-                            <i class="fas fa-book-reader text-2xl text-white"></i>
+                    <!-- Learning Card 1: Foundations -->
+                    <div class="glass-panel group overflow-hidden rounded-2xl border border-white/10 hover:border-emerald-400/40 transition-all duration-500 fade-in-up stagger-1">
+                        <div class="relative aspect-[16/9] overflow-hidden bg-black/60">
+                            <img src="assets/learning-academy.jpg" alt="Rivava Financial Learning Academy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#141414] via-[#141414]/40 to-transparent"></div>
+                            <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold bg-[#00FF7F]/90 text-black backdrop-blur-md shadow-md uppercase tracking-wider">
+                                Frameworks & Valuation
+                            </span>
                         </div>
-                        <div>
-                            <h3 class="text-xl font-bold mb-2">How to Research</h3>
-                            <p class="text-gray-400 text-sm">Learn the frameworks used by professionals to evaluate stocks and funds.</p>
+                        <div class="p-8 -mt-6 relative z-10">
+                            <h3 class="text-2xl font-bold mb-3 text-white group-hover:text-[#00FF7F] transition-colors">How to Dissect a Research Report</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-6">Master financial statement analysis, return on invested capital (ROIC), free cash flow yields, and red flag detection across company filings.</p>
+                            <a href="learn.html" class="btn btn-secondary text-xs px-5 py-2.5 rounded-xl font-bold inline-flex items-center gap-2">
+                                <span>Start Reading Framework</span> <i class="fas fa-arrow-right text-[10px]"></i>
+                            </a>
                         </div>
                     </div>
-                    <div class="glass-panel hover-lift p-8 fade-in-up stagger-2 flex items-center gap-6">
-                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shrink-0">
-                            <i class="fas fa-brain text-2xl text-white"></i>
+
+                    <!-- Learning Card 2: Mindset -->
+                    <div class="glass-panel group overflow-hidden rounded-2xl border border-white/10 hover:border-pink-500/40 transition-all duration-500 fade-in-up stagger-2">
+                        <div class="relative aspect-[16/9] overflow-hidden bg-black/60">
+                            <img src="assets/mindset-psychology.jpg" alt="Investment Psychology & Anti-FOMO" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#141414] via-[#141414]/40 to-transparent"></div>
+                            <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold bg-[#ff3366]/90 text-white backdrop-blur-md shadow-md uppercase tracking-wider">
+                                Behavioral Edge
+                            </span>
                         </div>
-                        <div>
-                            <h3 class="text-xl font-bold mb-2">Investment Mindset</h3>
-                            <p class="text-gray-400 text-sm">Overcome FOMO and develop the discipline required for long-term success.</p>
+                        <div class="p-8 -mt-6 relative z-10">
+                            <h3 class="text-2xl font-bold mb-3 text-white group-hover:text-[#ff3366] transition-colors">Conquering Market FOMO & Drawdowns</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-6">Understand how cognitive bias destroys retail wealth. Learn portfolio position sizing, surviving bear cycles, and developing systematic conviction.</p>
+                            <a href="learn.html" class="btn btn-secondary text-xs px-5 py-2.5 rounded-xl font-bold inline-flex items-center gap-2">
+                                <span>Master Your Psychology</span> <i class="fas fa-arrow-right text-[10px]"></i>
+                            </a>
                         </div>
                     </div>
-                </div>
-                <div class="mt-12 text-center">
-                    <a href="learn.html" class="btn btn-secondary">Visit Learning Center</a>
                 </div>
             </div>
         </section>
@@ -1282,17 +1434,24 @@
                 <p class="text-xl text-gray-400 max-w-3xl mx-auto font-light">We believe in habit formation. Use our SMS tracking to manage your funds and build discipline without the noise of complex dashboards.</p>
             </div>
 
-            <div class="max-w-4xl mx-auto glass-panel p-8 md:p-12 text-center fade-in-up stagger-1">
-                <i class="fas fa-mobile-alt text-5xl text-[color:var(--accent-primary)] mb-6"></i>
-                <h3 class="text-2xl font-bold mb-4">Track via SMS</h3>
-                <p class="text-gray-400 mb-8 max-w-2xl mx-auto">Skip the complex charts. Send a quick SMS to log your daily expenses or investments. Build the habit of tracking your money consistently, one message at a time.</p>
+            <div class="max-w-4xl mx-auto glass-panel p-6 md:p-10 rounded-3xl border border-white/10 text-center fade-in-up stagger-1 overflow-hidden relative">
+                <div class="mb-8 rounded-2xl overflow-hidden border border-white/10 aspect-[16/9] relative group bg-black/60 shadow-2xl max-w-2xl mx-auto">
+                    <img src="assets/hero-tablet-mockup.jpg" alt="Rivava Mobile and Tablet Tracking Interface" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+                    <div class="absolute bottom-3 left-4 right-4 flex items-center justify-between text-left">
+                        <span class="text-xs font-bold text-white uppercase tracking-wider">Effortless Micro-Tracking</span>
+                        <span class="text-[10px] font-mono bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full border border-emerald-500/30">SMS + App Sync</span>
+                    </div>
+                </div>
+                <h3 class="text-2xl font-bold mb-3 text-white">Track via SMS & Instant Logging</h3>
+                <p class="text-gray-400 mb-8 max-w-2xl mx-auto text-sm leading-relaxed font-light">Skip the cumbersome multi-step entry forms. Send a quick SMS or mobile ping to log your daily investments. Build consistent wealth-tracking discipline, one message at a time.</p>
                 <div class="flex items-center justify-center gap-4">
-                     <div class="bg-white/5 border border-white/10 rounded-xl p-4 text-left max-w-xs w-full">
+                     <div class="bg-white/5 border border-white/10 rounded-xl p-4 text-left max-w-xs w-full shadow-lg">
                          <div class="flex items-center gap-2 mb-2">
-                             <div class="w-2 h-2 rounded-full bg-green-500"></div>
-                             <span class="text-xs text-gray-400 uppercase tracking-wider">SMS Sent</span>
+                             <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                             <span class="text-xs text-gray-400 uppercase tracking-wider font-semibold">SMS Sync Confirmed</span>
                          </div>
-                         <div class="text-sm font-mono text-gray-200">Invested $500 in VOO today</div>
+                         <div class="text-sm font-mono text-gray-200">Invested ₹15,000 in Clean Energy Fund</div>
                      </div>
                 </div>
             </div>
@@ -1533,55 +1692,71 @@
         </div>
     </section>
 
-    <!-- AI SECTION -->
+    <!-- AI SECTION (Redesigned with Generated AI Copilot Asset) -->
     <section id="ai" class="py-32 relative z-10 border-t border-white/5">
         <div class="container mx-auto px-6 lg:px-12">
             <div class="flex flex-col lg:flex-row-reverse items-center gap-16">
                 <div class="lg:w-1/2 fade-in-up">
-                    <div class="text-sm font-bold uppercase tracking-widest text-purple-500 mb-4 flex items-center gap-2"><i class="fas fa-robot"></i> Our chat support</div>
-                    <h2 class="text-3xl md:text-5xl font-extrabold mb-6 tracking-tight">Intelligence that scales with you.</h2>
-                    <p class="text-lg text-gray-400 mb-8 leading-relaxed">
-                        Our proprietary AI models analyze your spending habits, forecast your budget, and provide natural language insights to keep your financial health optimized.
+                    <div class="text-sm font-bold uppercase tracking-widest text-purple-400 mb-4 flex items-center gap-2">
+                        <i class="fas fa-robot text-purple-400"></i> AI Financial Intelligence
+                    </div>
+                    <h2 class="text-3xl md:text-5xl font-extrabold mb-6 tracking-tight text-white">Intelligence that scales with you.</h2>
+                    <p class="text-lg text-gray-400 mb-8 leading-relaxed font-light">
+                        Our proprietary AI models analyze cashflows, synthesize valuation ratios from SEC 10-Ks, and provide natural language portfolio insights to keep your wealth compounding.
                     </p>
                     <ul class="space-y-6 mb-10">
                         <li class="flex items-start gap-4">
-                            <div class="w-10 h-10 rounded-full bg-purple-500/10 flex items-center justify-center shrink-0 mt-1"><i class="fas fa-brain text-purple-400"></i></div>
+                            <div class="w-10 h-10 rounded-full bg-purple-500/10 border border-purple-500/20 flex items-center justify-center shrink-0 mt-1"><i class="fas fa-brain text-purple-400"></i></div>
                             <div>
                                 <h4 class="font-bold text-white mb-1">Predictive Forecasting</h4>
                                 <p class="text-sm text-gray-400">Anticipate cashflow bottlenecks before they happen with 94% accuracy.</p>
                             </div>
                         </li>
                         <li class="flex items-start gap-4">
-                            <div class="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center shrink-0 mt-1"><i class="fas fa-comments text-blue-400"></i></div>
+                            <div class="w-10 h-10 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center shrink-0 mt-1"><i class="fas fa-comments text-blue-400"></i></div>
                             <div>
                                 <h4 class="font-bold text-white mb-1">Natural Language Assistant</h4>
-                                <p class="text-sm text-gray-400">Ask complex financial queries simply. "How much can I invest in AAPL this month?"</p>
+                                <p class="text-sm text-gray-400">Ask complex financial queries simply. "What is the intrinsic DCF value for IREDA?"</p>
                             </div>
                         </li>
                     </ul>
                 </div>
 
                 <div class="lg:w-1/2 w-full fade-in-up stagger-2">
-                    <div class="glass-panel p-8 border border-white/10 relative overflow-hidden">
+                    <div class="glass-panel p-6 sm:p-8 border border-white/10 relative overflow-hidden rounded-3xl shadow-2xl">
                         <div class="absolute -right-20 -top-20 w-64 h-64 bg-purple-500/20 blur-[100px] rounded-full pointer-events-none"></div>
+
+                        <!-- Holographic Copilot Visual Badge -->
+                        <div class="mb-6 rounded-2xl overflow-hidden border border-white/10 bg-black/60 aspect-[16/9] relative group">
+                            <img src="assets/ai-copilot.jpg" alt="Rivava AI Wealth Copilot" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
+                            <div class="absolute bottom-3 left-4 right-4 flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-purple-400 animate-ping"></span>
+                                    <span class="text-xs font-bold text-white uppercase tracking-wider">Holographic Wealth Copilot</span>
+                                </div>
+                                <span class="text-[10px] font-mono bg-purple-500/20 text-purple-300 border border-purple-500/30 px-2 py-0.5 rounded-full">NLP &bull; Live Forecast</span>
+                            </div>
+                        </div>
+
                         <div class="space-y-4 relative z-10">
                             <!-- Chat Bubble User -->
                             <div class="flex justify-end">
-                                <div class="bg-blue-600 text-white p-4 rounded-2xl rounded-tr-sm text-sm max-w-[80%] shadow-lg">
-                                    Analyze my spending in the last 30 days and suggest portfolio adjustments.
+                                <div class="bg-blue-600 text-white p-4 rounded-2xl rounded-tr-sm text-sm max-w-[85%] shadow-lg">
+                                    Analyze my portfolio allocation and suggest risk adjustments for current sector rotations.
                                 </div>
                             </div>
                             <!-- Chat Bubble AI -->
                             <div class="flex justify-start">
                                 <div class="bg-white/10 border border-white/10 text-gray-200 p-4 rounded-2xl rounded-tl-sm text-sm max-w-[90%] shadow-lg">
                                     <div class="flex items-center gap-2 mb-2">
-                                        <i class="fas fa-robot text-purple-400"></i> <span class="font-bold text-white">Our chat support</span>
+                                        <i class="fas fa-robot text-purple-400"></i> <span class="font-bold text-white">Rivava Wealth Copilot</span>
                                     </div>
-                                    <p class="mb-3">I've analyzed your recent data. You've underspent your discretionary budget by $850 this month.</p>
+                                    <p class="mb-3 text-sm">I've analyzed your holdings against institutional DCF valuations. Clean energy holdings show strong tailwinds, but defense allocation is underweight by 6%.</p>
                                     <div class="bg-black/50 rounded-lg p-3 border border-white/5">
                                         <div class="font-medium text-xs text-gray-400 uppercase tracking-wider mb-2">Recommendation</div>
                                         <div class="flex items-center justify-between">
-                                            <span class="text-white">Allocate to Vanguard S&P 500 (VOO)</span>
+                                            <span class="text-white">Allocate to Clean Energy & Defense Hedge</span>
                                             <span class="text-green-400 font-mono font-bold">+$850</span>
                                         </div>
                                     </div>
@@ -1594,26 +1769,42 @@
         </div>
     </section>
 
-    <!-- ELITE SECTION -->
+    <!-- ELITE SECTION (Redesigned with Generated VIP Card Asset) -->
     <section id="pricing" class="py-32 relative z-10 border-t border-white/5 bg-[#050505]">
         <div class="container mx-auto px-6 lg:px-12">
-            <div class="text-center mb-20 fade-in-up">
+            <div class="text-center mb-16 fade-in-up">
                 <div class="text-sm font-bold uppercase tracking-widest text-[#D4AF37] mb-4">Rivava Elite</div>
-                <h2 class="text-3xl md:text-5xl font-extrabold mb-6 tracking-tight">Ascend to the next level.</h2>
-                <p class="text-xl text-gray-400 max-w-2xl mx-auto font-light">Exclusive access to dedicated advisors, priority support, and institutional research.</p>
+                <h2 class="text-3xl md:text-5xl font-extrabold mb-6 tracking-tight text-white">Ascend to institutional level.</h2>
+                <p class="text-xl text-gray-400 max-w-2xl mx-auto font-light">Exclusive access to dedicated advisors, priority WhatsApp calls, and institutional research.</p>
             </div>
 
-            <div class="max-w-4xl mx-auto glass-panel p-1 border border-[#D4AF37]/30 fade-in-up relative overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/10 to-transparent pointer-events-none"></div>
-                <div class="bg-[#0A0A0A] rounded-[15px] p-8 md:p-12 relative z-10">
+            <div class="max-w-4xl mx-auto glass-panel p-1 border border-[#D4AF37]/30 fade-in-up relative overflow-hidden rounded-3xl shadow-[0_20px_70px_rgba(212,175,55,0.15)]">
+                <div class="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/15 via-transparent to-transparent pointer-events-none"></div>
+                <div class="bg-[#0A0A0A] rounded-[22px] p-6 md:p-10 relative z-10">
+
+                    <!-- VIP Card Visual Banner -->
+                    <div class="mb-8 rounded-2xl overflow-hidden border border-[#D4AF37]/30 aspect-[21/9] sm:aspect-[24/9] relative group bg-black shadow-2xl">
+                        <img src="assets/elite-vip-card.jpg" alt="Rivava Elite VIP Membership Card" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-transparent to-black/70"></div>
+                        <div class="absolute top-4 left-5 flex items-center gap-2.5">
+                            <div class="w-8 h-8 rounded-lg bg-black/80 border border-[#D4AF37]/50 flex items-center justify-center">
+                                <i class="fas fa-crown text-[#D4AF37] text-sm"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs font-bold uppercase tracking-wider text-white">Rivava Elite Card</div>
+                                <div class="text-[10px] text-[#D4AF37] font-mono">INSTITUTIONAL MEMBER</div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                         <div>
-                            <h3 class="text-3xl font-bold mb-2 flex items-center gap-3">
+                            <h3 class="text-3xl font-bold mb-2 flex items-center gap-3 text-white">
                                 Rivava Elite <i class="fas fa-crown text-[#D4AF37]"></i>
                             </h3>
-                            <p class="text-gray-400 mb-8">For high net worth individuals who demand precision.</p>
+                            <p class="text-gray-400 mb-8">For serious investors who demand research precision.</p>
 
-                            <div class="text-4xl md:text-5xl font-extrabold font-mono mb-2">₹399 + Free 1st session<span class="text-lg text-gray-500 font-normal">/mo</span></div>
+                            <div class="text-4xl md:text-5xl font-extrabold font-mono mb-2 text-white">₹399 + Free 1st session<span class="text-lg text-gray-500 font-normal">/mo</span></div>
                             <p class="text-sm text-gray-500 mb-8">Billed annually.</p>
 
                             <a href="upi://pay?pa=8881176909@kotakbank&pn=Rivava&am=399&cu=INR&tn=Rivava%20Elite%20Subscription" data-plan="Rivava Elite" class="qr-pay-btn block text-center w-full bg-[#D4AF37] text-black font-bold py-4 rounded-xl hover:bg-[#F3E5AB] transition-colors shadow-[0_0_20px_rgba(212,175,55,0.3)]">

@@ -36,14 +36,89 @@
         .lenis.lenis-stopped { overflow: hidden; }
         .lenis.lenis-smooth iframe { pointer-events: none; }
 
-        /* Cuberto-Style Reveals & Cursor */
+        /* Hardware-Accelerated Navbar & Micro-Interactions */
         .cuberto-reveal-container { overflow: hidden; display: block; }
         .cuberto-reveal-inner { display: block; transform: translateY(110%) skewY(1.5deg); opacity: 0; transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1); will-change: transform, opacity; }
         .cuberto-reveal-inner.revealed, .cuberto-in-view .cuberto-reveal-inner { transform: translateY(0) skewY(0deg); opacity: 1; }
-        .cuberto-cursor-aura { position: fixed; top: -40px; left: -40px; width: 80px; height: 80px; border-radius: 50%; background: radial-gradient(circle, rgba(0, 255, 127, 0.22), rgba(0, 112, 243, 0.15) 55%, transparent 80%); pointer-events: none; z-index: 99999; mix-blend-mode: screen; transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1), height 0.35s cubic-bezier(0.16, 1, 0.3, 1); transform: translate3d(-100px, -100px, 0); will-change: transform; filter: blur(8px); }
-        .cuberto-cursor-aura.cursor-active { width: 130px; height: 130px; top: -65px; left: -65px; background: radial-gradient(circle, rgba(0, 255, 127, 0.35), rgba(255, 51, 102, 0.22) 60%, transparent 85%); filter: blur(12px); }
-        .cuberto-cursor-dot { position: fixed; top: -3px; left: -3px; width: 6px; height: 6px; border-radius: 50%; background: #00FF7F; box-shadow: 0 0 10px #00FF7F; pointer-events: none; z-index: 100000; transform: translate3d(-100px, -100px, 0); will-change: transform; }
-        @media (pointer: coarse) { .cuberto-cursor-aura, .cuberto-cursor-dot { display: none !important; } }
+
+        /* ==============================================
+           HARDWARE-ACCELERATED ULTRA-MODERN NAVBAR
+           ============================================== */
+        .hw-nav-wrapper {
+            position: sticky;
+            top: 0;
+            z-index: 60;
+            width: 100%;
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -webkit-perspective: 1000px;
+            perspective: 1000px;
+            will-change: transform, backdrop-filter;
+            contain: layout style;
+            background: rgba(10, 10, 10, 0.78);
+            -webkit-backdrop-filter: blur(28px) saturate(190%);
+            backdrop-filter: blur(28px) saturate(190%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.7), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+            transition: background 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hw-nav-wrapper.nav-scrolled {
+            background: rgba(8, 8, 8, 0.90);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.85), inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+        }
+
+        .nav-capsule {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.06), 0 4px 20px rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .nav-capsule:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1), 0 6px 25px rgba(0, 0, 0, 0.35);
+        }
+
+        .nav-pill-item {
+            position: relative;
+            padding: 6px 14px;
+            font-size: 13.5px;
+            font-weight: 500;
+            color: #d1d5db;
+            border-radius: 9999px;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            letter-spacing: -0.01em;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .nav-pill-item:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .nav-pill-item.active {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.12);
+            font-weight: 550;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+
+        .nav-pill-item.challenge-pill {
+            color: #00FF7F;
+            font-weight: 600;
+        }
+
+        .nav-pill-item.challenge-pill:hover {
+            color: #00E676;
+            background: rgba(0, 255, 127, 0.1);
+        }
 
         :root {
             --apple-font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "SF Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -130,45 +205,59 @@
 <body class="relative">
 
     <!-- Header -->
-    <!-- STICKY WRAPPER FOR TICKER AND HEADER -->
-    <div class="sticky top-0 z-[60] flex flex-col w-full shadow-lg bg-[color:var(--bg-panel)]/80 backdrop-blur-2xl border-b border-white/5 transition-all duration-300" id="header-wrapper">
-        <header id="header" class="left-0 right-0 z-50">
+    <!-- HARDWARE-ACCELERATED ULTRA-MODERN STICKY HEADER -->
+    <div class="hw-nav-wrapper" id="header-wrapper">
+        <header id="header" class="w-full">
             <div class="container mx-auto px-6 lg:px-12">
-                <div class="flex items-center justify-between py-3 transition-all duration-300 h-16">
+                <div class="flex items-center justify-between py-3 h-16 transition-all duration-300">
+                    <!-- Brand Logo -->
                     <a href="../index.html#hero" class="flex items-center gap-3 group">
-                        <div class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white/10 transition-colors shadow-[0_0_12px_rgba(0,255,127,0.2)]">
-                            <img src="../assets/logo.png" alt="Rivava Logo" class="h-9 w-9 object-contain">
+                        <div class="w-9 h-9 rounded-xl bg-white/[0.06] border border-white/10 flex items-center justify-center group-hover:border-[#00FF7F]/40 group-hover:bg-[#00FF7F]/10 transition-all duration-300 shadow-[0_0_15px_rgba(0,255,127,0.15)] group-hover:shadow-[0_0_20px_rgba(0,255,127,0.35)]">
+                            <img src="../assets/logo.png" alt="Rivava Logo" class="h-6 w-6 object-contain group-hover:scale-105 transition-transform duration-300">
                         </div>
-                        <span class="text-xl font-bold tracking-tight rivava-text">Rivava</span>
+                        <span class="text-xl font-bold tracking-tight text-white group-hover:text-[#00FF7F] transition-colors duration-300 flex items-center gap-1.5">
+                            Rivava
+                            <span class="w-1.5 h-1.5 rounded-full bg-[#00FF7F] shadow-[0_0_8px_#00FF7F]"></span>
+                        </span>
                     </a>
 
-                    <!-- Desktop Navigation -->
-                    <div class="hidden md:flex items-center bg-white/5 rounded-full px-5 py-1.5 border border-white/5">
-                        <nav class="flex items-center gap-7 text-sm font-medium">
-                            <a href="../index.html#hero" class="text-gray-300 hover:text-white transition-colors">Home</a>
-                            <a href="../research.html" class="text-gray-300 hover:text-white transition-colors">Research</a>
-                            <a href="../learn.html" class="text-gray-300 hover:text-white transition-colors">Learn</a>
-                            <a href="../about.html" class="text-gray-300 hover:text-white transition-colors">About</a>
-                            <a href="index.html" class="text-white hover:text-white transition-colors font-semibold">Blog</a>
-                            <a href="../challenge.html" class="text-[#00FF7F] hover:text-[#00E676] transition-colors font-semibold">7-Day Challenge</a>
+                    <!-- Desktop Navigation (Hardware-Accelerated Floating Capsule) -->
+                    <div class="hidden lg:flex items-center nav-capsule rounded-full px-2 py-1">
+                        <nav class="flex items-center gap-1">
+                            <a href="../index.html#hero" class="nav-pill-item">Home</a>
+                            <a href="../research.html" class="nav-pill-item">Research</a>
+                            <a href="../learn.html" class="nav-pill-item">Learn</a>
+                            <a href="../about.html" class="nav-pill-item">About</a>
+                            <a href="index.html" class="nav-pill-item active">Blog</a>
+                            <a href="../challenge.html" class="nav-pill-item challenge-pill">
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#00FF7F] animate-pulse mr-1.5"></span>
+                                7-Day Challenge
+                            </a>
                         </nav>
                     </div>
 
+                    <!-- Right Action CTAs -->
                     <div class="hidden md:flex items-center gap-3">
-                        <a href="tel:+91-8881176909" class="h-9 px-3.5 bg-[#22c55e] hover:bg-[#16a34a] text-black font-bold text-xs rounded-full transition-all flex items-center justify-center gap-1.5 shadow-[0_0_12px_rgba(34,197,94,0.35)]">
-                            <i class="fab fa-whatsapp text-base"></i>
+                        <a href="https://wa.me/918881176909" target="_blank" class="h-9 px-4 bg-gradient-to-r from-[#10b981] to-[#059669] hover:from-[#059669] hover:to-[#047857] text-white font-semibold text-xs rounded-full transition-all flex items-center justify-center gap-2 shadow-[0_0_18px_rgba(16,185,129,0.35)] border border-emerald-400/30 hover:scale-[1.02]">
+                            <span class="relative flex h-2 w-2">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                            </span>
+                            <i class="fab fa-whatsapp text-sm"></i>
                             <span>Chat with Advisor</span>
                         </a>
-                        <a href="../contact.html" class="text-xs font-medium text-gray-300 hover:text-white transition-colors">Contact</a>
-                        <a href="../index.html#pricing" class="h-9 px-4 bg-white text-black text-xs font-semibold rounded-full hover:bg-gray-200 transition-colors flex items-center gap-1.5 shadow-md">
+
+                        <a href="../contact.html" class="text-xs font-medium text-gray-300 hover:text-white transition-colors px-2 py-1">Contact</a>
+
+                        <a href="../index.html#pricing" class="h-9 px-4 bg-gradient-to-r from-white to-gray-200 text-black text-xs font-bold rounded-full hover:bg-white transition-all flex items-center gap-1.5 shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:scale-[1.02]">
                             <i class="fas fa-crown text-amber-500 text-xs"></i>
                             <span>Get Elite</span>
                         </a>
                     </div>
 
-                    <!-- Mobile Header Buttons -->
-                    <div class="flex items-center gap-2 md:hidden">
-                        <button id="hambBtn" class="p-2 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm text-white" aria-label="menu">
+                    <!-- Mobile Header Button -->
+                    <div class="flex items-center gap-2 lg:hidden">
+                        <button id="hambBtn" class="p-2.5 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md text-white hover:bg-white/10 transition-colors" aria-label="menu">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path d="M4 6h16M4 12h16M4 18h16" stroke-width="2" stroke-linecap="round"/>
                             </svg>
@@ -178,20 +267,23 @@
             </div>
 
             <!-- MOBILE MENU -->
-            <div id="mobileMenu" class="hidden md:hidden border-t border-white/10 bg-black absolute w-full">
-                <div class="container mx-auto px-6 py-6 flex flex-col gap-4 text-base">
-                    <a href="../index.html#hero" class="block text-gray-300 hover:text-white transition-colors">Home</a>
-                    <a href="../research.html" class="block text-gray-300 hover:text-white transition-colors">Research</a>
-                    <a href="../learn.html" class="block text-gray-300 hover:text-white transition-colors">Learn</a>
-                    <a href="../about.html" class="block text-gray-300 hover:text-white transition-colors">About</a>
-                    <a href="index.html" class="block text-white hover:text-white transition-colors font-semibold">Blog</a>
-                    <a href="../challenge.html" class="block text-[#00FF7F] hover:text-[#00E676] transition-colors font-semibold">7-Day Challenge</a>
-                    <a href="../contact.html" class="block text-gray-300 hover:text-white transition-colors">Contact</a>
+            <div id="mobileMenu" class="hidden lg:hidden border-t border-white/10 bg-[#0c0c0c]/98 backdrop-blur-3xl absolute w-full left-0 transition-all duration-300 shadow-2xl">
+                <div class="container mx-auto px-6 py-6 flex flex-col gap-3 text-base">
+                    <a href="../index.html#hero" class="px-4 py-2.5 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition-colors">Home</a>
+                    <a href="../research.html" class="px-4 py-2.5 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition-colors">Research</a>
+                    <a href="../learn.html" class="px-4 py-2.5 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition-colors">Learn</a>
+                    <a href="../about.html" class="px-4 py-2.5 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition-colors">About</a>
+                    <a href="index.html" class="px-4 py-2.5 rounded-xl text-white bg-white/10 font-semibold transition-colors">Blog</a>
+                    <a href="../challenge.html" class="px-4 py-2.5 rounded-xl text-[#00FF7F] bg-[#00FF7F]/10 font-semibold transition-colors flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#00FF7F]"></span>
+                        7-Day Challenge
+                    </a>
+                    <a href="../contact.html" class="px-4 py-2.5 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition-colors">Contact</a>
                     <div class="mt-4 pt-4 border-t border-white/10 flex flex-col gap-3">
-                        <a href="tel:+91-8881176909" class="bg-green-500 hover:bg-green-600 text-black font-bold w-full text-center py-3 rounded-xl flex items-center justify-center gap-2 transition-all shadow-[0_0_15px_rgba(34,197,94,0.3)]">
+                        <a href="https://wa.me/918881176909" target="_blank" class="bg-gradient-to-r from-[#10b981] to-[#059669] text-white font-bold w-full text-center py-3 rounded-xl flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(16,185,129,0.3)]">
                             <i class="fab fa-whatsapp text-lg"></i> Chat with Advisor
                         </a>
-                        <a href="../index.html#pricing" class="bg-white text-black w-full text-center py-3 rounded-xl font-medium block">Get Elite</a>
+                        <a href="../index.html#pricing" class="bg-white text-black w-full text-center py-3 rounded-xl font-bold block shadow-md">Get Elite</a>
                     </div>
                 </div>
             </div>

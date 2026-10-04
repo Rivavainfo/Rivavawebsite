@@ -34,14 +34,51 @@
         .lenis.lenis-stopped { overflow: hidden; }
         .lenis.lenis-smooth iframe { pointer-events: none; }
 
-        /* Cuberto-Style Reveals & Cursor */
+        /* Cuberto-Style Reveals */
         .cuberto-reveal-container { overflow: hidden; display: block; }
         .cuberto-reveal-inner { display: block; transform: translateY(110%) skewY(1.5deg); opacity: 0; transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1); will-change: transform, opacity; }
         .cuberto-reveal-inner.revealed, .cuberto-in-view .cuberto-reveal-inner { transform: translateY(0) skewY(0deg); opacity: 1; }
-        .cuberto-cursor-aura { position: fixed; top: -40px; left: -40px; width: 80px; height: 80px; border-radius: 50%; background: radial-gradient(circle, rgba(0, 255, 127, 0.22), rgba(0, 112, 243, 0.15) 55%, transparent 80%); pointer-events: none; z-index: 99999; mix-blend-mode: screen; transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1), height 0.35s cubic-bezier(0.16, 1, 0.3, 1); transform: translate3d(-100px, -100px, 0); will-change: transform; filter: blur(8px); }
-        .cuberto-cursor-aura.cursor-active { width: 130px; height: 130px; top: -65px; left: -65px; background: radial-gradient(circle, rgba(0, 255, 127, 0.35), rgba(255, 51, 102, 0.22) 60%, transparent 85%); filter: blur(12px); }
-        .cuberto-cursor-dot { position: fixed; top: -3px; left: -3px; width: 6px; height: 6px; border-radius: 50%; background: #00FF7F; box-shadow: 0 0 10px #00FF7F; pointer-events: none; z-index: 100000; transform: translate3d(-100px, -100px, 0); will-change: transform; }
-        @media (pointer: coarse) { .cuberto-cursor-aura, .cuberto-cursor-dot { display: none !important; } }
+
+        /* Hardware-Accelerated Ultra-Modern Navbar */
+        .hw-nav-wrapper {
+            position: sticky;
+            top: 0;
+            z-index: 60;
+            width: 100%;
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            will-change: transform, backdrop-filter;
+            contain: layout style;
+            background: rgba(10, 10, 10, 0.78);
+            -webkit-backdrop-filter: blur(28px) saturate(190%);
+            backdrop-filter: blur(28px) saturate(190%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.7), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+        }
+        .nav-capsule {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .nav-pill-item {
+            position: relative;
+            padding: 6px 14px;
+            font-size: 13.5px;
+            font-weight: 500;
+            color: #d1d5db;
+            border-radius: 9999px;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            display: inline-flex;
+            align-items: center;
+        }
+        .nav-pill-item:hover { color: #ffffff; background: rgba(255, 255, 255, 0.08); }
+        .nav-pill-item.active { color: #ffffff; background: rgba(255, 255, 255, 0.12); font-weight: 550; }
+        .nav-pill-item.challenge-pill { color: #00FF7F; font-weight: 600; }
+        .nav-pill-item.challenge-pill:hover { color: #00E676; background: rgba(0, 255, 127, 0.1); }
 
         :root {
             --apple-font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "SF Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -117,45 +154,50 @@
     </style>
 </head>
 <body class="relative">
-    <!-- STICKY WRAPPER FOR TICKER AND HEADER -->
-    <div class="sticky top-0 z-[60] flex flex-col w-full shadow-lg bg-[color:var(--bg-panel)]/80 backdrop-blur-2xl border-b border-white/5 transition-all duration-300" id="header-wrapper">
-        <header id="header" class="left-0 right-0 z-50">
+    <!-- HARDWARE-ACCELERATED STICKY HEADER -->
+    <div class="hw-nav-wrapper" id="header-wrapper">
+        <header id="header" class="w-full">
             <div class="container mx-auto px-6 lg:px-12">
-                <div class="flex items-center justify-between py-3 transition-all duration-300 h-16">
+                <div class="flex items-center justify-between py-3 h-16 transition-all duration-300">
                     <a href="index.html#hero" class="flex items-center gap-3 group">
-                        <div class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white/10 transition-colors shadow-[0_0_12px_rgba(0,255,127,0.2)]">
-                            <img src="assets/logo.png" alt="Rivava Logo" class="h-9 w-9 object-contain">
+                        <div class="w-9 h-9 rounded-xl bg-white/[0.06] border border-white/10 flex items-center justify-center group-hover:border-[#00FF7F]/40 group-hover:bg-[#00FF7F]/10 transition-all duration-300 shadow-[0_0_15px_rgba(0,255,127,0.15)]">
+                            <img src="assets/logo.png" alt="Rivava Logo" class="h-6 w-6 object-contain group-hover:scale-105 transition-transform duration-300">
                         </div>
-                        <span class="text-xl font-bold tracking-tight rivava-text">Rivava</span>
+                        <span class="text-xl font-bold tracking-tight text-white group-hover:text-[#00FF7F] transition-colors duration-300 flex items-center gap-1.5">
+                            Rivava
+                            <span class="w-1.5 h-1.5 rounded-full bg-[#00FF7F] shadow-[0_0_8px_#00FF7F]"></span>
+                        </span>
                     </a>
 
-                    <!-- Desktop Navigation -->
-                    <div class="hidden md:flex items-center bg-white/5 rounded-full px-5 py-1.5 border border-white/5">
-                        <nav class="flex items-center gap-7 text-sm font-medium">
-                            <a href="index.html#hero" class="text-gray-300 hover:text-white transition-colors">Home</a>
-                            <a href="research.html" class="text-gray-300 hover:text-white transition-colors">Research</a>
-                            <a href="learn.html" class="text-white hover:text-white transition-colors font-semibold">Learn</a>
-                            <a href="about.html" class="text-gray-300 hover:text-white transition-colors">About</a>
-                            <a href="blogs/index.html" class="text-gray-300 hover:text-white transition-colors">Blog</a>
-                            <a href="challenge.html" class="text-[#00FF7F] hover:text-[#00E676] transition-colors font-semibold">7-Day Challenge</a>
+                    <!-- Desktop Navigation Capsule -->
+                    <div class="hidden lg:flex items-center nav-capsule rounded-full px-2 py-1">
+                        <nav class="flex items-center gap-1">
+                            <a href="index.html#hero" class="nav-pill-item">Home</a>
+                            <a href="research.html" class="nav-pill-item">Research</a>
+                            <a href="learn.html" class="nav-pill-item active">Learn</a>
+                            <a href="about.html" class="nav-pill-item">About</a>
+                            <a href="blogs/index.html" class="nav-pill-item">Blog</a>
+                            <a href="challenge.html" class="nav-pill-item challenge-pill">
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#00FF7F] animate-pulse mr-1.5"></span>
+                                7-Day Challenge
+                            </a>
                         </nav>
                     </div>
 
                     <div class="hidden md:flex items-center gap-3">
-                        <a href="tel:+91-8881176909" class="h-9 px-3.5 bg-[#22c55e] hover:bg-[#16a34a] text-black font-bold text-xs rounded-full transition-all flex items-center justify-center gap-1.5 shadow-[0_0_12px_rgba(34,197,94,0.35)]">
-                            <i class="fab fa-whatsapp text-base"></i>
+                        <a href="tel:+91-8881176909" class="h-9 px-4 bg-gradient-to-r from-[#10b981] to-[#059669] hover:from-[#059669] hover:to-[#047857] text-white font-semibold text-xs rounded-full transition-all flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(16,185,129,0.35)] border border-emerald-400/30">
+                            <i class="fab fa-whatsapp text-sm"></i>
                             <span>Chat with Advisor</span>
                         </a>
-                        <a href="contact.html" class="text-xs font-medium text-gray-300 hover:text-white transition-colors">Contact</a>
-                        <a href="index.html#pricing" class="h-9 px-4 bg-white text-black text-xs font-semibold rounded-full hover:bg-gray-200 transition-colors flex items-center gap-1.5 shadow-md">
+                        <a href="contact.html" class="text-xs font-medium text-gray-300 hover:text-white transition-colors px-2 py-1">Contact</a>
+                        <a href="index.html#pricing" class="h-9 px-4 bg-white text-black text-xs font-bold rounded-full hover:bg-gray-200 transition-colors flex items-center gap-1.5 shadow-md">
                             <i class="fas fa-crown text-amber-500 text-xs"></i>
                             <span>Get Elite</span>
                         </a>
                     </div>
 
-                    <!-- Mobile Header Buttons -->
-                    <div class="flex items-center gap-2 md:hidden">
-                        <button id="hambBtn" class="p-2 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm text-white" aria-label="menu">
+                    <div class="flex items-center gap-2 lg:hidden">
+                        <button id="hambBtn" class="p-2 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md text-white" aria-label="menu">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path d="M4 6h16M4 12h16M4 18h16" stroke-width="2" stroke-linecap="round"/>
                             </svg>
@@ -164,72 +206,169 @@
                 </div>
             </div>
 
-            <!-- MOBILE MENU -->
-            <div id="mobileMenu" class="hidden md:hidden border-t border-white/10 bg-black absolute w-full">
-                <div class="container mx-auto px-6 py-6 flex flex-col gap-4 text-base">
-                    <a href="index.html#hero" class="block text-gray-300 hover:text-white transition-colors">Home</a>
-                    <a href="research.html" class="block text-gray-300 hover:text-white transition-colors">Research</a>
-                    <a href="learn.html" class="block text-white hover:text-white transition-colors font-semibold">Learn</a>
-                    <a href="about.html" class="block text-gray-300 hover:text-white transition-colors">About</a>
-                    <a href="blogs/index.html" class="block text-gray-300 hover:text-white transition-colors">Blog</a>
-                    <a href="challenge.html" class="block text-[#00FF7F] hover:text-[#00E676] transition-colors font-semibold">7-Day Challenge</a>
-                    <a href="contact.html" class="block text-gray-300 hover:text-white transition-colors">Contact</a>
+            <div id="mobileMenu" class="hidden lg:hidden border-t border-white/10 bg-[#0A0A0A]/95 backdrop-blur-2xl absolute w-full left-0 right-0 shadow-2xl">
+                <div class="container mx-auto px-6 py-6 flex flex-col gap-3 text-sm font-medium">
+                    <a href="index.html#hero" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition-colors">Home</a>
+                    <a href="research.html" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition-colors">Research</a>
+                    <a href="learn.html" class="block px-3 py-2 rounded-lg text-white bg-white/10 font-semibold">Learn</a>
+                    <a href="about.html" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition-colors">About</a>
+                    <a href="blogs/index.html" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition-colors">Blog</a>
+                    <a href="challenge.html" class="block px-3 py-2 rounded-lg text-[#00FF7F] font-semibold bg-[#00FF7F]/10 border border-[#00FF7F]/20">7-Day Challenge</a>
+                    <a href="contact.html" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition-colors">Contact</a>
                     <div class="mt-4 pt-4 border-t border-white/10 flex flex-col gap-3">
-                        <a href="tel:+91-8881176909" class="bg-green-500 hover:bg-green-600 text-black font-bold w-full text-center py-3 rounded-xl flex items-center justify-center gap-2 transition-all shadow-[0_0_15px_rgba(34,197,94,0.3)]">
+                        <a href="tel:+91-8881176909" class="bg-gradient-to-r from-[#10b981] to-[#059669] text-white font-bold w-full text-center py-3 rounded-xl flex items-center justify-center gap-2">
                             <i class="fab fa-whatsapp text-lg"></i> Chat with Advisor
                         </a>
-                        <a href="index.html#pricing" class="bg-white text-black w-full text-center py-3 rounded-xl font-medium block">Get Elite</a>
+                        <a href="index.html#pricing" class="bg-white text-black w-full text-center py-3 rounded-xl font-bold block">Get Elite</a>
                     </div>
                 </div>
             </div>
         </header>
     </div>
 
-    <main class="container mx-auto px-6 py-24">
-        <h1 class="text-4xl md:text-5xl font-extrabold mb-4 text-center">Learning Center</h1>
-        <p class="text-xl text-gray-400 text-center mb-16 max-w-2xl mx-auto">Learn before you invest. Build the mindset, process, and discipline of a research-driven investor.</p>
+    <main class="container mx-auto px-6 lg:px-12 py-20 max-w-6xl">
+        <div class="text-center mb-16 fade-in-up">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-bold uppercase tracking-widest text-[#00FF7F] mb-4">
+                <i class="fas fa-graduation-cap text-xs"></i> Systematic Investor Academy
+            </div>
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight text-white">Learning Center</h1>
+            <p class="text-xl text-gray-400 text-center max-w-2xl mx-auto font-light leading-relaxed">
+                Learn before you invest. Master institutional evaluation frameworks, conquer FOMO bias, and build unbreakable wealth discipline.
+            </p>
+        </div>
 
+        <!-- HERO FEATURED ACADEMY BANNER -->
+        <div class="mb-16 glass-panel overflow-hidden rounded-3xl border border-white/15 grid grid-cols-1 lg:grid-cols-12 gap-0 shadow-2xl fade-in-up stagger-1">
+            <div class="lg:col-span-6 relative aspect-[16/10] lg:aspect-auto overflow-hidden bg-black">
+                <img src="assets/learning-academy.jpg" alt="Rivava Financial Academy" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-transparent to-[#141414]/90"></div>
+                <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold bg-[#00FF7F] text-black shadow-md uppercase tracking-wider">
+                    Core Curriculum
+                </span>
+            </div>
+            <div class="lg:col-span-6 p-8 lg:p-12 flex flex-col justify-between">
+                <div>
+                    <span class="text-xs uppercase font-mono text-[#00FF7F] font-bold block mb-2">Masterclass Series</span>
+                    <h2 class="text-2xl lg:text-3xl font-bold mb-4 text-white">The Scientific Process of Stock Selection</h2>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6 font-light">
+                        Transition from speculative guessing to probabilistic research. Learn how professional portfolio managers read between the lines of annual reports, track free cash flow durability, and protect against capital permanent loss.
+                    </p>
+                </div>
+                <div class="flex items-center gap-4 pt-4 border-t border-white/10">
+                    <a href="blogs/blog1.html" class="btn btn-primary px-6 py-2.5 text-xs font-bold rounded-xl shadow-lg">Start Framework &rarr;</a>
+                    <span class="text-xs text-gray-500 font-mono">15 Min Deep Read</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6 CURATED LESSON MODULES WITH IMAGES -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="glass-panel">
-                <i class="fas fa-graduation-cap text-3xl text-purple-400 mb-4"></i>
-                <h3 class="text-xl font-bold mb-2">Beginner Investment Guides</h3>
-                <p class="text-gray-400 text-sm mb-4">The foundational principles of investing, asset classes, and compound interest.</p>
-                <a href="blogs/blog7.html" class="text-purple-400 hover:underline text-sm">Start Guide</a>
+            <!-- Lesson 1 -->
+            <div class="glass-panel group overflow-hidden rounded-2xl border border-white/10 hover:border-blue-500/40 transition-all duration-500 fade-in-up stagger-1 flex flex-col justify-between">
+                <div>
+                    <div class="relative aspect-[16/10] overflow-hidden bg-black">
+                        <img src="assets/article-ai-finance.jpg" alt="Stock Research Basics" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#141414] via-transparent to-transparent"></div>
+                        <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-bold bg-blue-500 text-white uppercase tracking-wider">Lesson 01</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold mb-2 text-white group-hover:text-blue-400 transition-colors">How to Research a Stock</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed font-light mb-4">Learn to dissect balance sheets, determine ROIC hurdles, and assess sustainable economic moats.</p>
+                    </div>
+                </div>
+                <div class="px-6 pb-6">
+                    <a href="blogs/blog1.html" class="text-xs font-semibold text-blue-400 hover:text-white flex items-center gap-1.5">Read Lesson <i class="fas fa-arrow-right text-[9px]"></i></a>
+                </div>
             </div>
 
-            <div class="glass-panel">
-                <i class="fas fa-search-dollar text-3xl text-blue-400 mb-4"></i>
-                <h3 class="text-xl font-bold mb-2">How to Research a Stock</h3>
-                <p class="text-gray-400 text-sm mb-4">Learn how to read financial statements, evaluate management, and understand competitive moats.</p>
-                <a href="blogs/blog1.html" class="text-blue-400 hover:underline text-sm">Read Lesson</a>
+            <!-- Lesson 2 -->
+            <div class="glass-panel group overflow-hidden rounded-2xl border border-white/10 hover:border-pink-500/40 transition-all duration-500 fade-in-up stagger-2 flex flex-col justify-between">
+                <div>
+                    <div class="relative aspect-[16/10] overflow-hidden bg-black">
+                        <img src="assets/mindset-psychology.jpg" alt="Investment Mindset" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#141414] via-transparent to-transparent"></div>
+                        <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-bold bg-[#ff3366] text-white uppercase tracking-wider">Lesson 02</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold mb-2 text-white group-hover:text-pink-400 transition-colors">Investor Psychology & Anti-FOMO</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed font-light mb-4">Avoid panic-selling during pullbacks and overcome greed-induced speculative herd traps.</p>
+                    </div>
+                </div>
+                <div class="px-6 pb-6">
+                    <a href="blogs/blog2.html" class="text-xs font-semibold text-pink-400 hover:text-white flex items-center gap-1.5">Read Lesson <i class="fas fa-arrow-right text-[9px]"></i></a>
+                </div>
             </div>
 
-            <div class="glass-panel">
-                <i class="fas fa-file-invoice-dollar text-3xl text-green-400 mb-4"></i>
-                <h3 class="text-xl font-bold mb-2">How to Read a Research Report</h3>
-                <p class="text-gray-400 text-sm mb-4">Decode the jargon and understand the structure of professional analyst reports.</p>
-                <a href="blogs/blog4.html" class="text-green-400 hover:underline text-sm">Read Lesson</a>
+            <!-- Lesson 3 -->
+            <div class="glass-panel group overflow-hidden rounded-2xl border border-white/10 hover:border-emerald-500/40 transition-all duration-500 fade-in-up stagger-3 flex flex-col justify-between">
+                <div>
+                    <div class="relative aspect-[16/10] overflow-hidden bg-black">
+                        <img src="assets/article-dcf-reports.jpg" alt="How to Read Reports" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#141414] via-transparent to-transparent"></div>
+                        <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-500 text-black uppercase tracking-wider">Lesson 03</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold mb-2 text-white group-hover:text-emerald-400 transition-colors">Reading Research Reports</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed font-light mb-4">Unpack analyst target assumptions, DCF discount rates, and uncover hidden risks in footnotes.</p>
+                    </div>
+                </div>
+                <div class="px-6 pb-6">
+                    <a href="blogs/blog4.html" class="text-xs font-semibold text-emerald-400 hover:text-white flex items-center gap-1.5">Read Lesson <i class="fas fa-arrow-right text-[9px]"></i></a>
+                </div>
             </div>
 
-            <div class="glass-panel">
-                <i class="fas fa-brain text-3xl text-yellow-400 mb-4"></i>
-                <h3 class="text-xl font-bold mb-2">Investment Mindset</h3>
-                <p class="text-gray-400 text-sm mb-4">Mastering your psychology: Avoiding FOMO, hype-driven decisions, and emotional biases.</p>
-                <a href="blogs/blog2.html" class="text-yellow-400 hover:underline text-sm">Read Lesson</a>
+            <!-- Lesson 4 -->
+            <div class="glass-panel group overflow-hidden rounded-2xl border border-white/10 hover:border-amber-500/40 transition-all duration-500 fade-in-up stagger-1 flex flex-col justify-between">
+                <div>
+                    <div class="relative aspect-[16/10] overflow-hidden bg-black">
+                        <img src="assets/article-risk-sizing.jpg" alt="Risk Management" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#141414] via-transparent to-transparent"></div>
+                        <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-bold bg-amber-500 text-black uppercase tracking-wider">Lesson 04</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold mb-2 text-white group-hover:text-amber-400 transition-colors">Risk Management & Sizing</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed font-light mb-4">Kelly criterion principles, stop allocations, and uncorrelated asset pairing to prevent ruin.</p>
+                    </div>
+                </div>
+                <div class="px-6 pb-6">
+                    <a href="blogs/blog5.html" class="text-xs font-semibold text-amber-400 hover:text-white flex items-center gap-1.5">Read Lesson <i class="fas fa-arrow-right text-[9px]"></i></a>
+                </div>
             </div>
 
-            <div class="glass-panel">
-                <i class="fas fa-shield-alt text-3xl text-red-400 mb-4"></i>
-                <h3 class="text-xl font-bold mb-2">Risk Management</h3>
-                <p class="text-gray-400 text-sm mb-4">Position sizing, portfolio diversification, and understanding downside protection.</p>
-                <a href="blogs/blog5.html" class="text-red-400 hover:underline text-sm">Read Lesson</a>
+            <!-- Lesson 5 -->
+            <div class="glass-panel group overflow-hidden rounded-2xl border border-white/10 hover:border-purple-500/40 transition-all duration-500 fade-in-up stagger-2 flex flex-col justify-between">
+                <div>
+                    <div class="relative aspect-[16/10] overflow-hidden bg-black">
+                        <img src="assets/article-fee-drag.jpg" alt="Compounding & Fee Drag" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#141414] via-transparent to-transparent"></div>
+                        <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-bold bg-purple-500 text-white uppercase tracking-wider">Lesson 05</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold mb-2 text-white group-hover:text-purple-400 transition-colors">The Compounding Cost of Fees</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed font-light mb-4">Understand how 1.5% expense ratios can erode over 40% of lifetime compound returns.</p>
+                    </div>
+                </div>
+                <div class="px-6 pb-6">
+                    <a href="blogs/blog7.html" class="text-xs font-semibold text-purple-400 hover:text-white flex items-center gap-1.5">Read Lesson <i class="fas fa-arrow-right text-[9px]"></i></a>
+                </div>
             </div>
 
-            <div class="glass-panel">
-                <i class="fas fa-briefcase text-3xl text-pink-400 mb-4"></i>
-                <h3 class="text-xl font-bold mb-2">Case Studies</h3>
-                <p class="text-gray-400 text-sm mb-4">Real-world examples of research-driven investing successes and failures.</p>
-                <a href="blogs/blog6.html" class="text-pink-400 hover:underline text-sm">View Cases</a>
+            <!-- Lesson 6 -->
+            <div class="glass-panel group overflow-hidden rounded-2xl border border-white/10 hover:border-cyan-500/40 transition-all duration-500 fade-in-up stagger-3 flex flex-col justify-between">
+                <div>
+                    <div class="relative aspect-[16/10] overflow-hidden bg-black">
+                        <img src="assets/article-watchlist.jpg" alt="Building a Watchlist" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#141414] via-transparent to-transparent"></div>
+                        <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-bold bg-cyan-500 text-black uppercase tracking-wider">Lesson 06</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold mb-2 text-white group-hover:text-cyan-400 transition-colors">Building High-Conviction Watchlists</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed font-light mb-4">Maintain disciplined entry criteria and wait patiently for fat pitches in premier assets.</p>
+                    </div>
+                </div>
+                <div class="px-6 pb-6">
+                    <a href="blogs/blog6.html" class="text-xs font-semibold text-cyan-400 hover:text-white flex items-center gap-1.5">Read Lesson <i class="fas fa-arrow-right text-[9px]"></i></a>
+                </div>
             </div>
         </div>
     </main>
