@@ -1208,17 +1208,10 @@
 
 
     <main class="relative overflow-hidden">
-        <!-- HERO SECTION WITH GLOWING BIG LOGO -->
+        <!-- HERO SECTION -->
         <section id="hero" class="min-h-screen flex items-center justify-center relative z-10 pt-16 sm:pt-20 pb-12">
             <div class="container mx-auto px-6 text-center">
                 <div class="flex flex-col items-center justify-center gap-4 sm:gap-5 max-w-5xl mx-auto">
-                    <!-- GLOWING BIG LOGO EMBLEM -->
-                    <div class="relative mb-1 inline-flex items-center justify-center fade-in-up">
-                        <div class="absolute -inset-6 rounded-full bg-gradient-to-r from-[#ff3366] via-[#00ff7f] to-[#0070f3] opacity-40 blur-2xl animate-pulse"></div>
-                        <div class="relative w-24 h-24 sm:w-28 sm:h-28 rounded-3xl bg-black/70 border border-white/20 backdrop-blur-xl flex items-center justify-center shadow-[0_0_50px_rgba(0,255,127,0.35)] p-4 hover:scale-105 transition-transform duration-300">
-                            <img src="assets/logo.png" alt="Rivava Logo" class="w-full h-full object-contain filter drop-shadow-[0_0_20px_rgba(0,255,127,0.8)]">
-                        </div>
-                    </div>
                     <div class="text-center">
                         <div class="hero-rivava fade-in-up">RIVAVA</div>
                         <h1 class="text-3xl sm:text-5xl md:text-6xl font-extrabold leading-tight mt-3 fade-in-up stagger-1 text-white">Invest only after you understand the research.</h1>
@@ -1428,21 +1421,38 @@
                 </div>
 
                 <div class="lg:w-1/2 w-full fade-in-up stagger-2 relative">
-                    <div class="glass-panel p-2 rounded-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500">
+                    <div class="pdf-preview-container p-2 rounded-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500">
                         <div class="relative rounded-xl overflow-hidden bg-white/5 border border-white/10 aspect-[3/4] flex items-center justify-center group">
-                            <div class="absolute inset-x-0 bottom-0 h-1/2 bg-black/40 backdrop-blur-sm z-10 pointer-events-none"></div>
-                            <!-- Using iframe to show PDF natively if possible, falling back to an embed or object -->
-                            <img src="assets/ireda-preview.png" alt="IREDA Portfolio Preview" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300" style="filter: contrast(1.1) brightness(0.9);">
-
-                            <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 z-20">
-                                <div class="bg-black/60 backdrop-blur-md border border-white/10 rounded-xl p-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                                    <div class="flex items-center justify-between mb-2">
-                                        <h4 class="font-bold text-white">IREDA Equity Research</h4>
-                                        <span class="text-xs bg-green-500/20 text-green-400 px-2 py-1 rounded">Buy</span>
+                            <!-- PDF Blurred Preview Content -->
+                            <div class="w-full h-full p-6 text-left pdf-blurred-content flex flex-col justify-between bg-[#111115]">
+                                <div>
+                                    <div class="flex justify-between items-center mb-4 border-b border-white/10 pb-3">
+                                        <span class="font-bold text-xs text-emerald-400 uppercase tracking-widest"><i class="fas fa-file-pdf mr-1"></i> RIVAVA INSTITUTIONAL PDF REPORT</span>
+                                        <span class="text-[10px] text-gray-400 font-mono">CONFIDENTIAL</span>
                                     </div>
-                                    <p class="text-xs text-gray-400 mb-4">In-depth analysis of Indian Renewable Energy Development Agency.</p>
-                                    <a href="donation.html" class="block w-full py-2 text-center bg-white/10 hover:bg-white/20 rounded text-sm font-medium transition-colors border border-white/5">Open Full Report</a>
+                                    <h3 class="text-lg font-bold text-white mb-2">IREDA Equity Research & Portfolio DCF Valuation 3.0</h3>
+                                    <p class="text-xs text-gray-300 mb-4">Detailed financial projections, renewable sector capex cycles, sovereign risk assessment, and long-term DCF target valuation sheet.</p>
+                                    <div class="space-y-2 text-xs font-mono text-gray-400">
+                                        <div class="p-2 bg-white/5 rounded">Loan Growth Target: 26.8% CAGR (2025-2029)</div>
+                                        <div class="p-2 bg-white/5 rounded">NIM Target Spread: 3.45% Stable Range</div>
+                                        <div class="p-2 bg-white/5 rounded">Gross NPA Forecast: < 2.90% Controlled</div>
+                                    </div>
                                 </div>
+                                <div class="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-lg text-[10px] text-emerald-300">
+                                    DISCLAIMER: Educational research preview derived from official filings.
+                                </div>
+                            </div>
+
+                            <!-- Lock / Preview Overlay -->
+                            <div class="pdf-lock-overlay">
+                                <div class="w-12 h-12 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-400 flex items-center justify-center mb-3 text-xl shadow-[0_0_20px_rgba(16,185,129,0.3)]">
+                                    <i class="fas fa-lock"></i>
+                                </div>
+                                <h4 class="text-base font-bold text-white mb-1">IREDA Equity Research PDF Preview</h4>
+                                <p class="text-xs text-gray-300 mb-4 max-w-xs">Detailed DCF financial model sheet and report content locked. Preview blurred.</p>
+                                <a href="assets/ireda%20portfolio%203.0.pdf" target="_blank" class="px-5 py-2.5 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white text-xs font-bold rounded-xl transition-all shadow-lg flex items-center gap-2">
+                                    <i class="fas fa-file-download"></i> Download Full PDF Report
+                                </a>
                             </div>
                         </div>
                     </div>
