@@ -1423,19 +1423,23 @@
                 <div class="lg:w-1/2 w-full fade-in-up stagger-2 relative">
                     <div class="pdf-preview-container p-2 rounded-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500">
                         <div class="relative rounded-xl overflow-hidden bg-white/5 border border-white/10 aspect-[3/4] flex items-center justify-center group">
-                            <!-- PDF Blurred Preview Embedded PDF -->
-                            <iframe src="assets/ireda%20portfolio%203.0.pdf#page=1&view=FitH&toolbar=0&navpanes=0&scrollbar=0" class="w-full h-full border-0 pdf-blurred-content" scrolling="no" title="IREDA Portfolio PDF Preview"></iframe>
+                            <img src="assets/ireda-preview.png" alt="IREDA Portfolio Preview" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300 pdf-blurred-content" style="filter: contrast(1.1) brightness(0.9);">
 
-                            <!-- Lock / Preview Overlay -->
-                            <div class="pdf-lock-overlay">
-                                <div class="w-12 h-12 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-400 flex items-center justify-center mb-3 text-xl shadow-[0_0_20px_rgba(16,185,129,0.3)]">
-                                    <i class="fas fa-lock"></i>
+                            <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 z-20">
+                                <div class="bg-black/60 backdrop-blur-md border border-white/10 rounded-xl p-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                    <div class="flex items-center gap-3 mb-2">
+                                        <div class="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-400 flex items-center justify-center text-sm">
+                                            <i class="fas fa-lock"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="text-sm font-bold text-white">IREDA Equity Research Preview</h4>
+                                            <p class="text-[11px] text-gray-300">Detailed DCF financial model sheet locked.</p>
+                                        </div>
+                                    </div>
+                                    <a href="assets/ireda%20portfolio%203.0.pdf" target="_blank" class="w-full py-2 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white text-xs font-bold rounded-lg transition-all shadow-lg flex items-center justify-center gap-2">
+                                        <i class="fas fa-file-download"></i> Download Full PDF Report
+                                    </a>
                                 </div>
-                                <h4 class="text-base font-bold text-white mb-1">IREDA Equity Research PDF Preview</h4>
-                                <p class="text-xs text-gray-300 mb-4 max-w-xs">Detailed DCF financial model sheet and report content locked. Preview blurred.</p>
-                                <a href="assets/ireda%20portfolio%203.0.pdf" target="_blank" class="px-5 py-2.5 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white text-xs font-bold rounded-xl transition-all shadow-lg flex items-center gap-2">
-                                    <i class="fas fa-file-download"></i> Download Full PDF Report
-                                </a>
                             </div>
                         </div>
                     </div>
