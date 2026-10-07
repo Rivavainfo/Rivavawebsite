@@ -1423,23 +1423,25 @@
                 <div class="lg:w-1/2 w-full fade-in-up stagger-2 relative">
                     <div class="pdf-preview-container p-2 rounded-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500">
                         <div class="relative rounded-xl overflow-hidden bg-white/5 border border-white/10 aspect-[3/4] flex items-center justify-center group">
-                            <img src="assets/ireda-preview.png" alt="IREDA Equity Research Report Preview" class="w-full h-full object-cover scale-105 transition-opacity duration-300 pdf-blurred-content" style="filter: blur(20px) contrast(1.1) brightness(0.9); user-select: none; pointer-events: none;">
+                            <!-- Crisp report document teaser top half -->
+                            <img src="assets/ireda-preview.png" alt="IREDA Equity Research Report Preview" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]" style="user-select: none; pointer-events: none;">
 
-                            <!-- Subtle dark translucent overlay (25% black opacity) -->
-                            <div class="absolute inset-0 bg-black/25 pointer-events-none z-10"></div>
+                            <!-- Feathered half-blur lock overlay starting at ~35% from top -->
+                            <div class="absolute inset-x-0 bottom-0 h-[65%] pointer-events-none z-10" style="backdrop-filter: blur(18px) contrast(1.1) brightness(0.8); -webkit-backdrop-filter: blur(18px) contrast(1.1) brightness(0.8); mask-image: linear-gradient(to bottom, transparent 0%, black 40%, black 100%); -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 40%, black 100%); background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(10,10,10,0.6) 40%, rgba(10,10,10,0.92) 100%);"></div>
 
-                            <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 z-20">
-                                <div class="bg-black/60 backdrop-blur-md border border-white/10 rounded-xl p-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                                    <div class="flex items-center gap-3 mb-2">
-                                        <div class="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-400 flex items-center justify-center text-sm">
+                            <!-- Floating CTA Overlay -->
+                            <div class="absolute inset-x-0 bottom-0 flex flex-col justify-end p-6 z-20">
+                                <div class="bg-black/70 backdrop-blur-xl border border-white/15 rounded-xl p-4 shadow-2xl transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                                    <div class="flex items-center gap-3 mb-2.5">
+                                        <div class="w-9 h-9 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-400 flex items-center justify-center text-sm shrink-0 shadow-[0_0_12px_rgba(16,185,129,0.3)]">
                                             <i class="fas fa-lock"></i>
                                         </div>
                                         <div>
-                                            <h4 class="text-sm font-bold text-white">IREDA Equity Research Preview</h4>
-                                            <p class="text-[11px] text-gray-300">Detailed DCF financial model sheet locked.</p>
+                                            <h4 class="text-sm font-bold text-white tracking-tight">IREDA Equity Research Preview</h4>
+                                            <p class="text-[11px] text-gray-300 font-medium">Detailed DCF financial model & valuation locked.</p>
                                         </div>
                                     </div>
-                                    <a href="donation.html#donate" class="w-full py-2 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white text-xs font-bold rounded-lg transition-all shadow-lg flex items-center justify-center gap-2">
+                                    <a href="donation.html#donate" class="w-full py-2.5 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white text-xs font-bold rounded-lg transition-all shadow-[0_4px_20px_rgba(16,185,129,0.35)] flex items-center justify-center gap-2">
                                         <i class="fas fa-qrcode"></i> Unlock Full Report
                                     </a>
                                 </div>
