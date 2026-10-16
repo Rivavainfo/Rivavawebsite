@@ -638,7 +638,7 @@ function initQrModal() {
 
   document.querySelectorAll('.qr-pay-btn, [data-open-qr]').forEach(btn => {
     btn.addEventListener('click', function(e) {
-      const upiUrl = this.getAttribute('href') || "upi://pay?pa=8881176909@kotakbank&pn=Rivava&am=399&cu=INR&tn=Rivava%20Elite";
+      const upiUrl = this.getAttribute('href') || "upi://pay?pa=8881176909@kotakbank&pn=Rivava&am=96&cu=INR&tn=Rivava%20Elite";
       selectedPlan = this.getAttribute('data-plan') || "Rivava Elite";
 
       if (isDesktop() || this.hasAttribute('data-force-qr')) {
@@ -688,7 +688,7 @@ function initQrModal() {
   if (verifyPaymentBtn) {
     verifyPaymentBtn.addEventListener('click', () => {
       const key = (paymentKeyInput ? paymentKeyInput.value.trim() : '');
-      const isValid = /^rivrubi@\d{5}$/.test(key) || key.toLowerCase() === 'rivava100' || key.toLowerCase() === 'elite2026';
+      const isValid = /^rivrubi@\d{5}$/.test(key);
       if (isValid) {
         if (verificationSection) verificationSection.classList.add('hidden');
         if (downloadSection) {
